@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getGalleries, formatDate, shownLocation } from '../../lib/site';
+const galleries = await getGalleries();
+---
+<Base title="Photography" description="Photography of light, landscape and place.">
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">Explore</span>
+      <h1>Photography</h1>
+      <p>Light, landscape and place. Camera details and GPS data are removed from every published image.</p>
+    </header>
+    {galleries.length === 0 ? (
+      <div class="empty">Galleries are coming soon.</div>
+    ) : (
+      <div class="grid-3">
+        {galleries.map((g) => (
+          <a class="card" href={`/photography/${g.id}`}>
+            <div class="media">{g.data.photos[0] && <img src={g.data.photos[0].image} alt={g.data.photos[0].alt} loading="lazy" />}</div>
+            <div class="body">
+              <div class="meta"><time datetime={g.data.date.toISOString()}>{formatDate(g.data.date)}</time><span>{g.data.photos.length} photos</span>{shownLocation(g.data.location, g.data.locationPrecision) && <span>{shownLocation(g.data.location, g.data.locationPrecision)}</span>}</div>
+              <h3>{g.data.title}</h3>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</Base>

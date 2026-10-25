@@ -1,0 +1,16 @@
+---
+const tiles = [
+  { href: '/journal', img: '/images/member-post.jpg', title: 'Journal', sub: 'Stories from the trail and the road', credit: 'Apollonia' },
+  { href: '/photography', img: '/images/tripod.jpg', title: 'Photography', sub: 'Light, landscape and place', credit: 'Stefan Stefancik' },
+  { href: '/explore#places', img: '/images/travel.jpg', title: 'Places', sub: 'Trigs, summits and lookouts', credit: 'John De Leon' },
+  { href: '/explore#community', img: '/images/cycling.jpg', title: 'Community', sub: 'Coming later: your own corner', credit: 'Tobi & Chris' },
+];
+---
+<div class="grid-4">
+  {tiles.map((t) => (
+    <a class="tile" href={t.href}>
+      <img src={t.img} alt="" loading="lazy" decoding="async" />
+      <span><strong>{t.title}</strong>{t.sub}<small style="opacity:.8">Photo: {t.credit} / Pexels</small></span>
+    </a>
+  ))}
+</div>

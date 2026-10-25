@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /keystatic
+Disallow: /api/keystatic
+Sitemap: https://www.claudiagilbert.com/sitemap-index.xml

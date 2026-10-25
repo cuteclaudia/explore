@@ -1,0 +1,15 @@
+---
+import { shortDate } from '../lib/site';
+const { reports, showSummary = true } = Astro.props;
+---
+<ul class="report-list">
+  {reports.map((r) => (
+    <li>
+      <a href={`/dailycyberreport/${r.id}`}>
+        <time datetime={r.data.date.toISOString()}>{shortDate(r.data.date)}</time>
+        <span class="r-title">Daily Cyber Threat Report · {r.data.region}</span>
+        {showSummary && r.data.summary && <span class="r-sum">{r.data.summary.length > 200 ? r.data.summary.slice(0, 197).trimEnd() + '…' : r.data.summary}</span>}
+      </a>
+    </li>
+  ))}
+</ul>

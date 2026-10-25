@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import EssayCard from '../../components/EssayCard.astro';
+import { getEssays } from '../../lib/site';
+const essays = await getEssays();
+---
+<Base title="China Series" description="Essays on Chinese strategic culture, civilisational time and the misreading of Chinese strategic intent.">
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">Strategy &amp; Security</span>
+      <h1>The China Series</h1>
+      <p>Essays on Chinese strategic culture, drawing on classical strategic thought and Chinese-language primary sources to read strategic action on its own terms.</p>
+    </header>
+    <div class="grid-3">{essays.map((e) => <EssayCard essay={e} />)}</div>
+  </div>
+</Base>

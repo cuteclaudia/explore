@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getJournal, formatDate, shownLocation } from '../../lib/site';
+const entries = await getJournal();
+---
+<Base title="Journal" description="Travel writing and stories from the trail, the road and the city.">
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">Explore</span>
+      <h1>Journal</h1>
+      <p>Stories from summits, coastlines and cities. Locations are shown approximately, and journeys appear after I return.</p>
+    </header>
+    {entries.length === 0 ? (
+      <div class="empty">The first journal entries are on their way. Japan is up first.</div>
+    ) : (
+      <div class="grid-3">
+        {entries.map((j) => (
+          <a class="card" href={`/journal/${j.id}`}>
+            <div class="media">{j.data.cover && <img src={j.data.cover} alt={j.data.coverAlt} loading="lazy" />}</div>
+            <div class="body">
+              <div class="meta"><time datetime={j.data.date.toISOString()}>{formatDate(j.data.date)}</time>{shownLocation(j.data.location, j.data.locationPrecision) && <span>{shownLocation(j.data.location, j.data.locationPrecision)}</span>}</div>
+              <h3>{j.data.title}</h3>
+              {j.data.summary && <p>{j.data.summary}</p>}
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</Base>

@@ -1,0 +1,19 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+const about = await getEntry('pages', 'about');
+if (!about) throw new Error('About page content is missing');
+const { Content } = await render(about);
+---
+<Base title="About" description="Claudia Gilbert is a strategic analyst examining military alliances, technology and strategic decision-making.">
+  <div class="wrap">
+    <header class="page-head" style="padding-bottom:0">
+      <span class="eyebrow">About</span>
+      <h1>{about.data.title}</h1>
+    </header>
+  </div>
+  <div class="prose" style="margin-left:max(0px, calc((100vw - var(--max)) / 2));padding-top:24px"><Content /></div>
+  {about.data.image && (
+    <figure class="article-hero"><img src={about.data.image} alt={about.data.imageAlt} loading="lazy" /></figure>
+  )}
+</Base>

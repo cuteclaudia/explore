@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Contact" description="Get in touch with Claudia Gilbert.">
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">Contact</span>
+      <h1>Get in touch</h1>
+      <p>For research, speaking or media enquiries, send a message below or connect on <a href="https://www.linkedin.com/in/claudiaegilbert/" rel="noopener">LinkedIn</a>.</p>
+    </header>
+    <form class="form" name="contact" method="POST" action="/contact/thanks" data-netlify="true" netlify-honeypot="company">
+      <input type="hidden" name="form-name" value="contact" />
+      <p class="sr-only"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off" /></label></p>
+      <label>Name <input name="name" autocomplete="name" required /></label>
+      <label>Email <input name="email" type="email" autocomplete="email" required /></label>
+      <label>Message <textarea name="message" required></textarea></label>
+      <p class="muted" style="margin:0;font-size:14px">Your details are used only to reply to your message.</p>
+      <div><button class="btn" type="submit">Send message</button></div>
+    </form>
+  </div>
+</Base>

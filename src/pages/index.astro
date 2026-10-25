@@ -1,0 +1,111 @@
+---
+import Base from '../layouts/Base.astro';
+import EssayCard from '../components/EssayCard.astro';
+import ReportList from '../components/ReportList.astro';
+import ExploreTiles from '../components/ExploreTiles.astro';
+import { getHome, getEssays, getReports, getJournal, formatDate, shownLocation } from '../lib/site';
+
+const home = await getHome();
+const essays = (await getEssays()).slice(0, 3);
+const reports = (await getReports()).slice(0, 4);
+const journal = (await getJournal()).slice(0, 3);
+---
+<Base overlayHeader>
+  <section class="hero" aria-label="Introduction">
+    <img src="/images/hero.jpg" alt="" fetchpriority="high" />
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow">{home.eyebrow}</span>
+        <h1>{home.heading}</h1>
+        <p class="lead">{home.intro}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <a class="btn" href="/chinaseries">Read the China Series
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </a>
+          <a class="btn ghost" href="/explore">Explore with me</a>
+        </div>
+      </div>
+    </div>
+    <p class="note" aria-hidden="true">Real places.<br />Brighter perspectives.</p>
+    <span class="credit">Photo: eberhard grossgasteiger / Pexels</span>
+  </section>
+
+  <div class="wrap">
+    <div class="doors">
+      <a class="door strategy" href="/chinaseries">
+        <img src="/images/snow-range.jpg" alt="" loading="lazy" decoding="async" style="opacity:.55" />
+        <div class="door-copy">
+          <span class="eyebrow" style="color:#d6e2ee">Analysis</span>
+          <h2>{home.strategyTitle}</h2>
+          <p>{home.strategyBlurb}</p>
+          <span class="go">Essays and reports →</span>
+          <small style="opacity:.75;font-size:11px">Photo: Rajesh S Balouria / Pexels</small>
+        </div>
+      </a>
+      <a class="door" href="/explore">
+        <img src="/images/blue-mountains.jpg" alt="" loading="lazy" decoding="async" />
+        <div class="door-copy">
+          <span class="eyebrow" style="color:#eef2e8">Journeys</span>
+          <h2>{home.exploreTitle}</h2>
+          <p>{home.exploreBlurb}</p>
+          <span class="go">Journal and photography →</span>
+          <small style="opacity:.75;font-size:11px">Photo: Celia Ferreira / Pexels</small>
+        </div>
+      </a>
+    </div>
+
+    <section class="section" aria-labelledby="essays-h">
+      <div class="section-head">
+        <h2 id="essays-h">The China Series</h2>
+        <span class="muted">Chinese strategic culture, read on its own terms.</span>
+        <a class="more" href="/chinaseries">All essays →</a>
+      </div>
+      <div class="grid-3">
+        {essays.map((e) => <EssayCard essay={e} />)}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="cyber-h">
+      <div class="section-head">
+        <h2 id="cyber-h">Daily Cyber Threat Report</h2>
+        <span class="muted">Australia, Japan and Asia.</span>
+        <a class="more" href="/dailycyberreport">All reports →</a>
+      </div>
+      <ReportList reports={reports} />
+    </section>
+
+    <section class="section" aria-labelledby="explore-h">
+      <div class="section-head">
+        <h2 id="explore-h">Explore</h2>
+        <span class="muted">Summits, coastlines and cities — and the stories that come back with me.</span>
+        <a class="more" href="/explore">Visit Explore →</a>
+      </div>
+      {journal.length > 0 ? (
+        <div class="grid-3" style="margin-bottom:20px">
+          {journal.map((j) => (
+            <a class="card" href={`/journal/${j.id}`}>
+              <div class="media">{j.data.cover && <img src={j.data.cover} alt={j.data.coverAlt} loading="lazy" />}</div>
+              <div class="body">
+                <div class="meta"><time datetime={j.data.date.toISOString()}>{formatDate(j.data.date)}</time>{shownLocation(j.data.location, j.data.locationPrecision) && <span>{shownLocation(j.data.location, j.data.locationPrecision)}</span>}</div>
+                <h3>{j.data.title}</h3>
+                {j.data.summary && <p>{j.data.summary}</p>}
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : null}
+      <ExploreTiles />
+    </section>
+
+    <section class="section" aria-labelledby="sw-h">
+      <a class="card" href="https://www.stratwatch.net" rel="noopener" style="flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px 28px;padding:26px 28px">
+        <div style="flex:1 1 320px">
+          <span class="eyebrow">Also by Claudia</span>
+          <h2 id="sw-h" class="serif" style="margin:6px 0 6px;font-size:30px">StratWatch</h2>
+          <p class="muted" style="margin:0">Independent geopolitical intelligence and analysis.</p>
+        </div>
+        <span class="btn ghost">Visit StratWatch ↗</span>
+      </a>
+    </section>
+  </div>
+</Base>

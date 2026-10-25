@@ -1,0 +1,18 @@
+---
+import { formatDate, readingTime } from '../lib/site';
+const { essay } = Astro.props;
+const img = essay.data.heroImage || essay.data.legacyHeroImage;
+---
+<a class="card" href={`/chinaseries/${essay.id}`}>
+  <div class="media">
+    {img && <img src={img} alt={essay.data.heroAlt} loading="lazy" decoding="async" />}
+  </div>
+  <div class="body">
+    <div class="meta">
+      <time datetime={essay.data.date.toISOString()}>{formatDate(essay.data.date)}</time>
+      <span>{readingTime(essay.body)}</span>
+    </div>
+    <h3>{essay.data.title}</h3>
+    {essay.data.summary && <p>{essay.data.summary.length > 220 ? essay.data.summary.slice(0, 217).trimEnd() + '…' : essay.data.summary}</p>}
+  </div>
+</a>

@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import ReportList from '../../components/ReportList.astro';
+import { getReports } from '../../lib/site';
+const reports = await getReports();
+---
+<Base title="Daily Cyber Threat Report" description="Daily cyber threat reporting across Australia, Japan and Asia.">
+  <div class="wrap">
+    <header class="page-head">
+      <span class="eyebrow">Strategy &amp; Security</span>
+      <h1>Daily Cyber Threat Report</h1>
+      <p>A daily read of the cyber threat environment across Australia, Japan and Asia: what changed, why it matters and what to watch next.</p>
+    </header>
+    <ReportList reports={reports} />
+  </div>
+</Base>
