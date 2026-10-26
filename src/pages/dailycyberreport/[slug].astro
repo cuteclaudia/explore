@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Tags from '../../components/Tags.astro';
 import { getReports, formatDate } from '../../lib/site';
 
 export async function getStaticPaths() {
@@ -20,6 +21,7 @@ const { Content } = await render(report);
         <a class="eyebrow" href="/dailycyberreport" style="text-decoration:none">Daily Cyber Threat Report</a>
         <h1>{formatDate(report.data.date)}</h1>
         <div class="meta"><span>Claudia Gilbert</span><span class="chip">{report.data.region}</span></div>
+        <Tags tags={report.data.tags} />
       </div>
     </header>
     <div class="prose" style="padding-top:8px"><Content /></div>

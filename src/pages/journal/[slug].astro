@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Tags from '../../components/Tags.astro';
 import { getJournal, formatDate, shownLocation, readingTime } from '../../lib/site';
 
 export async function getStaticPaths() {
@@ -21,6 +22,7 @@ const where = shownLocation(entry.data.location, entry.data.locationPrecision);
           {where && <span>{where}{entry.data.locationPrecision === 'approximate' ? ' (approximate)' : ''}</span>}
           <span>{readingTime(entry.body)}</span>
         </div>
+        <Tags tags={entry.data.tags} />
       </div>
     </header>
     {entry.data.cover && <figure class="article-hero" style="margin-top:0"><img src={entry.data.cover} alt={entry.data.coverAlt} /></figure>}

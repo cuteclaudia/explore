@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import Tags from '../components/Tags.astro';
+import {getEssays,getReports,getJournal,getGalleries} from '../lib/site';
+import {normalizeTags,tagKey,tagHref} from '../lib/tags';
+export const prerender=false;
+const [essays,reports,journal,galleries]=await Promise.all([getEssays(),getReports(),getJournal(),getGalleries()]);
+const content=[
+  ...essays.map(x=>({title:x.data.title,type:'Essay',href:'/chinaseries/'+x.id,tags:normalizeTags(x.data.tags)})),
+  ...reports.map(x=>({title:x.data.title,type:'Cyber report',href:'/dailycyberreport/'+x.id,tags:normalizeTags(x.data.tags)})),
+  ...journal.map(x=>({title:x.data.title,type:'Journal',href:'/journal/'+x.id,tags:normalizeTags(x.data.tags)})),
+  ...galleries.flatMap(x=>[
+    {title:x.data.title,type:'Gallery',href:'/photography/'+x.id,tags:normalizeTags(x.data.tags)},
+    ...x.data.photos.map((photo,i)=>({title:photo.caption||photo.alt,type:'Photograph',href:'/photography/'+x.id+'#photo-'+(i+1),tags:normalizeTags([...x.data.tags,...photo.tags])})),
+  ]),
+];
+const labels=normalizeTags(content.flatMap(x=>x.tags)).sort((a,b)=>a.localeCompare(b));
+const selected=(Astro.url.searchParams.get('tag')||'').trim();
+const results=content.filter(x=>x.tags.length&&(!selected||x.tags.some(tag=>tagKey(tag)===tagKey(selected))));
+---
+<Base title={selected?`Tagged: ${selected}`:'Browse tags'} description="Find related writing, journals and photographs by shared tags.">
+  <section class="wrap tag-browser"><header class="page-head"><span class="eyebrow">Connected by curiosity</span><h1>{selected?`Tagged: ${selected}`:'Browse by tag'}</h1><p>Find related articles, journal entries, galleries and photographs.</p></header>
+    <div class="tag-cloud"><a class="chip" href="/tags" aria-current={!selected?'page':undefined}>All tags</a>{labels.map(tag=><a class="chip" href={tagHref(tag)} aria-current={tagKey(tag)===tagKey(selected)?'page':undefined}>{tag}</a>)}</div>
+    <p>{results.length} related {results.length===1?'item':'items'}</p>
+    <div class="grid-3">{results.map(item=><article class="card"><div class="body"><span class="eyebrow">{item.type}</span><h2 class="serif"><a href={item.href}>{item.title}</a></h2><Tags tags={item.tags}/><a href={item.href}>Open {item.type.toLowerCase()} →</a></div></article>)}</div>
+    {!results.length&&<p>No published content has this tag yet.</p>}
+  </section>
+</Base>
+<style>.tag-browser{padding-bottom:60px}.tag-cloud{display:flex;flex-wrap:wrap;gap:10px}.tag-cloud a{text-decoration:none}.tag-cloud a[aria-current=page]{outline:2px solid var(--accent);outline-offset:2px}.tag-browser h2{font-size:25px}.tag-browser h2 a{color:inherit}</style>

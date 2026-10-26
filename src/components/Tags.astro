@@ -1,0 +1,7 @@
+---
+import {normalizeTags,tagHref} from '../lib/tags';
+const {tags=[]}=Astro.props;
+const labels=normalizeTags(tags);
+---
+{labels.length>0&&<div class="content-tags" aria-label="Tags">{labels.map(tag=><a class="chip" href={tagHref(tag)}>{tag}</a>)}</div>}
+<style>.content-tags{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.content-tags a{text-decoration:none}.content-tags a:hover{text-decoration:underline}</style>

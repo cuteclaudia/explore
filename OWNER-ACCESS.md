@@ -36,3 +36,13 @@ The existing `/keystatic` editor remains a separate GitHub-authenticated file ed
 See `EDITOR-RESEARCH.md` for the researched editor options. The photo editor's local edit/export capability remains; it now requires owner authorization in the hosted site. No PhotoCraft/LightCraft/WordCraft/GenOffice application is embedded or represented as available yet.
 
 Identity's Pro audit log covers authentication/account events; a detailed application log for publishing, uploads and individual permission changes has not been implemented in this increment.
+
+## Shared account navigation
+
+The shared site header now includes a visible Sign in link on all pages. It uses the verified `/api/studio/session` response to show My Studio and an account disclosure with settings, Google sign-in, permissions (owner only) and sign-out. These UI checks do not replace server authorization. `/studio/account` is private SSR and supports requesting a password reset.
+
+Google uses the enabled Netlify provider and a matching verified Identity email. `/studio/login?provider=google` initiates it and returns to account settings after an accepted callback. This is not a new arbitrary-email account-link/merge service. A different Google account cannot be granted owner status or merged through this UI. Real Google login remains to be tested after it is enabled in the Netlify project.
+
+## Shared tags
+
+The current Keystatic schemas now expose tags for essays, cyber reports, journals, galleries and individual photographs. Public content renders clickable tags and `/tags?tag=...` finds related published items across types. A photograph inherits its gallery's tags in discovery and can have additional tags of its own. Draft items and their tags are excluded. Tags are public metadata; do not use them for private addresses or other sensitive labels. Future content types such as PDF/video should adopt the same tagging convention when their storage/editor integration is implemented.

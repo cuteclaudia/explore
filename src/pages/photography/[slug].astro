@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import Tags from '../../components/Tags.astro';
 import { getGalleries, formatDate, shownLocation } from '../../lib/site';
 
 export async function getStaticPaths() {
@@ -16,12 +17,14 @@ const where = shownLocation(gallery.data.location, gallery.data.locationPrecisio
       <a class="eyebrow" href="/photography" style="text-decoration:none">Photography</a>
       <h1>{gallery.data.title}</h1>
       <div class="meta"><time datetime={gallery.data.date.toISOString()}>{formatDate(gallery.data.date)}</time>{where && <span>{where}</span>}</div>
+<Tags tags={gallery.data.tags} />
     </header>
     <div class="prose" style="padding-top:0;margin-left:0"><Content /></div>
     <div class="grid-3">
-      {gallery.data.photos.map((p) => (
-        <figure style="margin:0;display:flex;flex-direction:column;gap:8px">
+      {gallery.data.photos.map((p, index) => (
+        <figure id={`photo-${index + 1}`} style="margin:0;display:flex;flex-direction:column;gap:8px">
           <img src={p.image} alt={p.alt} loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px" />
+          <Tags tags={p.tags} />
           {p.caption && <figcaption class="muted" style="font-size:14px">{p.caption}</figcaption>}
         </figure>
       ))}

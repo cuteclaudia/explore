@@ -3,6 +3,7 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const draft = z.boolean().optional().default(false);
+const tags = z.array(z.string()).optional().default([]);
 const precision = z.enum(['approximate', 'exact', 'hidden']).optional().default('approximate');
 
 const essays = defineCollection({
@@ -12,7 +13,7 @@ const essays = defineCollection({
     date: z.coerce.date(),
     series: z.enum(['china', 'standalone']).optional().default('china'),
     summary: z.string().optional().default(''),
-    tags: z.array(z.string()).optional().default([]),
+    tags,
     heroImage: z.string().nullish(),
     heroAlt: z.string().optional().default(''),
     legacyHeroImage: z.string().nullish(),
@@ -25,6 +26,7 @@ const cyber = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
+    tags,
     region: z.string().optional().default('Australia – Japan – Asia'),
     summary: z.string().optional().default(''),
     draft,
@@ -36,6 +38,7 @@ const journal = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
+    tags,
     location: z.string().optional().default(''),
     locationPrecision: precision,
     summary: z.string().optional().default(''),
@@ -50,10 +53,11 @@ const photography = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
+    tags,
     location: z.string().optional().default(''),
     locationPrecision: precision,
     photos: z
-      .array(z.object({ image: z.string(), alt: z.string(), caption: z.string().optional().default('') }))
+      .array(z.object({ image: z.string(), alt: z.string(), caption: z.string().optional().default(''), tags }))
       .optional()
       .default([]),
     draft,

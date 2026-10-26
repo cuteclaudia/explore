@@ -53,3 +53,7 @@ WordCraft ab0eccd; GenOffice 5c1c41e; Tiptap b1f54b4; Lexical 7bc4baa; Editor.js
 3. Add a real media library and connect the existing quick editor's exports.
 4. Prove PhotoCraft browser loading, edit/export and asset handoff with real photos before integrating its advanced workspace.
 5. Evaluate LightCraft and document-design tools as optional owner capabilities later.
+
+## Uploaded source archives and PDFs
+
+The subsequent ZIP review is documented in `ARCHIVE-REVIEW.md`, including the PdfCraft web target, creation/editing limitations, ArtCraft-X licensing uncertainty, and the oversized ArtCraft archive's GitHub-source fallback. The ZIP review does not establish a successful browser build or deployed editor integration.

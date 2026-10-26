@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import { protectPage } from '../../../server/identity';
+export const prerender=false;
+const access=await protectPage('/studio/account');
+if(access instanceof Response)return access;
+Astro.response.headers.set('Cache-Control','private, no-store');
+---
+<Base title="Your account" description="Manage your Explore by Claudia sign-in." noindex>
+  <section class="wrap account-wrap">
+    <a href="/studio">← My Studio</a><h1 class="serif">Your account</h1>
+    <p>Signed in as <strong>{access.user.email}</strong>.</p>
+    {access.isOwner&&<p>Your owner account has access to every site capability.</p>}
+    <section id="google" class="card"><div class="body">
+      <h2 class="serif">Google sign-in</h2>
+      <p>Use the Google account whose verified email is <strong>{access.user.email}</strong>. Netlify matches that verified address to your existing Identity account, so your owner access stays attached to the same user ID.</p>
+      <p>This does not merge an unrelated Gmail address into your account.</p>
+      <p id="google-status" role="status">Checking Google availability…</p>
+      <a class="btn" id="account-google" href="/studio/login?provider=google" hidden>Continue with Google</a>
+      <p id="google-disabled" hidden>Google sign-in is not enabled for this site yet. In Netlify, open Identity → Registration → External providers → Add provider → Google.</p>
+    </div></section>
+    <section class="section"><h2 class="serif">Password</h2><p>You can continue using your email and password alongside Google sign-in.</p><button class="btn ghost" id="account-reset" data-email={access.user.email}>Send password reset email</button><p id="account-reset-status" role="status"></p></section>
+  </section>
+</Base>
+<script>
+  import {getSettings,requestPasswordRecovery} from '@netlify/identity';
+  const status=document.querySelector<HTMLElement>('#google-status')!;
+  getSettings().then(settings=>{const enabled=settings.providers.google;document.querySelector<HTMLAnchorElement>('#account-google')!.hidden=!enabled;document.querySelector<HTMLElement>('#google-disabled')!.hidden=enabled;status.textContent=enabled?'Google sign-in is available.':'Google sign-in is not enabled.';}).catch(()=>{status.textContent='Google availability could not be checked. Please try again.';});
+  const reset=document.querySelector<HTMLButtonElement>('#account-reset')!;
+  reset.addEventListener('click',async()=>{const message=document.querySelector<HTMLElement>('#account-reset-status')!;reset.disabled=true;try{await requestPasswordRecovery(reset.dataset.email!);message.textContent='A password reset email has been requested. Check your inbox.';}catch{message.textContent='The reset email could not be requested. Please try again.';}finally{reset.disabled=false;}});
+</script>
+<style>.account-wrap{max-width:900px;padding-top:50px;padding-bottom:60px}.account-wrap h1{font-size:48px}.account-wrap .body{padding:28px;gap:16px}.account-wrap h2{font-size:30px;margin:0}.account-wrap .section h2{margin-bottom:20px}</style>

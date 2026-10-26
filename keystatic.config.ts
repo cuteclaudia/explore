@@ -18,6 +18,12 @@ const body = (label = 'Body') =>
     },
   });
 
+const tags = () => fields.array(fields.text({ label: 'Tag' }), {
+  label: 'Tags',
+  description: 'Shared topics, places, activities or projects, e.g. Japan, Hiking, Photography. Use the same tag across related stories and photographs. Tags are public, so avoid private locations or information.',
+  itemLabel: props => props.value,
+});
+
 const draft = fields.checkbox({
   label: 'Draft',
   description: 'Drafts are saved but not shown on the live site.',
@@ -76,10 +82,7 @@ export default config({
           description: 'Shown in lists and at the top of the essay.',
           multiline: true,
         }),
-        tags: fields.array(fields.text({ label: 'Tag' }), {
-          label: 'Tags',
-          itemLabel: (props) => props.value,
-        }),
+        tags: tags(),
         heroImage: fields.image({
           label: 'Lead image',
           directory: 'public/images/essays',
@@ -111,6 +114,7 @@ export default config({
           defaultValue: { kind: 'today' },
           validation: { isRequired: true },
         }),
+        tags: tags(),
         region: fields.text({ label: 'Region', defaultValue: 'Australia – Japan – Asia' }),
         summary: fields.text({
           label: 'Summary',
@@ -131,6 +135,7 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: 'Title' }, slug: { label: 'Web address' } }),
         date: fields.date({ label: 'Date', validation: { isRequired: true } }),
+        tags: tags(),
         location: fields.text({
           label: 'Location shown to readers',
           description:
@@ -157,6 +162,7 @@ export default config({
       schema: {
         title: fields.slug({ name: { label: 'Gallery title' }, slug: { label: 'Web address' } }),
         date: fields.date({ label: 'Date', validation: { isRequired: true } }),
+        tags: tags(),
         location: fields.text({ label: 'Location shown to readers' }),
         locationPrecision,
         photos: fields.array(
@@ -169,6 +175,7 @@ export default config({
             }),
             alt: fields.text({ label: 'Description (alt text)', validation: { isRequired: true } }),
             caption: fields.text({ label: 'Caption' }),
+            tags: tags(),
           }),
           {
             label: 'Photos',

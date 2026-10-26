@@ -5,6 +5,7 @@ const links = [
   ['/#map', 'Places & map', 'map'],
   ['/#photography', 'Photography', 'photography'],
   ['/journal', 'Journal', 'journal'],
+  ['/tags', 'Tags', 'tags'],
   ['/#palette', 'Your colours ◐', 'palette'],
   ['/about', 'About Claudia', 'about'],
   ['/contact', 'Contact', 'contact'],
@@ -17,8 +18,24 @@ const links = [
   <nav class="explore-navigation" id="explore-navigation" aria-label="Main navigation">
     {links.map(([href, label, section]) => <a href={href} data-section={section}>{label}</a>)}
   </nav>
+  <div class="explore-account" aria-label="Your account">
+    <a class="explore-signin" href="/studio/login" data-account-signin>Sign in</a>
+    <a class="explore-studio" href="/studio" data-account-studio hidden>My Studio</a>
+    <details class="explore-account-menu" data-account-menu hidden>
+      <summary>Account ▾</summary>
+      <div class="explore-account-panel">
+        <a href="/studio">My Studio</a>
+        <a href="/studio/account">Account settings</a>
+        <a href="/studio/account#google">Google sign-in</a>
+        <a href="/studio/users" data-account-permissions hidden>User permissions</a>
+        <button type="button" data-account-logout>Sign out</button>
+        <p role="status" data-account-status></p>
+      </div>
+    </details>
+  </div>
 </header>
 <script>
+  import '../scripts/account-navigation';
   const nav = document.getElementById('explore-navigation')!;
   const toggle = document.querySelector<HTMLButtonElement>('.explore-menu')!;
   const close = () => { nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); };
@@ -30,6 +47,7 @@ const links = [
     else if (path.startsWith('/about')) section = 'about';
     else if (path.startsWith('/contact')) section = 'contact';
     else if (/^\/(chinaseries|dailycyberreport|strategy)(\/|$)/.test(path)) section = 'writing';
+    else if (path.startsWith('/tags')) section = 'tags';
     else if (path.startsWith('/journal')) section = 'journal';
     else if (path.startsWith('/photography')) section = 'photography';
     else if (path.startsWith('/explore')) section = 'map';

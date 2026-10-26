@@ -14,3 +14,14 @@
 .explore-footer a{color:inherit;text-decoration:none}
 .explore-footer small{flex-basis:100%;font:11px/1.6 system-ui,sans-serif}
 @media(max-width:1100px){.explore-header .explore-menu{display:block}.explore-header .explore-navigation{display:none;width:100%;flex-direction:column;align-items:stretch;gap:0}.explore-header .explore-navigation.is-open{display:flex}.explore-header .explore-navigation a{padding:12px 4px}.explore-header{gap:16px}}
+.explore-header .explore-account{display:flex;align-items:center;gap:12px;font:14px/1.6 system-ui,sans-serif}
+.explore-header .explore-signin,.explore-header .explore-studio{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 18px;border:1px solid var(--accent,#376b5c);border-radius:24px;text-decoration:none;white-space:nowrap;background:var(--surface,#fff);color:var(--ink,#233a32)}
+.explore-header .explore-account-menu{position:relative}
+.explore-header .explore-account-menu summary{cursor:pointer;list-style:none;padding:10px 6px;white-space:nowrap}
+.explore-header .explore-account-menu summary::-webkit-details-marker{display:none}
+.explore-header .explore-account-panel{position:absolute;right:0;top:100%;width:230px;max-width:calc(100vw - 32px);padding:12px;background:var(--surface,#fff);color:var(--ink,#233a32);border:1px solid var(--border,#ccc);border-radius:12px;box-shadow:0 12px 30px #0002}
+.explore-header .explore-account-panel a,.explore-header .explore-account-panel button{display:block;width:100%;padding:10px;text-decoration:none;text-align:left;font:14px/1.6 system-ui,sans-serif;color:inherit;border:0;border-radius:6px;background:transparent;cursor:pointer}
+.explore-header .explore-account-panel p{font:13px/1.5 system-ui,sans-serif;margin:4px 10px}
+@media(min-width:1101px){.explore-header{gap:18px}.explore-header .explore-navigation{gap:14px;flex:1;justify-content:center}}
+@media(max-width:1100px){.explore-header .explore-brand{margin-right:auto}.explore-header .explore-account{order:2;margin-left:auto}.explore-header .explore-menu{order:1}.explore-header .explore-navigation{order:3}}
+@media(max-width:430px){.explore-header .explore-account{width:100%;justify-content:flex-end}.explore-header .explore-account-panel{width:230px}}
