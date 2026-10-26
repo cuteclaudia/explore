@@ -2,7 +2,7 @@ import {onAuthChange} from '@netlify/identity';
 import {KOBO_BYTES,KoboError,koboApp,koboPath,koboConditions,koboFailure} from '../lib/kobo-contract.mjs';
 
 // Experimental v1.2 shell. The adapter and local library remain owned by each app.
-export function mountKoboShell({frame,launch,onStatus,onClosed}:{frame:HTMLIFrameElement;launch:any;onStatus?:(s:any)=>void;onClosed?:(s:string)=>void}){
+export function mountKoboShell({frame,launch,onStatus,onClosed,requireStorage=false}:{frame:HTMLIFrameElement;launch:any;onStatus?:(s:any)=>void;onClosed?:(s:string)=>void;requireStorage?:boolean}){
   const app=launch.app;let port:MessagePort|null=null,used=false,closed=false,status:any=null,polling=false;
   const pending=new Map<string|number,AbortController>();
   const post=(value:any,transfer:Transferable[]=[])=>{if(!closed&&port)port.postMessage(value,transfer);};
@@ -43,6 +43,7 @@ export function mountKoboShell({frame,launch,onStatus,onClosed}:{frame:HTMLIFram
     if(closed||!port||polling)return;polling=true;
     try{
       const next=await request('status');
+      if(requireStorage&&!next.available){close('Connect and verify WebDAV in Files & storage before opening this experimental app. The current build needs a configured connection to keep local account libraries separate.');return;}
       if(status&&(status.userKey!==next.userKey||status.connectionId!==next.connectionId)){post({type:'change',status:next});close('Your account or storage destination changed. Reopen the app before continuing.');return;}
       if(!status||JSON.stringify(status)!==JSON.stringify(next)){status=next;post({type:'change',status});onStatus?.(status);}
     }catch(error){if(['unauthorized','forbidden'].includes(error.code))close(error.message);else onStatus?.({available:false,reason:'provider-unavailable',message:error.message});}finally{polling=false;}
@@ -63,6 +64,7 @@ export function mountKoboShell({frame,launch,onStatus,onClosed}:{frame:HTMLIFram
       if(!status&&op!=='status')throw new KoboError('invalid','Read storage status before accessing files.');
       const result:any=await request(op,{...args,requestId:id},abort.signal);
       if(op==='status'){
+        if(requireStorage&&!result.available){close('Connect and verify WebDAV before opening this experimental app.');return;}
         if(status&&(status.userKey!==result.userKey||status.connectionId!==result.connectionId)){close('Your storage destination changed. Reopen the app.');return;}status=result;onStatus?.(status);
       }
       if(closed||abort.signal.aborted)return;

@@ -1,17 +1,31 @@
-# Set up the Hikari test site
+# Set up or update the Hikari test site
 
 These instructions create a **separate** static application site. They do not replace Explore, change DNS, or change the existing Squarespace site.
 
+## Update an existing Hikari test project to 0.14.3
+
+Claudia has already created `cuteclaudia-hikari-test.netlify.app`. For this update:
+
+1. Download `hikari-test-site-0.14.3.zip` and extract it.
+2. In Netlify open **cuteclaudia-hikari-test → Deploys**.
+3. Drag the extracted folder containing `index.html`, `main.js`, `kobo-bridge.js`, `kobo-sync.js` and `_headers` into that project's manual deploy area. Keep it on the existing test project, not Explore.
+4. Wait for the new deploy to become Published. The app address stays unchanged; no new environment variables or DNS changes are required for this upgrade.
+5. Open the owner test shell at `https://explorebyclaudia.netlify.app/studio/kobo-test`, choose Hikari, then Open test app. Use this embedded launch to test sync; a standalone tab has no signed-in shell connection and may have a different local library. This build requires a verified WebDAV connection to launch through the website: the app still needs a fix for account separation in its unconfigured local fallback. The current editors remain available under My apps.
+
+The 0.14.3 source ZIP SHA-256 is `202f5a55c028c43c26744946b024f224d00ef2e24c56497a75eb48aefdf57712`. Its `_headers` and `kobo.json` are preserved unchanged. All startup scripts are external, so the fixed strict CSP needs no per-release inline-script hash. Only redundant precompressed files and the Apache-specific .htaccess are omitted from the prepared Netlify package. App code, fonts, icons and licence/NOTICE files are retained.
+
+The remaining steps below explain first-time setup and WebDAV connection configuration.
+
 ## 1. Deploy the prepared static app
 
-1. Download `hikari-test-site.zip` supplied with this review and extract it on your computer.
+1. Download `hikari-test-site-0.14.3.zip` supplied with this review and extract it on your computer.
 2. Open https://app.netlify.com/drop while signed into your Netlify account, or choose **Add new project → Deploy manually**.
 3. Drag the **extracted folder containing index.html and _headers** into the upload area. Do not drag it into the existing Explore project's deploy area.
 4. Open the new project's configuration and change its project/site name to `cuteclaudia-hikari-test` if available.
 5. Confirm the assigned URL. Our selected address is `https://cuteclaudia-hikari-test.netlify.app`. If Netlify assigns another address, use that actual address in the next step and tell Claude.
 6. This static app project needs no sign-in keys, WebDAV credentials or build-time secrets. The included headers allow embedding only from `https://explorebyclaudia.netlify.app`. Keep the app's licence/NOTICE files.
 
-The ZIP was prepared from the uploaded Hikari archive with SHA-256 `1979822f6118bbe75c61f120b4af44191b2fd4c71091cf7678f4a65a11c006a8`. Redundant precompressed variants were omitted; executable app files were not rewritten. Its inline module is allowed by its exact CSP hash, rather than unrestricted inline scripts. The current build has no new storage bridge yet.
+The current prepared package is Hikari 0.14.3. Earlier 0.14.1 used a per-release inline-script hash; do not reuse those old headers with the new build. The current build includes the bridge and real library sync, with fixed security headers supplied by Claude.
 
 ## 2. Configure the Explore website project
 
@@ -48,8 +62,8 @@ The configured WebDAV URL must already be an accessible account/folder endpoint.
 
 ## 4. Open the owner test shell
 
-Open `https://explorebyclaudia.netlify.app/studio/kobo-test`, choose **Hikari**, then **Open test app**. Hikari should load in the separate-origin frame. With 0.14.1 the shell will say it is waiting for the bridge, because Claude is still building that component.
+Open `https://explorebyclaudia.netlify.app/studio/kobo-test`, choose **Hikari**, then **Open test app**. Hikari should load in the separate-origin frame. With 0.14.3 the bridge connects and reports storage availability. A configured WebDAV connection must also pass Test Kōbō sync connection before remote file operations are allowed.
 
-When the next Hikari build arrives, deploy its reviewed files to the **same Hikari test project**, preserving that app origin and correct CSP. Update the inline-script CSP hash when index.html changes. We will then connect the real client and run the joint acceptance checks on your kDrive.
+Deploy later reviewed builds to the **same Hikari test project**, preserving the app origin and each release's supplied security headers. The 0.14.3 real-library browser tests passed with fixture API responses; deployed Identity/relay, actual kDrive, photo-original transfers and Safari/private-mode acceptance still need joint verification.
 
 Your normal app links continue to use the existing editors until acceptance. Site saving/publishing and the older 50 MiB saved-revision limit are separate from this new 1 MiB-per-operation multipart contract.

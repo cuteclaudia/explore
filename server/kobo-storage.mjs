@@ -21,7 +21,8 @@ export function koboStorageService({launchStore,loadConnection,files=davFiles,or
     permit(actor,app);const appOrigin=origin(app,shellOrigin);const id=randomUUID();
     const record={user:actor.user.id,app,appOrigin,shellOrigin,expires:now()+60*60*1000};
     await launchStore.setJSON('launch/'+id,record,{onlyIfNew:true});
-    return {launchId:id,app,origin:appOrigin,expires:record.expires,experimental:true};
+    const status=storageStatus(actor,await loadConnection(actor.user.id),app);
+    return {launchId:id,app,origin:appOrigin,expires:record.expires,experimental:true,storageStatus:status};
   }
   async function binding(actor,id,shellOrigin){
     if(typeof id!=='string'||!/^[-a-f0-9]{36}$/.test(id))throw new KoboError('forbidden','An app launch is required.');

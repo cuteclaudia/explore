@@ -51,6 +51,18 @@ let browser;try{
   return {size:read.files['catalog.snap'].length,first:read.files['catalog.snap'][0],last:read.files['catalog.snap'].at(-1),callerSize:bytes.length,uploaded:base.uploaded,winners:results.filter(x=>x.status==='fulfilled').length,failures:results.filter(x=>x.status==='rejected').map(x=>x.reason.code)};
  });
  assert.equal(sync.size,1048593);assert.equal(sync.first,42);assert.equal(sync.last,42);assert.equal(sync.callerSize,1048593);assert.equal(sync.uploaded,3);assert.equal(sync.winners,1);assert.deepEqual(sync.failures,['conflict']);
+ // A hostile head must be rejected before allocating a logical library or trusting its names.
+ const originalHead=files.get('library/head.json');
+ const emptyHash='e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';
+ const emptyFile={file:'catalog.log',size:0,sha256:emptyHash};
+ const baseHead={format:'kobo-library',version:1,generation:'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',parent:null,files:[],logical:[]};
+ for(const logical of [[{...emptyFile,file:'constructor'}],[emptyFile,emptyFile],[{...emptyFile,size:268435457}],[{...emptyFile,size:.5}]]){
+  files.set('library/head.json',{data:Buffer.from(JSON.stringify({...baseHead,logical})),etag:'"malformed"'});
+  assert.equal(await frame.evaluate(async()=>{try{await KoboSync.pull('hikari');return 'accepted';}catch(e){return e.code;}}),'server');
+ }
+ files.set('library/head.json',{data:Buffer.alloc(1000001,32),etag:'"oversized"'});
+ assert.equal(await frame.evaluate(async()=>{try{await KoboSync.pull('hikari');return 'accepted';}catch(e){return e.code;}}),'server');
+ files.set('library/head.json',originalHead);
  actor=false;await frame.evaluate(()=>{KoboStorage.status('hikari').catch(()=>{});return true;});await page.waitForFunction(()=>globalThis.koboClosed===true);assert.equal(await page.locator('iframe').getAttribute('src'),'about:blank');assert.deepEqual(errors,[]);
  console.log('PASS actual Claude bridge + sync: cross-origin handshake/isolation, status/change, binary read/write/progress, caller buffer retained, dir listing, path/app/size refusal, browser storage probe, segmented library commit/pull/hash validation, concurrent-save conflict and expired-session teardown. Identity and WebDAV responses are fixtures; kDrive and Safari remain unverified.');
 }finally{await browser?.close();host.closeAllConnections();app.closeAllConnections();await new Promise(resolve=>host.close(resolve));await new Promise(resolve=>app.close(resolve));}

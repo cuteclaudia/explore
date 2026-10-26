@@ -105,9 +105,10 @@
       function onWelcome(ev) {
         var m = ev.data;
         if (done || !m || m.type !== "kobo-welcome" || m.launchId !== id) return;
+        if ((m.app !== undefined && m.app !== config.app) || (m.bridgeVersion !== undefined && m.bridgeVersion !== BRIDGE_VERSION)) return;
         if (ev.source !== window.parent) return;
         if (config.shellOrigins.indexOf(ev.origin) < 0) return;
-        if (!ev.ports || !ev.ports[0]) return;
+        if (!ev.ports || ev.ports.length !== 1) return;
         done = true;
         window.removeEventListener("message", onWelcome);
         clearTimeout(timer);
@@ -286,9 +287,10 @@
       };
     });
   }
-  // Below this quota a browser is very likely keeping the data only for a private session
-  // (a heuristic; the §9a test matrix refines it per browser).
-  var SESSION_QUOTA_BYTES = 120 * 1024 * 1024;
+  // A small quota *may* mean a private window. It's only a hint (generous private-mode quotas
+  // exist, and small normal ones too), so it never decides the class; the app words best-effort
+  // storage conservatively instead. The §9a browser matrix decides what's detectable for real.
+  var SMALL_QUOTA_BYTES = 120 * 1024 * 1024;
 
   var KoboLocal = {
     /** {cls: "persistent"|"best-effort"|"session-only"|"unavailable", opfs, idb, persisted, quota} */
@@ -302,11 +304,9 @@
         return Promise.all([ask, est]).then(function (x) {
           var persisted = !!x[0];
           var quota = typeof x[1].quota === "number" ? x[1].quota : null;
-          var cls;
-          if (!works) cls = "unavailable";
-          else if (quota !== null && quota < SESSION_QUOTA_BYTES) cls = "session-only";
-          else cls = persisted ? "persistent" : "best-effort";
-          return { cls: cls, opfs: opfs, idb: idb, persisted: persisted, quota: quota };
+          var cls = !works ? "unavailable" : persisted ? "persistent" : "best-effort";
+          var mayBeTemporary = works && !persisted && quota !== null && quota < SMALL_QUOTA_BYTES;
+          return { cls: cls, opfs: opfs, idb: idb, persisted: persisted, quota: quota, mayBeTemporary: mayBeTemporary };
         });
       });
     },
@@ -315,7 +315,7 @@
       var n = appName || "This app";
       switch (cls) {
         case "persistent": return "Saved locally";
-        case "best-effort": return "Saved in this browser (it may clear it when space runs low)";
+        case "best-effort": return "Saved in this browser for now. The browser may clear it (for example in a private window or when space runs low): sync to storage or download a backup.";
         case "session-only": return "Private window: your work is kept only until you close it. Sync to storage or download a backup.";
         default: return "This browser won't let " + n + " keep files here. Your work is not saved: sync to storage or download a backup before closing.";
       }

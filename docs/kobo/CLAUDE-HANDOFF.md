@@ -1,12 +1,36 @@
-# Kōbō shell handoff to Claude — 26 October 2026
+# Kōbō shell handoff to Claude — 27 October 2026 (Sydney)
 
-The website side implements an **experimental** v1.2 transport. It does not advertise completed acceptance or enable normal users by default. The Hikari 0.14.1 web ZIP starts correctly in Chromium but has no bridge loaded. Your separately supplied `kobo-bridge-for-chatgpt.zip` now passes the website shell browser test, including its actual `kobo-bridge.js` and `kobo-sync.js`. The app build still needs to wire these into its real library and finish photo sync.
+The website implements the experimental v1.2.1-compatible transport. It remains owner-only until deployed acceptance. Hikari 0.14.3 now includes the real app-side bridge and library sync; the checks and remaining limits are recorded below.
+
+## Update: Hikari 0.14.3 / contract 1.2.1
+
+The new ZIP matches SHA-256 `202f5a55c028c43c26744946b024f224d00ef2e24c56497a75eb48aefdf57712`. Contract v1.2.1 is retained beside v1.2 in this directory. No message-format changes were needed in the shell.
+
+The actual WASM build, exact supplied CSP and current shell passed controlled Chromium tests for real library auto-commit, restoring an edited album from remote committed files after clearing local test storage, per-account library namespaces, closing the previous account frame, connection switching without copying the old library, conflict pause without overwriting the remote head, and sign-out teardown. Identity and remote file HTTP responses were fixtures, not deployed Netlify or kDrive.
+
+The updated standalone bridge/sync checks also reject reserved and duplicate logical names, fractional/oversized logical sizes and an oversized head before allocation.
+
+The supplied `_headers` and `kobo.json` are preserved byte-for-byte in the prepared Netlify package. Startup is external main.js; no inline-script CSP hash is required. The existing test project should be updated in place to avoid changing its origin.
+
+**Browser restriction to discuss:** with local OPFS/IndexedDB blocked, this build clearly reports not saved and falls back to memory; its kobo state is null and it does not start remote sync. Users can download a backup. Supporting remote sync from memory would be a useful follow-up to the §9a fallback. Browser-private-mode/Safari behaviour and 200 MB photo-original transfers are not accepted by these tests.
+
+Current client SHA-256: `2a5bce8944c47c9e12d99fd52120f624ae6f09fd24459f20f1185569aac740f0`; sync SHA-256: `6281f0555b7f17cded3692ebd9d2ba4d6739d981fb1135f8d946516e2e512c44`.
+
+The older notes below record the original handoff and protocol. App-side parser, private-mode wording and welcome validation points have now been addressed in 0.14.3. Automatic GC remains disabled as agreed.
+
+## Account-local fallback fix needed in Hikari
+
+Without a configured connection, two signed-in test accounts both opened `library` and the second saw the first account's added album (7 → 8 albums). This is a local namespace issue, not shared remote storage. See HIKARI-0.14.3-VALIDATION.md for the reproduction.
+
+Until fixed, the website test page preflights launch.storageStatus.available and requires configured/verified storage for the entire iframe launch. Contract status/unconfigured API behaviour is unchanged. The integration stays owner-only.
+
+Please namespace local state by userKey even with no available connection (use a stable account-local destination marker when connectionId is empty). Reserve the generic library for a real guest. Add tests switching accounts with no-connection/provider-unavailable; joining a new cloud connection must ask before copying account-local data.
 
 ## Addresses
 
 - Allowed shell origin: `https://explorebyclaudia.netlify.app`.
 - Selected app test origin: `https://cuteclaudia-hikari-test.netlify.app`.
-- **The app hostname is proposed, not provisioned.** Claudia must create this separate static Netlify site first. If unavailable, use the actual assigned hostname in both the site's `KOBO_HIKARI_ORIGIN` and this handoff. Each later app gets its own origin.
+- **Claudia has created this test hostname**, confirmed by her screenshot. Update that existing project with 0.14.3. Each later app gets its own origin. Live deployed integration has not been verified from this workspace.
 - Owner launch page: `/studio/kobo-test` on the shell. Existing `/apps/hikari` continues to use the old workspace until joint acceptance.
 - No DNS, Squarespace or custom-domain changes are required.
 
