@@ -12,7 +12,9 @@
     "predev": "node --use-env-proxy scripts/prepare-craft-tools.mjs",
     "test": "node --test server/*.test.mjs",
     "predev:content": "node --use-env-proxy scripts/prepare-craft-tools.mjs",
-    "dev:content": "node scripts/dev-content.mjs"
+    "dev:content": "node scripts/dev-content.mjs",
+    "test:deploy": "node scripts/check-netlify-build.mjs",
+    "postbuild": "npm run test:deploy"
   },
   "dependencies": {
     "@astrojs/markdoc": "^2.1.1",

@@ -44,3 +44,8 @@ Use Node 24, `npm ci`, then `npm run dev:content -- --host 127.0.0.1 --port 4322
 ## Apps for invited users
 
 `/apps` is separate from the private Studio. Owners grant specific `tools.*` capabilities through `/studio/users`; invited verified users see only granted apps. Community remains disabled and non-tool permissions are masked for app-only users. `/apps/{tool}` fills the window and uses an explicit destination prompt after export, with a per-account remembered destination. Native device permissions remain browser-managed; WebDAV must be connected separately. Owner administration remains private; other app users cannot read the owner's files. Owners retain administrative access to site-stored files.
+
+
+## Deployment compatibility check
+
+`npm run build` also runs `npm run test:deploy` via its postbuild hook. Stop local Astro development servers before building, because adapter startup also resets the generated function directory. The check copies the deployable SSR package outside the repository, starts a temporary Blobs emulator and exercises it under `node --no-require-module`, matching Netlify's CommonJS/ESM loading restriction. It verifies public content/RSS, authentication redirects and unpublished legacy overrides. The sanitizer/parser dependency tree is bundled through `vite.ssr.noExternal` so the function does not require an ESM-only parser from CommonJS at runtime. Keep this compatibility check when updating dependencies; successful development rendering alone does not verify the deployment package.
