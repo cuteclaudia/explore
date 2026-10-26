@@ -1,4 +1,6 @@
 ---
+export const prerender=false;
+Astro.response.headers.set('Cache-Control','no-store');
 import Base from '../../layouts/Base.astro';
 import EssayCard from '../../components/EssayCard.astro';
 import { getEssays } from '../../lib/site';

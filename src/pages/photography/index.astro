@@ -1,4 +1,6 @@
 ---
+export const prerender=false;
+Astro.response.headers.set('Cache-Control','no-store');
 import Base from '../../layouts/Base.astro';
 import { getGalleries, formatDate, shownLocation } from '../../lib/site';
 const galleries = await getGalleries();
@@ -8,7 +10,7 @@ const galleries = await getGalleries();
     <header class="page-head">
       <span class="eyebrow">Explore</span>
       <h1>Photography</h1>
-      <p>Light, landscape and place. Camera details and GPS data are removed from every published image.</p>
+      <p>Light, landscape and place. Upload, edit and discover photographs, with captions and tags.</p>
     </header>
     {galleries.length === 0 ? (
       <div class="empty">Galleries are coming soon.</div>

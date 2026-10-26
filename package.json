@@ -10,7 +10,9 @@
     "check": "astro check",
     "prebuild": "node --use-env-proxy scripts/prepare-craft-tools.mjs",
     "predev": "node --use-env-proxy scripts/prepare-craft-tools.mjs",
-    "test": "node --test server/*.test.mjs"
+    "test": "node --test server/*.test.mjs",
+    "predev:content": "node --use-env-proxy scripts/prepare-craft-tools.mjs",
+    "dev:content": "node scripts/dev-content.mjs"
   },
   "dependencies": {
     "@astrojs/markdoc": "^2.1.1",
@@ -20,11 +22,17 @@
     "@astrojs/sitemap": "^3.7.4",
     "@keystatic/astro": "^6.0.0",
     "@keystatic/core": "^0.6.9",
+    "@markdoc/markdoc": "^0.5.10",
     "@netlify/blobs": "11.1.6",
     "@netlify/identity": "2.0.0",
+    "@tiptap/core": "^3.32.0",
+    "@tiptap/extension-image": "^3.32.0",
+    "@tiptap/extension-table": "^3.32.0",
+    "@tiptap/starter-kit": "^3.32.0",
     "astro": "^7.4.2",
     "fflate": "0.8.2",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1"
+    "react-dom": "^19.3.1",
+    "sanitize-html": "^2.18.1"
   }
 }

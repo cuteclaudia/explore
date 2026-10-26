@@ -1,5 +1,5 @@
 import { createReader } from '@keystatic/core/reader';
-import { getCollection } from 'astro:content';
+import { liveCollection } from './studio-content';
 import keystaticConfig from '../../keystatic.config';
 
 export const reader = createReader(process.cwd(), keystaticConfig);
@@ -27,13 +27,10 @@ export async function getHome() {
   };
 }
 
-const published = <T extends { data: { draft?: boolean; date: Date } }>(items: T[]) =>
-  items.filter((i) => !i.data.draft).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-export const getEssays = async () => published(await getCollection('essays'));
-export const getReports = async () => published(await getCollection('cyber'));
-export const getJournal = async () => published(await getCollection('journal'));
-export const getGalleries = async () => published(await getCollection('photography'));
+export const getEssays = async () => liveCollection('essays');
+export const getReports = async () => liveCollection('cyber');
+export const getJournal = async () => liveCollection('journal');
+export const getGalleries = async () => liveCollection('photography');
 
 export const formatDate = (d: Date) =>
   d.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });

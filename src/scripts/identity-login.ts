@@ -9,8 +9,8 @@ let busy=false;
 let afterGoogle='';
 const googleRequested=new URLSearchParams(location.search).get('provider')==='google';
 const next=new URLSearchParams(location.search).get('next') || '/studio';
-const allowedDestinations=['/studio','/studio/photo-editor','/studio/users','/studio/account','/studio/storage','/studio/tools/photocraft','/studio/tools/lightcraft','/studio/tools/wordcraft','/studio/tools/pdfcraft'];
-let destination='/studio';try{const target=new URL(next,location.origin);const path=target.pathname.replace(/\/$/,'');if(target.origin===location.origin&&allowedDestinations.includes(path)){destination=path;const file=target.searchParams.get('file');if(file&&/^[0-9a-f-]{36}$/i.test(file))destination+='?file='+encodeURIComponent(file);}}catch{}
+const allowedDestinations=['/studio','/studio/photo-editor','/studio/users','/studio/account','/studio/storage','/studio/content','/studio/content/edit','/studio/content/preview','/studio/tools/photocraft','/studio/tools/lightcraft','/studio/tools/wordcraft','/studio/tools/pdfcraft'];
+let destination='/studio';try{const target=new URL(next,location.origin);const path=target.pathname.replace(/\/$/,'');if(target.origin===location.origin&&allowedDestinations.includes(path)){destination=path;const file=target.searchParams.get('file');const query=new URLSearchParams();if(file&&/^[0-9a-f-]{36}$/i.test(file))query.set('file',file);const entry=target.searchParams.get('entry');if(entry&&/^(journal|essays|cyber|photography)\/[a-z0-9][a-z0-9-]{0,199}$/.test(entry))query.set('entry',entry);const collection=target.searchParams.get('collection');if(collection&&['journal','essays','cyber','photography'].includes(collection))query.set('collection',collection);if(query.size)destination+='?'+query.toString();}}catch{}
 const loginError=new URLSearchParams(location.search).get('error');
 if(loginError)status.textContent='Sign-in could not be completed. Check your email and password, or use password recovery.';
 const message=(error:unknown)=>error instanceof Error?error.message:'Sign-in could not be completed. Please try again.';

@@ -1,5 +1,9 @@
 # Netlify Identity owner access
 
+## Current content workflow
+
+Studio now includes Identity-authenticated article and gallery editing at `/studio/content`, with rich text, tagging, private drafts, public snapshots, image upload/editing, independent copies and recoverable deletion. Existing repository content is imported and overridden at the same URLs. Public pages expose owner editing controls only after a verified session; server authorization still enforces every operation. Keystatic remains separate for About/repository settings. Earlier increment descriptions below are historical; this section supersedes their statements that an Identity content CMS is not implemented. New drafts/uploads live in the private `studio-content` Blobs store and require backup separately from Git.
+
 ## Implemented in this increment
 
 - Official `@netlify/identity` 2.0.0 integration; no Supabase dependency.

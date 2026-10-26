@@ -1,0 +1,23 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Tags from '../../../components/Tags.astro';
+import {liveCollection} from '../../../lib/studio-content';
+export const prerender=false;
+Astro.response.headers.set('Cache-Control','no-store');
+const gallery=(await liveCollection('photography')).find(x=>x.id===Astro.params.slug);
+const photo=gallery?.data.photos.find(p=>p.id===Astro.params.photo);
+if(!gallery||!photo)return new Response('This photograph is not published.',{status:404});
+const key='photography/'+gallery.id;
+---
+<Base title={photo.alt||gallery.data.title} image={photo.image}>
+<section class="wrap photograph-page"><p><a href={'/photography/'+gallery.id}>← {gallery.data.title}</a></p><h1 class="serif">{photo.alt||gallery.data.title}</h1>
+<div id="photo-actions" data-entry={key} data-photo={photo.id} hidden><a class="btn" href={'/studio/content/edit?entry='+encodeURIComponent(key)+'#photo-'+encodeURIComponent(photo.id)}>Edit photograph</a> <button class="btn ghost" data-photo-action="copy">Copy photo to draft</button> <button class="btn ghost" data-photo-action="remove">Remove photo from draft</button><p id="photo-action-status" role="status"></p></div>
+<figure><img src={photo.image} alt={photo.alt}/><figcaption>{photo.caption}</figcaption></figure><Tags tags={[...gallery.data.tags,...photo.tags]}/>
+</section>
+</Base>
+<script>
+const area=document.querySelector<HTMLElement>('#photo-actions')!;
+fetch('/api/studio/session',{cache:'no-store'}).then(async r=>{const d=await r.json();if(r.ok&&d.isOwner)area.hidden=false;}).catch(()=>{});
+area.querySelectorAll<HTMLButtonElement>('[data-photo-action]').forEach(button=>button.onclick=async()=>{const action=button.dataset.photoAction;if(action==='remove'&&!confirm('Remove this photograph from the gallery draft? The public gallery stays unchanged until you publish your edits.'))return;button.disabled=true;const status=document.querySelector<HTMLElement>('#photo-action-status')!;try{const [collection,slug]=area.dataset.entry!.split('/'),query='?collection='+collection+'&slug='+encodeURIComponent(slug);const response=await fetch('/api/content/entry'+query,{cache:'no-store'}),record=await response.json();if(!response.ok)throw Error(record.error);const id=area.dataset.photo;const photo=record.draft.photos.find(p=>p.id===id)||record.published?.photos.find(p=>p.id===id);if(!photo)throw Error('This photograph has changed. Reopen the gallery.');if(action==='copy')record.draft.photos.push({...photo,id:crypto.randomUUID()});else record.draft.photos=record.draft.photos.filter(p=>p.id!==id);const saved=await fetch('/api/content/entry'+query,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({version:record.version,action:'draft',draft:record.draft})});const result=await saved.json();if(!saved.ok)throw Error(result.error);status.replaceChildren();const text=document.createElement('span');text.textContent=action==='copy'?'Photograph copied in the private gallery draft. ':'Photograph removed from the private gallery draft. ';const link=document.createElement('a');link.href='/studio/content/edit?entry='+encodeURIComponent(record.key);link.textContent='Review and publish gallery changes →';status.append(text,link);}catch(e){status.textContent=e instanceof Error?e.message:'The change could not be saved.';}finally{button.disabled=false;}});
+</script>
+<style>.photograph-page{padding:35px 0 60px}.photograph-page h1{font-size:clamp(32px,5vw,55px)}.photograph-page figure{margin:25px 0}.photograph-page figure img{display:block;max-width:100%;max-height:80vh;margin:auto;border-radius:12px}.photograph-page figcaption{padding:15px 0}.photograph-page button,.photograph-page .btn{margin:5px}</style>

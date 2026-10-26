@@ -2,6 +2,14 @@
 
 Claudia's long-term goal is an owner-controlled suite within Explore by Claudia. Capabilities must remain independently grantable to future users while both pinned owner accounts have full access. Community remains off.
 
+## Claudia's rebuilt applications
+
+Claudia is rebuilding and renaming the suite with Claude AI. LightCraft's replacement is **Hikari**, with releases planned at https://github.com/cuteclaudia/hikari-releases. The supplied visual reference uses a sakura blossom on a dark navy rounded-square icon and a gold 光 beside the Hikari wordmark. Other application names and release repositories are pending.
+
+Do not switch the working integration to an unfinished release or imply the existing upstream LightCraft build is the rebuilt Hikari application. When ready, inspect Hikari's release assets for an embeddable browser build (desktop installers alone cannot run inside the website), licence/attribution requirements, and integrity checks. Validate its sandbox compatibility and import/export/cloud-save bridge before switching. Preserve existing LightCraft file records, permissions and bookmarks through an explicit migration or compatibility mapping rather than renaming storage identifiers blindly. Apply the same review to each subsequent replacement.
+
+Repository check on 2026-10-26: the Git remote was reachable, but `git ls-remote ... HEAD` returned no HEAD ref; no completed release was established by that check. The current site integration remains the pinned upstream LightCraft build pending Hikari delivery.
+
 ## Current implementation under validation
 
 Four pinned, checksum-verified official browser releases are prepared by the build:
@@ -43,3 +51,8 @@ No checkout, pricing catalogue, payment integration or login-required commercial
 ## Validation boundaries
 
 Browser tests started all four actual releases in isolated frames, verified parent DOM access is denied, opened a real JPEG in PhotoCraft, captured a real PSD save, a real DOCX save, a real PDF save and a LightCraft JPEG export. Automated storage tests verify multi-chunk byte restoration, checksums, private access and publish/unpublish using a storage test double, plus the actual Netlify Blobs SDK/emulator across a service restart. All four actual captured export files also passed byte-for-byte SDK/emulator restoration. They do not prove a real Netlify provider round-trip or user-owned WebDAV connection. See NETLIFY-SETUP.md for required deployed validation and configuration.
+
+
+## Next homepage direction (Claudia, 2026-10-26)
+
+After the integrated content editing/publishing work, use Claudia's supplied adventure-planner reference as the proposed homepage direction: a large mountain/travel hero, interactive adventure map, route/activity details, photography and journal highlights. Restore Strava and related activity links once the actual profile destinations are established. Keep the shared Explore by Claudia navigation and palette choices, including Sakura Pink. Community stays disabled; do not add fictional member activity, follow counts or working-looking community controls. A real Strava connection needs separate OAuth/provider setup and location privacy controls; an external profile link is a different, simpler feature. The screenshot is a design reference, not evidence that terrain, routing, elevation data or Strava integration already works.

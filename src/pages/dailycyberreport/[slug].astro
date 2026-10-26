@@ -1,33 +1,9 @@
 ---
-import { render } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import Tags from '../../components/Tags.astro';
-import { getReports, formatDate } from '../../lib/site';
-
-export async function getStaticPaths() {
-  const reports = await getReports();
-  return reports.map((report, i) => ({
-    params: { slug: report.id },
-    props: { report, newer: reports[i - 1], older: reports[i + 1] },
-  }));
-}
-const { report, newer, older } = Astro.props;
-const { Content } = await render(report);
+import PublishedContent from '../../components/PublishedContent.astro';
+import {liveCollection} from '../../lib/studio-content';
+export const prerender=false;
+Astro.response.headers.set('Cache-Control','no-store');
+const entry=(await liveCollection('cyber')).find(x=>x.id===Astro.params.slug);
+if(!entry)return new Response('This page is not published.',{status:404,headers:{'Cache-Control':'no-store'}});
 ---
-<Base title={`Daily Cyber Threat Report — ${formatDate(report.data.date)}`} description={report.data.summary}>
-  <article class="report">
-    <header class="article-head wrap">
-      <div class="inner">
-        <a class="eyebrow" href="/dailycyberreport" style="text-decoration:none">Daily Cyber Threat Report</a>
-        <h1>{formatDate(report.data.date)}</h1>
-        <div class="meta"><span>Claudia Gilbert</span><span class="chip">{report.data.region}</span></div>
-        <Tags tags={report.data.tags} />
-      </div>
-    </header>
-    <div class="prose" style="padding-top:8px"><Content /></div>
-    <nav class="article-foot" aria-label="More reports">
-      {older ? <a href={`/dailycyberreport/${older.id}`}>← {formatDate(older.data.date)}</a> : <span></span>}
-      {newer ? <a href={`/dailycyberreport/${newer.id}`}>{formatDate(newer.data.date)} →</a> : <span></span>}
-    </nav>
-  </article>
-</Base>
+<PublishedContent entry={entry} />

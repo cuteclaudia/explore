@@ -62,3 +62,8 @@ The subsequent ZIP review is documented in `ARCHIVE-REVIEW.md`, including the Pd
 ## Integration status after the initial research
 
 Pinned official PhotoCraft, LightCraft, WordCraft and PdfCraft browser releases are now integrated as independently authorized, isolated Studio workspaces. They are release artifacts verified against upstream SHA-256 checksums, not builds of the uploaded source snapshots. Real PSD, DOCX, PDF and JPEG save/export operations were captured in browser tests. The same exported bytes were saved and restored across a restart using the official Netlify Blobs SDK and its filesystem emulator. This is not a test of the user's deployed Netlify account or WebDAV server. See NETLIFY-SETUP.md and OFFICE-SUITE-ROADMAP.md for current limitations, storage settings and deferred apps.
+
+
+## Integrated content editor update
+
+Tiptap 3 (StarterKit, Image and TableKit) now powers the Identity-authenticated article/gallery editor at `/studio/content`. It supports rich text, tables, inline images, covers and tags; private drafts, explicit publication, unpublish, independent copying and recoverable deletion persist in Netlify Blobs. Uploaded images are re-encoded client-side and can be edited in the gallery/cover/inline workflow. Existing repository articles are imported via Markdoc and edited as Blobs overrides at their original URLs. This supersedes earlier statements that Tiptap or an Identity-compatible CMS is only a recommendation. Live owner authentication and hosted Blobs writes still need user validation on Netlify.

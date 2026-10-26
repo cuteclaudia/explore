@@ -1,4 +1,6 @@
 ---
+export const prerender=false;
+Astro.response.headers.set('Cache-Control','no-store');
 import Base from '../../layouts/Base.astro';
 import { getJournal, formatDate, shownLocation } from '../../lib/site';
 const entries = await getJournal();

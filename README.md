@@ -2,28 +2,24 @@
 
 Claudia Gilbert's personal site: strategy and security writing (the China Series and the Daily Cyber Threat Report) alongside Explore — journal, photography and places.
 
-Built with [Astro](https://astro.build), edited in the browser with [Keystatic](https://keystatic.com), and hosted on [Netlify](https://www.netlify.com). All content is stored as files in this repository, so nothing is locked into a platform.
+Built with [Astro](https://astro.build) and hosted on [Netlify](https://www.netlify.com). Studio uses Netlify Identity for sign-in and private Netlify Blobs for content drafts, published versions and uploaded photographs. Original repository content remains the import source; edited versions override it at the same URLs. Keystatic remains available for repository-only settings such as About.
 
 ## Writing and editing
 
-- **On the live site:** go to `/keystatic`, sign in with GitHub, and edit. Each save is a commit to this repository, and Netlify republishes the site in a minute or two.
-- **On your computer:** run `npm install` once, then `npm run dev` and open http://localhost:4321/keystatic. Edits save straight to the files here.
+Sign in at `/studio/login`, then open `/studio/content`. No separate GitHub login is required for articles or photo galleries. See [NETLIFY-SETUP.md](NETLIFY-SETUP.md) for the two owner UUID bindings and provider setup.
 
-The editor has:
+- Create a journal, China Series essay, cyber report or photo gallery, or edit an existing item.
+- Write rich text with headings, lists, links, tables and inline photographs. Add a cover, date, summary, tags and a location visibility setting.
+- Save draft retains the current published version. Preview opens a private saved draft. Publish replaces the live version immediately without a site rebuild. Unpublish retains the working draft.
+- Upload JPEG/PNG/WebP files; the browser resizes/re-encodes them to JPEG (maximum 2400 px, 4 MiB upload), stripping original metadata. Reopening an existing gallery allows crop/rotate/flip/brightness/contrast/colour editing, replacing or duplicating photos, reordering, captions and individual photo tags. Double-click an inline article image to edit it.
+- Signed-in owners see Edit, Make a copy and Delete on an open public page. Copies are unpublished drafts with independent uploaded-image records. Delete unpublishes and moves to Deleted items; Restore returns an unpublished draft.
+- Existing repository article URLs and credited reference photographs remain available for editing. Blobs overrides take priority over repository edits after a page has been edited in Studio; do not edit the same item in both systems expecting automatic merging.
 
-| Section | What it holds |
-|---|---|
-| Essays | The China Series and standalone essays — `/chinaseries/…` |
-| Daily Cyber Threat Reports | One entry per report, pre-filled with the title and region — `/dailycyberreport/…` |
-| Journal | Travel writing — `/journal/…` |
-| Photography | Galleries — `/photography/…` |
-| Home page / About page | The home page text, default colour palette and About text |
-
-Tick **Draft** to save something without publishing it.
+Original files remain in Git, but Studio drafts, versions, bin items and uploads live in Netlify Blobs and are not committed to GitHub. Back up that store separately. A draft is a working copy, not an automatic version history or automatic keystroke backup.
 
 ### Location privacy
 
-Journal entries and galleries have a **Location shown to readers** field and a precision setting. Only type what readers should see (for example "Hokkaido, Japan"). Never store exact addresses or coordinates in this repository: if the repository is public, everything in it is public, including drafts. Publish journeys after you return rather than while you are travelling. Strip GPS data from photos before uploading them.
+Studio entries have a location visibility setting; approximate displays the broad location text you enter, rather than rounding coordinates automatically. Only type what readers should see (for example "Hokkaido, Japan"). Never store exact addresses or coordinates in this repository: if the repository is public, everything in it is public, including drafts. Publish journeys after you return rather than while you are travelling. Strip GPS data from photos before uploading them.
 
 ## One-time setup
 
@@ -38,3 +34,8 @@ Existing Squarespace addresses (`/chinaseries/…`, `/dailycyberreport/…`, `/a
 ## Photography credits
 
 Landscape photography from [Pexels](https://www.pexels.com) under the Pexels licence; photographers are credited where their work appears.
+
+
+## Local content development
+
+Use Node 24, `npm ci`, then `npm run dev:content -- --host 127.0.0.1 --port 4322`. This starts a local Netlify Blobs emulator plus foreground Astro; data persists in ignored `.netlify/content-local-blobs`. Stop this process with Ctrl+C. It supplies local storage only, not a fake owner login; authenticated Identity still requires a real supported service context. Anonymous private/API requests must remain denied. The plain `npm run dev` workflow does not supply a Blobs service for the dynamic public content pages. Production uses Netlify's runtime credentials automatically and must never use the local emulator token.
