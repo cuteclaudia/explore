@@ -11,12 +11,13 @@ interface Props {
 
 const { title, description, overlayHeader = false, image } = Astro.props;
 const home = await getHome();
-const fullTitle = title ? `${title} | Claudia Gilbert` : 'Claudia Gilbert | Strategy, Security & Exploration';
+const fullTitle = title ? `${title} | Explore by Claudia` : 'Explore by Claudia | Strategy, Security & Exploration';
 const desc = description || home.intro;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 const nav = [
   { href: '/chinaseries', label: 'China Series' },
   { href: '/dailycyberreport', label: 'Cyber' },
+  { href: '/', label: 'Explore home' },
   { href: '/explore', label: 'Explore' },
   { href: '/journal', label: 'Journal' },
   { href: '/photography', label: 'Photography' },
@@ -58,9 +59,9 @@ const ogImage = new URL(image && image.startsWith('/') ? image : '/images/hero.j
     <a class="skip" href="#main">Skip to content</a>
     <header class:list={['site-header', { overlay: overlayHeader }]}>
       <div class="wrap bar">
-        <a class="brand" href="/" aria-label="Claudia Gilbert, home">
+        <a class="brand" href="/" aria-label="Explore by Claudia, home">
           <svg viewBox="0 0 40 24" width="38" height="23" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M2 22 L13 6 L20 15 L26 8 L38 22"></path><path d="M10 10.5 L13 6 L16 10"></path></svg>
-          <span>Claudia Gilbert</span>
+          <span>Explore by Claudia</span>
         </a>
         <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu" data-menu>
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
@@ -96,7 +97,7 @@ const ogImage = new URL(image && image.startsWith('/') ? image : '/images/hero.j
     <footer class="site-footer">
       <div class="wrap">
         <div>
-          <div class="serif" style="font-size:24px">Claudia Gilbert</div>
+          <div class="serif" style="font-size:24px">Explore by Claudia</div>
           <div class="muted" style="font-size:14px">Strategy, security and the places in between.</div>
         </div>
         <nav aria-label="Footer">

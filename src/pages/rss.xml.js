@@ -9,7 +9,7 @@ export async function GET(context) {
     ...journal.map((j) => ({ title: j.data.title, pubDate: j.data.date, description: j.data.summary, link: `/journal/${j.id}/` })),
   ].sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf());
   return rss({
-    title: 'Claudia Gilbert',
+    title: 'Explore by Claudia',
     description: 'Strategy, security and the places in between.',
     site: context.site,
     items,
