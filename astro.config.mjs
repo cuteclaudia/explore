@@ -10,6 +10,6 @@ export default defineConfig({
   site: 'https://www.claudiagilbert.com',
   // Pages are pre-built as static HTML; only the /keystatic editor runs on the server.
   adapter: netlify(),
-  integrations: [react(), markdoc(), keystatic(), sitemap({ filter: (page) => !page.includes('/keystatic') })],
+  integrations: [react(), markdoc(), keystatic(), sitemap({ filter: (page) => !page.includes('/keystatic') && !page.includes('/studio') })],
   trailingSlash: 'ignore',
 });

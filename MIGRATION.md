@@ -21,7 +21,7 @@ The local Explore prototype now includes the existing repository content: 3 Chin
 
 ## Owner tools
 
-The public `/studio` page links to the existing content editor and the browser-only `/studio/photo-editor`. A public studio link does not authorize publishing. Keystatic uses GitHub authentication in production; the requested Google/Microsoft/password owner account is not implemented or configured yet. See `OWNER-ACCESS.md`.
+Netlify Identity login and server-protected Studio routes have been implemented. The owner UUID must be configured and actual deployed login verified before the tools are available. See `OWNER-ACCESS.md` for the required steps and limitations, and `EDITOR-RESEARCH.md` for the article/photo-editor research. The existing Keystatic content editor still uses GitHub; an Identity-compatible publishing backend is not yet implemented.
 
 ## Local run
 

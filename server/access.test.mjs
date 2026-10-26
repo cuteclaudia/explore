@@ -1,0 +1,26 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {CAPABILITIES,AccessError,resolveActor,requireCapability,parseAccessUpdate} from './access.mjs';
+const ownerId='11111111-1111-4111-8111-111111111111';
+const memberId='22222222-2222-4222-8222-222222222222';
+const fresh=(id,appMetadata={})=>({id,email:'verified@example.com',confirmedAt:'2026-10-26',appMetadata});
+const actor=(user,options={})=>resolveActor({session:{id:user.id},getFreshUser:async()=>user,ownerId,...options});
+const status=code=>error=>error instanceof AccessError&&error.status===code;
+test('anonymous requests are denied before an admin lookup',async()=>{let called=false;await assert.rejects(resolveActor({session:null,getFreshUser:async()=>{called=true;},ownerId}),status(401));assert.equal(called,false);});
+test('missing owner binding fails closed',async()=>{await assert.rejects(actor(fresh(ownerId),{ownerId:''}),status(503));});
+test('owner has every capability without roles or metadata',async()=>{const a=await actor(fresh(ownerId));assert.equal(a.isOwner,true);for(const key of Object.keys(CAPABILITIES))assert.doesNotThrow(()=>requireCapability(a,key));});
+test('owner cannot be suspended by user metadata settings',async()=>{const a=await actor(fresh(ownerId,{suspended:true,capabilities:{'photo.edit':false}}));requireCapability(a,'photo.edit');});
+test('ordinary accounts remain blocked while community is off',async()=>{await assert.rejects(actor(fresh(memberId,{roles:['admin','owner'],capabilities:{'photo.edit':true}})),status(403));});
+test('future users start without capabilities',async()=>{const a=await actor(fresh(memberId),{communityEnabled:true});assert.ok(Object.values(a.permissions).every(v=>v===false));});
+test('future capabilities require an explicit boolean grant',async()=>{const a=await actor(fresh(memberId,{capabilities:{'photo.edit':true,'media.upload':'true'}}),{communityEnabled:true});requireCapability(a,'photo.edit');assert.throws(()=>requireCapability(a,'media.upload'),status(403));});
+test('profile metadata and claimed roles cannot grant access',async()=>{const user={...fresh(memberId),roles:['admin'],userMetadata:{capabilities:{'photo.edit':true}}};const a=await actor(user,{communityEnabled:true,session:{id:memberId,roles:['owner'],appMetadata:{capabilities:{'photo.edit':true}}}});assert.throws(()=>requireCapability(a,'photo.edit'),status(403));});
+test('permission revocation uses the current server record',async()=>{const a=await actor(fresh(memberId,{capabilities:{'photo.edit':false}}),{communityEnabled:true,session:{id:memberId,appMetadata:{capabilities:{'photo.edit':true}}}});assert.throws(()=>requireCapability(a,'photo.edit'),status(403));});
+test('unknown and inherited capability names never authorize',async()=>{const a=await actor(fresh(ownerId));for(const key of ['unknown','constructor','toString','__proto__'])assert.throws(()=>requireCapability(a,key),status(403));});
+test('deleted users and identity service failures fail closed',async()=>{await assert.rejects(resolveActor({session:{id:ownerId},getFreshUser:async()=>{throw Error('unavailable')},ownerId}),status(401));});
+test('unverified and mismatched accounts are rejected',async()=>{await assert.rejects(actor({...fresh(ownerId),confirmedAt:undefined}),status(401));await assert.rejects(actor(fresh(ownerId),{getFreshUser:async()=>fresh(memberId)}),status(401));});
+test('suspended non-owner accounts are rejected even after login',async()=>{await assert.rejects(actor(fresh(memberId,{suspended:true,capabilities:{'photo.edit':true}}),{communityEnabled:true}),status(403));});
+test('owner access updates are rejected including case variants',()=>{for(const id of [ownerId,ownerId.toUpperCase()])assert.throws(()=>parseAccessUpdate({capabilities:{},suspended:true},id,ownerId),status(403));});
+test('only capability booleans and suspension can be updated',()=>{assert.throws(()=>parseAccessUpdate({capabilities:{'made.up':true},suspended:false},memberId,ownerId),status(400));assert.throws(()=>parseAccessUpdate({capabilities:{'photo.edit':1},suspended:false},memberId,ownerId),status(400));assert.throws(()=>parseAccessUpdate({capabilities:{},suspended:false,role:'admin'},memberId,ownerId),status(400));assert.throws(()=>parseAccessUpdate({capabilities:{},suspended:'false'},memberId,ownerId),status(400));});
+test('unchecked and omitted capabilities are denied',()=>{const data=parseAccessUpdate({capabilities:{'photo.edit':true},suspended:false},memberId,ownerId);assert.equal(data.capabilities['photo.edit'],true);assert.equal(data.capabilities['journal.create'],false);assert.equal(data.suspended,false);});
+
+test('reserved owner capabilities cannot be granted to future users',async()=>{const a=await actor(fresh(memberId,{capabilities:{'users.manage':true,'settings.manage':true}}),{communityEnabled:true});assert.throws(()=>requireCapability(a,'users.manage'),status(403));assert.throws(()=>parseAccessUpdate({capabilities:{'users.manage':true},suspended:false},memberId,ownerId),status(400));});

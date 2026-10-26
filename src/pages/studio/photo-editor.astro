@@ -1,5 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { protectPage } from '../../../server/identity';
+export const prerender = false;
+const access = await protectPage('/studio/photo-editor', 'photo.edit');
+if (access instanceof Response) return access;
+Astro.response.headers.set('Cache-Control', 'private, no-store');
 ---
 <Base title="Photo editor" description="Prepare photographs for Explore by Claudia in your browser." noindex>
   <div class="wrap photo-workspace">

@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Owner sign in" description="Sign in to your Explore by Claudia studio." noindex>
+  <section class="wrap login-wrap">
+    <span class="eyebrow">Your creative space</span><h1 class="serif">Welcome back, Claudia.</h1>
+    <p>Sign in to write, edit and create. Access is invitation-only.</p>
+    <p id="auth-status" role="status">Checking sign-in…</p>
+    <form id="login-form" class="form" hidden>
+      <label>Email address<input id="login-email" type="email" autocomplete="username" required /></label>
+      <label>Password<input id="login-password" type="password" autocomplete="current-password" required /></label>
+      <button class="btn" type="submit">Sign in</button>
+      <button class="btn ghost" id="recover-password" type="button">Forgot password?</button>
+    </form>
+    <form id="password-form" class="form" hidden>
+      <label>New password<input id="new-password" type="password" autocomplete="new-password" minlength="12" required /></label>
+      <label>Confirm password<input id="confirm-password" type="password" autocomplete="new-password" minlength="12" required /></label>
+      <button class="btn" type="submit">Set password</button>
+    </form>
+    <button class="btn ghost" id="google-login" type="button" hidden>Continue with Google</button>
+    <div id="owner-setup" hidden><h2 class="serif">Finish connecting your owner account</h2><p>Your email is verified. Copy your Identity user ID below into the Netlify environment variable <code>OWNER_IDENTITY_ID</code>, then redeploy. Your ID alone cannot sign anyone in.</p><p><code id="owner-id"></code></p></div>
+    <button class="btn ghost" id="logout" type="button" hidden>Sign out</button>
+    <p><a href="/">← Return to Explore</a></p>
+  </section>
+</Base>
+<script>import '../../scripts/identity-login';</script>
+<style>.login-wrap{max-width:760px;padding-top:60px;padding-bottom:60px}.login-wrap h1{font-size:clamp(36px,5vw,54px)}.login-wrap .btn{margin:8px 8px 8px 0}.login-wrap code{overflow-wrap:anywhere}</style>

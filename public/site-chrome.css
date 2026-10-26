@@ -1,3 +1,4 @@
+[hidden]{display:none!important}
 .explore-banner{font:12px/1.6 system-ui,sans-serif;text-align:center;padding:6px 16px;background:var(--ink,#233a32);color:var(--bg,#f4f3ee)}
 .explore-header{position:relative;z-index:20;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;padding:20px 5%;border-bottom:1px solid var(--border,#ddd);background:var(--bg,#f4f3ee);color:var(--ink,#233a32)}
 .explore-header .explore-brand{display:block;flex-shrink:0;font:italic 36px/1.1 Georgia,serif;letter-spacing:0;text-decoration:none;color:inherit}
