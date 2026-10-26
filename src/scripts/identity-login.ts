@@ -18,7 +18,7 @@ async function session() {
   const data=await response.json();
   if(!response.ok) throw Error(data.error || 'You do not have access to this studio.');
   form.hidden=true;google.hidden=true;signout.hidden=false;
-  if(data.setupRequired){document.querySelector('#owner-setup')!.removeAttribute('hidden');document.querySelector('#owner-id')!.textContent=data.id;status.textContent='Signed in. Your permanent owner ID still needs to be connected.';}
+  if(data.setupRequired){document.querySelector('#owner-setup')!.removeAttribute('hidden');document.querySelector('#owner-id')!.textContent=data.id;document.querySelector('#owner-variable')!.textContent=data.variable==='OWNER_GOOGLE_IDENTITY_ID'?'OWNER_GOOGLE_IDENTITY_ID':'OWNER_IDENTITY_ID';status.textContent='Signed in. Your permanent owner ID still needs to be connected.';}
   else location.replace(afterGoogle || destination);
 }
 async function initialize() {

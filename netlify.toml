@@ -23,3 +23,14 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "SAMEORIGIN"
     Permissions-Policy = "geolocation=(), camera=(), microphone=()"
+
+# Keystatic GitHub mode requires a branch segment; retain old Studio bookmarks.
+[[redirects]]
+  from = "/keystatic/collection/*"
+  to = "/keystatic/branch/main/collection/:splat"
+  status = 302
+
+[[redirects]]
+  from = "/keystatic/singleton/*"
+  to = "/keystatic/branch/main/singleton/:splat"
+  status = 302

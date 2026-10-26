@@ -16,8 +16,9 @@ export const OWNER_ONLY_CAPABILITIES = Object.freeze(['users.manage', 'settings.
 export class AccessError extends Error {
   constructor(status, message) { super(message); this.status = status; }
 }
+export const isOwnerIdentity = (id, owners) => (Array.isArray(owners) ? owners : [owners]).filter(Boolean).some(value => value.toLowerCase() === id.toLowerCase());
 export function permissionsFor(user, ownerId) {
-  const owner = Boolean(ownerId && user.id === ownerId);
+  const owner = isOwnerIdentity(user.id, ownerId);
   const stored = user.appMetadata?.capabilities || {};
   return Object.fromEntries(Object.keys(CAPABILITIES).map(key => [key, owner || (!OWNER_ONLY_CAPABILITIES.includes(key) && stored[key] === true)]));
 }
@@ -26,8 +27,8 @@ export async function resolveActor({ session, getFreshUser, ownerId, communityEn
   let user;
   try { user = await getFreshUser(session.id); } catch { throw new AccessError(401, 'Your session could not be verified. Please sign in again.'); }
   if (!user || user.id !== session.id || !user.confirmedAt) throw new AccessError(401, 'A verified account is required.');
-  if (!ownerId) throw new AccessError(503, 'Owner access has not been configured yet.');
-  const isOwner = user.id === ownerId;
+  if (!(Array.isArray(ownerId) ? ownerId.some(Boolean) : ownerId)) throw new AccessError(503, 'Owner access has not been configured yet.');
+  const isOwner = isOwnerIdentity(user.id, ownerId);
   if (!isOwner && (!communityEnabled || user.appMetadata?.suspended === true)) throw new AccessError(403, 'This site is currently owner-only.');
   return { user, isOwner, permissions: permissionsFor(user, ownerId) };
 }
@@ -35,7 +36,7 @@ export function requireCapability(actor, capability) {
   if (!Object.hasOwn(CAPABILITIES, capability) || !actor.permissions[capability]) throw new AccessError(403, 'You do not have access to this feature.');
 }
 export function parseAccessUpdate(body, targetId, ownerId) {
-  if (targetId.toLowerCase() === ownerId.toLowerCase()) throw new AccessError(403, 'The owner’s full access cannot be changed here.');
+  if (isOwnerIdentity(targetId, ownerId)) throw new AccessError(403, 'The owner’s full access cannot be changed here.');
   if (!body || typeof body !== 'object' || Array.isArray(body) || Object.keys(body).some(k => !['capabilities','suspended'].includes(k))) throw new AccessError(400, 'Invalid access update.');
   if (!body.capabilities || typeof body.capabilities !== 'object' || Array.isArray(body.capabilities)) throw new AccessError(400, 'A capability list is required.');
   for (const [key,value] of Object.entries(body.capabilities)) {

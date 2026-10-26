@@ -1,9 +1,11 @@
 import { getUser, admin, AuthError } from '@netlify/identity';
 import { AccessError, resolveActor, requireCapability } from './access.mjs';
 export const ownerId = () => process.env.OWNER_IDENTITY_ID?.trim().toLowerCase() || '';
+export const ownerIds = () => [ownerId(), process.env.OWNER_GOOGLE_IDENTITY_ID?.trim().toLowerCase() || ''].filter(Boolean);
+export const setupVariableFor = (email: string) => email.toLowerCase() === 'claudiaegilbert@gmail.com' ? 'OWNER_GOOGLE_IDENTITY_ID' : email.toLowerCase() === ownerEmail() ? 'OWNER_IDENTITY_ID' : null;
 export const ownerEmail = () => (process.env.OWNER_EMAIL || 'claudia@claudiagilbert.com').trim().toLowerCase();
 export async function currentActor(capability?: string) {
-  const actor = await resolveActor({session:await getUser(), getFreshUser:admin.getUser, ownerId:ownerId(), communityEnabled:false});
+  const actor = await resolveActor({session:await getUser(), getFreshUser:admin.getUser, ownerId:ownerIds(), communityEnabled:false});
   if (capability) requireCapability(actor, capability);
   return actor;
 }

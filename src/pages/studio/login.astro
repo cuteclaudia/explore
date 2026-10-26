@@ -18,7 +18,7 @@ import Base from '../../layouts/Base.astro';
       <button class="btn" type="submit">Set password</button>
     </form>
     <button class="btn ghost" id="google-login" type="button" hidden>Continue with Google</button>
-    <div id="owner-setup" hidden><h2 class="serif">Finish connecting your owner account</h2><p>Your email is verified. Copy your Identity user ID below into the Netlify environment variable <code>OWNER_IDENTITY_ID</code>, then redeploy. Your ID alone cannot sign anyone in.</p><p><code id="owner-id"></code></p></div>
+    <div id="owner-setup" hidden><h2 class="serif">Finish connecting your owner account</h2><p>Your email is verified. Copy your Identity user ID below into the Netlify environment variable <code id="owner-variable">OWNER_IDENTITY_ID</code>, then redeploy. Your ID alone cannot sign anyone in.</p><p><code id="owner-id"></code></p></div>
     <button class="btn ghost" id="logout" type="button" hidden>Sign out</button>
     <p><a href="/">← Return to Explore</a></p>
   </section>

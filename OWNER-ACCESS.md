@@ -46,3 +46,9 @@ Google uses the enabled Netlify provider and a matching verified Identity email.
 ## Shared tags
 
 The current Keystatic schemas now expose tags for essays, cyber reports, journals, galleries and individual photographs. Public content renders clickable tags and `/tags?tag=...` finds related published items across types. A photograph inherits its gallery's tags in discovery and can have additional tags of its own. Draft items and their tags are excluded. Tags are public metadata; do not use them for private addresses or other sensitive labels. Future content types such as PDF/video should adopt the same tagging convention when their storage/editor integration is implemented.
+
+## Second owner for Google testing
+
+`claudiaegilbert@gmail.com` is explicitly allowed to display its own verified setup UUID, even when the primary owner is already configured. This grants no capabilities by email alone. Pin that separate account's UUID in Netlify as `OWNER_GOOGLE_IDENTITY_ID` and redeploy. Keep the original `OWNER_IDENTITY_ID` unchanged. Both pinned IDs receive permanent owner capabilities and are protected from demotion/suspension through the website. Community remains off. The invitation/account itself must be created in Netlify Identity; this workspace has not sent an invitation or changed the deployed environment variables.
+
+Studio Keystatic links now use `/keystatic/branch/main/collection/...` in production. Redirects preserve the old local-mode collection bookmarks. Keystatic's separate GitHub authentication is still required; these route corrections do not implement the new Identity-compatible writing CMS.

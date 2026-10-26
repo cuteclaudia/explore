@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { protectPage } from '../../../server/identity';
+const editorBase=import.meta.env.PROD?'/keystatic/branch/main':'/keystatic';
 export const prerender = false;
 const access = await protectPage('/studio');
 if (access instanceof Response) return access;
@@ -13,14 +14,14 @@ Astro.response.headers.set('Cache-Control', 'private, no-store');
       <h1>Claudia’s studio</h1>
       <p>Write your next story, curate a gallery, or prepare a photograph for the site.</p>
       <a class="btn" href="/keystatic">Open current content editor →</a> <a class="btn ghost" href="/studio/users">User permissions</a> <a class="btn ghost" href="/studio/account">Account settings</a>
-      <p class="muted">You are signed in to your owner studio. The existing content editor still requires GitHub authentication while the integrated writing editor is developed.</p>
+      <p class="muted">You are signed in to your owner studio. The current writing and gallery editor uses a separate GitHub sign-in. Sign in there, then return to these editor links. The Netlify Identity writing editor is not yet available.</p>
     </header>
     <div class="grid-3">
-      <article class="card"><div class="body"><h2 class="serif">Write a journal</h2><p>Compose rich text, add photos and a cover, choose a date and location, and save an unpublished draft.</p><a class="btn" href="/keystatic/collection/journal">Open journal editor →</a><a href="/journal">View published journal</a></div></article>
-      <article class="card"><div class="body"><h2 class="serif">Curate photography</h2><p>Upload photographs, arrange galleries, and add captions and descriptions for readers.</p><a class="btn" href="/keystatic/collection/photography">Open gallery editor →</a><a href="/#photography">View photography preview</a></div></article>
+      <article class="card"><div class="body"><h2 class="serif">Write a journal</h2><p>Compose rich text, add photos and a cover, choose a date and location, and save an unpublished draft.</p><a class="btn" href={`${editorBase}/collection/journal`}>Open journal editor →</a><a href="/journal">View published journal</a></div></article>
+      <article class="card"><div class="body"><h2 class="serif">Curate photography</h2><p>Upload photographs, arrange galleries, and add captions and descriptions for readers.</p><a class="btn" href={`${editorBase}/collection/photography`}>Open gallery editor →</a><a href="/#photography">View photography preview</a></div></article>
       <article class="card"><div class="body"><h2 class="serif">Edit a photograph</h2><p>Crop, rotate, flip, and adjust brightness, contrast and colour. Download your edit, then upload it in a story or gallery.</p><a class="btn" href="/studio/photo-editor">Open photo editor →</a><span class="muted">Images stay in your browser until you choose to upload them in the content editor.</span></div></article>
     </div>
-    <section class="section"><h2 class="serif">Your writing & site pages</h2><p><a href="/keystatic/collection/essays">China Series essays</a> · <a href="/keystatic/collection/cyber">Cyber reports</a> · <a href="/keystatic/singleton/about">About page</a></p><p>Save with Draft selected while you work. To publish, clear Draft and save; Netlify rebuilds the website after the change reaches GitHub.</p></section>
+    <section class="section"><h2 class="serif">Your writing & site pages</h2><p><a href={`${editorBase}/collection/essays`}>China Series essays</a> · <a href={`${editorBase}/collection/cyber`}>Cyber reports</a> · <a href={`${editorBase}/singleton/about`}>About page</a></p><p>Save with Draft selected while you work. To publish, clear Draft and save; Netlify rebuilds the website after the change reaches GitHub.</p></section>
   </div>
 </Base>
 <style>.studio{padding-bottom:60px}.studio .card .body{gap:18px}.studio .card h2{margin:0;font-size:28px}</style>
