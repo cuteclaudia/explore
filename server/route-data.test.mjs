@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {routeSummary,elevationPath} from '../src/lib/route-data.mjs';
+test('route metrics respect segment gaps and report complete elevation',()=>{const s=routeSummary([[[0,0,10],[0,.01,30]],[[20,20,50],[20,20.01,40]]]);assert(s.distance>2200&&s.distance<2230);assert.equal(s.ascent,20);assert(s.elevationComplete);assert(elevationPath(s).startsWith('M'));});
+test('invalid coordinates and excessively large tracks are rejected',()=>{for(const points of [[[181,0],[0,0]],[[0,NaN],[0,0]],[[0,0]]])assert.throws(()=>routeSummary([points]));assert.throws(()=>routeSummary([Array.from({length:20001},()=>[0,0])]));});
+test('tracks with missing elevations do not claim a complete ascent profile',()=>{const s=routeSummary([[[0,0],[0,.01,20]]]);assert.equal(s.elevationComplete,false);assert.equal(elevationPath(s),'');});

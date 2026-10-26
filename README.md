@@ -49,3 +49,12 @@ Use Node 24, `npm ci`, then `npm run dev:content -- --host 127.0.0.1 --port 4322
 ## Deployment compatibility check
 
 `npm run build` also runs `npm run test:deploy` via its postbuild hook. Stop local Astro development servers before building, because adapter startup also resets the generated function directory. The check copies the deployable SSR package outside the repository, starts a temporary Blobs emulator and exercises it under `node --no-require-module`, matching Netlify's CommonJS/ESM loading restriction. It verifies public content/RSS, authentication redirects and unpublished legacy overrides. The sanitizer/parser dependency tree is bundled through `vite.ssr.noExternal` so the function does not require an ESM-only parser from CommonJS at runtime. Keep this compatibility check when updating dependencies; successful development rendering alone does not verify the deployment package.
+
+
+## Lighter interface, personal settings and maps
+
+The shared header uses compact icon controls with hover/focus labels and a tap/keyboard Account menu. Appearance moved from the main menu to `/settings`; old `#palette` links redirect there. Sakura Pink, Kōbō and custom palettes, spacing and reduced-motion preferences can be saved per account. Anonymous appearance settings remain browser-local. `/studio/storage` now sits in the same Settings layout and manages a shared default destination/WebDAV connection for all apps. Preference updates merge supported fields so app save choices do not erase appearance settings.
+
+The app area uses the approved suite name **Kōbō (工房), by CuteClaudia**; current upstream workspaces remain identified until rebuilt apps arrive. Approved app names, colour values and replacement mappings are recorded in OFFICE-SUITE-ROADMAP.md.
+
+`/places` uses MapLibre GL JS with its worker bundled locally, OpenFreeMap's Liberty basemap and Mapzen Terrain Tiles for 2D/3D viewing. GPX files remain in browser memory with approximate distance/ascent/profile; they are not uploaded or published. Map/elevation tile requests still go to third-party providers. Full terrain attribution and the bundled MapLibre licence are available at `/map-credits`; update the licence file when upgrading MapLibre. Mapping/provider research and network-validation limits are in MAPPING-RESEARCH.md. Live Strava/Garmin/Komoot sync is not implemented; `/settings/connections` reports that honestly and links to the provider sites. GPX viewing is the current route-transfer workflow. No new map API keys/environment variables are required.

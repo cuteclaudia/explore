@@ -1,36 +1,35 @@
 ---
+import Icon from './Icon.astro';
 const links = [
   ['/#home', 'Home', 'home'],
   ['/#writing', 'Writing & analysis', 'writing'],
-  ['/#map', 'Places & map', 'map'],
+  ['/places', 'Explore', 'map'],
   ['/#photography', 'Photography', 'photography'],
   ['/journal', 'Journal', 'journal'],
-  ['/tags', 'Tags', 'tags'],
-  ['/#palette', 'Your colours ◐', 'palette'],
   ['/about', 'About Claudia', 'about'],
   ['/contact', 'Contact', 'contact'],
 ];
 ---
-<div class="explore-banner">EXPLORE BY CLAUDIA · Travel · Photography · Perspective</div>
+
 <header class="explore-header">
-  <a class="explore-brand" href="/#home" aria-label="Explore by Claudia, home">Explore<span>BY CLAUDIA</span></a>
-  <button class="explore-menu" type="button" aria-label="Menu" aria-controls="explore-navigation" aria-expanded="false">Menu ☰</button>
+  <a class="explore-brand" href="/#home" aria-label="Explore by Claudia, home"><Icon name="mountain" size={30}/><span class="brand-name">Explore<small>BY CLAUDIA</small></span></a>
+  <button class="explore-menu" type="button" aria-label="Menu" aria-controls="explore-navigation" aria-expanded="false"><Icon name="menu"/><span class="sr-only">Menu</span></button>
   <nav class="explore-navigation" id="explore-navigation" aria-label="Main navigation">
     {links.map(([href, label, section]) => <a href={href} data-section={section}>{label}</a>)}
   </nav>
   <div class="explore-account" aria-label="Your account">
     <a class="explore-signin" href="/studio/login" data-account-signin>Sign in</a>
-    <a href="/apps" data-account-apps hidden>My apps</a>
-    <a class="explore-studio" href="/studio" data-account-studio hidden>My Studio</a>
-    <details class="explore-account-menu" data-account-menu hidden>
-      <summary>Account ▾</summary>
+    <a class="icon-control" href="/apps" aria-label="My apps" data-tooltip="My apps" data-account-apps hidden><Icon name="grid"/></a>
+    <a class="icon-control" href="/studio" aria-label="My Studio" data-tooltip="My Studio" data-account-studio hidden><Icon name="edit"/><span class="sr-only" data-account-label>My Studio</span></a>
+    <details class="explore-account-menu" data-account-menu>
+      <summary class="icon-control" aria-label="Account menu" data-tooltip="Account"><Icon name="user"/></summary>
       <div class="explore-account-panel">
-        <a href="/apps">My apps</a><a href="/studio" data-owner-studio-link>My Studio</a>
-        <a href="/studio/account">Account settings</a>
-        <a href="/studio/storage">Storage connections</a>
-        <a href="/studio/account#google">Google sign-in</a>
-        <a href="/studio/users" data-account-permissions hidden>User permissions</a>
-        <button type="button" data-account-logout>Sign out</button>
+        <span class="account-menu-label">Your space</span>
+        <a href="/apps" data-auth-link hidden><Icon name="grid"/>My apps</a><a href="/studio" data-owner-studio-link hidden><Icon name="edit"/>My Studio</a>
+        <a href="/settings"><Icon name="settings"/>Settings</a>
+        <a href="/studio/account" data-auth-link hidden><Icon name="shield"/>Sign-in & security</a>
+        <a href="/studio/users" data-account-permissions hidden><Icon name="user"/>User permissions</a>
+        <button type="button" data-account-logout hidden><Icon name="logout"/>Sign out</button>
         <p role="status" data-account-status></p>
       </div>
     </details>
@@ -44,7 +43,7 @@ const links = [
   const mark = () => {
     const path = location.pathname.replace(/\/$/, '') || '/';
     const hash = location.hash.slice(1).split('/')[0];
-    let section = 'home';
+    let section = '';
     if (path === '/' || path === '/prototype') section = ['members', 'member'].includes(hash) ? 'home' : hash || 'home';
     else if (path.startsWith('/about')) section = 'about';
     else if (path.startsWith('/contact')) section = 'contact';
@@ -52,6 +51,7 @@ const links = [
     else if (path.startsWith('/tags')) section = 'tags';
     else if (path.startsWith('/journal')) section = 'journal';
     else if (path.startsWith('/photography')) section = 'photography';
+    else if (path.startsWith('/places')) section = 'map';
     else if (path.startsWith('/explore')) section = 'map';
     nav.querySelectorAll<HTMLAnchorElement>('a').forEach(link => {
       if (link.dataset.section === section) link.setAttribute('aria-current', 'page');

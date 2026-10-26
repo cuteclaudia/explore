@@ -56,3 +56,26 @@ Browser tests started all four actual releases in isolated frames, verified pare
 ## Next homepage direction (Claudia, 2026-10-26)
 
 After the integrated content editing/publishing work, use Claudia's supplied adventure-planner reference as the proposed homepage direction: a large mountain/travel hero, interactive adventure map, route/activity details, photography and journal highlights. Restore Strava and related activity links once the actual profile destinations are established. Keep the shared Explore by Claudia navigation and palette choices, including Sakura Pink. Community stays disabled; do not add fictional member activity, follow counts or working-looking community controls. A real Strava connection needs separate OAuth/provider setup and location privacy controls; an external profile link is a different, simpler feature. The screenshot is a design reference, not evidence that terrain, routing, elevation data or Strava integration already works.
+
+
+## Approved suite identity and roster (2026-10-26)
+
+Suite: **Kōbō (工房)**, workshop/atelier; **CuteClaudia Kōbō**, with app descriptions such as “Fumi, from Kōbō”. Website brand remains Explore by Claudia. Reference palette: indigo `#1F2A4D`, gold `#F2B544`, sakura `#F4B6C2`, washi `#FBF3E6`. Reference icons: rounded indigo squares, gold rings, individual motifs. Obtain final assets and browser builds from Claudia/Claude rather than treating screenshot artwork or upstream binaries as the rebuilt apps.
+
+| Name | Function | Reference character / motif |
+|---|---|---|
+| Hikari 光 | Photos / photo development | Sakura blossom |
+| Fumi 文 | Documents | Letter and gold writing brush |
+| Goban 碁盤 | Spreadsheets | Go board with three stones |
+| Akari 灯 | Presentations | Paper lantern |
+| Tsuzuri 綴り | PDFs | Japanese bound book |
+| Irodori 彩り | Image editing | Overlapping colour circles |
+| Sen 線 | Illustration | Flowing gold vector line |
+| Hanga 版画 | Page layout | Woodblock mountain and sun |
+| Hinagata 雛形 | UI design | Phone wireframe |
+| Kage 影 | Video | Film strip and eclipse |
+| Hibiki 響 | Audio | Bell and sound ripples |
+| Mai 舞 | Motion | Open fan over gold sun |
+| Takumi 匠 | CAD | Carpenter square and compass |
+
+Replacement mapping when delivered: LightCraft → Hikari; WordCraft → Fumi; PdfCraft → Tsuzuri; PhotoCraft → Irodori. Other repos/builds are pending; preserve old tool IDs, permissions and files through explicit compatibility migrations. Planned Hikari web URL `/apps/hikari` (current Netlify origin, same path after domain migration) is not live until a tested browser release is integrated.

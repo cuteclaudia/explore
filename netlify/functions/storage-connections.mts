@@ -1,3 +1,4 @@
+import {mergePreferences} from '../../server/preferences.mjs';
 import {getStore} from '@netlify/blobs';
 import {verifyRequestOrigin} from '@netlify/identity';
 import {currentActor,errorResponse} from '../../server/identity';
@@ -10,7 +11,7 @@ export default async(request:Request)=>{try{
  if(path==='/api/storage/preferences'){
   const preferenceKey='preferences/'+actor.user.id;
   if(request.method==='GET')return json((await store.get(preferenceKey,{type:'json'}))||{defaultDestination:'download'});
-  if(request.method==='POST'){verifyRequestOrigin(request);const raw=await request.text();if(raw.length>2000)throw new AccessError(413,'Preferences are too large.');let input;try{input=JSON.parse(raw);}catch{throw new AccessError(400,'Invalid preferences.');}if(!['download','site','webdav'].includes(input.defaultDestination))throw new AccessError(400,'Choose device, private site storage or WebDAV.');const preferences={defaultDestination:input.defaultDestination};await store.setJSON(preferenceKey,preferences);return json(preferences);}
+  if(request.method==='POST'){verifyRequestOrigin(request);const raw=await request.text();if(raw.length>2000)throw new AccessError(413,'Preferences are too large.');let input;try{input=JSON.parse(raw);}catch{throw new AccessError(400,'Invalid preferences.');}const preferences=mergePreferences((await store.get(preferenceKey,{type:'json'}))||{},input);await store.setJSON(preferenceKey,preferences);return json(preferences);}
   throw new AccessError(405,'Method not allowed.');
  }
  if(!['/api/storage/webdav','/api/storage/webdav/copy'].includes(path))throw new AccessError(404,'Not found.');

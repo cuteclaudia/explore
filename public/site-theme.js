@@ -2,6 +2,7 @@
   const defaults = ['#f4f3ee', '#233a32', '#376b5c', '#ffffff'];
   const legacy = {
     alpine: defaults,
+    kobo: ['#fbf3e6', '#1f2a4d', '#f2b544', '#ffffff'],
     coastal: ['#eef5f7', '#16303f', '#1a7a96', '#ffffff'],
     desert: ['#f7f0e5', '#3a2820', '#a55e42', '#fffbf5'],
     midnight: ['#121924', '#eef2f6', '#426984', '#1b2533'],
@@ -22,10 +23,11 @@
   function apply(colours) {
     if (!valid(colours)) colours = defaults;
     const [bg, ink, accent, surface] = colours;
-    const values = {bg, ink, accent, surface, text:ink, muted:ink, 'soft-text':ink, deep:ink, 'surface-2':bg, soft:bg, border:accent+'40', 'on-accent':'#ffffff', glass:surface, scrim:[1,3,5].map(i=>parseInt(bg.slice(i,i+2),16)).join(', ')};
+    const values = {bg, ink, accent, surface, text:ink, muted:ink, 'soft-text':ink, deep:ink, 'surface-2':bg, soft:bg, border:accent+'40', 'on-accent':([1,3,5].map(i=>parseInt(accent.slice(i,i+2),16)/255).map(c=>c<=.04045?c/12.92:((c+.055)/1.055)**2.4).reduce((v,c,i)=>v+c*[.2126,.7152,.0722][i],0)>.179?'#17223b':'#ffffff'), glass:surface, scrim:[1,3,5].map(i=>parseInt(bg.slice(i,i+2),16)).join(', ')};
     for (const [key,value] of Object.entries(values)) document.documentElement.style.setProperty('--'+key,value);
     document.documentElement.style.colorScheme = parseInt(bg.slice(1,3),16) < 100 ? 'dark' : 'light';
   }
-  window.exploreTheme = {read, apply};
+  window.exploreTheme = {read, apply, valid, presets:legacy};
+  try {document.documentElement.dataset.density=localStorage.getItem('explore-density')||'comfortable';document.documentElement.dataset.reducedMotion=localStorage.getItem('explore-motion')||'false';} catch {}
   apply(read());
 })();

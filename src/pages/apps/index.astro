@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import AppCard from '../../components/AppCard.astro';
 import {protectPage} from '../../../server/identity';
 import {CRAFT_TOOLS} from '../../../server/craft-tools.mjs';
 export const prerender=false;
@@ -7,7 +8,7 @@ const actor=await protectPage('/apps');if(actor instanceof Response)return actor
 Astro.response.headers.set('Cache-Control','private, no-store');
 const apps=Object.entries(CRAFT_TOOLS).filter(([id,tool])=>actor.permissions[tool.capability]);
 ---
-<Base title="My apps" noindex>
-<section class="wrap apps-library"><header class="page-head"><span class="eyebrow">Your creative workspace</span><h1>My apps</h1><p>Open an app in a full-window workspace. Your saved revisions and storage connections belong to your account.</p>{actor.isOwner&&<a href="/studio">← My private Studio</a>}</header><div class="grid-3">{apps.map(([id,tool])=><article class="card"><div class="body"><h2 class="serif">{tool.name}</h2><p>{tool.description}</p>{id==='lightcraft'&&<p class="muted">The rebuilt Hikari app will replace this version once its browser release is ready.</p>}<a class="btn" href={'/apps/'+id}>Open {tool.name} →</a></div></article>)}</div><p style="margin-top:30px"><a href="/studio/storage">My storage & save preferences</a></p></section>
+<Base title="Kōbō · My apps" noindex>
+<section class="wrap apps-library"><header class="page-head"><span class="eyebrow">CuteClaudia · Your creative workshop</span><h1><span class="kobo-kanji">工房</span> Kōbō</h1><p>Open an app in a full-window workspace. Your saved revisions and storage connections belong to your account.</p>{actor.isOwner&&<a href="/studio">← My private Studio</a>}</header><div class="apps-grid">{apps.map(([id,tool])=><AppCard id={id} tool={tool}/>)}</div><p class="pending-apps">The Kōbō apps are being rebuilt. These current workspaces remain available until their replacements are ready.</p><p style="margin-top:20px"><a href="/settings">Settings · storage & save preferences</a></p></section>
 </Base>
-<style>.apps-library{padding-bottom:60px}.apps-library h2{font-size:30px}</style>
+<style>.apps-library{max-width:1100px;padding-top:35px;padding-bottom:60px}.apps-library h2{font-size:30px}.apps-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:45px}@media(max-width:650px){.apps-grid{grid-template-columns:1fr}}.pending-apps{font-size:12px;opacity:.65;margin-top:30px}.kobo-kanji{color:#c48b24;font-size:.8em;margin-right:10px}</style>

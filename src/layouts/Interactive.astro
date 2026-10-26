@@ -6,10 +6,11 @@ const head = prototype.split('<html lang="en">')[1].split('<body>')[0];
 const body = prototype.split('<body>')[1].replace('</body></html>', '');
 ---
 <!doctype html>
-<html lang="en-AU">
+<html lang="en-AU" class="interactive-site">
   <head>
     <Fragment set:html={head} />
     <link rel="stylesheet" href="/site-chrome.css" />
+    <style is:global>.interactive-site button{border-radius:6px;padding:8px 13px;font-size:13px}.interactive-site .hero h1{font-size:clamp(40px,5vw,68px)}.interactive-site .card .body{padding:20px}.interactive-site h2{font-size:32px}.interactive-site h3{font-size:22px}.interactive-site .tags{gap:6px}.interactive-site .tags button{background:transparent;border-color:var(--border)}.interactive-site .tags button.active{background:var(--accent);color:white}</style>
     <script is:inline src="/site-theme.js"></script>
   </head>
   <body>
