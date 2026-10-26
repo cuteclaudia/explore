@@ -1,4 +1,9 @@
 export const CAPABILITIES = Object.freeze({
+  'tools.photocraft': 'Use PhotoCraft advanced image editor',
+  'tools.lightcraft': 'Use LightCraft photo development',
+  'tools.wordcraft': 'Use WordCraft document editor',
+  'tools.pdfcraft': 'Use PdfCraft PDF workbench',
+  'files.publish': 'Publish finished exports to the site',
   'photo.edit': 'Use photo editor',
   'media.upload': 'Upload photographs',
   'galleries.manage_own': 'Manage own galleries',

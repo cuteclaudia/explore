@@ -52,3 +52,10 @@ The current Keystatic schemas now expose tags for essays, cyber reports, journal
 `claudiaegilbert@gmail.com` is explicitly allowed to display its own verified setup UUID, even when the primary owner is already configured. This grants no capabilities by email alone. Pin that separate account's UUID in Netlify as `OWNER_GOOGLE_IDENTITY_ID` and redeploy. Keep the original `OWNER_IDENTITY_ID` unchanged. Both pinned IDs receive permanent owner capabilities and are protected from demotion/suspension through the website. Community remains off. The invitation/account itself must be created in Netlify Identity; this workspace has not sent an invitation or changed the deployed environment variables.
 
 Studio Keystatic links now use `/keystatic/branch/main/collection/...` in production. Redirects preserve the old local-mode collection bookmarks. Keystatic's separate GitHub authentication is still required; these route corrections do not implement the new Identity-compatible writing CMS.
+
+
+## Creative workspaces and storage update
+
+The four advanced workspaces now have code integrations under `/studio/tools/{photocraft,lightcraft,wordcraft,pdfcraft}` with independent `tools.*` capabilities. Their protected frame entrypoints live under `/studio/workspaces/`. The build fetches pinned, checksum-verified upstream browser releases. No native Rust build is required. The private sandbox cannot read the parent page/session. The app's Save/Export output can be captured into a private revision; this is not automatic autosave of unsaved canvas changes.
+
+Private file chunks, immutable revision metadata and publication records use Netlify Blobs through authorized Functions. Restoration checks file size and SHA-256. Finished PDF/raster exports can be published to the public Library; working projects remain private. WebDAV settings are encrypted per user and copy saved revisions only after a tested connection. Real hosted Netlify storage, owner sessions and WebDAV service operations remain unverified until the production settings are supplied and exercised. See NETLIFY-SETUP.md and OFFICE-SUITE-ROADMAP.md.

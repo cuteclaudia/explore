@@ -1,11 +1,15 @@
 ---
+import {getStore} from '@netlify/blobs';
+import {fileService} from '../../server/cloud-files.mjs';
 import Base from '../layouts/Base.astro';
 import Tags from '../components/Tags.astro';
 import {getEssays,getReports,getJournal,getGalleries} from '../lib/site';
 import {normalizeTags,tagKey,tagHref} from '../lib/tags';
 export const prerender=false;
 const [essays,reports,journal,galleries]=await Promise.all([getEssays(),getReports(),getJournal(),getGalleries()]);
+let library=[];try{library=await fileService(getStore({name:'studio-working-files',consistency:'strong'})).publicList();}catch{}
 const content=[
+  ...library.map(x=>({title:x.title,type:x.type==='application/pdf'?'PDF':'Photograph',href:'/library/'+x.id,tags:normalizeTags(x.tags)})),
   ...essays.map(x=>({title:x.data.title,type:'Essay',href:'/chinaseries/'+x.id,tags:normalizeTags(x.data.tags)})),
   ...reports.map(x=>({title:x.data.title,type:'Cyber report',href:'/dailycyberreport/'+x.id,tags:normalizeTags(x.data.tags)})),
   ...journal.map(x=>({title:x.data.title,type:'Journal',href:'/journal/'+x.id,tags:normalizeTags(x.data.tags)})),

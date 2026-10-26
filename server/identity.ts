@@ -11,7 +11,7 @@ export async function currentActor(capability?: string) {
 }
 export function errorResponse(error: unknown) {
   const status = error instanceof AccessError ? error.status : error instanceof AuthError && error.status === 403 ? 403 : 503;
-  const message = error instanceof AccessError ? error.message : status === 403 ? 'This request was refused.' : 'The sign-in service is temporarily unavailable.';
+  const message = error instanceof AccessError ? error.message : status === 403 ? 'This request was refused.' : 'The requested service is temporarily unavailable.';
   return Response.json({error:message}, {status,headers:{'Cache-Control':'private, no-store'}});
 }
 export async function protectPage(path: string, capability?: string) {

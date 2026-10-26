@@ -7,7 +7,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "prebuild": "node --use-env-proxy scripts/prepare-craft-tools.mjs",
+    "predev": "node --use-env-proxy scripts/prepare-craft-tools.mjs",
+    "test": "node --test server/*.test.mjs"
   },
   "dependencies": {
     "@astrojs/markdoc": "^2.1.1",
@@ -17,8 +20,10 @@
     "@astrojs/sitemap": "^3.7.4",
     "@keystatic/astro": "^6.0.0",
     "@keystatic/core": "^0.6.9",
+    "@netlify/blobs": "11.1.6",
     "@netlify/identity": "2.0.0",
     "astro": "^7.4.2",
+    "fflate": "0.8.2",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   }

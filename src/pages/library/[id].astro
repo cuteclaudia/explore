@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import Tags from '../../components/Tags.astro';
+import {getStore} from '@netlify/blobs';
+import {fileService} from '../../../server/cloud-files.mjs';
+export const prerender=false;
+let file;try{file=await fileService(getStore({name:'studio-working-files',consistency:'strong'})).published(Astro.params.id);}catch(error){return new Response('Published file not found.',{status:error?.status===404?404:503});}
+Astro.response.headers.set('Cache-Control','no-store');
+---
+<Base title={file.title} description="A published export from Explore by Claudia."><section class="wrap library-file" data-public-file={file.id} data-preview={file.type.startsWith('image/')?'image':'download'}><a href="/library">← Published library</a><h1 class="serif">{file.title}</h1><Tags tags={file.tags}/><p>{file.type==='application/pdf'?'PDF document':'Photograph'} · {(file.size/1024).toFixed(1)} KiB</p><button id="public-download" class="btn">Download file</button><p id="public-status" role="status"></p><img id="public-preview" alt={file.title} hidden /></section></Base>
+<script>
+const root=document.querySelector<HTMLElement>('[data-public-file]')!,button=document.querySelector<HTMLButtonElement>('#public-download')!,status=document.querySelector<HTMLElement>('#public-status')!;
+let loaded:Promise<{file:any,blob:Blob}>|undefined;
+function load(){return loaded ||= (async()=>{const info=await fetch('/api/files/public/'+root.dataset.publicFile,{cache:'no-store'});if(!info.ok)throw Error('This file is no longer published.');const file=await info.json(),parts=[];for(let i=0;i<file.chunks;i++){const r=await fetch(`/api/files/public/${file.id}/parts/${i}`,{cache:'no-store'});if(!r.ok)throw Error('Download interrupted.');parts.push(await r.arrayBuffer());status.textContent=`Loading ${i+1}/${file.chunks}…`;}const blob=new Blob(parts,{type:file.type});const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await blob.arrayBuffer()))).map(x=>x.toString(16).padStart(2,'0')).join('');if(blob.size!==file.size||digest!==file.sha256)throw Error('File verification failed. Please retry.');return{file,blob};})().catch(error=>{loaded=undefined;throw error;});}
+button.addEventListener('click',async()=>{button.disabled=true;try{const{file,blob}=await load(),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=file.name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status.textContent='File downloaded and verified.';}catch(e){status.textContent=e instanceof Error?e.message:'Download failed.';}finally{button.disabled=false;}});
+if(root.dataset.preview==='image')load().then(({blob})=>{const image=document.querySelector<HTMLImageElement>('#public-preview')!,url=URL.createObjectURL(blob);image.src=url;image.hidden=false;status.textContent='Photograph loaded and verified.';window.addEventListener('pagehide',()=>URL.revokeObjectURL(url),{once:true});}).catch(error=>status.textContent=error.message);
+</script>
+<style>.library-file{padding-top:50px;padding-bottom:60px}.library-file h1{font-size:46px}</style>

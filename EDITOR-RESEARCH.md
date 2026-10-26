@@ -57,3 +57,8 @@ WordCraft ab0eccd; GenOffice 5c1c41e; Tiptap b1f54b4; Lexical 7bc4baa; Editor.js
 ## Uploaded source archives and PDFs
 
 The subsequent ZIP review is documented in `ARCHIVE-REVIEW.md`, including the PdfCraft web target, creation/editing limitations, ArtCraft-X licensing uncertainty, and the oversized ArtCraft archive's GitHub-source fallback. The ZIP review does not establish a successful browser build or deployed editor integration.
+
+
+## Integration status after the initial research
+
+Pinned official PhotoCraft, LightCraft, WordCraft and PdfCraft browser releases are now integrated as independently authorized, isolated Studio workspaces. They are release artifacts verified against upstream SHA-256 checksums, not builds of the uploaded source snapshots. Real PSD, DOCX, PDF and JPEG save/export operations were captured in browser tests. The same exported bytes were saved and restored across a restart using the official Netlify Blobs SDK and its filesystem emulator. This is not a test of the user's deployed Netlify account or WebDAV server. See NETLIFY-SETUP.md and OFFICE-SUITE-ROADMAP.md for current limitations, storage settings and deferred apps.

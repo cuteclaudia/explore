@@ -1,0 +1,26 @@
+---
+import Base from '../../../layouts/Base.astro';
+import {CRAFT_TOOLS} from '../../../../server/craft-tools.mjs';
+import {protectPage} from '../../../../server/identity';
+export const prerender=false;
+const id=Astro.params.tool||'';
+if(!Object.hasOwn(CRAFT_TOOLS,id))return new Response('Tool not found',{status:404});
+const tool=CRAFT_TOOLS[id];
+const savedFile=Astro.url.searchParams.get('file');
+const returnPath=`/studio/tools/${id}`+(savedFile&&/^[0-9a-f-]{36}$/i.test(savedFile)?'?file='+encodeURIComponent(savedFile):'');
+const access=await protectPage(returnPath,tool.capability);
+if(access instanceof Response)return access;
+Astro.response.headers.set('Cache-Control','private, no-store');
+---
+<Base title={tool.name} description={tool.description} noindex>
+  <section class="tool-workspace"><div class="tool-intro"><a href="/studio">← My Studio</a><h1 class="serif">{tool.name}</h1><p>{tool.description}</p><p>Files stay in this isolated session. Use the editor’s Save or Export command. The output will appear below, where you can save a private cloud revision, reopen it, download it, or publish a finished image/PDF.</p>{id==='lightcraft'&&<p>LightCraft is running in temporary-library mode. Its sample photographs are demonstration content; import your own files to develop them.</p>}{id==='pdfcraft'&&<p>PdfCraft is alpha software. Existing-text editing, OCR and professional signing have limitations; check exported results.</p>}</div>
+  <iframe id="craft-frame" title={`${tool.name} editor`} src={`/studio/workspaces/${id}${tool.query}`} sandbox="allow-scripts allow-downloads allow-modals" allow="fullscreen" allowfullscreen></iframe>
+  <section class="cloud-files" data-cloud-tool={id}>
+    <h2>Files & publishing</h2><p>Cloud revisions are private. Publishing shares a finished export with everyone, including signed-out visitors. This is separate from the planned login-required digital-goods shop.</p><p id="cloud-status" role="status">Loading your private files…</p>
+    <p><a href="/studio/storage">Storage connections</a> · Save/export from the editor, or <label>choose a file <input id="cloud-upload" type="file" /></label> (up to 50 MiB).</p>
+    <div id="cloud-pending"></div><h3>Private cloud revisions</h3><div id="cloud-list"></div>
+  </section>
+  <script>import '../../../scripts/workspace-files';</script>
+  <p class="tool-credit">{tool.name} {tool.version} by the ArtCraft contributors · <a href={`https://github.com/storytold/${id}`}>Source & licences</a>. Preferences, browser-library persistence and some clipboard/font features may be unavailable in the isolated workspace.</p></section>
+</Base>
+<style>.tool-workspace{padding:25px 2%}.tool-intro{max-width:1100px;margin:auto}.tool-intro h1{font-size:42px;margin:18px 0}.tool-intro p{margin:8px 0}.tool-workspace iframe{width:100%;height:max(780px,85vh);border:1px solid var(--border);border-radius:12px;margin-top:20px;background:#222}.tool-credit{font-size:12px;margin:16px 0}</style>
