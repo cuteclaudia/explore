@@ -8,6 +8,16 @@ export function appRoot(config,app){
   const base=connectionURL(config.url); const folder=koboPath(config.baseFolder??'Kobo',true);
   base.pathname+=(folder?folder.split('/').map(encodeURIComponent).join('/')+'/':'')+koboApp(app).folder+'/';return base;
 }
+// DAV properties and some providers' HTTP headers omit the surrounding quotes.
+// Keep weak validators weak; never turn W/"..." into a strong validator.
+export function normaliseDavETag(value){
+  if(typeof value!=='string')return '';
+  const tag=value.trim();
+  if(!tag||tag==='*')return '';
+  if(strongETag(tag)||/^w\//i.test(tag))return tag;
+  if(!tag.includes(',')&&strongETag('"'+tag+'"'))return '"'+tag+'"';
+  return '';
+}
 export function davError(status,headers={}) {
   if(status===412)throw new KoboError('conflict','This file changed. Reload before saving again.');
   if(status===401||status===403)throw new KoboError('forbidden','The storage provider refused access. Check your app password and folder permissions.');
@@ -83,7 +93,7 @@ export function parseDav(xml,requested,root){
     const {props}=item,size=props.isDir?0:Number(props.getcontentlength),modified=new Date(props.getlastmodified);
     if(!props.isDir&&(!Number.isSafeInteger(size)||size<0)||!Number.isFinite(modified.valueOf()))fail();
     // Some DAV servers omit the quotes in XML while returning quoted HTTP ETags.
-    let etag=props.getetag||'';if(etag&&!strongETag(etag)&&!etag.startsWith('W/')&&strongETag('"'+etag+'"'))etag='"'+etag+'"';
+    const etag=normaliseDavETag(props.getetag);
     return {path:relative,isDir:props.isDir===true,size,etag,modified:modified.toISOString()};
   });
 }
@@ -106,7 +116,9 @@ export function davFiles(config,app,{transport=davTransport}={}){
   async function read(path,opts={}){
     const response=await request(target(path),'GET',{headers:koboConditions(opts),signal:opts.signal,limit:KOBO_BYTES});
     if(response.status===404)return null;if(response.status!==200)davError(response.status,response.headers);
-    const etag=response.headers.etag;if(!strongETag(etag)||opts.ifMatch&&etag!==opts.ifMatch)throw new KoboError('conflict','The provider did not return the requested file version.');
+    const etag=normaliseDavETag(response.headers.etag);
+    if(!strongETag(etag))throw new KoboError('server','The provider did not return a strong file version with the read-back bytes. Safe sync cannot be confirmed.');
+    if(opts.ifMatch&&etag!==opts.ifMatch)throw new KoboError('conflict','The provider did not return the requested file version.');
     return {data:new Uint8Array(response.body),etag};
   }
   async function parents(path,signal){
@@ -118,9 +130,13 @@ export function davFiles(config,app,{transport=davTransport}={}){
     koboPath(path);await parents(path,opts.signal);
     const response=await request(target(path),'PUT',{headers:{...conditions,'Content-Type':'application/octet-stream'},body:data,signal:opts.signal,limit:KOBO_BYTES});
     if(![200,201,204].includes(response.status))davError(response.status,response.headers);
-    // Never use a subsequent PROPFIND: another writer could already have replaced our bytes.
-    if(!strongETag(response.headers.etag))throw new KoboError('server','The provider saved the file without a strong response ETag. Sync cannot be confirmed.');
-    return {etag:response.headers.etag};
+    const etag=normaliseDavETag(response.headers.etag);if(strongETag(etag))return {etag};
+    // A metadata-only lookup could return another writer's ETag. Instead use the
+    // validator attached to an actual GET and confirm those exact bytes are ours.
+    // A changed/deleted file is a conflict, not a successful save of our version.
+    const current=await read(path,{signal:opts.signal});
+    if(!current||current.data.byteLength!==data.byteLength||!Buffer.from(current.data).equals(Buffer.from(data)))throw new KoboError('conflict','The file changed before its saved version could be confirmed. Your local changes have not been discarded.');
+    return {etag:current.etag};
   }
   async function remove(path,opts={}){
     const conditions=koboConditions(opts);const file=await stat(path,opts);if(!file)return;
