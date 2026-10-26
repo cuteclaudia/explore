@@ -1,5 +1,9 @@
 # Netlify Identity owner access
 
+## App access separate from private Studio
+
+Invited, verified users can now enter `/apps` when an owner grants at least one explicit `tools.*` checkbox. Community remains off. In that mode every non-tool capability is masked off server-side, even if stale metadata claims content/admin/publication rights. The private Studio index redirects app users to My apps; content APIs enforce their own permissions. Other users cannot read the owner's or another user's private file revisions or storage preferences. Pinned owners retain full administration, including administrative access to site-stored files. Save destinations are stored per account; device folder handles/permissions are not stored in Netlify. Native Craft export interception is opt-in for the full-window app shell; the existing owner workspaces retain their local-download-plus-private-save workflow.
+
 ## Current content workflow
 
 Studio now includes Identity-authenticated article and gallery editing at `/studio/content`, with rich text, tagging, private drafts, public snapshots, image upload/editing, independent copies and recoverable deletion. Existing repository content is imported and overridden at the same URLs. Public pages expose owner editing controls only after a verified session; server authorization still enforces every operation. Keystatic remains separate for About/repository settings. Earlier increment descriptions below are historical; this section supersedes their statements that an Identity content CMS is not implemented. New drafts/uploads live in the private `studio-content` Blobs store and require backup separately from Git.

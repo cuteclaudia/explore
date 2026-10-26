@@ -39,3 +39,8 @@ Landscape photography from [Pexels](https://www.pexels.com) under the Pexels lic
 ## Local content development
 
 Use Node 24, `npm ci`, then `npm run dev:content -- --host 127.0.0.1 --port 4322`. This starts a local Netlify Blobs emulator plus foreground Astro; data persists in ignored `.netlify/content-local-blobs`. Stop this process with Ctrl+C. It supplies local storage only, not a fake owner login; authenticated Identity still requires a real supported service context. Anonymous private/API requests must remain denied. The plain `npm run dev` workflow does not supply a Blobs service for the dynamic public content pages. Production uses Netlify's runtime credentials automatically and must never use the local emulator token.
+
+
+## Apps for invited users
+
+`/apps` is separate from the private Studio. Owners grant specific `tools.*` capabilities through `/studio/users`; invited verified users see only granted apps. Community remains disabled and non-tool permissions are masked for app-only users. `/apps/{tool}` fills the window and uses an explicit destination prompt after export, with a per-account remembered destination. Native device permissions remain browser-managed; WebDAV must be connected separately. Owner administration remains private; other app users cannot read the owner's files. Owners retain administrative access to site-stored files.

@@ -8,7 +8,7 @@ if(!access.isOwner)return new Response('Only the owner can manage access.',{stat
 Astro.response.headers.set('Cache-Control','private, no-store');
 ---
 <Base title="User permissions" description="Control access to your creative tools." noindex>
-  <section class="wrap permissions-wrap"><a href="/studio">← Owner studio</a><h1 class="serif">People & permissions</h1><p>Your owner access is permanent and includes every feature. Community remains switched off; other accounts cannot access the studio yet.</p><p id="users-status" role="status">Loading accounts…</p><div id="user-permissions"></div></section>
+  <section class="wrap permissions-wrap"><a href="/studio">← Owner studio</a><h1 class="serif">People & permissions</h1><p>Your owner access is permanent and includes every feature. Community remains switched off. Grant individual app checkboxes to enable the separate My apps area; other users cannot edit your site or access your private Studio.</p><p id="users-status" role="status">Loading accounts…</p><div id="user-permissions"></div></section>
 </Base>
 <script>
   const status=document.querySelector<HTMLElement>('#users-status')!;
@@ -26,7 +26,7 @@ Astro.response.headers.set('Cache-Control','private, no-store');
         const row=document.createElement('label');const suspended=document.createElement('input');suspended.type='checkbox';suspended.name='suspended';suspended.checked=!user.isOwner&&user.suspended;row.append(suspended,document.createTextNode(' Suspend account access'));fields.append(row);form.append(fields);
         if(user.isOwner){const note=document.createElement('p');note.textContent='All features enabled. Owner permissions cannot be removed.';form.append(note);}else{
           const save=document.createElement('button');save.type='submit';save.className='btn';save.textContent='Save access';form.append(save);
-          form.addEventListener('submit',async event=>{event.preventDefault();save.disabled=true;try{const capabilities=Object.fromEntries(Object.keys(data.capabilityLabels).map(key=>[key,(form.elements.namedItem(key) as HTMLInputElement).checked]));const result=await fetch('/api/studio/users/'+encodeURIComponent(user.id)+'/access',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({capabilities,suspended:suspended.checked})});const reply=await result.json();if(!result.ok)throw Error(reply.error);status.textContent='Access saved for '+user.email+'. Community remains off.';}catch(error){status.textContent=error instanceof Error?error.message:'Access could not be saved.';}finally{save.disabled=false;}});
+          form.addEventListener('submit',async event=>{event.preventDefault();save.disabled=true;try{const capabilities=Object.fromEntries(Object.keys(data.capabilityLabels).map(key=>[key,(form.elements.namedItem(key) as HTMLInputElement).checked]));const result=await fetch('/api/studio/users/'+encodeURIComponent(user.id)+'/access',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({capabilities,suspended:suspended.checked})});const reply=await result.json();if(!result.ok)throw Error(reply.error);status.textContent='Access saved for '+user.email+'. App grants apply now; community remains off.';}catch(error){status.textContent=error instanceof Error?error.message:'Access could not be saved.';}finally{save.disabled=false;}});
         }
         container.append(form);
       }

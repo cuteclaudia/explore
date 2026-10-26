@@ -9,7 +9,7 @@ let busy=false;
 let afterGoogle='';
 const googleRequested=new URLSearchParams(location.search).get('provider')==='google';
 const next=new URLSearchParams(location.search).get('next') || '/studio';
-const allowedDestinations=['/studio','/studio/photo-editor','/studio/users','/studio/account','/studio/storage','/studio/content','/studio/content/edit','/studio/content/preview','/studio/tools/photocraft','/studio/tools/lightcraft','/studio/tools/wordcraft','/studio/tools/pdfcraft'];
+const allowedDestinations=['/apps','/apps/photocraft','/apps/lightcraft','/apps/wordcraft','/apps/pdfcraft','/studio','/studio/photo-editor','/studio/users','/studio/account','/studio/storage','/studio/content','/studio/content/edit','/studio/content/preview','/studio/tools/photocraft','/studio/tools/lightcraft','/studio/tools/wordcraft','/studio/tools/pdfcraft'];
 let destination='/studio';try{const target=new URL(next,location.origin);const path=target.pathname.replace(/\/$/,'');if(target.origin===location.origin&&allowedDestinations.includes(path)){destination=path;const file=target.searchParams.get('file');const query=new URLSearchParams();if(file&&/^[0-9a-f-]{36}$/i.test(file))query.set('file',file);const entry=target.searchParams.get('entry');if(entry&&/^(journal|essays|cyber|photography)\/[a-z0-9][a-z0-9-]{0,199}$/.test(entry))query.set('entry',entry);const collection=target.searchParams.get('collection');if(collection&&['journal','essays','cyber','photography'].includes(collection))query.set('collection',collection);if(query.size)destination+='?'+query.toString();}}catch{}
 const loginError=new URLSearchParams(location.search).get('error');
 if(loginError)status.textContent='Sign-in could not be completed. Check your email and password, or use password recovery.';
@@ -20,7 +20,7 @@ async function session() {
   if(!response.ok) throw Error(data.error || 'You do not have access to this studio.');
   form.hidden=true;google.hidden=true;signout.hidden=false;
   if(data.setupRequired){document.querySelector('#owner-setup')!.removeAttribute('hidden');document.querySelector('#owner-id')!.textContent=data.id;document.querySelector('#owner-variable')!.textContent=data.variable==='OWNER_GOOGLE_IDENTITY_ID'?'OWNER_GOOGLE_IDENTITY_ID':'OWNER_IDENTITY_ID';status.textContent='Signed in. Your permanent owner ID still needs to be connected.';}
-  else location.replace(afterGoogle || destination);
+  else location.replace(afterGoogle || (!data.isOwner&&destination==='/studio'?'/apps':destination));
 }
 async function initialize() {
   if(/^#(?:confirmation_token|recovery_token|invite_token|email_change_token|access_token)=/.test(location.hash))form.hidden=true;

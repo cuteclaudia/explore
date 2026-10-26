@@ -20,11 +20,12 @@ const links = [
   </nav>
   <div class="explore-account" aria-label="Your account">
     <a class="explore-signin" href="/studio/login" data-account-signin>Sign in</a>
+    <a href="/apps" data-account-apps hidden>My apps</a>
     <a class="explore-studio" href="/studio" data-account-studio hidden>My Studio</a>
     <details class="explore-account-menu" data-account-menu hidden>
       <summary>Account ▾</summary>
       <div class="explore-account-panel">
-        <a href="/studio">My Studio</a>
+        <a href="/apps">My apps</a><a href="/studio" data-owner-studio-link>My Studio</a>
         <a href="/studio/account">Account settings</a>
         <a href="/studio/storage">Storage connections</a>
         <a href="/studio/account#google">Google sign-in</a>

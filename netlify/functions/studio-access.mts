@@ -33,7 +33,7 @@ export default async (request: Request) => {
       if (!isOwnerIdentity(fresh.id, ownerIds()) && variable) {
         return json({setupRequired:true,id:fresh.id,email:fresh.email,variable});
       }
-      if (!isOwnerIdentity(fresh.id, ownerIds()) && !variable) throw new AccessError(403,'This site is currently owner-only.');
+      if(!ownerIds().length&&!variable)throw new AccessError(403,'App access has not been granted.');
       const actor = await currentActor();
       return json({setupRequired:false,id:actor.user.id,email:actor.user.email,isOwner:actor.isOwner,capabilities:actor.permissions});
     }

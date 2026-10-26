@@ -7,6 +7,13 @@ import {fileService} from '../../server/cloud-files.mjs';
 const json=value=>Response.json(value,{headers:{'Cache-Control':'private, no-store'}});
 export default async(request:Request)=>{try{
  const actor=await currentActor();const store=getStore({name:'studio-storage-connections',consistency:'strong'});const key='webdav/'+actor.user.id;const path=new URL(request.url).pathname.replace(/\/$/,'');
+ if(path==='/api/storage/preferences'){
+  const preferenceKey='preferences/'+actor.user.id;
+  if(request.method==='GET')return json((await store.get(preferenceKey,{type:'json'}))||{defaultDestination:'download'});
+  if(request.method==='POST'){verifyRequestOrigin(request);const raw=await request.text();if(raw.length>2000)throw new AccessError(413,'Preferences are too large.');let input;try{input=JSON.parse(raw);}catch{throw new AccessError(400,'Invalid preferences.');}if(!['download','site','webdav'].includes(input.defaultDestination))throw new AccessError(400,'Choose device, private site storage or WebDAV.');const preferences={defaultDestination:input.defaultDestination};await store.setJSON(preferenceKey,preferences);return json(preferences);}
+  throw new AccessError(405,'Method not allowed.');
+ }
+ if(!['/api/storage/webdav','/api/storage/webdav/copy'].includes(path))throw new AccessError(404,'Not found.');
  if(request.method==='GET'){const saved=await store.get(key,{type:'json'});if(!saved)return json({connected:false});const config=unseal(actor.user.id,saved);return json({connected:true,url:config.url,username:config.username});}
  verifyRequestOrigin(request);
  if(request.method==='DELETE'){await store.delete(key);return json({removed:true});}

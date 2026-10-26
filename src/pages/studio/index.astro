@@ -6,6 +6,7 @@ const editorBase=import.meta.env.PROD?'/keystatic/branch/main':'/keystatic';
 export const prerender = false;
 const access = await protectPage('/studio');
 if (access instanceof Response) return access;
+if(!access.isOwner)return Astro.redirect('/apps',302);
 Astro.response.headers.set('Cache-Control', 'private, no-store');
 ---
 <Base title="Owner studio" description="Claudia’s writing and photography workspace." noindex>

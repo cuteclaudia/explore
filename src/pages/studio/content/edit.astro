@@ -2,7 +2,7 @@
 import Base from '../../../layouts/Base.astro';
 import {protectPage} from '../../../../server/identity';
 export const prerender=false;
-const access=await protectPage('/studio/content/edit'+Astro.url.search);if(access instanceof Response)return access;
+const access=await protectPage('/studio/content/edit'+Astro.url.search,'articles.edit_any');if(access instanceof Response)return access;
 Astro.response.headers.set('Cache-Control','private, no-store');
 ---
 <Base title="Content editor" noindex>

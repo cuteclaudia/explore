@@ -10,6 +10,7 @@ const savedFile=Astro.url.searchParams.get('file');
 const returnPath=`/studio/tools/${id}`+(savedFile&&/^[0-9a-f-]{36}$/i.test(savedFile)?'?file='+encodeURIComponent(savedFile):'');
 const access=await protectPage(returnPath,tool.capability);
 if(access instanceof Response)return access;
+if(!access.isOwner)return Astro.redirect('/apps/'+id,302);
 Astro.response.headers.set('Cache-Control','private, no-store');
 ---
 <Base title={tool.name} description={tool.description} noindex>

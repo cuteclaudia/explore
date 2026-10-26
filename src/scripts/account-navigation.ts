@@ -5,7 +5,7 @@ const menu=document.querySelector<HTMLDetailsElement>('[data-account-menu]')!;
 const permissions=document.querySelector<HTMLAnchorElement>('[data-account-permissions]')!;
 const status=document.querySelector<HTMLElement>('[data-account-status]')!;
 let revision=0;
-function show(signedIn:boolean,owner=false){signIn.hidden=signedIn;studio.hidden=!signedIn;menu.hidden=!signedIn;permissions.hidden=!owner;if(!signedIn)menu.open=false;}
+function show(signedIn:boolean,owner=false){signIn.hidden=signedIn;studio.hidden=!signedIn;menu.hidden=!signedIn;permissions.hidden=!owner;document.querySelector<HTMLElement>('[data-account-apps]')!.hidden=!signedIn;document.querySelector<HTMLElement>('[data-owner-studio-link]')!.hidden=!owner;if(!signedIn)menu.open=false;}
 async function refresh(){
   const current=++revision;
   try{
@@ -13,8 +13,8 @@ async function refresh(){
     const data=response.ok?await response.json():null;
     if(current!==revision)return;
     show(Boolean(data),data?.isOwner===true);
-    if(data?.setupRequired){studio.href='/studio/login';studio.textContent='Finish owner setup';}
-    else{studio.href='/studio';studio.textContent='My Studio';}
+    if(data?.setupRequired){document.querySelector<HTMLElement>('[data-account-apps]')!.hidden=true;studio.href='/studio/login';studio.textContent='Finish owner setup';}
+    else{studio.href=data?.isOwner?'/studio':'/apps';studio.textContent=data?.isOwner?'My Studio':'My apps';document.querySelector<HTMLElement>('[data-account-apps]')!.hidden=!data?.isOwner;}
   }catch{if(current===revision)show(false);}
 }
 onAuthChange(event=>{if(event==='logout'){revision++;show(false);}else refresh();});
