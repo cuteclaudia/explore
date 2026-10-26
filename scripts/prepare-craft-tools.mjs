@@ -25,6 +25,13 @@ for(const [id,tool] of Object.entries(CRAFT_TOOLS)){
   await mkdir(dirname(target),{recursive:true});await writeFile(target,bytes);
  }
  if(!html)throw Error(`${id}: no application entry page`);
+ // Rebrand visible wrapper text only. Keep upstream binary/API identifiers and
+ // separate licence/NOTICE files untouched while rebuilt apps are validated.
+ html=html.replaceAll(`<title>${tool.engineName}</title>`,`<title>${tool.name}</title>`)
+  .replaceAll(`Loading ${tool.engineName}`,`Loading ${tool.name}`)
+  .replaceAll(`Starting ${tool.engineName}`,`Starting ${tool.name}`)
+  .replaceAll(`${tool.engineName} failed to load`,`${tool.name} failed to load`)
+  .replaceAll(`content="${tool.engineName}:`,`content="${tool.name}:`);
  await mkdir('src/generated/craft',{recursive:true});
  const bridge=await readFile('scripts/craft-file-bridge.js','utf8');
  html=html.replace(/<head>/i,`<head><script>${bridge}</script>`);
