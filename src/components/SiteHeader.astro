@@ -1,0 +1,51 @@
+---
+const links = [
+  ['/#home', 'Home', 'home'],
+  ['/#writing', 'Writing & analysis', 'writing'],
+  ['/#map', 'Places & map', 'map'],
+  ['/#photography', 'Photography', 'photography'],
+  ['/journal', 'Journal', 'journal'],
+  ['/#palette', 'Your colours ◐', 'palette'],
+  ['/about', 'About Claudia', 'about'],
+  ['/contact', 'Contact', 'contact'],
+];
+---
+<div class="explore-banner">EXPLORE BY CLAUDIA · Travel · Photography · Perspective</div>
+<header class="explore-header">
+  <a class="explore-brand" href="/#home" aria-label="Explore by Claudia, home">Explore<span>BY CLAUDIA</span></a>
+  <button class="explore-menu" type="button" aria-label="Menu" aria-controls="explore-navigation" aria-expanded="false">Menu ☰</button>
+  <nav class="explore-navigation" id="explore-navigation" aria-label="Main navigation">
+    {links.map(([href, label, section]) => <a href={href} data-section={section}>{label}</a>)}
+  </nav>
+</header>
+<script>
+  const nav = document.getElementById('explore-navigation')!;
+  const toggle = document.querySelector<HTMLButtonElement>('.explore-menu')!;
+  const close = () => { nav.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); };
+  const mark = () => {
+    const path = location.pathname.replace(/\/$/, '') || '/';
+    const hash = location.hash.slice(1).split('/')[0];
+    let section = 'home';
+    if (path === '/' || path === '/prototype') section = ['members', 'member'].includes(hash) ? 'home' : hash || 'home';
+    else if (path.startsWith('/about')) section = 'about';
+    else if (path.startsWith('/contact')) section = 'contact';
+    else if (/^\/(chinaseries|dailycyberreport|strategy)(\/|$)/.test(path)) section = 'writing';
+    else if (path.startsWith('/journal')) section = 'journal';
+    else if (path.startsWith('/photography')) section = 'photography';
+    else if (path.startsWith('/explore')) section = 'map';
+    nav.querySelectorAll<HTMLAnchorElement>('a').forEach(link => {
+      if (link.dataset.section === section) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+  };
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  nav.addEventListener('click', event => { if ((event.target as Element).closest('a')) close(); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && nav.classList.contains('is-open')) { close(); toggle.focus(); }
+  });
+  window.addEventListener('hashchange', mark);
+  mark();
+</script>

@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Photo editor" description="Prepare photographs for Explore by Claudia in your browser." noindex>
+  <div class="wrap photo-workspace">
+    <header class="page-head"><a href="/studio">← Owner studio</a><h1>Your photograph, your perspective.</h1><p>Choose a JPEG, PNG or WebP. Edit locally, download the result, then upload it in your journal or gallery editor. Your original file stays unchanged.</p></header>
+    <label class="photo-upload">Choose a photograph <input id="photo-file" type="file" accept="image/jpeg,image/png,image/webp" /></label>
+    <p id="photo-status" role="status">No photograph selected.</p>
+    <div class="photo-columns">
+      <div class="photo-preview"><canvas id="photo-canvas" aria-label="Edited photograph preview" hidden></canvas><p id="photo-empty">Your photograph will appear here.</p></div>
+      <fieldset id="photo-controls" disabled>
+        <legend>Edit your photograph</legend>
+        <label>Crop <select id="photo-crop"><option value="original">Original proportions</option><option value="1">Square · 1:1</option><option value="1.3333333333">Landscape · 4:3</option><option value="1.7777777778">Widescreen · 16:9</option><option value="0.8">Portrait · 4:5</option></select></label>
+        <p class="muted">Crops use the centre of the image.</p>
+        <div class="photo-buttons"><button class="btn ghost" id="photo-rotate" type="button">Rotate 90°</button><button class="btn ghost" id="photo-flip" type="button">Flip horizontally</button></div>
+        <label>Brightness <output id="brightness-value">100%</output><input id="photo-brightness" type="range" min="50" max="150" value="100" /></label>
+        <label>Contrast <output id="contrast-value">100%</output><input id="photo-contrast" type="range" min="50" max="150" value="100" /></label>
+        <label>Colour <output id="saturation-value">100%</output><input id="photo-saturation" type="range" min="0" max="200" value="100" /></label>
+        <label>Export size <select id="photo-size"><option value="2400">Up to 2400 px · photography</option><option value="1600">Up to 1600 px · articles</option><option value="1000">Up to 1000 px · small images</option></select></label>
+        <div class="photo-buttons"><button class="btn" id="photo-download" type="button">Download JPEG</button><button class="btn ghost" id="photo-reset" type="button">Reset edits</button></div>
+        <p class="muted">Exports contain new image pixels without the original GPS or camera metadata. Downloading does not publish to the site.</p>
+      </fieldset>
+    </div>
+  </div>
+</Base>
+<script>
+  import '../../scripts/photo-editor';
+</script>
+<style>
+.photo-workspace{padding-bottom:60px}.photo-columns{display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:28px}.photo-preview{min-height:300px;background:var(--surface-2);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;align-items:center;justify-content:center}.photo-preview canvas{max-width:100%;max-height:70vh;width:auto;height:auto}.photo-columns fieldset{min-width:0;border:1px solid var(--border);border-radius:16px;padding:20px;background:var(--surface)}.photo-columns label{display:block;margin:16px 0;font-weight:500}.photo-columns input[type=range],.photo-columns select{display:block;width:100%;margin-top:8px}.photo-columns select{padding:10px;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px}.photo-buttons{display:flex;flex-wrap:wrap;gap:10px}.photo-columns output{float:right}.photo-columns .muted{font-size:13px}.photo-upload input{display:block;margin-top:12px;max-width:100%}@media(max-width:750px){.photo-columns{grid-template-columns:1fr}}
+</style>

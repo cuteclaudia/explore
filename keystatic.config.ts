@@ -39,7 +39,7 @@ const locationPrecision = fields.select({
 export default config({
   storage,
   ui: {
-    brand: { name: 'Claudia Gilbert' },
+    brand: { name: 'Explore by Claudia' },
     navigation: {
       'Strategy & Security': ['essays', 'cyber'],
       Explore: ['journal', 'photography'],
@@ -200,7 +200,7 @@ export default config({
             { label: 'Desert', value: 'desert' },
             { label: 'Coastal', value: 'coastal' },
             { label: 'Forest', value: 'forest' },
-            { label: 'Rose', value: 'rose' },
+            { label: 'Sakura Pink', value: 'rose' },
           ],
           defaultValue: 'alpine',
         }),

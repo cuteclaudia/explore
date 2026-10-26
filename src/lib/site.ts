@@ -10,7 +10,7 @@ export const PALETTES = [
   { id: 'desert', name: 'Desert', swatch: ['#f7f0e5', '#fffbf5', '#a55e42', '#5a3a2e'] },
   { id: 'coastal', name: 'Coastal', swatch: ['#eef5f7', '#ffffff', '#1a7a96', '#183b50'] },
   { id: 'forest', name: 'Forest', swatch: ['#edf0e9', '#f8faf6', '#527a4b', '#263a2b'] },
-  { id: 'rose', name: 'Rose', swatch: ['#f9eff3', '#fffafc', '#a84e77', '#553947'] },
+  { id: 'rose', name: 'Sakura Pink', swatch: ['#fff2f6', '#fffafd', '#a83f6b', '#4a293a'] },
 ] as const;
 
 export async function getHome() {

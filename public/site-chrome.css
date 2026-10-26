@@ -1,0 +1,15 @@
+.explore-banner{font:12px/1.6 system-ui,sans-serif;text-align:center;padding:6px 16px;background:var(--ink,#233a32);color:var(--bg,#f4f3ee)}
+.explore-header{position:relative;z-index:20;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;padding:20px 5%;border-bottom:1px solid var(--border,#ddd);background:var(--bg,#f4f3ee);color:var(--ink,#233a32)}
+.explore-header .explore-brand{display:block;flex-shrink:0;font:italic 36px/1.1 Georgia,serif;letter-spacing:0;text-decoration:none;color:inherit}
+.explore-header .explore-brand span{display:block;margin-top:5px;font:12px/1.6 system-ui,sans-serif;letter-spacing:2px}
+.explore-header .explore-navigation{display:flex;align-items:center;flex-wrap:wrap;gap:18px;font:14px/1.6 system-ui,sans-serif}
+.explore-header .explore-navigation a{display:block;padding:8px 0;border-bottom:2px solid transparent;text-decoration:none;color:inherit;white-space:nowrap}
+.explore-header .explore-navigation a[aria-current=page]{border-bottom-color:var(--accent,#376b5c)}
+.explore-header .explore-menu{display:none;border:1px solid var(--border,#b8c2b8);border-radius:24px;padding:10px 16px;background:var(--surface,#fff);color:inherit;font:14px/1.4 system-ui,sans-serif;cursor:pointer}
+.explore-header a:hover,.explore-footer a:hover{opacity:.8}
+.explore-header :focus-visible,.explore-footer :focus-visible{outline:3px solid var(--accent,#376b5c);outline-offset:4px}
+.explore-footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;padding:30px 5%;border-top:1px solid var(--border,#ccc);background:var(--bg,#f4f3ee);color:var(--ink,#233a32);font:13px/1.6 system-ui,sans-serif}
+.explore-footer nav{display:flex;flex-wrap:wrap;gap:16px;font:inherit}
+.explore-footer a{color:inherit;text-decoration:none}
+.explore-footer small{flex-basis:100%;font:11px/1.6 system-ui,sans-serif}
+@media(max-width:1100px){.explore-header .explore-menu{display:block}.explore-header .explore-navigation{display:none;width:100%;flex-direction:column;align-items:stretch;gap:0}.explore-header .explore-navigation.is-open{display:flex}.explore-header .explore-navigation a{padding:12px 4px}.explore-header{gap:16px}}
