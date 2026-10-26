@@ -1,10 +1,28 @@
-import { getUser, admin, verifyRequestOrigin } from '@netlify/identity';
+import { getUser, admin, login, verifyRequestOrigin } from '@netlify/identity';
 import { currentActor, errorResponse, ownerId, ownerEmail } from '../../server/identity';
 import { CAPABILITIES, OWNER_ONLY_CAPABILITIES, AccessError, permissionsFor, parseAccessUpdate } from '../../server/access.mjs';
 const json = (value: unknown) => Response.json(value,{headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff'}});
 export default async (request: Request) => {
   try {
     const path = new URL(request.url).pathname.replace(/\/$/,'');
+    if (request.method === 'POST' && path === '/api/studio/login') {
+      verifyRequestOrigin(request);
+      if (!request.headers.get('content-type')?.startsWith('application/x-www-form-urlencoded')) throw new AccessError(415,'Use the sign-in form.');
+      const body=await request.text();
+      if(body.length>16000) throw new AccessError(413,'Sign-in request is too large.');
+      const fields=new URLSearchParams(body);
+      const email=(fields.get('email') || '').trim();
+      const password=fields.get('password') || '';
+      if(!email || !password || email.length>254 || new TextEncoder().encode(password).length>72) {
+        return new Response(null,{status:303,headers:{Location:'/studio/login?error=credentials','Cache-Control':'private, no-store'}});
+      }
+      try {
+        await login(email,password);
+        return new Response(null,{status:303,headers:{Location:'/studio/login','Cache-Control':'private, no-store'}});
+      } catch {
+        return new Response(null,{status:303,headers:{Location:'/studio/login?error=credentials','Cache-Control':'private, no-store'}});
+      }
+    }
     if (request.method === 'GET' && path === '/api/studio/session') {
       // Bootstrap displays only the verified owner's own ID; it grants no capabilities.
       if (!ownerId()) {

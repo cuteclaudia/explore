@@ -5,10 +5,10 @@ import Base from '../../layouts/Base.astro';
   <section class="wrap login-wrap">
     <span class="eyebrow">Your creative space</span><h1 class="serif">Welcome back, Claudia.</h1>
     <p>Sign in to write, edit and create. Access is invitation-only.</p>
-    <p id="auth-status" role="status">Checking sign-in…</p>
-    <form id="login-form" class="form" hidden>
-      <label>Email address<input id="login-email" type="email" autocomplete="username" required /></label>
-      <label>Password<input id="login-password" type="password" autocomplete="current-password" required /></label>
+    <p id="auth-status" role="status">Sign in with your invited email address and password.</p>
+    <form id="login-form" class="form" method="post" action="/api/studio/login">
+      <label>Email address<input id="login-email" name="email" type="email" autocomplete="username" required /></label>
+      <label>Password<input id="login-password" name="password" type="password" autocomplete="current-password" required /></label>
       <button class="btn" type="submit">Sign in</button>
       <button class="btn ghost" id="recover-password" type="button">Forgot password?</button>
     </form>

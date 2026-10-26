@@ -3,6 +3,7 @@
 ## Implemented in this increment
 
 - Official `@netlify/identity` 2.0.0 integration; no Supabase dependency.
+- The email/password form is visible immediately, independent of provider discovery or JavaScript startup. A same-origin-checked POST fallback keeps credentials out of URLs.
 - `/studio/login` provides email/password, enabled Google-provider discovery, invitation password setup, confirmation callbacks, password reset and sign-out. Public signup is not offered. Microsoft is not a supported provider in the reviewed Netlify documentation/SDK.
 - Default email links landing on the homepage are routed to the login callback handler before the homepage hash router interprets them.
 - `/studio`, `/studio/photo-editor` and `/studio/users` are server-rendered private routes, with no shared caching. Anonymous requests redirect to sign-in.

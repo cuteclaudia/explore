@@ -5,3 +5,5 @@ export const admin={
   async listUsers(){return [...globalThis.identityTest.users.values()];},
   async updateUser(id,update){globalThis.identityTest.updates.push({id,update});const user=globalThis.identityTest.users.get(id);user.appMetadata=update.app_metadata;return user;},
 };
+
+export async function login(email,password){globalThis.identityTest.logins.push({email,password});if(globalThis.identityTest.loginFails)throw Error('Invalid credentials');return globalThis.identityTest.users.values().next().value;}

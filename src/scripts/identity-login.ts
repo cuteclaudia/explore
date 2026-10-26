@@ -8,6 +8,8 @@ let inviteToken='';
 let busy=false;
 const next=new URLSearchParams(location.search).get('next') || '/studio';
 const destination=['/studio','/studio/photo-editor','/studio/users'].includes(next)?next:'/studio';
+const loginError=new URLSearchParams(location.search).get('error');
+if(loginError)status.textContent='Sign-in could not be completed. Check your email and password, or use password recovery.';
 const message=(error:unknown)=>error instanceof Error?error.message:'Sign-in could not be completed. Please try again.';
 async function session() {
   const response=await fetch('/api/studio/session',{cache:'no-store'});
@@ -18,14 +20,16 @@ async function session() {
   else location.replace(destination);
 }
 async function initialize() {
+  if(/^#(?:confirmation_token|recovery_token|invite_token|email_change_token|access_token)=/.test(location.hash))form.hidden=true;
   try {
     const callback=await handleAuthCallback();
     if(callback?.type==='invite') {inviteToken=callback.token || '';passwordForm.hidden=false;status.textContent='Welcome. Set your password to accept your invitation.';return;}
     if(callback?.type==='recovery') {passwordForm.hidden=false;signout.hidden=false;status.textContent='Choose a new password for your account.';return;}
     if(await getUser()){await session();return;}
-    const settings=await getSettings();
-    google.hidden=!settings.providers.google;
-    form.hidden=false;status.textContent='Use your invited account to sign in.';
+    form.hidden=false;
+    if(!loginError)status.textContent='Use your invited account to sign in.';
+    // Provider discovery must never prevent email/password sign-in.
+    getSettings().then(settings=>{if(!form.hidden)google.hidden=!settings.providers.google;}).catch(()=>{google.hidden=true;});
   } catch(error) {status.textContent=message(error);form.hidden=false;signout.hidden=false;}
 }
 form.addEventListener('submit',async event=>{event.preventDefault();if(busy)return;busy=true;status.textContent='Signing in…';try{await login((document.querySelector<HTMLInputElement>('#login-email')!.value).trim(),document.querySelector<HTMLInputElement>('#login-password')!.value);document.querySelector<HTMLInputElement>('#login-password')!.value='';await session();}catch(error){status.textContent=message(error);}finally{busy=false;}});
