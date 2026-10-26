@@ -20,7 +20,7 @@ export default async(request:Request)=>{try{
  if(request.method==='GET'){const saved=await store.get(key,{type:'json'});if(!saved)return json({connected:false});const config=unseal(actor.user.id,saved);return json({connected:true,url:config.url,username:config.username,baseFolder:config.baseFolder??'Kobo',label:config.label||'My WebDAV storage',koboVerified:config.koboVerified?.protocol===1});}
  verifyRequestOrigin(request);
  if(request.method==='POST'&&path.endsWith('/verify-kobo')){
-  const original=await store.get(key,{type:'json'});if(!original)throw new AccessError(409,'Connect WebDAV first.');
+  const original=await store.get(key,{type:'json'});if(!original)throw new AccessError(409,'No WebDAV connection is saved for this signed-in account. Enter the connection details and complete Test & save first.');
   const config=unseal(actor.user.id,original);const verified=await verifyKoboConnection(config);
   let latest=await store.getWithMetadata(key,{type:'json'});
   if(latest&&!latest.etag){const listed=async()=>((await store.list({prefix:key})).blobs.find(b=>b.key===key))?.etag;const before=await listed(),fresh=await store.getWithMetadata(key,{type:'json'}),after=await listed();if(before&&before===after&&fresh)latest={...fresh,etag:after};}

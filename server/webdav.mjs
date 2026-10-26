@@ -11,11 +11,12 @@ export function publicAddress(address){
 export function connectionURL(value,allowed=process.env.WEBDAV_ALLOWED_HOSTS||''){
  let url;try{url=new URL(value);}catch{throw new AccessError(400,'Enter a valid HTTPS WebDAV folder URL.');}
  const hosts=allowed.split(',').map(x=>x.trim().toLowerCase()).filter(Boolean);
- if(!hosts.length)throw new AccessError(503,'WebDAV is not enabled. Configure approved WebDAV hosts in Netlify first.');
- if(url.protocol!=='https:'||url.username||url.password||url.search||url.hash||url.port&&url.port!=='443'||!hosts.includes(url.hostname.toLowerCase())||isIP(url.hostname))throw new AccessError(400,'Use an HTTPS folder on an approved WebDAV hostname, without embedded credentials or query parameters.');
+ if(!hosts.length)throw new AccessError(503,'Set WEBDAV_ALLOWED_HOSTS in Netlify Functions for Production, then redeploy Explore. Enter hostnames only, without https:// or folder paths.');
+ if(url.protocol!=='https:'||url.username||url.password||url.search||url.hash||url.port&&url.port!=='443'||isIP(url.hostname))throw new AccessError(400,'Use an HTTPS folder on an approved WebDAV hostname, without embedded credentials or query parameters.');
+ if(!hosts.includes(url.hostname.toLowerCase()))throw new AccessError(400,'This WebDAV hostname is not listed in WEBDAV_ALLOWED_HOSTS. Add the exact hostname to that variable in Netlify Functions Production and redeploy Explore; omit https:// and folder paths from the variable.');
  if(!url.pathname.endsWith('/'))url.pathname+='/';return url;
 }
-function key(){const value=process.env.FILE_STORAGE_ENCRYPTION_KEY||'';const bytes=Buffer.from(value,'base64');if(!/^[A-Za-z0-9+/]{43}=$/.test(value)||bytes.length!==32)throw new AccessError(503,'Private storage connections require FILE_STORAGE_ENCRYPTION_KEY in Netlify.');return bytes;}
+function key(){const value=process.env.FILE_STORAGE_ENCRYPTION_KEY||'';const bytes=Buffer.from(value,'base64');if(!/^[A-Za-z0-9+/]{43}=$/.test(value)||bytes.length!==32)throw new AccessError(503,'FILE_STORAGE_ENCRYPTION_KEY is missing or invalid in this function. Set the generated 32-byte base64 key in Netlify Functions Production and redeploy Explore. Keep an existing working key unchanged.');return bytes;}
 export function seal(owner,config){const iv=randomBytes(12),cipher=createCipheriv('aes-256-gcm',key(),iv);cipher.setAAD(Buffer.from(owner));const body=Buffer.concat([cipher.update(JSON.stringify(config),'utf8'),cipher.final()]);return {iv:iv.toString('base64'),tag:cipher.getAuthTag().toString('base64'),body:body.toString('base64')};}
 export function unseal(owner,record){const cipher=createDecipheriv('aes-256-gcm',key(),Buffer.from(record.iv,'base64'));cipher.setAAD(Buffer.from(owner));cipher.setAuthTag(Buffer.from(record.tag,'base64'));return JSON.parse(Buffer.concat([cipher.update(Buffer.from(record.body,'base64')),cipher.final()]).toString('utf8'));}
 export async function davRequest(config,method,name='',body){
@@ -27,4 +28,10 @@ export async function davRequest(config,method,name='',body){
   req.setTimeout(45000,()=>req.destroy(Error('WebDAV request timed out')));req.on('error',()=>reject(new AccessError(502,'WebDAV could not be reached securely. Check the hostname, TLS certificate and connection.')));if(body)req.write(body);req.end();
  });
 }
-export async function testConnection(config){await davRequest(config,'PROPFIND');const name='.explore-connection-check-'+randomUUID()+'.txt';await davRequest(config,'PUT',name,Buffer.from('Explore by Claudia connection test'));await davRequest(config,'DELETE',name);}
+export async function testConnection(config,{request=davRequest}={}){
+ const name='.explore-connection-check-'+randomUUID()+'.txt';
+ for(const [step,method,path,body] of [['reading the WebDAV folder','PROPFIND','',undefined],['writing a temporary test file','PUT',name,Buffer.from('Explore by Claudia connection test')],['removing the temporary test file','DELETE',name,undefined]]){
+  try{await request(config,method,path,body);}
+  catch(error){throw new AccessError(error instanceof AccessError?error.status:502,'Connection test failed while '+step+': '+(error instanceof AccessError?error.message:'The provider could not be reached. Check the hostname and connection.'));}
+ }
+}
