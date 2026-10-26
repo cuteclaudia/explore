@@ -1,8 +1,9 @@
 export const CAPABILITIES = Object.freeze({
-  'tools.photocraft': 'Use PhotoCraft advanced image editor',
-  'tools.lightcraft': 'Use LightCraft photo development',
-  'tools.wordcraft': 'Use WordCraft document editor',
-  'tools.pdfcraft': 'Use PdfCraft PDF workbench',
+  'trips.manage_own': 'Create and manage private trips/events',
+  'tools.photocraft': 'Use Irodori image editor',
+  'tools.lightcraft': 'Use Hikari photo development',
+  'tools.wordcraft': 'Use Fumi document editor',
+  'tools.pdfcraft': 'Use Tsuzuri PDF workbench',
   'files.publish': 'Publish finished exports to the site',
   'photo.edit': 'Use photo editor',
   'media.upload': 'Upload photographs',
@@ -27,17 +28,18 @@ export function permissionsFor(user, ownerId) {
   const stored = user.appMetadata?.capabilities || {};
   return Object.fromEntries(Object.keys(CAPABILITIES).map(key => [key, owner || (!OWNER_ONLY_CAPABILITIES.includes(key) && stored[key] === true)]));
 }
-export async function resolveActor({ session, getFreshUser, ownerId, communityEnabled = false, appsEnabled = false }) {
+export async function resolveActor({ session, getFreshUser, ownerId, communityEnabled = false, appsEnabled = false, tripsEnabled = false }) {
   if (!session?.id) throw new AccessError(401, 'Please sign in.');
   let user;
   try { user = await getFreshUser(session.id); } catch { throw new AccessError(401, 'Your session could not be verified. Please sign in again.'); }
   if (!user || user.id !== session.id || !user.confirmedAt) throw new AccessError(401, 'A verified account is required.');
   if (!(Array.isArray(ownerId) ? ownerId.some(Boolean) : ownerId)) throw new AccessError(503, 'Owner access has not been configured yet.');
   const isOwner = isOwnerIdentity(user.id, ownerId);
+  const tripAccess=tripsEnabled&&user.appMetadata?.capabilities?.['trips.manage_own']===true;
   const appAccess=appsEnabled&&Object.keys(CAPABILITIES).some(key=>key.startsWith('tools.')&&user.appMetadata?.capabilities?.[key]===true);
-  if (!isOwner && ((!communityEnabled&&!appAccess) || user.appMetadata?.suspended === true)) throw new AccessError(403, 'App access has not been granted, or this account is suspended.');
+  if (!isOwner && ((!communityEnabled&&!appAccess&&!tripAccess) || user.appMetadata?.suspended === true)) throw new AccessError(403, 'App access has not been granted, or this account is suspended.');
   const permissions=permissionsFor(user,ownerId);
-  if(!isOwner&&!communityEnabled)for(const key of Object.keys(permissions))if(!key.startsWith('tools.'))permissions[key]=false;
+  if(!isOwner&&!communityEnabled)for(const key of Object.keys(permissions))if(!key.startsWith('tools.')&&!(tripsEnabled&&key==='trips.manage_own'))permissions[key]=false;
   return { user, isOwner, permissions };
 }
 export function requireCapability(actor, capability) {

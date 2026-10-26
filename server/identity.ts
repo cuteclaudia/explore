@@ -5,7 +5,7 @@ export const ownerIds = () => [ownerId(), process.env.OWNER_GOOGLE_IDENTITY_ID?.
 export const setupVariableFor = (email: string) => email.toLowerCase() === 'claudiaegilbert@gmail.com' ? 'OWNER_GOOGLE_IDENTITY_ID' : email.toLowerCase() === ownerEmail() ? 'OWNER_IDENTITY_ID' : null;
 export const ownerEmail = () => (process.env.OWNER_EMAIL || 'claudia@claudiagilbert.com').trim().toLowerCase();
 export async function currentActor(capability?: string) {
-  const actor = await resolveActor({session:await getUser(), getFreshUser:admin.getUser, ownerId:ownerIds(), communityEnabled:false, appsEnabled:true});
+  const actor = await resolveActor({session:await getUser(), getFreshUser:admin.getUser, ownerId:ownerIds(), communityEnabled:false, appsEnabled:true, tripsEnabled:true});
   if (capability) requireCapability(actor, capability);
   return actor;
 }

@@ -1,16 +1,16 @@
 ---
 import Base from '../../../layouts/Base.astro';
-import {CRAFT_TOOLS} from '../../../../server/craft-tools.mjs';
+import {CRAFT_TOOLS,resolveToolId} from '../../../../server/craft-tools.mjs';
 import {protectPage} from '../../../../server/identity';
 export const prerender=false;
-const id=Astro.params.tool||'';
+const id=resolveToolId(Astro.params.tool||'');
 if(!Object.hasOwn(CRAFT_TOOLS,id))return new Response('Tool not found',{status:404});
 const tool=CRAFT_TOOLS[id];
 const savedFile=Astro.url.searchParams.get('file');
-const returnPath=`/studio/tools/${id}`+(savedFile&&/^[0-9a-f-]{36}$/i.test(savedFile)?'?file='+encodeURIComponent(savedFile):'');
+const returnPath=`/studio/tools/${tool.slug}`+(savedFile&&/^[0-9a-f-]{36}$/i.test(savedFile)?'?file='+encodeURIComponent(savedFile):'');
 const access=await protectPage(returnPath,tool.capability);
 if(access instanceof Response)return access;
-if(!access.isOwner)return Astro.redirect('/apps/'+id,302);
+if(!access.isOwner)return Astro.redirect('/apps/'+tool.slug,302);
 Astro.response.headers.set('Cache-Control','private, no-store');
 ---
 <Base title={tool.name} description={tool.description} noindex>
@@ -22,6 +22,6 @@ Astro.response.headers.set('Cache-Control','private, no-store');
     <div id="cloud-pending"></div><h3>Private cloud revisions</h3><div id="cloud-list"></div>
   </section>
   <script>import '../../../scripts/workspace-files';</script>
-  <p class="tool-credit">{tool.name} {tool.version} by the ArtCraft contributors · <a href={`https://github.com/storytold/${id}`}>Source & licences</a>. Preferences, browser-library persistence and some clipboard/font features may be unavailable in the isolated workspace.</p></section>
+  <p class="tool-credit">Current engine: {tool.engineName} {tool.version} by the ArtCraft contributors · <a href={`https://github.com/storytold/${id}`}>Source & licences</a>. Preferences, browser-library persistence and some clipboard/font features may be unavailable in the isolated workspace.</p></section>
 </Base>
 <style>.tool-workspace{padding:25px 2%}.tool-intro{max-width:1100px;margin:auto}.tool-intro h1{font-size:42px;margin:18px 0}.tool-intro p{margin:8px 0}.tool-workspace iframe{width:100%;height:max(780px,85vh);border:1px solid var(--border);border-radius:12px;margin-top:20px;background:#222}.tool-credit{font-size:12px;margin:16px 0}</style>

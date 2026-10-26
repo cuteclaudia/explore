@@ -1,12 +1,12 @@
-import {CRAFT_TOOLS} from '../../../../server/craft-tools.mjs';
+import {CRAFT_TOOLS,resolveToolId} from '../../../../server/craft-tools.mjs';
 import {protectPage} from '../../../../server/identity';
 export const prerender=false;
 const pages=import.meta.glob('../../../generated/craft/*.html',{query:'?raw',import:'default',eager:true});
 export async function GET({params,url}){
- const id=params.tool||'';
+ const id=resolveToolId(params.tool||'');
  if(!Object.hasOwn(CRAFT_TOOLS,id))return new Response('Not found',{status:404});
  const tool=CRAFT_TOOLS[id];
- const access=await protectPage(`/studio/tools/${id}`,tool.capability);
+ const access=await protectPage(`/studio/tools/${tool.slug}`,tool.capability);
  if(access instanceof Response)return access;
  const html=pages[`../../../generated/craft/${id}.html`];
  if(typeof html!=='string')return new Response('Workspace build unavailable',{status:503});

@@ -1,7 +1,8 @@
 ---
 import Icon from './Icon.astro';
+import KoboIcon from './KoboIcon.astro';
 const {id,tool}=Astro.props;
-const icons={photocraft:'layers',lightcraft:'sun',wordcraft:'document',pdfcraft:'document'};
+
 ---
-<a class="app-tile" href={'/apps/'+id}><span class="app-tile-icon"><Icon name={icons[id]} size={25}/></span><span class="app-tile-text"><strong>{tool.name}</strong><span>{tool.description}</span></span><span class="app-tile-arrow"><Icon name="arrow" size={17}/></span></a>
-<style>.app-tile{display:flex;align-items:center;gap:17px;padding:22px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit}.app-tile-icon{display:flex;align-items:center;justify-content:center;width:50px;height:50px;flex-shrink:0;background:color-mix(in srgb,var(--accent) 7%,var(--surface));color:var(--accent);border-radius:10px}.app-tile-text{display:flex;flex-direction:column;gap:5px;min-width:0}.app-tile-text strong{font-size:16px;font-weight:500}.app-tile-text>span{font-size:12px;line-height:1.5;opacity:.65;max-width:40ch}.app-tile-arrow{margin-left:auto;opacity:.35;transition:transform .15s,opacity .15s}.app-tile:hover .app-tile-arrow,.app-tile:focus-visible .app-tile-arrow{transform:translateX(4px);opacity:1}.app-tile:hover .app-tile-text strong{color:var(--accent)}</style>
+<a class="app-tile" href={'/apps/'+tool.slug}><span class="app-tile-icon"><KoboIcon name={tool.slug} size={52}/></span><span class="app-tile-text"><strong>{tool.name}</strong><span>{tool.description}</span></span><span class="app-tile-arrow"><Icon name="arrow" size={17}/></span></a>
+<style>.app-tile{display:flex;align-items:center;gap:17px;padding:22px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit}.app-tile-icon{display:flex;align-items:center;justify-content:center;width:50px;height:50px;flex-shrink:0;background:transparent;color:var(--accent);border-radius:10px}.app-tile-text{display:flex;flex-direction:column;gap:5px;min-width:0}.app-tile-text strong{font-size:16px;font-weight:500}.app-tile-text>span{font-size:12px;line-height:1.5;opacity:.65;max-width:40ch}.app-tile-arrow{margin-left:auto;opacity:.35;transition:transform .15s,opacity .15s}.app-tile:hover .app-tile-arrow,.app-tile:focus-visible .app-tile-arrow{transform:translateX(4px);opacity:1}.app-tile:hover .app-tile-text strong{color:var(--accent)}</style>

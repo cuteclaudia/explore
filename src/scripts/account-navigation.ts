@@ -16,7 +16,7 @@ async function refresh(){
     if(current!==revision)return;
     show(Boolean(data),data?.isOwner===true);document.querySelectorAll<HTMLElement>('[data-owner-settings]').forEach(x=>x.hidden=!data?.isOwner);applyPreferences(data);
     if(data?.setupRequired){document.querySelector<HTMLElement>('[data-account-apps]')!.hidden=true;studio.href='/studio/login';setStudioLabel('Finish owner setup');}
-    else{studio.href=data?.isOwner?'/studio':'/apps';setStudioLabel(data?.isOwner?'My Studio':'My apps');document.querySelector<HTMLElement>('[data-account-apps]')!.hidden=!data?.isOwner;}
+    else{studio.href='/studio';setStudioLabel('My Studio');document.querySelector<HTMLElement>('[data-account-apps]')!.hidden=!data;}
   }catch{if(current===revision)show(false);}
 }
 onAuthChange(event=>{if(event==='logout'){revision++;show(false);}else refresh();});

@@ -1,0 +1,9 @@
+---
+const {name,size=52}=Astro.props;
+// Sprite regions prepared from Claudia's approved suite sheet; original PNG retained.
+const regions={fumi:[325,24,300,295],goban:[629,24,300,295],akari:[933,24,300,295],tsuzuri:[20,323,301,296],irodori:[325,323,300,296],sen:[629,323,300,296],hanga:[933,323,300,296],hinagata:[20,624,301,295],kage:[325,623,300,296],hibiki:[629,623,300,295],mai:[933,623,300,296],takumi:[20,923,301,292]};
+const r=regions[name]||regions.fumi,scale=size/r[2];
+const spriteStyle=`width:${size}px;height:${size}px;background-size:${1254*scale}px ${1254*scale}px;background-position:${-r[0]*scale}px ${-r[1]*scale+(size-r[3]*scale)/2}px`;
+---
+{name==='hikari'?<img src="/kobo/hikari.png" width={size} height={size} alt="" aria-hidden="true" class="kobo-icon"/>:<span class="kobo-icon sprite" style={spriteStyle} aria-hidden="true"></span>}
+<style>.kobo-icon{display:inline-block;flex-shrink:0;border-radius:20%;vertical-align:middle}.sprite{background-image:url('/kobo/suite-icons.png');background-repeat:no-repeat}</style>

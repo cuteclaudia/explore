@@ -10,6 +10,6 @@ for(const path of ['/journal','/journal/deployment-check','/chinaseries','/daily
  console.log('PASS packaged SSR',path);
 }
 assert.equal((await response('/chinaseries/puertochancay')).status,404,'Unpublished legacy page must remain hidden');
-for(const path of ['/studio','/studio/content','/apps']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
+for(const path of ['/studio','/studio/content','/apps','/studio/kobo-test']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
 assert.equal((await response('/api/content/list')).status,401);
 console.log('PASS isolated deploy package: require(ESM) disabled, public SSR/RSS, private guards, published snapshots and legacy unpublish.');

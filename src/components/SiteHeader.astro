@@ -6,6 +6,7 @@ const links = [
   ['/places', 'Explore', 'map'],
   ['/#photography', 'Photography', 'photography'],
   ['/journal', 'Journal', 'journal'],
+  ['/trips', 'Trips', 'trips'],
   ['/about', 'About Claudia', 'about'],
   ['/contact', 'Contact', 'contact'],
 ];
@@ -26,7 +27,7 @@ const links = [
       <div class="explore-account-panel">
         <span class="account-menu-label">Your space</span>
         <a href="/apps" data-auth-link hidden><Icon name="grid"/>My apps</a><a href="/studio" data-owner-studio-link hidden><Icon name="edit"/>My Studio</a>
-        <a href="/settings"><Icon name="settings"/>Settings</a>
+        <a href="/trips"><Icon name="mountain"/>Trips & events</a><a href="/settings"><Icon name="settings"/>Settings</a>
         <a href="/studio/account" data-auth-link hidden><Icon name="shield"/>Sign-in & security</a>
         <a href="/studio/users" data-account-permissions hidden><Icon name="user"/>User permissions</a>
         <button type="button" data-account-logout hidden><Icon name="logout"/>Sign out</button>
@@ -49,6 +50,7 @@ const links = [
     else if (path.startsWith('/contact')) section = 'contact';
     else if (/^\/(chinaseries|dailycyberreport|strategy)(\/|$)/.test(path)) section = 'writing';
     else if (path.startsWith('/tags')) section = 'tags';
+    else if (path.startsWith('/trips')) section = 'trips';
     else if (path.startsWith('/journal')) section = 'journal';
     else if (path.startsWith('/photography')) section = 'photography';
     else if (path.startsWith('/places')) section = 'map';
