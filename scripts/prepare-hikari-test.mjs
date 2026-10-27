@@ -7,6 +7,7 @@ if(!archive||!destination)throw Error('Usage: node scripts/prepare-hikari-test.m
 const releases={
  '1979822f6118bbe75c61f120b4af44191b2fd4c71091cf7678f4a65a11c006a8':'0.14.1',
  '202f5a55c028c43c26744946b024f224d00ef2e24c56497a75eb48aefdf57712':'0.14.3',
+ 'cf15d7ca41cbf8e4e2448e6be53496f7e984ea3d9ca63d07b241164d2bd8e2a3':'0.14.4',
 };
 const raw=await readFile(archive),version=releases[createHash('sha256').update(raw).digest('hex')];
 if(!version)throw Error('This is not a reviewed Hikari web archive. Review and pin new releases before preparing them.');
