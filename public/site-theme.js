@@ -20,14 +20,19 @@
     } catch {}
     return defaults.slice();
   }
+  const system=matchMedia('(prefers-color-scheme: dark)');
+  let mode='custom';try{if(localStorage.getItem('explore-theme-mode')==='system')mode='system';}catch{}
+  const systemColours=()=>system.matches?legacy.midnight.slice():defaults.slice();
   function apply(colours) {
+    if(mode==='system')colours=systemColours();
     if (!valid(colours)) colours = defaults;
     const [bg, ink, accent, surface] = colours;
     const values = {bg, ink, accent, surface, text:ink, muted:ink, 'soft-text':ink, deep:ink, 'surface-2':bg, soft:bg, border:accent+'40', 'on-accent':([1,3,5].map(i=>parseInt(accent.slice(i,i+2),16)/255).map(c=>c<=.04045?c/12.92:((c+.055)/1.055)**2.4).reduce((v,c,i)=>v+c*[.2126,.7152,.0722][i],0)>.179?'#17223b':'#ffffff'), glass:surface, scrim:[1,3,5].map(i=>parseInt(bg.slice(i,i+2),16)).join(', ')};
     for (const [key,value] of Object.entries(values)) document.documentElement.style.setProperty('--'+key,value);
     document.documentElement.style.colorScheme = parseInt(bg.slice(1,3),16) < 100 ? 'dark' : 'light';
   }
-  window.exploreTheme = {read, apply, valid, presets:legacy};
+  window.exploreTheme = {read, apply, valid, presets:legacy,systemColours,getMode:()=>mode,setMode:value=>{mode=value==='system'?'system':'custom';}};
+  system.addEventListener('change',()=>{if(mode==='system'){apply(read());window.dispatchEvent(new Event('explore:system-theme'));}});
   try {document.documentElement.dataset.density=localStorage.getItem('explore-density')||'comfortable';document.documentElement.dataset.reducedMotion=localStorage.getItem('explore-motion')||'false';} catch {}
   apply(read());
 })();

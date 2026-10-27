@@ -14,3 +14,6 @@ body .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
 body .card .body>.btn{align-self:flex-start}
 /* Compact reading and writing pages while retaining a comfortable line length. */
 body .page-head{padding:30px 0 22px}body .page-head h1{font-size:clamp(30px,3.8vw,44px);line-height:1.12}body .page-head p{font-size:15px;line-height:1.55}body .prose{padding-top:22px;padding-bottom:18px;font-size:16px;line-height:1.65}body .prose p{margin-bottom:.8em}body .prose h2,body .prose h3{margin-top:1.35em;margin-bottom:.5em}body .prose h2{font-size:27px}body .prose h3{font-size:23px}body .article-hero img{max-height:430px;border-radius:9px}body .grid-3{gap:20px}
+
+/* Shared compact page rhythm; article typography and app canvases retain their own sizes. */
+body{font-size:16px;line-height:1.5}.explore-header{padding-top:12px;padding-bottom:12px}.explore-footer{padding-top:20px;padding-bottom:20px}body .page-head{padding:22px 0 16px}body .page-head h1{font-size:clamp(28px,3.4vw,40px);margin:6px 0 9px}body .section{padding-top:28px}body .card .body{padding:16px}body .article-head{padding:28px 0 18px}body .article-foot{padding-bottom:36px}body .form{gap:12px}body .form input,body .form textarea,body .form select{padding:9px 11px}
