@@ -1,0 +1,34 @@
+// Executes the exact supplied module unchanged. Storage is an atomic in-memory
+// fixture, not live WebDAV/Google; real-browser app integration is tested separately.
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import vm from 'node:vm';
+import {webcrypto,createHash} from 'node:crypto';
+const root=process.argv[2];if(!root)throw Error('Usage: node scripts/check-hikari-originals.mjs PREPARED_STATIC_SITE');
+const source=await readFile(root+'/kobo-originals.js','utf8');
+const PART=1048576,records=new Map(),journal=new Map(),writes=[],reads=[];let serial=0;
+class StorageError extends Error{constructor(code,message,retryable=false){super(message);this.code=code;this.retryable=retryable;}}
+const check=(app,path,options={})=>{assert.equal(app,'hikari');assert(!path.includes('..'));if(options.signal?.aborted)throw new StorageError('cancelled','Fixture interrupted');};
+const storage={
+ async put(app,path,bytes,opts={}){check(app,path,opts);assert(bytes.byteLength<=PART);const old=records.get(path);if(opts.ifNoneMatch==='*'&&old||opts.ifMatch&&opts.ifMatch!==old?.etag)throw new StorageError('conflict','Fixture revision changed');const etag='"v'+(++serial)+'"';records.set(path,{bytes:new Uint8Array(bytes),etag});writes.push({path,size:bytes.byteLength});return {etag};},
+ async read(app,path,opts={}){check(app,path,opts);reads.push(path);const r=records.get(path);return r?{data:r.bytes.slice().buffer,etag:r.etag}:null;},
+ async stat(app,path,opts={}){check(app,path,opts);const r=records.get(path);return r?{size:r.bytes.length,etag:r.etag}:null;},
+ async list(app,dir,opts={}){check(app,dir,opts);const prefix=dir+'/';return [...records].filter(([p])=>p.startsWith(prefix)&&!p.slice(prefix.length).includes('/')).map(([p,r])=>({name:p.slice(prefix.length),size:r.bytes.length,isDir:false,etag:r.etag}));},
+};
+const context={window:{KoboStorage:storage,KoboStorageError:StorageError},crypto:webcrypto,Uint8Array,ArrayBuffer,TextEncoder,TextDecoder,Map,JSON,Number,Math,setInterval,clearInterval,localStorage:{getItem:k=>journal.get(k)||null,setItem:(k,v)=>journal.set(k,v),removeItem:k=>journal.delete(k)}};
+vm.runInNewContext(source,context,{filename:'reviewed-kobo-originals.js'});const O=context.window.KoboOriginals;
+const hash=b=>createHash('sha256').update(b).digest('hex');
+const small=new Uint8Array([1,2,3]),smallResult=await O.put('hikari',small);assert.equal(smallResult.sha256,hash(small));assert.deepEqual(await O.get('hikari',smallResult.sha256),small);assert.equal((await O.put('hikari',small)).reused,true);
+for(const boundary of [new Uint8Array(),new Uint8Array(PART).fill(4)]){const r=await O.put('hikari',boundary);assert(records.has('originals/'+r.sha256));assert.equal(hash(await O.get('hikari',r.sha256)),hash(boundary));}
+const edge=new Uint8Array(PART+1).fill(7),edgeResult=await O.put('hikari',edge);assert.deepEqual(await O.get('hikari',edgeResult.sha256),edge);console.log('PASS whole-file and 1 MiB + 1 byte boundaries');
+const bytes=new Uint8Array(200*PART);for(let i=0;i<bytes.length;i++)bytes[i]=(i*31)%251;const sha=hash(bytes),controller=new AbortController(),before=writes.length;
+await assert.rejects(O.put('hikari',bytes,{signal:controller.signal,onProgress:done=>{if(done===100)controller.abort();}}),e=>e.code==='cancelled');
+const partWrites=writes.slice(before).filter(w=>/\/\d{4}$/.test(w.path));assert.equal(partWrites.length,100);assert(!records.has('originals/'+sha+'.parts/manifest.json'));const upload=partWrites[0].path.split('/').slice(0,-1).join('/');assert(records.has(upload+'/lease.json'));
+const resumeStart=writes.length,result=await O.put('hikari',bytes);assert.equal(result.uploaded,100);assert.equal(writes.slice(resumeStart).filter(w=>/\/\d{4}$/.test(w.path)).length,100);const manifestPath='originals/'+sha+'.parts/manifest.json',manifestRecord=records.get(manifestPath),manifest=JSON.parse(new TextDecoder().decode(manifestRecord.bytes));assert.equal(manifest.parts.length,200);assert.equal(manifest.size,bytes.length);assert.equal('originals/'+sha+'.parts/'+manifest.upload,upload);assert.equal(hash(await O.get('hikari',sha)),sha);console.log('PASS 200 MiB interrupted at 100 parts, resumed same upload, only missing parts written, full read-back SHA-256 matches');
+const first=upload+'/0000',original=records.get(first);records.delete(first);await assert.rejects(O.get('hikari',sha),/missing part/);
+// Capture a review finding explicitly rather than silently treating this as safe.
+const reused=await O.put('hikari',bytes);assert.equal(reused.reused,true);assert(!records.has(first));console.log('REVIEW FINDING: put() reports reused for a published manifest even when a referenced part is missing; get() correctly rejects it.');records.set(first,original);
+records.set(first,{...original,bytes:new Uint8Array(PART).fill(9)});await assert.rejects(O.get('hikari',sha),/hash mismatch/);records.set(first,{...original,bytes:new Uint8Array(PART-1)});await assert.rejects(O.get('hikari',sha),/size mismatch/);records.set(first,original);console.log('PASS missing, corrupted and mis-sized part detection on download');
+for(const bad of [{...manifest,partSize:PART/2},{...manifest,sha256:'0'.repeat(64)},{...manifest,size:Number.MAX_SAFE_INTEGER},{...manifest,upload:'../escape'},{...manifest,parts:manifest.parts.slice(1)},{...manifest,parts:[{...manifest.parts[0],name:'../0'},...manifest.parts.slice(1)]}]){records.set(manifestPath,{...manifestRecord,bytes:new TextEncoder().encode(JSON.stringify(bad))});const n=reads.length;await assert.rejects(O.get('hikari',sha));assert.equal(reads.length-n,2,'invalid manifest refused before any part read');}records.set(manifestPath,manifestRecord);console.log('PASS hostile manifests refused before part reads');
+const secondJournal=new Map(),secondContext={...context,window:{KoboStorage:storage,KoboStorageError:StorageError},localStorage:{getItem:k=>secondJournal.get(k)||null,setItem:(k,v)=>secondJournal.set(k,v),removeItem:k=>secondJournal.delete(k)}};vm.runInNewContext(source,secondContext,{filename:'reviewed-kobo-originals-device-b.js'});
+const racing=new Uint8Array(2*PART+1).fill(21),race=await Promise.all([O.put('hikari',racing),secondContext.window.KoboOriginals.put('hikari',racing)]);assert.equal(race[0].sha256,race[1].sha256);assert.equal(hash(await O.get('hikari',race[0].sha256)),hash(racing));console.log('PASS concurrent same-photo uploads from isolated module contexts converge in the atomic fixture; no live-provider acceptance claimed');
