@@ -68,3 +68,7 @@ Owners can open `/studio/about` (My Studio → Edit About) to edit the biography
 ## Experimental Google Drive storage
 
 See [Google Drive setup](docs/GOOGLE-DRIVE-SETUP.md) for the dedicated OAuth client, limited permission, Netlify variables and live acceptance steps. Google authorization is per account and separate from Google sign-in. Connecting does not select a provider or migrate a library. The adapter stores immutable Drive objects and conditionally publishes their current references in private Netlify Blobs; old objects are retained and the index requires backup. Keep owner testing in place until joint app acceptance. [Claude handoff](docs/CLAUDE-GOOGLE-DRIVE-HANDOFF.md) records the provider contract addition and remaining app work.
+
+## Frozen Kōbō v1.3 specification
+
+[Storage contract v1.3](docs/kobo/storage-contract-v1.3.md) is agreed and frozen from revision 4; [the freeze decision](docs/kobo/V1.3-FREEZE.md) records the scope. The website runtime remains v1.2.1 until all v1.3 operations are implemented and verified. The app-side library switcher can use existing operations while preserving main. A frozen design is not a deployed feature or a completed live app-acceptance result.
