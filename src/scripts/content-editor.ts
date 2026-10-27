@@ -59,3 +59,6 @@ window.addEventListener('beforeunload',e=>{if(dirty||busy){e.preventDefault();e.
  updateLinks();drawCover();drawPhotos();form.hidden=false;dirty=false;status.textContent=saved?'Content loaded. Saved edits stay private until you publish.':'Start with a title, then write or upload photographs.';
  if(location.hash)document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView();
 })().catch(report);
+
+// Reveal collapsed metadata before the browser focuses an invalid required field.
+document.getElementById('content-form')?.addEventListener('invalid',event=>{let details=(event.target as HTMLElement).closest<HTMLDetailsElement>('details');while(details){details.open=true;details=details.parentElement?.closest<HTMLDetailsElement>('details')||null;}},true);

@@ -29,4 +29,4 @@ Astro.response.headers.set('Cache-Control','private, no-store');
   const reset=document.querySelector<HTMLButtonElement>('#account-reset')!;
   reset.addEventListener('click',async()=>{const message=document.querySelector<HTMLElement>('#account-reset-status')!;reset.disabled=true;try{await requestPasswordRecovery(reset.dataset.email!);message.textContent='A password reset email has been requested. Check your inbox.';}catch{message.textContent='The reset email could not be requested. Please try again.';}finally{reset.disabled=false;}});
 </script>
-<style>.account-wrap{max-width:100%}.account-wrap>p{margin-bottom:30px}.account-wrap section{padding-top:20px}.account-wrap .btn{margin-top:12px}</style>
+<style>.account-wrap{max-width:100%}.account-wrap>p{margin-bottom:14px}.account-wrap section{padding-top:12px}.account-wrap .btn{margin-top:8px}</style>

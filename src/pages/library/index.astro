@@ -8,4 +8,4 @@ let files=[],unavailable=false;try{files=await fileService(getStore({name:'studi
 Astro.response.headers.set('Cache-Control','no-store');
 ---
 <Base title="Published library" description="Finished photographs and PDF documents from Explore by Claudia."><section class="wrap library-page"><header class="page-head"><span class="eyebrow">From the studio</span><h1>Published library</h1><p>Finished photographs and PDF documents shared from my creative workspaces.</p></header>{unavailable?<p>The published library is temporarily unavailable.</p>:files.length?<div class="grid-3">{files.map(file=><article class="card"><div class="body"><h2 class="serif"><a href={`/library/${file.id}`}>{file.title}</a></h2><Tags tags={file.tags}/><p>{file.type==='application/pdf'?'PDF document':'Photograph'}</p><a href={`/library/${file.id}`}>View & download →</a></div></article>)}</div>:<p>No exports have been published yet.</p>}</section></Base>
-<style>.library-page{padding-bottom:60px}.library-page h2{font-size:27px}</style>
+<style>.library-page{padding-bottom:36px}.library-page h2{font-size:27px}</style>

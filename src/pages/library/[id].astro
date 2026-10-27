@@ -15,4 +15,4 @@ function load(){return loaded ||= (async()=>{const info=await fetch('/api/files/
 button.addEventListener('click',async()=>{button.disabled=true;try{const{file,blob}=await load(),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=file.name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);status.textContent='File downloaded and verified.';}catch(e){status.textContent=e instanceof Error?e.message:'Download failed.';}finally{button.disabled=false;}});
 if(root.dataset.preview==='image')load().then(({blob})=>{const image=document.querySelector<HTMLImageElement>('#public-preview')!,url=URL.createObjectURL(blob);image.src=url;image.hidden=false;status.textContent='Photograph loaded and verified.';window.addEventListener('pagehide',()=>URL.revokeObjectURL(url),{once:true});}).catch(error=>status.textContent=error.message);
 </script>
-<style>.library-file{padding-top:50px;padding-bottom:60px}.library-file h1{font-size:46px}</style>
+<style>.library-file{padding-top:22px;padding-bottom:36px}.library-file h1{font-size:36px}</style>
