@@ -9,6 +9,7 @@ const releases={
  '202f5a55c028c43c26744946b024f224d00ef2e24c56497a75eb48aefdf57712':'0.14.3',
  'cf15d7ca41cbf8e4e2448e6be53496f7e984ea3d9ca63d07b241164d2bd8e2a3':'0.14.4',
  '9dd11411515c64257b82635591152d8368aa7b9464aabb0eb6441b3010c9c575':'0.14.5',
+ '123660c894fe06e11d98e10b6bbb6e8ba37c4b5c2298dfd9b5c798c671b56f9f':'0.14.6',
 };
 const raw=await readFile(archive),version=releases[createHash('sha256').update(raw).digest('hex')];
 if(!version)throw Error('This is not a reviewed Hikari web archive. Review and pin new releases before preparing them.');
