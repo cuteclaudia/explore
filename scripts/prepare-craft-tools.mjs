@@ -3,6 +3,7 @@ import {createHash} from 'node:crypto';
 import {resolve,dirname} from 'node:path';
 import {unzipSync} from 'fflate';
 import {CRAFT_TOOLS} from '../server/craft-tools.mjs';
+import {openingAppMessage} from '../src/lib/app-presentation.mjs';
 for(const [id,tool] of Object.entries(CRAFT_TOOLS)){
  const filename=`${id}-web-${tool.version}.zip`;
  const cache=resolve('.netlify/craft-cache',filename);await mkdir(dirname(cache),{recursive:true});
@@ -28,8 +29,8 @@ for(const [id,tool] of Object.entries(CRAFT_TOOLS)){
  // Rebrand visible wrapper text only. Keep upstream binary/API identifiers and
  // separate licence/NOTICE files untouched while rebuilt apps are validated.
  html=html.replaceAll(`<title>${tool.engineName}</title>`,`<title>${tool.name}</title>`)
-  .replaceAll(`Loading ${tool.engineName}`,`Loading ${tool.name}`)
-  .replaceAll(`Starting ${tool.engineName}`,`Starting ${tool.name}`)
+  .replaceAll(`Loading ${tool.engineName}`,openingAppMessage(tool.slug).slice(0,-1))
+  .replaceAll(`Starting ${tool.engineName}`,openingAppMessage(tool.slug).slice(0,-1))
   .replaceAll(`${tool.engineName} failed to load`,`${tool.name} failed to load`)
   .replaceAll(`content="${tool.engineName}:`,`content="${tool.name}:`);
  await mkdir('src/generated/craft',{recursive:true});
