@@ -47,7 +47,7 @@ Selecting WebDAV again requires its existing connection to be verified. Disconne
 
 ## Storage and recovery model
 
-Google Drive does not provide the same contract as WebDAV. The adapter uploads immutable binary revisions into an app-created **Kōbō/Hikari** (or other app) folder, then atomically updates the current reference in private Netlify Blobs. Conditional conflicts are checked against that index. The exposed ETags are logical Kōbō revision identifiers, not claims about native Google HTTP ETags.
+Google Drive does not provide the same contract as WebDAV. The adapter uploads immutable binary revisions into an app-created **Kōbō/Hikari** (or other app) folder, then atomically updates the current reference in private Netlify Blobs. Conditional conflicts are checked against that index. The exposed ETags are logical Kōbō revision identifiers, not claims about native Google HTTP ETags. Google can change its internal file version for metadata updates: reads still verify the saved byte hash, and stat checks download and hash a revision when that provider version differs. An unchanged byte hash does not create an artificial competing-save conflict. Changed contents, ownership, parent folder, size or revision properties remain refused.
 
 Only files created by this integration are available under the limited permission. It does not browse arbitrary existing Drive documents or edit native Google Docs. Working chunk files are binary app data, not individual photos ready for Drive's gallery.
 

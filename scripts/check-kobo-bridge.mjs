@@ -25,7 +25,7 @@ const host=createServer(async(req,res)=>{
   if(op==='list'){const prefix=key?key+'/':'';res.end(JSON.stringify([...files].filter(([k])=>k.startsWith(prefix)&&!k.slice(prefix.length).includes('/')).map(([k,v])=>({name:k.slice(prefix.length),isDir:false,size:v.data.length,etag:v.etag,modified:new Date().toISOString()}))));return;}
   if(op==='remove'){files.delete(key);res.end('null');return;}
  }
- res.setHeader('Content-Type','text/html');res.end('<!doctype html><iframe id="app" sandbox="allow-scripts allow-same-origin allow-downloads"></iframe><p id="state"></p><script src="/shell.js"></script><script>globalThis.shell=Shell.mountKoboShell({frame:document.querySelector("iframe"),launch:{app:"hikari",launchId:"aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",origin:'+JSON.stringify(appOrigin)+'},onStatus:s=>{globalThis.koboStatus=s},onClosed:m=>{document.querySelector("p").textContent=m;globalThis.koboClosed=true}})</script>');
+ res.setHeader('Content-Type','text/html');res.end('<!doctype html><iframe id="app" sandbox="allow-scripts allow-same-origin allow-downloads"></iframe><p id="state"></p><script src="/shell.js"></script><script>globalThis.shell=Shell.mountKoboShell({frame:document.querySelector("iframe"),launch:{app:"hikari",launchId:"aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",origin:'+JSON.stringify(appOrigin)+'},onOperationError:e=>{(globalThis.koboErrors||=[]).push(e)},onStatus:s=>{globalThis.koboStatus=s},onClosed:m=>{document.querySelector("p").textContent=m;globalThis.koboClosed=true}})</script>');
 });
 const app=createServer((req,res)=>{
  if(scripts[req.url]){res.setHeader('Content-Type','text/javascript');res.end(scripts[req.url]);return;}
@@ -50,7 +50,7 @@ let browser;try{
   const results=await Promise.allSettled([KoboSync.commit('hikari',{'catalog.log':new Uint8Array([1,2,3])},base,{appendOnly:['catalog.log']}),KoboSync.commit('hikari',{'catalog.log':new Uint8Array([1,2,4])},base,{appendOnly:['catalog.log']})]);
   return {size:read.files['catalog.snap'].length,first:read.files['catalog.snap'][0],last:read.files['catalog.snap'].at(-1),callerSize:bytes.length,uploaded:base.uploaded,winners:results.filter(x=>x.status==='fulfilled').length,failures:results.filter(x=>x.status==='rejected').map(x=>x.reason.code)};
  });
- assert.equal(sync.size,1048593);assert.equal(sync.first,42);assert.equal(sync.last,42);assert.equal(sync.callerSize,1048593);assert.equal(sync.uploaded,3);assert.equal(sync.winners,1);assert.deepEqual(sync.failures,['conflict']);
+ assert.equal(sync.size,1048593);assert.equal(sync.first,42);assert.equal(sync.last,42);assert.equal(sync.callerSize,1048593);assert.equal(sync.uploaded,3);assert.equal(sync.winners,1);assert.deepEqual(sync.failures,['conflict']);const diagnostic=await page.evaluate(()=>globalThis.koboErrors.find(e=>e.code==='conflict'));assert.equal(diagnostic.operation,'put');assert.equal(diagnostic.path,'library/head.json');assert.equal(diagnostic.message,'Fixture conflict.');assert.deepEqual(Object.keys(diagnostic).sort(),['code','message','operation','path']);
  // A hostile head must be rejected before allocating a logical library or trusting its names.
  const originalHead=files.get('library/head.json');
  const emptyHash='e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855';

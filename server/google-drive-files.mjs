@@ -27,11 +27,16 @@ export function googleDriveFiles(config,app,{store,api}){
  }
  async function remote(record){
   const file=await api.meta(record.remoteId);
-  if(!file||file.trashed||file.mimeType===folderType||!file.parents?.includes(record.parentId)||file.appProperties?.koboOwner!==owner||file.appProperties?.koboApp!==app||file.appProperties?.koboRevision!==record.version||file.appProperties?.koboHash!==record.sha256||String(file.version)!==record.remoteVersion||Number(file.size)!==record.size)throw new KoboError('conflict','A working revision was changed or removed outside Kōbō. Your local work has not been overwritten.');return file;
+  if(!file||file.trashed||file.mimeType===folderType||!file.parents?.includes(record.parentId)||file.appProperties?.koboOwner!==owner||file.appProperties?.koboApp!==app||file.appProperties?.koboRevision!==record.version||file.appProperties?.koboHash!==record.sha256||Number(file.size)!==record.size)throw new KoboError('conflict','A working revision was changed or removed outside Kōbō. Your local work has not been overwritten.');return file;
  }
  return {
   async read(path,opts={}){koboPath(path);koboConditions(opts);const found=await current(path),record=found?.data;if(!record||record.deleted)return null;if(record.kind!=='file')throw new KoboError('forbidden','Choose an individual file.');if(opts.ifMatch&&opts.ifMatch!==tag(record))throw new KoboError('conflict','This Drive file changed.');await remote(record);const bytes=await api.download(record.remoteId);if(!bytes||bytes.byteLength!==record.size||hash(bytes)!==record.sha256)throw new KoboError('conflict','Drive file bytes do not match the saved revision.');return {data:bytes,etag:tag(record)};},
-  async stat(path){koboPath(path);const record=(await current(path))?.data;if(!record||record.deleted)return null;if(record.kind==='file')await remote(record);return {size:record.size||0,etag:tag(record),modified:record.modified,isDir:record.kind==='directory'};},
+  async stat(path){koboPath(path);const record=(await current(path))?.data;if(!record||record.deleted)return null;if(record.kind==='file'){const file=await remote(record);
+   // Drive's version includes internal metadata changes, not just file bytes.
+   // A changed version requires a full bounded hash check, not an assumed
+   // competing save. Logical CAS ETags still protect current-head publication.
+   if(String(file.version)!==record.remoteVersion){const bytes=await api.download(record.remoteId);if(!bytes||bytes.byteLength!==record.size||hash(bytes)!==record.sha256)throw new KoboError('conflict','Drive file bytes do not match the saved revision.');}
+  }return {size:record.size||0,etag:tag(record),modified:record.modified,isDir:record.kind==='directory'};},
   async list(dir){koboPath(dir,true);const start=dir?dir+'/':'',items=[];for await(const page of store.list({prefix,paginate:true}))for(const item of page.blobs){const r=await store.get(item.key,{type:'json'});if(!r||r.deleted||!r.path.startsWith(start)||r.path===dir||r.path.slice(start.length).includes('/'))continue;own(r,r.path);items.push({name:r.path.slice(start.length),isDir:r.kind==='directory',size:r.size||0,etag:tag(r),modified:r.modified});if(items.length>2048)throw new KoboError('too-large','This folder has too many direct children.');}return items.sort((a,b)=>a.name.localeCompare(b.name));},
   async put(path,data,opts={}){koboPath(path);koboConditions(opts);if(!(data instanceof Uint8Array)||data.byteLength>KOBO_BYTES)throw new KoboError('too-large','Drive operations accept at most 1 MiB.');await parents(path);
    return locked('drive-write:'+key(path),async()=>{const before=await current(path),old=before?.data;
