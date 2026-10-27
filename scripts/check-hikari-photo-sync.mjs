@@ -4,6 +4,8 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';import {resolve,extname,relative} from 'node:path';import {build} from 'esbuild';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const phone=process.env.HIKARI_PHONE==='1';
+const contextOptions=phone?{viewport:{width:390,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:1}:{viewport:{width:1280,height:900}};
 const root=process.argv[2];if(!root)throw Error('Usage: node scripts/check-hikari-photo-sync.mjs PREPARED_STATIC_SITE');
 const shellOrigin='https://explorebyclaudia.netlify.app',appOrigin='https://cuteclaudia-hikari-test.netlify.app';
 const bundle=await build({entryPoints:['src/scripts/kobo-shell.ts'],bundle:true,write:false,format:'iife',globalName:'Shell',plugins:[{name:'fixture-auth',setup(b){b.onResolve({filter:/^@netlify\/identity$/},()=>({path:'auth',namespace:'fixture'}));b.onLoad({filter:/.*/,namespace:'fixture'},()=>({contents:'export function onAuthChange(callback){globalThis.testAuthCallback=callback;return ()=>{};}'}));}}]});
@@ -19,7 +21,7 @@ if(disableArg&&process.env.KOBO_BLOCK_STORAGE!=='1'){
  launchOptions.ignoreDefaultArgs=[disableArg];
  launchOptions.args.push('--disable-features='+disableArg.slice('--disable-features='.length).split(',').filter(f=>f!=='ThirdPartyStoragePartitioning').join(','));
 }
-const browser=await chromium.launch(launchOptions);let context=await browser.newContext({viewport:{width:1280,height:900}});
+const browser=await chromium.launch(launchOptions);let context=await browser.newContext(contextOptions);
 async function installRoutes(context){
 await context.route(appOrigin+'/**',async route=>{const url=new URL(route.request().url());const file=resolve(root,'.'+(url.pathname==='/'?'/index.html':url.pathname));if(relative(root,file).startsWith('..'))return route.abort();try{const type={'.html':'text/html','.js':'text/javascript','.json':'application/json','.wasm':'application/wasm','.otf':'font/otf','.png':'image/png','.svg':'image/svg+xml'}[extname(file)]||'application/octet-stream';await route.fulfill({path:file,contentType:type,headers:{'Content-Security-Policy':csp,'Cache-Control':'no-cache','X-Content-Type-Options':'nosniff'}});}catch{await route.fulfill({status:404,body:'Missing fixture asset'});}});
 await context.route(shellOrigin+'/**',async route=>{
@@ -40,7 +42,7 @@ await context.route(shellOrigin+'/**',async route=>{
   if(op==='list'){const prefix=actor+'|'+connection+'|'+(path?path+'/':'');return route.fulfill({json:[...files].filter(([k])=>k.startsWith(prefix)&&!k.slice(prefix.length).includes('/')).map(([k,v])=>({name:k.slice(prefix.length),isDir:false,size:v.data.length,etag:v.etag,modified:new Date().toISOString()}))});}
   if(op==='remove'){files.delete(key);return route.fulfill({json:null});}
  }
- return route.fulfill({contentType:'text/html',body:`<!doctype html><iframe id="app" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-modals" allow="clipboard-read; clipboard-write; fullscreen" style="width:100%;height:850px;border:0"></iframe><p id="state"></p><script src="/shell.js"></script><script>window.launchApp=launch=>{window.shell?.close();window.shell=Shell.mountKoboShell({frame:document.querySelector('iframe'),launch,requireStorage:true,onStatus:s=>window.fixtureStatus=s,onClosed:m=>{document.querySelector('p').textContent=m;window.fixtureClosed=true;}})};</script>`});
+ return route.fulfill({contentType:'text/html',body:`<!doctype html><meta name="viewport" content="width=device-width, initial-scale=1"><style>html,body{margin:0}iframe{max-width:100vw}</style><iframe id="app" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-modals" allow="clipboard-read; clipboard-write; fullscreen" style="width:100%;height:${phone?760:850}px;border:0"></iframe><p id="state"></p><script src="/shell.js"></script><script>window.launchApp=launch=>{window.shell?.close();window.shell=Shell.mountKoboShell({frame:document.querySelector('iframe'),launch,requireStorage:true,onStatus:s=>window.fixtureStatus=s,onClosed:m=>{document.querySelector('p').textContent=m;window.fixtureClosed=true;}})};</script>`});
 });
 }
 await installRoutes(context);
@@ -48,6 +50,7 @@ let page=await context.newPage();page.on('pageerror',e=>{errors.push(e.message);
 const launch=async()=>{const launchId=crypto.randomUUID();launches.set(launchId,{actor});const navigation=page.waitForEvent('framenavigated',{predicate:f=>f.url().startsWith(appOrigin),timeout:20000});await page.evaluate(data=>{window.fixtureClosed=false;window.launchApp(data)},{launchId,app:'hikari',origin:appOrigin});const frame=await navigation;await frame.waitForFunction(()=>typeof globalThis.lightcraft?.command==='function',{timeout:60000});await frame.waitForFunction(async()=>{try{const s=JSON.parse(await lightcraft.command('web.stats','{}'));return !!s.library;}catch{return false;}},{timeout:60000});return frame;};
 try{
  await page.goto(shellOrigin);let frame=await launch();
+ if(phone){assert.equal(await frame.evaluate(()=>innerWidth),390);await page.screenshot({path:'/workspace/reviews/hikari-0.15.0-phone.png'});console.log('PASS phone viewport is 390 CSS pixels at touch DPR 1; real Android high-density rendering remains manual acceptance');}
  const stats=()=>frame.evaluate(async()=>JSON.parse(await lightcraft.command('web.stats','{}'))),info=()=>frame.evaluate(async()=>JSON.parse(await lightcraft.command('library.info','{}')));
  const until=async check=>{const start=Date.now();while(Date.now()-start<45000){if(await check())return;await page.waitForTimeout(150);}throw Error('Photo sync did not reach expected state: '+JSON.stringify(await stats()));};
  await until(async()=>{const s=await stats();return !!s.kobo?.generation&&!s.kobo.dirty&&!s.kobo.busy;});const before=(await info()).photos;
@@ -61,7 +64,7 @@ try{
  if(resume?.scoped){assert(resume.keys.some(k=>k.startsWith('kobo-upload/'+resume.library+'/hikari/')));console.log('PASS native photo upload supplies its account/connection scope to the resume journal');}
  const committed=JSON.parse(files.get(key('library/head.json')).data.toString());assert(committed.logical.some(f=>f.file==='originals.json'));
  if(process.env.HIKARI_CACHE_INSPECT==='1')console.log('CACHE_TREE',JSON.stringify(await frame.evaluate(async()=>{const out=[];async function visit(dir,prefix='',depth=0){for await(const [name,h] of dir.entries()){const path=prefix+name;out.push(path+(h.kind==='directory'?'/':''));if(h.kind==='directory'&&depth<3)await visit(h,path+'/',depth+1);}}await visit(await navigator.storage.getDirectory());return out;})));
- const beforeReloadReads=events.length;await context.close();context=await browser.newContext({viewport:{width:1280,height:900}});await installRoutes(context);page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.dismiss());await page.goto(shellOrigin);frame=await launch();await until(async()=>{const s=await stats();return !!s.kobo?.generation&&!s.kobo.dirty&&!s.kobo.busy;});assert.equal((await info()).photos,before+2);
+ const beforeReloadReads=events.length;await context.close();context=await browser.newContext(contextOptions);await installRoutes(context);page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.dismiss());await page.goto(shellOrigin);frame=await launch();await until(async()=>{const s=await stats();return !!s.kobo?.generation&&!s.kobo.dirty&&!s.kobo.busy;});assert.equal((await info()).photos,before+2);
  await until(()=>events.slice(beforeReloadReads).some(e=>e.op==='read'&&e.path.startsWith('originals/')));console.log('PASS new browser context restores the catalog and Hikari automatically fetches the opened original from storage');
  if(process.env.HIKARI_THUMBNAIL_DIAGNOSTIC==='1'){await until(async()=>(await stats()).originalsInMemory>0);await page.waitForTimeout(2500);console.log('RESTORED THUMBNAIL STATS',JSON.stringify(await stats()));await page.screenshot({path:'/workspace/reviews/hikari-0.14.6-restored-thumbnails.png'});await page.mouse.click(886,740);await until(async()=>(await stats()).originalsInMemory>=2);await page.waitForTimeout(2500);console.log('OPENED LARGE THUMBNAIL STATS',JSON.stringify(await stats()));await page.screenshot({path:'/workspace/reviews/hikari-0.14.6-restored-large-thumbnail.png'});await page.evaluate(()=>window.shell.close('Thumbnail reload fixture'));frame=await launch();await until(async()=>(await stats()).originalsInMemory>0);await page.waitForTimeout(2500);console.log('REOPENED THUMBNAIL STATS',JSON.stringify(await stats()));await page.screenshot({path:'/workspace/reviews/hikari-0.14.6-reopened-thumbnails.png'});}
 
