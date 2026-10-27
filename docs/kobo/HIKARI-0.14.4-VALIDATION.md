@@ -40,7 +40,9 @@ npm test
 
 ## Concurrency evidence
 
-The new Google test uses two independent worker isolates and the real Netlify Blobs SDK/emulator. Each writer passes the same create/CAS precondition before either is released to commit. Only one wins each race; the other receives `conflict`, and the logical index still points to the winner's immutable data. No process-local lock is shared across the workers. Google uploads are simulated. This proves the adapter is not relying solely on its local lock; **live Netlify/Google two-device acceptance remains pending**.
+The independent worker test checked logical conflict results and the final index, without a shared process lock. **A subsequent stronger test showed why that is insufficient to certify atomicity:** a write accepted by an unsafe backend may later fail the commit helper's read-back check. The local Blobs emulator accepted both raw competing creates during the stronger probe. Google uploads in the worker test were simulated; no live distributed acceptance is established by it.
+
+The website now inspects raw SDK write results in a live-capable diagnostic: exactly one accepted and one refused conditional write are required for both create-only and CAS, followed by stale-write refusal and winning-value verification. The production backend must pass this test before Google gains server-side write permission. User file mappings and originals are untouched by the index probe. The live test and two-device app acceptance remain pending.
 
 All 115 server tests passed after adding this test. The browser core/account/upgrade checks above passed separately.
 

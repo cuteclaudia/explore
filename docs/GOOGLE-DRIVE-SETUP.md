@@ -38,7 +38,7 @@ Redeploy Explore after adding the variables. The Hikari static project does not 
 
 1. Sign into Explore and open **Account → Settings → Files & storage** (`/studio/storage`).
 2. Click **Connect Google Drive**, choose the account and approve the limited file permission.
-3. Back in settings, click **Test connection**. This checks a small private revision, read-back, metadata, stale-write refusal and logical deletion.
+3. Back in settings, click **Test connection**. This checks a small private Drive revision, read-back, metadata, stale-write refusal and logical deletion. It also races raw create-only and compare-and-swap writes on a fresh temporary private Netlify index key. Exactly one raw write must be accepted and the other refused; final read-back alone does not count. Google remains server-enforced read-only until these competing-save checks pass. Existing readable libraries and credentials are preserved.
 4. After the test passes, choose **Google Drive** under **Kōbō sync destination → Use this provider**.
 5. Reopen `/studio/kobo-test`. Existing libraries are not migrated or copied. Never approve copying a guest library unless it is yours and intended for that account.
 6. Check create/edit/reopen, account isolation, reconnect, sign-out, conflicts and a real large-photo upload with Claude's current Hikari build. A settings test alone is not full app acceptance.
@@ -58,3 +58,7 @@ Old and abandoned uploaded revisions remain in Drive. A remove operation tombsto
 Provider files follow Google's own hosting and account policies; connecting Google does not move them to kDrive or Switzerland. Netlify continues to hold the private index and encrypted authorization credentials.
 
 OAuth projects in testing can have short-lived refresh authorizations, depending on Google's current policies. A reconnect prompt in testing is expected in that case. Review Google's production publishing requirements before opening access to other users.
+
+## Competing-save verification update
+
+The earlier independent-worker test alone was not sufficient proof: a read-back check can report a conflict after a backend accepted both writes. The stronger raw-response probe detected this behavior in the local Blobs emulator. This is not a claim that production Netlify has the same behavior. Run **Test connection** on the deployed site and require the message **connection and competing-save checks passed**. A failing probe keeps Google read-only. Even a passing backend check does not complete the separate two-device Hikari or photo-original acceptance tests.

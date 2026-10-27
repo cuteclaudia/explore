@@ -19,7 +19,7 @@ export default async(request:Request)=>{
   if(op==='status'&&request.method==='GET'){
    let configured=true;try{providers.google.client();}catch{configured=false;}
    const config=await providers.google.load(actor.user.id);
-   return Response.json({configured,connected:!!config,email:config?.email||'',verified:config?.koboVerified?.protocol===1&&!config?.authFailed,reconnectRequired:config?.authFailed===true,folderUrl:config?'https://drive.google.com/drive/folders/'+config.rootId:'',selected:await providers.selected(actor.user.id)},{headers});
+   return Response.json({configured,connected:!!config,email:config?.email||'',verified:config?.koboVerified?.protocol===1&&!config?.authFailed,reconnectRequired:config?.authFailed===true,concurrentIndexVerified:config?.koboVerified?.atomicChecks?.createOnly===true&&config?.koboVerified?.atomicChecks?.compareAndSwap===true,folderUrl:config?'https://drive.google.com/drive/folders/'+config.rootId:'',selected:await providers.selected(actor.user.id)},{headers});
   }
   if(request.method!=='POST')return new Response(null,{status:405,headers});verifyRequestOrigin(request);
   if(op==='start'){const result=await providers.google.start(actor.user.id,url.origin);return Response.json({authorizationUrl:result.authorizationUrl},{headers:{...headers,'Set-Cookie':cookie(result.browser,600)}});}

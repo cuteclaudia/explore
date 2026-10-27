@@ -15,7 +15,7 @@ async function competingWrites(storeOptions,config,path,conditions){
   for(const writer of [1,2]){const w=new Worker(new URL('./fixtures/google-drive-writer.mjs',import.meta.url),{workerData:{storeOptions,config,path,conditions,writer}});workers.push(w);w.on('error',reject);w.on('message',m=>{if(m.ready){ready.push(m.id);if(ready.length===2)workers.forEach(w=>w.postMessage('commit'));}if(m.done){results.push(m);if(results.length===2)resolve({results,uploads:ready});}});}
  });}finally{clearTimeout(timer);await Promise.all(workers.map(w=>w.terminate()));}
 }
-test('separate Drive writer isolates enforce atomic create-only and CAS through Blobs, without a shared lock',async()=>{
+test('separate Drive writer isolates preserve the winning index in simulated races; raw backend refusal is checked separately',async()=>{
  const directory=await mkdtemp(join(tmpdir(),'drive-concurrency-')),server=new BlobsServer({directory,token:'test-only',logger:()=>{}});
  try{
   const address=await server.start(),url='http://127.0.0.1:'+address.port;
