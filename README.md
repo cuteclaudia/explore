@@ -58,3 +58,13 @@ The shared header uses compact icon controls with hover/focus labels and a tap/k
 The app area uses the approved suite name **Kōbō (工房), by CuteClaudia**; current upstream workspaces remain identified until rebuilt apps arrive. Approved app names, colour values and replacement mappings are recorded in OFFICE-SUITE-ROADMAP.md.
 
 `/places` uses MapLibre GL JS with its worker bundled locally, OpenFreeMap's Liberty basemap and Mapzen Terrain Tiles for 2D/3D viewing. GPX files remain in browser memory with approximate distance/ascent/profile; they are not uploaded or published. Map/elevation tile requests still go to third-party providers. Full terrain attribution and the bundled MapLibre licence are available at `/map-credits`; update the licence file when upgrading MapLibre. Mapping/provider research and network-validation limits are in MAPPING-RESEARCH.md. Live Strava/Garmin/Komoot sync is not implemented; `/settings/connections` reports that honestly and links to the provider sites. GPX viewing is the current route-transfer workflow. No new map API keys/environment variables are required.
+
+## Compact publishing workspace and editable About page
+
+The writing editor puts the article directly below its title, with collapsible metadata, cover and photo panels. Select text to change its font family or size; alignment and line spacing apply to the selected paragraphs. Supported typography is validated by the server before publication. Drafts, public snapshots and stale-save protection remain separate.
+
+Owners can open `/studio/about` (My Studio → Edit About) to edit the biography, upload photographs, add text/image sections, change column position/width and reorder sections with accessible arrows. Save draft and Preview keep changes private; Publish updates `/about`. The original repository biography and image seed the page until its first website edit. Thereafter the saved website version takes precedence. Other users cannot edit site pages or view their draft photographs.
+
+## Experimental Google Drive storage
+
+See [Google Drive setup](docs/GOOGLE-DRIVE-SETUP.md) for the dedicated OAuth client, limited permission, Netlify variables and live acceptance steps. Google authorization is per account and separate from Google sign-in. Connecting does not select a provider or migrate a library. The adapter stores immutable Drive objects and conditionally publishes their current references in private Netlify Blobs; old objects are retained and the index requires backup. Keep owner testing in place until joint app acceptance. [Claude handoff](docs/CLAUDE-GOOGLE-DRIVE-HANDOFF.md) records the provider contract addition and remaining app work.

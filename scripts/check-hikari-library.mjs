@@ -9,7 +9,7 @@ const shellOrigin='https://explorebyclaudia.netlify.app',appOrigin='https://cute
 const bundle=await build({entryPoints:['src/scripts/kobo-shell.ts'],bundle:true,write:false,format:'iife',globalName:'Shell',plugins:[{name:'fixture-auth',setup(b){b.onResolve({filter:/^@netlify\/identity$/},()=>({path:'auth',namespace:'fixture'}));b.onLoad({filter:/.*/,namespace:'fixture'},()=>({contents:'export function onAuthChange(callback){globalThis.testAuthCallback=callback;return ()=>{};}'}));}}]});
 const headersText=await readFile(root+'/_headers','utf8'),csp=headersText.match(/^\s*Content-Security-Policy:\s*(.*)$/m)[1];
 let storageAvailable=true;let actor='alice',connection='connection-a',revision=0;const files=new Map(),events=[],launches=new Map();const errors=[],dialogs=[];
-const status=()=>({available:storageAvailable,reason:storageAvailable?'ok':'no-connection',userKey:actor,connectionId:storageAvailable?connection:'',provider:'webdav',root:'/Kobo/Hikari',label:'Fixture storage',readOnly:false,maxPutBytes:1048576,maxGetBytes:1048576,settingsUrl:'/studio/storage'});
+const status=()=>({available:storageAvailable,reason:storageAvailable?'ok':'no-connection',userKey:actor,connectionId:storageAvailable?connection:'',provider:process.env.KOBO_TEST_PROVIDER||'webdav',root:'/Kobo/Hikari',label:'Fixture storage',readOnly:false,maxPutBytes:1048576,maxGetBytes:1048576,settingsUrl:'/studio/storage'});
 const launchOptions={...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{}),headless:true,args:['--no-sandbox','--enable-unsafe-swiftshader','--use-angle=swiftshader']};
 // Playwright may disable third-party storage partitioning. Use the browser's normal
 // partitioning for this cross-site storage test, retaining its other default flags.

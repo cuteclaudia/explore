@@ -1,7 +1,7 @@
 import {getStore} from '@netlify/blobs';
 import {verifyRequestOrigin} from '@netlify/identity';
 import {currentActor} from '../../server/identity';
-import {unseal} from '../../server/webdav.mjs';
+import {storageProviders} from '../../server/storage-providers.mjs';
 import {koboStorageService} from '../../server/kobo-storage.mjs';
 import {KOBO_BYTES,KoboError,koboFailure} from '../../src/lib/kobo-contract.mjs';
 const headers={'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff'};
@@ -19,7 +19,8 @@ export default async(request:Request)=>{
     const expected=op==='launch'?'POST':op==='put'?'PUT':op==='remove'?'DELETE':'GET';if(request.method!==expected)return new Response(null,{status:405,headers:{...headers,Allow:expected}});
     if(!['GET','HEAD'].includes(request.method))verifyRequestOrigin(request);
     let actor;try{actor=await currentActor();}catch(error){throw new KoboError(error.status===403?'forbidden':'unauthorized','Sign in with a permitted account to use app storage.');}
-    const service=koboStorageService({launchStore:getStore({name:'kobo-launches',consistency:'strong'}),loadConnection:async user=>{const encrypted=await getStore({name:'studio-storage-connections',consistency:'strong'}).get('webdav/'+user,{type:'json'});return encrypted?unseal(user,encrypted):null;}});
+    const providers=storageProviders({connections:getStore({name:'studio-storage-connections',consistency:'strong'}),index:getStore({name:'kobo-google-files',consistency:'strong'})});
+    const service=koboStorageService({launchStore:getStore({name:'kobo-launches',consistency:'strong'}),loadConnection:providers.load,files:providers.files});
     if(op==='launch'){let body;try{body=JSON.parse(new TextDecoder().decode(await boundedBody(request,1024)));}catch(error){if(error instanceof KoboError)throw error;throw new KoboError('invalid','Invalid launch request.');}return json(await service.launch(actor,body.app,url.origin));}
     const launch=request.headers.get('x-kobo-launch');const args={path:url.searchParams.get('path'),app:url.searchParams.get('app')??undefined,connectionId:request.headers.get('x-kobo-connection'),ifMatch:request.headers.get('if-match')??undefined,ifNoneMatch:request.headers.get('if-none-match')??undefined,signal:AbortSignal.any([request.signal,AbortSignal.timeout(25000)])};
     if(op==='put')args.data=await boundedBody(request,KOBO_BYTES);

@@ -1,7 +1,7 @@
 import {createHash,randomUUID} from 'node:crypto';
 import {KOBO_APPS,KOBO_BYTES,KoboError,koboApp,koboPath} from '../src/lib/kobo-contract.mjs';
 import {appRoot,davFiles} from './kobo-dav.mjs';
-export const connectionId=(user,config)=>createHash('sha256').update(JSON.stringify([user,config.url,config.username,config.baseFolder??'Kobo'])).digest('hex');
+export const connectionId=(user,config)=>config.provider==='google-drive'?config.connectionId:createHash('sha256').update(JSON.stringify([user,config.url,config.username,config.baseFolder??'Kobo'])).digest('hex');
 export function registeredAppOrigin(app,shellOrigin,env=process.env){
   koboApp(app);const value=env['KOBO_'+app.toUpperCase()+'_ORIGIN'];
   if(!value)throw new KoboError('forbidden','This rebuilt app has no test origin configured yet.');
@@ -12,8 +12,8 @@ export function registeredAppOrigin(app,shellOrigin,env=process.env){
 export function storageStatus(actor,config,app){
   koboApp(app);
   const allowed=actor?.permissions?.[KOBO_APPS[app].capability]===true;
-  const verified=config?.koboVerified?.protocol===1;
-  return {available:Boolean(actor&&allowed&&config&&verified),reason:!actor?'signed-out':!allowed?'app-not-permitted':!config?'no-connection':!verified?'provider-unavailable':'ok',userKey:actor?.user?.id||'',connectionId:config?connectionId(actor.user.id,config):'',provider:'webdav',label:config?.label||'My WebDAV storage',root:config?decodeURIComponent(appRoot(config,app).pathname):'',readOnly:!verified,maxPutBytes:KOBO_BYTES,maxGetBytes:KOBO_BYTES,settingsUrl:'/studio/storage'};
+  const verified=config?.koboVerified?.protocol===1&&!config?.authFailed;
+  return {available:Boolean(actor&&allowed&&config&&verified),reason:!actor?'signed-out':!allowed?'app-not-permitted':!config?'no-connection':!verified?'provider-unavailable':'ok',userKey:actor?.user?.id||'',connectionId:config?connectionId(actor.user.id,config):'',provider:config?.provider==='google-drive'?'google-drive':'webdav',label:config?.label||'My WebDAV storage',root:config?(config.provider==='google-drive'?'Kōbō/'+koboApp(app).folder:decodeURIComponent(appRoot(config,app).pathname)):'',readOnly:!verified,maxPutBytes:KOBO_BYTES,maxGetBytes:KOBO_BYTES,settingsUrl:'/studio/storage'};
 }
 export function koboStorageService({launchStore,loadConnection,files=davFiles,origin=registeredAppOrigin,now=()=>Date.now(),enabled=()=>process.env.KOBO_STORAGE_ENABLED==='true'}){
   function permit(actor,app){const spec=koboApp(app);if(!actor?.permissions?.[spec.capability]||!enabled()&&!actor.isOwner)throw new KoboError('forbidden','This storage integration is currently limited to owner testing.');}
@@ -37,7 +37,7 @@ export function koboStorageService({launchStore,loadConnection,files=davFiles,or
     if(!config)throw new KoboError('forbidden','Configure your storage connection in Account settings first.');
     if(!args.connectionId||args.connectionId!==status.connectionId)throw new KoboError('conflict','Your storage destination changed. Reopen the app before continuing.');
     if(!status.available)throw new KoboError('forbidden','Verify Kōbō sync in Files & storage before using this connection.');
-    const api=files(config,record.app),opts={ifMatch:args.ifMatch,ifNoneMatch:args.ifNoneMatch,signal:args.signal};
+    const api=files(config,record.app,{signal:args.signal}),opts={ifMatch:args.ifMatch,ifNoneMatch:args.ifNoneMatch,signal:args.signal};
     switch(op){
       case 'read':return api.read(koboPath(args.path),opts);
       case 'stat':return api.stat(koboPath(args.path),opts);
