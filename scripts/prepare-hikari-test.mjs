@@ -10,6 +10,7 @@ const releases={
  'cf15d7ca41cbf8e4e2448e6be53496f7e984ea3d9ca63d07b241164d2bd8e2a3':'0.14.4',
  '9dd11411515c64257b82635591152d8368aa7b9464aabb0eb6441b3010c9c575':'0.14.5',
  '123660c894fe06e11d98e10b6bbb6e8ba37c4b5c2298dfd9b5c798c671b56f9f':'0.14.6',
+ 'bddc2bdd81a9d58994482fb17f8f43578062c07f94b02c2020daa1124e00811b':'0.16.0',
  '4cc901ecb894de6ca65cbfcef0f2690e3e6bebb6a22b1dd4092b3cdd9f556b3c':'0.15.0',
 };
 const raw=await readFile(archive),version=releases[createHash('sha256').update(raw).digest('hex')];
