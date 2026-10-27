@@ -1,3 +1,4 @@
+import {TextStyle,ParagraphStyle,formatControls} from './rich-formatting';
 import {Editor} from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
@@ -8,7 +9,8 @@ const form=$<HTMLFormElement>('content-form'),status=$('editor-status');
 const params=new URLSearchParams(location.search);const key=params.get('entry');
 let collection=key?.split('/')[0]||params.get('collection')||'journal',slug=key?.split('/')[1]||'',version=0,saved=false,dirty=false,busy=false,published=false;
 let photos:any[]=[],editBitmap:ImageBitmap|undefined,editTarget:any=null,rotation=0,flipped=false;
-const editor=new Editor({element:$('rich-editor'),extensions:[StarterKit.configure({link:{openOnClick:false}}),Image,TableKit],content:'',editorProps:{attributes:{'aria-label':'Article body',role:'textbox','aria-multiline':'true'},handlePaste:(_view,event)=>{const image=Array.from(event.clipboardData?.files||[]).find(f=>f.type.startsWith('image/'));if(image){event.preventDefault();addImages([image],'inline');return true;}return false;}},onUpdate:()=>markDirty()});
+const editor=new Editor({element:$('rich-editor'),extensions:[StarterKit.configure({link:{openOnClick:false}}),Image,TableKit,TextStyle,ParagraphStyle],content:'',editorProps:{attributes:{'aria-label':'Article body',role:'textbox','aria-multiline':'true'},handlePaste:(_view,event)=>{const image=Array.from(event.clipboardData?.files||[]).find(f=>f.type.startsWith('image/'));if(image){event.preventDefault();addImages([image],'inline');return true;}return false;}},onUpdate:()=>markDirty()});
+formatControls(editor,markDirty);
 const labels={journal:'Journal',essays:'China Series essay',cyber:'Cyber report',photography:'Photo gallery'};
 function markDirty(){dirty=true;status.textContent='Unsaved changes. Save a draft to keep your work.';}
 function previewURL(url){return url.startsWith('/api/content/media/')?url+'&draft=1':url;}

@@ -1,4 +1,4 @@
-import {getCollection} from 'astro:content';
+import {getCollection,getEntry} from 'astro:content';
 import Markdoc from '@markdoc/markdoc';
 import {getStore} from '@netlify/blobs';
 import {contentService,cleanDraft} from '../../server/content.mjs';
@@ -13,6 +13,8 @@ export function legacyContent(){return legacyPromise||=(async()=>{
    records.push({key,collection,slug:item.id,ownerId:'legacy',version:0,updatedAt:d.date.toISOString(),draft,published:d.draft?null:structuredClone(draft)});
   }
  }
+ const about=await getEntry('pages','about');
+ if(about){const key='pages/about';const html=Markdoc.renderers.html(Markdoc.transform(Markdoc.parse(about.body||'')));const draft=cleanDraft({title:about.data.title,date:'2026-10-27',summary:'Claudia Gilbert — research, photography and a wider perspective.',blocks:[{id:'introduction',type:'split',html,image:about.data.image,alt:about.data.imageAlt,imageSide:'right',width:'wide'}]},key);records.push({key,collection:'pages',slug:'about',ownerId:'legacy',version:0,updatedAt:'2026-10-27T00:00:00Z',draft,published:structuredClone(draft)});}
  // Credited photographs already displayed in the prototype; these are not Claudia's originals.
  const key='photography/landscape-inspiration';
  const draft=cleanDraft({title:'Landscape inspiration',date:'2026-04-01',summary:'Credited reference photographs from the Explore prototype.',tags:['Landscape'],locationPrecision:'hidden',html:'<p>Reference photographs supplied with the prototype. Photographer credits are preserved below.</p>',photos:[
@@ -24,5 +26,5 @@ export function legacyContent(){return legacyPromise||=(async()=>{
  return records;
 })();}
 export function siteContent(){return contentService(getStore({name:'studio-content',consistency:'strong'}),legacyContent);}
-export const contentHref=(collection,slug)=>'/' + ({journal:'journal',essays:'chinaseries',cyber:'dailycyberreport',photography:'photography'}[collection])+'/'+slug;
+export const contentHref=(collection,slug)=>collection==='pages'?'/about':'/' + ({journal:'journal',essays:'chinaseries',cyber:'dailycyberreport',photography:'photography'}[collection])+'/'+slug;
 export async function liveCollection(collection){return (await siteContent().publicList(collection)).map(item=>({id:item.slug,body:item.html,studioHTML:item.html,data:{...item,date:new Date(item.date+'T00:00:00Z'),draft:false,heroImage:item.cover,heroAlt:item.coverAlt,region:item.location||'Australia – Japan – Asia'}}));}

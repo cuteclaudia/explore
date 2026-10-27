@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import handler from './ssr.mjs';
 const response=path=>handler(new Request('https://explorebyclaudia.netlify.app'+path),{ip:'127.0.0.1'});
-for(const path of ['/journal','/journal/deployment-check','/chinaseries','/dailycyberreport','/photography','/rss.xml','/prototype-content.json']){
+for(const path of ['/about','/journal','/journal/deployment-check','/chinaseries','/dailycyberreport','/photography','/rss.xml','/prototype-content.json']){
  const r=await response(path);assert.equal(r.status,200,path+' should render');const body=await r.text();assert(!body.includes('PRIVATE DRAFT MUST NOT LEAK'),path+' leaked a draft');
  if(path==='/journal/deployment-check')assert(body.includes('Published build-check body'));
  if(path==='/rss.xml')assert(body.includes('Published build-check journal'));
@@ -10,6 +10,6 @@ for(const path of ['/journal','/journal/deployment-check','/chinaseries','/daily
  console.log('PASS packaged SSR',path);
 }
 assert.equal((await response('/chinaseries/puertochancay')).status,404,'Unpublished legacy page must remain hidden');
-for(const path of ['/studio','/studio/content','/apps','/studio/kobo-test']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
+for(const path of ['/studio/about','/studio','/studio/content','/apps','/studio/kobo-test']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
 assert.equal((await response('/api/content/list')).status,401);
 console.log('PASS isolated deploy package: require(ESM) disabled, public SSR/RSS, private guards, published snapshots and legacy unpublish.');

@@ -3,10 +3,10 @@ import {randomUUID} from 'node:crypto';
 import {AccessError,requireCapability} from './access.mjs';
 const entryLocks=new Map();
 async function locked(key,action){const result=(entryLocks.get(key)||Promise.resolve()).catch(()=>{}).then(action);entryLocks.set(key,result);try{return await result;}finally{if(entryLocks.get(key)===result)entryLocks.delete(key);}}
-export const COLLECTIONS=['journal','essays','cyber','photography'];
+export const COLLECTIONS=['journal','essays','cyber','photography','pages'];
 export const PREFIXES={journal:'journal',essays:'chinaseries',cyber:'dailycyberreport',photography:'photography'};
 export const keyFor=(collection,slug)=>{
- if(!COLLECTIONS.includes(collection)||typeof slug!=='string'||!/^[a-z0-9][a-z0-9-]{0,199}$/.test(slug))throw new AccessError(400,'Choose a supported section and a URL name using lowercase letters, numbers and hyphens.');
+ if(!COLLECTIONS.includes(collection)||collection==='pages'&&slug!=='about'||typeof slug!=='string'||!/^[a-z0-9][a-z0-9-]{0,199}$/.test(slug))throw new AccessError(400,'Choose a supported section and a URL name using lowercase letters, numbers and hyphens.');
  return collection+'/'+slug;
 };
 export const mediaURL=(id,key)=>'/api/content/media/'+id+'?entry='+encodeURIComponent(key);
@@ -20,7 +20,7 @@ export function safeImage(value,key){
 }
 export function cleanHTML(html,key){
  if(typeof html!=='string'||html.length>500000)throw new AccessError(400,'Article text must be under 500,000 characters.');
- return sanitize(html,{allowedTags:['p','br','h1','h2','h3','h4','strong','b','em','i','u','s','del','blockquote','ul','ol','li','a','img','figure','figcaption','hr','pre','code','table','thead','tbody','tr','th','td','sup','sub'],allowedAttributes:{a:['href','title'],img:['src','alt','title'],ol:['start'],td:['colspan','rowspan'],th:['colspan','rowspan']},allowedSchemes:['https','http','mailto'],allowProtocolRelative:false,transformTags:{img:(_tag,attrs)=>({tagName:'img',attribs:{src:safeImage(attrs.src,key),alt:String(attrs.alt||'').slice(0,1000)}})},exclusiveFilter:frame=>frame.tag==='img'&&!frame.attribs.src});
+ return sanitize(html,{allowedTags:['p','br','h1','h2','h3','h4','span','strong','b','em','i','u','s','del','blockquote','ul','ol','li','a','img','figure','figcaption','hr','pre','code','table','thead','tbody','tr','th','td','sup','sub'],allowedAttributes:{a:['href','title'],img:['src','alt','title'],p:['style'],h1:['style'],h2:['style'],h3:['style'],h4:['style'],span:['style'],ol:['start'],td:['colspan','rowspan'],th:['colspan','rowspan']},allowedStyles:{'*':{'font-size':[/^(12|14|16|18|20|24|28|32|40|48)px$/],'font-family':[/^(Arial, sans-serif|Georgia, serif|monospace)$/],'color':[/^#[0-9a-f]{6}$/i],'text-align':[/^(left|center|right|justify)$/],'line-height':[/^(1\.3|1\.5|1\.7|2)$/]}},allowedSchemes:['https','http','mailto'],allowProtocolRelative:false,transformTags:{img:(_tag,attrs)=>({tagName:'img',attribs:{src:safeImage(attrs.src,key),alt:String(attrs.alt||'').slice(0,1000)}})},exclusiveFilter:frame=>frame.tag==='img'&&!frame.attribs.src});
 }
 const text=(value,max=1000)=>typeof value==='string'?value.trim().slice(0,max):'';
 const tags=value=>Array.isArray(value)?[...new Set(value.filter(x=>typeof x==='string').map(x=>text(x,80)).filter(Boolean))].slice(0,30):[];
@@ -32,10 +32,13 @@ export function cleanDraft(input,key){
  if(input.photos&&!Array.isArray(input.photos))throw new AccessError(400,'Invalid photo collection.');
  if(input.photos?.length>100)throw new AccessError(400,'Keep each gallery to 100 photographs or fewer.');
  const photos=(input.photos||[]).map(p=>{const image=safeImage(p.image,key);if(!image)throw new AccessError(400,'A photograph has an unsupported image address.');return {id:text(p.id,80)||randomUUID(),image,alt:text(p.alt),caption:text(p.caption,2000),tags:tags(p.tags)};});
- return {title,date,summary:text(input.summary,3000),tags:tags(input.tags),location:text(input.location,250),locationPrecision:['hidden','exact','approximate'].includes(input.locationPrecision)?input.locationPrecision:'hidden',cover,coverAlt:text(input.coverAlt),html:cleanHTML(input.html||'',key),photos};
+ const blocks=key==='pages/about'?cleanBlocks(input.blocks||[],key):undefined;
+ return {title,date,summary:text(input.summary,3000),tags:tags(input.tags),location:text(input.location,250),locationPrecision:['hidden','exact','approximate'].includes(input.locationPrecision)?input.locationPrecision:'hidden',cover,coverAlt:text(input.coverAlt),html:cleanHTML(input.html||'',key),photos,...(blocks?{blocks}:{})};
 }
+export function cleanBlocks(value,key){if(!Array.isArray(value)||value.length>30)throw new AccessError(400,'Use at most 30 About sections.');const ids=new Set();return value.map(b=>{if(!b||!['text','image','split'].includes(b.type))throw new AccessError(400,'Choose a text, image or text-and-image section.');const id=text(b.id,80)||randomUUID();if(!/^[a-zA-Z0-9-]+$/.test(id)||ids.has(id))throw new AccessError(400,'Each section needs a unique identifier.');ids.add(id);const image=safeImage(b.image||'',key);if(b.image&&!image)throw new AccessError(400,'Choose a supported section image.');return {id,type:b.type,title:text(b.title,200),html:cleanHTML(b.html||'',key),image,alt:text(b.alt),caption:text(b.caption,2000),imageSide:b.imageSide==='right'?'right':'left',width:b.width==='wide'?'wide':'reading'};});}
 export function mayEdit(actor,record){
  if(actor.isOwner)return;
+ if(record.collection==='pages')throw new AccessError(403,'Only the owner can edit site pages.');
  if(record.collection==='photography'){requireCapability(actor,'galleries.manage_own');}
  else requireCapability(actor,record.ownerId===actor.user.id?'journal.edit_own':'articles.edit_any');
  if(record.ownerId!==actor.user.id)requireCapability(actor,'articles.edit_any');
@@ -79,10 +82,11 @@ export function contentService(store,legacy=async()=>[]){
   const valid=type==='image/jpeg'&&b[0]===255&&b[1]===216&&b[2]===255||type==='image/png'&&b[0]===137&&b[1]===80&&b[2]===78&&b[3]===71||type==='image/webp'&&new TextDecoder().decode(b.slice(0,4))==='RIFF'&&new TextDecoder().decode(b.slice(8,12))==='WEBP';if(!valid)throw new AccessError(400,'Use a valid JPEG, PNG or WebP.');
   const id=randomUUID();await store.set('images/'+id,bytes,{metadata:{entry:key,type}});return {id,url:mediaURL(id,key)};
  }
- function references(draft,id,key){const url=mediaURL(id,key);return draft&&(draft.cover===url||draft.photos?.some(p=>p.image===url)||draft.html?.includes(url.replaceAll('&','&amp;'))||draft.html?.includes(url));}
+ function references(draft,id,key){const url=mediaURL(id,key);return draft&&(draft.cover===url||draft.photos?.some(p=>p.image===url)||draft.html?.includes(url.replaceAll('&','&amp;'))||draft.html?.includes(url)||draft.blocks?.some(b=>b.image===url||b.html?.includes(url)||b.html?.includes(url.replaceAll('&','&amp;'))));}
  async function media(id,key,actor){if(!/^[0-9a-f-]{36}$/i.test(id))throw new AccessError(404,'Image not found.');const record=await get(key);if(actor)mayEdit(actor,record);const image=await store.getWithMetadata('images/'+id,{type:'arrayBuffer'});if(!image||image.metadata.entry!==key)throw new AccessError(404,'Image not found.');if(!actor&&!references(record.published,id,key))throw new AccessError(404,'Image is not published.');return image;}
  async function manage(actor,key,body){return locked(key,async()=>{
   const existing=await stored(key);const record=existing?.data||await source(key);if(!record)throw new AccessError(404,'Content not found.');mayEdit(actor,record);
+  if(record.collection==='pages')throw new AccessError(400,'Edit and publish the About page without copying or deleting its fixed address.');
   if(body.version!==record.version)throw new AccessError(409,'This item changed. Reload before continuing.');
   if(body.action==='copy'){
    if(!actor.isOwner)requireCapability(actor,'journal.create');

@@ -1,19 +1,8 @@
 ---
-import { getEntry, render } from 'astro:content';
-import Base from '../layouts/Base.astro';
-const about = await getEntry('pages', 'about');
-if (!about) throw new Error('About page content is missing');
-const { Content } = await render(about);
+import {siteContent} from '../lib/studio-content';
+import AboutContent from '../components/AboutContent.astro';
+export const prerender=false;
+Astro.response.headers.set('Cache-Control','no-store');
+let data;try{data=await siteContent().publicEntry('pages/about');}catch(error){if(error.status===404)return new Response('This page is not published.',{status:404});throw error;}
 ---
-<Base title="About" description="Claudia Gilbert is a strategic analyst examining military alliances, technology and strategic decision-making.">
-  <div class="wrap">
-    <header class="page-head" style="padding-bottom:0">
-      <span class="eyebrow">About</span>
-      <h1>{about.data.title}</h1>
-    </header>
-  </div>
-  <div class="prose" style="margin-left:max(0px, calc((100vw - var(--max)) / 2));padding-top:24px"><Content /></div>
-  {about.data.image && (
-    <figure class="article-hero"><img src={about.data.image} alt={about.data.imageAlt} loading="lazy" /></figure>
-  )}
-</Base>
+<AboutContent data={data}/>

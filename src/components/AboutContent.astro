@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+const {data,preview=false}=Astro.props;
+const imageURL=(url)=>preview&&url.startsWith('/api/content/media/')?url+'&draft=1':url;
+---
+<Base title={data.title} description={data.summary} noindex={preview}>
+<section class="wrap about-page">
+{preview&&<aside class="preview-notice">Private draft preview · <a href="/studio/about">Continue editing</a></aside>}
+<header class="about-head"><div><span class="eyebrow">About</span><h1>{data.title}</h1></div>{!preview&&<a id="edit-about" href="/studio/about" hidden>Edit page ↗</a>}</header>
+{data.blocks.map(block=><section class:list={['about-block',block.type,block.width,block.imageSide]}>
+{block.type!=='image'&&<div class="about-text">{block.title&&<h2>{block.title}</h2>}<div class="about-copy" set:html={block.html}/></div>}
+{block.type==='image'&&block.title&&<h2>{block.title}</h2>}
+{block.type!=='text'&&block.image&&<figure><img src={imageURL(block.image)} alt={block.alt} loading="lazy"/>{block.caption&&<figcaption>{block.caption}</figcaption>}</figure>}
+</section>)}
+</section>
+</Base>
+<script>const edit=document.getElementById('edit-about');if(edit)fetch('/api/studio/session',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(s=>{if(s?.isOwner)edit.hidden=false;}).catch(()=>{});</script>
+<style>.about-page{max-width:1100px;padding-top:28px;padding-bottom:45px}.about-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.about-head h1{font:450 clamp(30px,4vw,44px) var(--serif);margin:10px 0 0}.about-head a{font-size:12px}.preview-notice{padding:12px;border:1px solid var(--border);margin-bottom:18px;font-size:13px}.about-block{margin:0 auto 26px;max-width:740px}.about-block.wide{max-width:100%}.about-block.split{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:30px;align-items:start}.about-block.split.left{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)}.split.left figure{grid-column:1;grid-row:1}.split.left .about-text{grid-column:2}.about-text{min-width:0}.about-text h2{font:450 27px var(--serif);margin:0 0 12px}.about-copy{font-size:16px;line-height:1.65}.about-copy :global(p){margin:0 0 .85em}.about-copy :global(img){max-width:100%;height:auto}figure{margin:0}figure img{width:100%;max-height:460px;object-fit:cover;border-radius:8px}figcaption{font-size:12px;opacity:.65;margin-top:7px}@media(max-width:700px){.about-block.split,.about-block.split.left{grid-template-columns:1fr;gap:18px}.split.left figure,.split.left .about-text{grid-column:auto;grid-row:auto}.about-head{gap:14px}}</style>

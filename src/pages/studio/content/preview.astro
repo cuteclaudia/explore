@@ -2,6 +2,7 @@
 import {protectPage} from '../../../../server/identity';
 import {mayEdit} from '../../../../server/content.mjs';
 import {siteContent} from '../../../lib/studio-content';
+import AboutContent from '../../../components/AboutContent.astro';
 import PublishedContent from '../../../components/PublishedContent.astro';
 export const prerender=false;
 const access=await protectPage('/studio/content/preview'+Astro.url.search,'articles.edit_any');if(access instanceof Response)return access;
@@ -9,4 +10,4 @@ Astro.response.headers.set('Cache-Control','private, no-store');
 const record=await siteContent().get(Astro.url.searchParams.get('entry')||'');mayEdit(access,record);
 const entry={id:record.slug,body:record.draft.html,studioHTML:record.draft.html,data:{...record.draft,collection:record.collection,date:new Date(record.draft.date+'T00:00:00Z')}};
 ---
-<PublishedContent entry={entry} preview />
+{record.collection==='pages'?<AboutContent data={record.draft} preview/>:<PublishedContent entry={entry} preview />}
