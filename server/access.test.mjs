@@ -31,3 +31,13 @@ test('invited app users can use explicitly granted apps while community and cont
 test('app-only access requires real boolean grants and is revoked from the fresh user record',async()=>{for(const capabilities of [{},{'tools.lightcraft':'true'},{'not-a-tool':true}])await assert.rejects(actor(fresh(memberId,{capabilities}),{appsEnabled:true}),status(403));await assert.rejects(actor(fresh(memberId,{capabilities:{'tools.lightcraft':false}}),{appsEnabled:true,session:{id:memberId,appMetadata:{capabilities:{'tools.lightcraft':true}}}}),status(403));await assert.rejects(actor(fresh(memberId,{suspended:true,capabilities:{'tools.lightcraft':true}}),{appsEnabled:true}),status(403));});
 
 test('trip-only grants allow a personal workspace without apps or community privileges',async()=>{const a=await actor(fresh(memberId,{capabilities:{'trips.manage_own':true,'articles.edit_any':true}}),{appsEnabled:true,tripsEnabled:true});requireCapability(a,'trips.manage_own');for(const cap of ['tools.wordcraft','articles.edit_any','users.manage'])assert.throws(()=>requireCapability(a,cap),status(403));});
+
+
+test('Hikari beta is an additional app grant, never an admission or administration grant',async()=>{
+ await assert.rejects(actor(fresh(memberId,{capabilities:{'beta.hikari':true}}),{appsEnabled:true}),status(403));
+ const a=await actor(fresh(memberId,{capabilities:{'beta.hikari':true,'tools.lightcraft':true,'settings.manage':true,'users.manage':true}}),{appsEnabled:true});
+ requireCapability(a,'beta.hikari');requireCapability(a,'tools.lightcraft');assert.equal(a.isOwner,false);
+ for(const cap of ['settings.manage','users.manage','tools.photocraft','articles.edit_any'])assert.throws(()=>requireCapability(a,cap),status(403));
+ const forged=await actor({...fresh(memberId,{capabilities:{'tools.lightcraft':true}}),userMetadata:{capabilities:{'beta.hikari':true}}},{appsEnabled:true,session:{id:memberId,appMetadata:{capabilities:{'beta.hikari':true}}}});
+ assert.throws(()=>requireCapability(forged,'beta.hikari'),status(403));
+});

@@ -5,7 +5,7 @@
 | Setup | Observation | Status |
 | --- | --- | --- |
 | Google Drive, Chrome | Thumbnails displayed; syncing downloaded new images saved from another login | Reported pass for thumbnail display and cloud image restoration |
-| Account identity across those logins | Awaiting confirmation whether the same Kōbō account was used | Not yet an account-isolation result |
+| Account identity across those logins | User confirmed the same Kōbō account | Expected within-account sync confirmed; separate-user isolation remains to be tested |
 | kDrive/WebDAV | No live result supplied in this report | Pending |
 | Simultaneous genuine edits and recovery | No live result supplied in this report | Pending |
 | Disposable Google private-index restore drill | No live result supplied in this report | Pending |

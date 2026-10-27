@@ -37,3 +37,14 @@ test('second designated email receives its own setup key without privileges',asy
 test('second pinned owner can administer and cannot be demoted',async()=>{process.env.OWNER_GOOGLE_IDENTITY_ID=member;try{globalThis.identityTest.session={id:member};const response=await request('/session');assert.equal((await response.json()).isOwner,true);assert.equal((await request('/users')).status,200);assert.equal((await put(member,{capabilities:{},suspended:true})).status,403);}finally{delete process.env.OWNER_GOOGLE_IDENTITY_ID;}});
 
 test('app-only user gets app grants but no owner, publication or content capability',async()=>{globalThis.identityTest.session={id:member};globalThis.identityTest.users.get(member).appMetadata={capabilities:{'tools.wordcraft':true,'articles.edit_any':true,'files.publish':true}};const response=await request('/session'),data=await response.json();assert.equal(response.status,200);assert.equal(data.isOwner,false);assert.equal(data.capabilities['tools.wordcraft'],true);assert.equal(data.capabilities['articles.edit_any'],false);assert.equal(data.capabilities['files.publish'],false);assert.equal((await request('/users')).status,403);});
+
+test('a permitted beta member can sign in but cannot list users or promote itself',async()=>{
+ globalThis.identityTest.users.get(member).appMetadata.capabilities={'tools.lightcraft':true,'beta.hikari':true};
+ globalThis.identityTest.session={id:member,roles:['admin']};
+ const response=await request('/session'),data=await response.json();
+ assert.equal(response.status,200);assert.equal(data.isOwner,false);
+ assert.equal(data.capabilities['beta.hikari'],true);assert.equal(data.capabilities['users.manage'],false);
+ assert.equal((await request('/users')).status,403);
+ assert.equal((await put(member,{capabilities:{'users.manage':true},suspended:false})).status,403);
+ assert.equal(globalThis.identityTest.updates.length,0);
+});

@@ -4,6 +4,7 @@ export const CAPABILITIES = Object.freeze({
   'tools.lightcraft': 'Use Hikari photo development',
   'tools.wordcraft': 'Use Fumi document editor',
   'tools.pdfcraft': 'Use Tsuzuri PDF workbench',
+  'beta.hikari': 'Test the rebuilt Hikari web beta',
   'desktop.photocraft': 'Download Irodori desktop',
   'desktop.lightcraft': 'Download Hikari desktop',
   'desktop.wordcraft': 'Download Fumi desktop',
@@ -43,7 +44,7 @@ export async function resolveActor({ session, getFreshUser, ownerId, communityEn
   const appAccess=appsEnabled&&Object.keys(CAPABILITIES).some(key=>(key.startsWith('tools.')||key.startsWith('desktop.'))&&user.appMetadata?.capabilities?.[key]===true);
   if (!isOwner && ((!communityEnabled&&!appAccess&&!tripAccess) || user.appMetadata?.suspended === true)) throw new AccessError(403, 'App access has not been granted, or this account is suspended.');
   const permissions=permissionsFor(user,ownerId);
-  if(!isOwner&&!communityEnabled)for(const key of Object.keys(permissions))if(!key.startsWith('tools.')&&!key.startsWith('desktop.')&&!(tripsEnabled&&key==='trips.manage_own'))permissions[key]=false;
+  if(!isOwner&&!communityEnabled)for(const key of Object.keys(permissions))if(!key.startsWith('tools.')&&!key.startsWith('desktop.')&&!(appsEnabled&&key==='beta.hikari')&&!(tripsEnabled&&key==='trips.manage_own'))permissions[key]=false;
   return { user, isOwner, permissions };
 }
 export function requireCapability(actor, capability) {

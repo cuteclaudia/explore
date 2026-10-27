@@ -3,6 +3,7 @@ import {verifyRequestOrigin} from '@netlify/identity';
 import {currentActor,errorResponse} from '../../server/identity';
 import {conditionalBlobFetch} from '../../server/blob-fetch.mjs';
 import {storageProviders} from '../../server/storage-providers.mjs';
+import {mayUseKoboBeta} from '../../server/kobo-access.mjs';
 import {koboApp,KoboError} from '../../src/lib/kobo-contract.mjs';
 const headers={'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'};
 async function body(request:Request){const reader=request.body?.getReader();if(!reader)return {};let size=0;const chunks=[];try{while(true){const part=await reader.read();if(part.done)break;size+=part.value.byteLength;if(size>3*1024*1024){await reader.cancel();throw new KoboError('too-large','Recovery requests are limited to 3 MiB.');}chunks.push(part.value);}}finally{reader.releaseLock();}try{return JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{throw new KoboError('invalid','Invalid recovery request.');}}
@@ -14,8 +15,8 @@ export default async(request:Request)=>{
   if(method==='POST')verifyRequestOrigin(request);
   const actor=await currentActor(),args=method==='GET'?Object.fromEntries(url.searchParams):await body(request),app=args.app||'hikari',spec=koboApp(app);
   // Recovery never accepts a supplied user id, connection id or Drive object id.
-  // Until the app release is enabled, the same owner-only boundary applies.
-  if(!actor.permissions[spec.capability]||process.env.KOBO_STORAGE_ENABLED!=='true'&&!actor.isOwner)throw new KoboError('forbidden','Index recovery is currently limited to permitted owner testing.');
+  // Beta members can recover only their own account and connection.
+  if(!actor.permissions[spec.capability]||process.env.KOBO_STORAGE_ENABLED!=='true'&&!mayUseKoboBeta(actor,app))throw new KoboError('forbidden','Index recovery requires beta access for this app.');
   const providers=storageProviders({connections:getStore({name:'studio-storage-connections',consistency:'strong',fetch:conditionalBlobFetch()}),index:getStore({name:'kobo-google-files',consistency:'strong',fetch:conditionalBlobFetch()}),backups:getStore({name:'kobo-google-recovery',consistency:'strong',fetch:conditionalBlobFetch()})});
   const config=await providers.google.access(actor.user.id),recovery=providers.recovery;
   if(['begin','step','publish'].includes(op!)&&!(config.koboVerified?.protocol===1&&config.koboVerified?.atomicChecks?.createOnly===true&&config.koboVerified?.atomicChecks?.compareAndSwap===true))throw new KoboError('forbidden','Run Google Drive Test connection and pass competing-save checks before restoring its index.');

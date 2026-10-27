@@ -1,5 +1,6 @@
 import {createHash,randomUUID} from 'node:crypto';
 import {KOBO_APPS,KOBO_BYTES,KoboError,koboApp,koboPath} from '../src/lib/kobo-contract.mjs';
+import {mayUseKoboBeta} from './kobo-access.mjs';
 import {appRoot,davFiles} from './kobo-dav.mjs';
 export const connectionId=(user,config)=>config.provider==='google-drive'?config.connectionId:createHash('sha256').update(JSON.stringify([user,config.url,config.username,config.baseFolder??'Kobo'])).digest('hex');
 export function registeredAppOrigin(app,shellOrigin,env=process.env){
@@ -17,7 +18,7 @@ export function storageStatus(actor,config,app){
   return {available:Boolean(actor&&allowed&&config&&verified),reason:!actor?'signed-out':!allowed?'app-not-permitted':!config?'no-connection':!verified?'provider-unavailable':'ok',userKey:actor?.user?.id||'',connectionId:config?connectionId(actor.user.id,config):'',provider:config?.provider==='google-drive'?'google-drive':'webdav',label:config?.label||'My WebDAV storage',root:config?(config.provider==='google-drive'?'Kōbō/'+koboApp(app).folder:decodeURIComponent(appRoot(config,app).pathname)):'',readOnly:!verified||!atomic,maxPutBytes:KOBO_BYTES,maxGetBytes:KOBO_BYTES,settingsUrl:'/studio/storage'};
 }
 export function koboStorageService({launchStore,loadConnection,files=davFiles,indexState=async()=>({epoch:'legacy',recovering:false}),origin=registeredAppOrigin,now=()=>Date.now(),enabled=()=>process.env.KOBO_STORAGE_ENABLED==='true'}){
-  function permit(actor,app){const spec=koboApp(app);if(!actor?.permissions?.[spec.capability]||!enabled()&&!actor.isOwner)throw new KoboError('forbidden','This storage integration is currently limited to owner testing.');}
+  function permit(actor,app){const spec=koboApp(app);if(!actor?.permissions?.[spec.capability]||!enabled()&&!mayUseKoboBeta(actor,app))throw new KoboError('forbidden','This rebuilt app requires an explicit beta access grant.');}
   async function launch(actor,app,shellOrigin){
     permit(actor,app);const appOrigin=origin(app,shellOrigin);const id=randomUUID();
     const config=await loadConnection(actor.user.id),index=await indexState(config,app);

@@ -35,3 +35,31 @@ test('unconfigured and unverified providers cannot receive writes; changed desti
 test('connection verification endpoint persists only an encrypted verified configuration',async()=>{await connections.setJSON('webdav/'+owner,seal(owner,{...config,koboVerified:null}));const request=origin=>storageHandler(new Request(shell+'/api/storage/webdav/verify-kobo',{method:'POST',headers:{Origin:origin}}));assert.equal((await request('https://evil.test')).status,403);const verified=await request(shell);assert.equal(verified.status,200,await verified.clone().text());assert.equal((await verified.json()).verified,true);const encrypted=await connections.get('webdav/'+owner,{type:'json'});assert.ok(!JSON.stringify(encrypted).includes(config.password));assert.equal(unseal(owner,encrypted).koboVerified.protocol,1);assert.equal([...memory.records.values()].filter(x=>!x.isDir).length,0);});
 test('Test & save names missing key/host settings and preserves an existing connection on failure',async()=>{const original=await connections.get('webdav/'+owner,{type:'json'});const key=process.env.FILE_STORAGE_ENCRYPTION_KEY,hosts=process.env.WEBDAV_ALLOWED_HOSTS;const save=()=>storageHandler(new Request(shell+'/api/storage/webdav',{method:'POST',headers:{Origin:shell,'Content-Type':'application/json'},body:JSON.stringify({...config})}));try{delete process.env.FILE_STORAGE_ENCRYPTION_KEY;let response=await save();assert.equal(response.status,503);assert.match((await response.json()).error,/FILE_STORAGE_ENCRYPTION_KEY/);process.env.FILE_STORAGE_ENCRYPTION_KEY=key;process.env.WEBDAV_ALLOWED_HOSTS='different.example.test';response=await save();assert.equal(response.status,400);assert.match((await response.json()).error,/WEBDAV_ALLOWED_HOSTS/);assert.deepEqual(await connections.get('webdav/'+owner,{type:'json'}),original);assert.equal(memory.calls.length,0);}finally{process.env.FILE_STORAGE_ENCRYPTION_KEY=key;process.env.WEBDAV_ALLOWED_HOSTS=hosts;}});
 test('the verification endpoint accepts byte-confirmed saves when PUT omits its ETag',async()=>{memory=memoryDav({noPutEtags:true});globalThis.koboApiTest.files=(c,a)=>davFiles(c,a,memory);await connections.setJSON('webdav/'+owner,seal(owner,{...config,koboVerified:null}));const response=await storageHandler(new Request(shell+'/api/storage/webdav/verify-kobo',{method:'POST',headers:{Origin:shell}}));assert.equal(response.status,200,await response.clone().text());assert.equal((await response.json()).verified,true);assert.equal(unseal(owner,await connections.get('webdav/'+owner,{type:'json'})).koboVerified.protocol,1);assert.equal([...memory.records.values()].filter(x=>!x.isDir).length,0);});
+
+
+test('a non-admin beta member cannot read owner files, borrow a launch, target the owner connection, or retain revoked access',async()=>{
+ const member='cccccccc-cccc-4ccc-8ccc-cccccccccccc';
+ const ownerLaunch=await launch();
+ assert.equal((await req('put',{id:ownerLaunch,method:'PUT',path:'library/owner-only',body:new Uint8Array([11]),extra:{'If-None-Match':'*'}})).status,200);
+ const memberConfig={...config,url:'https://dav.example.test/member/',username:'member'};
+ await connections.setJSON('webdav/'+member,seal(member,memberConfig));
+ globalThis.koboApiTest.user=member;
+ globalThis.koboApiTest.metadata={capabilities:{'tools.lightcraft':true}};
+ assert.equal((await req('launch',{method:'POST',body:{app:'hikari'}})).status,403);
+ globalThis.koboApiTest.metadata.capabilities['beta.hikari']=true;
+ const memberLaunch=await launch(),connection=connectionId(member,memberConfig);
+ assert.equal((await req('status',{id:ownerLaunch,connection})).status,401);
+ const status=await(await req('status',{id:memberLaunch,connection})).json();
+ assert.equal(status.userKey,member);assert.equal(status.connectionId,connection);
+ assert.ok(!JSON.stringify(status).includes(config.password));assert.notEqual(connection,connectionId(owner,config));
+ assert.equal((await req('read',{id:memberLaunch,connection,path:'library/owner-only'})).status,404);
+ assert.equal((await req('read',{id:memberLaunch,path:'library/owner-only'})).status,412);
+ assert.equal((await req('put',{id:memberLaunch,connection,method:'PUT',path:'library/member-only',body:new Uint8Array([22]),extra:{'If-None-Match':'*'}})).status,200);
+ globalThis.koboApiTest.metadata.capabilities['beta.hikari']=false;
+ assert.equal((await req('read',{id:memberLaunch,connection,path:'library/member-only'})).status,403);
+ globalThis.koboApiTest.metadata.capabilities['beta.hikari']=true;globalThis.koboApiTest.metadata.suspended=true;
+ assert.equal((await req('status',{id:memberLaunch,connection})).status,403);
+ globalThis.koboApiTest.user=owner;globalThis.koboApiTest.metadata={};
+ assert.equal((await req('read',{id:ownerLaunch,path:'library/member-only'})).status,404);
+ const own=await req('read',{id:ownerLaunch,path:'library/owner-only'});assert.deepEqual(new Uint8Array(await own.arrayBuffer()),new Uint8Array([11]));
+});
