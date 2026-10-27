@@ -1,6 +1,7 @@
 import {getStore} from '@netlify/blobs';
 import {verifyRequestOrigin} from '@netlify/identity';
 import {currentActor,errorResponse} from '../../server/identity';
+import {conditionalBlobFetch} from '../../server/blob-fetch.mjs';
 import {storageProviders} from '../../server/storage-providers.mjs';
 import {KoboError} from '../../src/lib/kobo-contract.mjs';
 const headers={'Cache-Control':'private, no-store','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff'};
@@ -9,14 +10,14 @@ export default async(request:Request)=>{
  const url=new URL(request.url),op=url.pathname.split('/').pop();let providers;
  try{
   const actor=await currentActor();const indexWrites:{status:number}[]=[];
-  const index=getStore({name:'kobo-google-files',consistency:'strong',fetch:async(input,options)=>{
+  const index=getStore({name:'kobo-google-files',consistency:'strong',fetch:conditionalBlobFetch({fetcher:async(input,options)=>{
    const response=await fetch(input,options);
    // Record only response status codes for disposable diagnostic writes. Never
    // retain URLs, signed queries, credentials, headers, payloads or file names.
    try{if(options?.method?.toLowerCase()==='put'&&new URL(String(input)).pathname.includes('/_atomic-checks/')&&!new Headers(options.headers).get('accept')?.includes('type=signed-url')&&indexWrites.length<16)indexWrites.push({status:response.status});}catch{}
    return response;
-  }});
-  providers=storageProviders({connections:getStore({name:'studio-storage-connections',consistency:'strong'}),index,indexWriteAudit:()=>indexWrites});
+  }})});
+  providers=storageProviders({connections:getStore({name:'studio-storage-connections',consistency:'strong',fetch:conditionalBlobFetch()}),index,indexWriteAudit:()=>indexWrites});
   if(op==='callback'){
    if(request.method!=='GET')return new Response(null,{status:405,headers});
    const c=providers.google.client();if(url.origin!==c.origin)throw new KoboError('forbidden','Invalid callback origin.');
