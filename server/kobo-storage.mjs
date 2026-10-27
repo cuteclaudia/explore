@@ -16,13 +16,14 @@ export function storageStatus(actor,config,app){
   const atomic=config?.provider!=='google-drive'||config?.koboVerified?.atomicChecks?.createOnly===true&&config?.koboVerified?.atomicChecks?.compareAndSwap===true;
   return {available:Boolean(actor&&allowed&&config&&verified),reason:!actor?'signed-out':!allowed?'app-not-permitted':!config?'no-connection':!verified?'provider-unavailable':'ok',userKey:actor?.user?.id||'',connectionId:config?connectionId(actor.user.id,config):'',provider:config?.provider==='google-drive'?'google-drive':'webdav',label:config?.label||'My WebDAV storage',root:config?(config.provider==='google-drive'?'Kōbō/'+koboApp(app).folder:decodeURIComponent(appRoot(config,app).pathname)):'',readOnly:!verified||!atomic,maxPutBytes:KOBO_BYTES,maxGetBytes:KOBO_BYTES,settingsUrl:'/studio/storage'};
 }
-export function koboStorageService({launchStore,loadConnection,files=davFiles,origin=registeredAppOrigin,now=()=>Date.now(),enabled=()=>process.env.KOBO_STORAGE_ENABLED==='true'}){
+export function koboStorageService({launchStore,loadConnection,files=davFiles,indexState=async()=>({epoch:'legacy',recovering:false}),origin=registeredAppOrigin,now=()=>Date.now(),enabled=()=>process.env.KOBO_STORAGE_ENABLED==='true'}){
   function permit(actor,app){const spec=koboApp(app);if(!actor?.permissions?.[spec.capability]||!enabled()&&!actor.isOwner)throw new KoboError('forbidden','This storage integration is currently limited to owner testing.');}
   async function launch(actor,app,shellOrigin){
     permit(actor,app);const appOrigin=origin(app,shellOrigin);const id=randomUUID();
-    const record={user:actor.user.id,app,appOrigin,shellOrigin,expires:now()+60*60*1000};
+    const config=await loadConnection(actor.user.id),index=await indexState(config,app);
+    const record={user:actor.user.id,app,appOrigin,shellOrigin,storageEpoch:index.epoch,expires:now()+60*60*1000};
     await launchStore.setJSON('launch/'+id,record,{onlyIfNew:true});
-    const status=storageStatus(actor,await loadConnection(actor.user.id),app);
+    const status={...storageStatus(actor,config,app),storageEpoch:index.epoch};if(index.recovering)Object.assign(status,{available:false,readOnly:true,reason:'index-recovery'});
     return {launchId:id,app,origin:appOrigin,expires:record.expires,experimental:true,storageStatus:status};
   }
   async function binding(actor,id,shellOrigin){
@@ -34,12 +35,14 @@ export function koboStorageService({launchStore,loadConnection,files=davFiles,or
   async function perform(actor,id,shellOrigin,op,args={}){
     const record=await binding(actor,id,shellOrigin);if(args.app!==undefined&&args.app!==record.app)throw new KoboError('forbidden','An app cannot access another app.');
     const config=await loadConnection(actor.user.id);const status=storageStatus(actor,config,record.app);
+    const index=await indexState(config,record.app);status.storageEpoch=index.epoch;if(index.recovering)Object.assign(status,{available:false,readOnly:true,reason:'index-recovery'});
     if(op==='status')return status;
+    if((record.storageEpoch||'legacy')!==index.epoch)throw new KoboError('unauthorized','The private index was restored. Reopen the app with a fresh launch.');
     if(!config)throw new KoboError('forbidden','Configure your storage connection in Account settings first.');
     if(!args.connectionId||args.connectionId!==status.connectionId)throw new KoboError('conflict','Your storage destination changed. Reopen the app before continuing.');
     if(!status.available)throw new KoboError('forbidden','Verify Kōbō sync in Files & storage before using this connection.');
     if(status.readOnly&&['put','remove'].includes(op))throw new KoboError('forbidden','Google Drive is read-only until competing-save checks pass. Run Test connection in Files & storage.');
-    const api=files(config,record.app,{signal:args.signal}),opts={ifMatch:args.ifMatch,ifNoneMatch:args.ifNoneMatch,signal:args.signal};
+    const api=files(config,record.app,{signal:args.signal,storageEpoch:record.storageEpoch||'legacy'}),opts={ifMatch:args.ifMatch,ifNoneMatch:args.ifNoneMatch,signal:args.signal};
     switch(op){
       case 'read':return api.read(koboPath(args.path),opts);
       case 'stat':return api.stat(koboPath(args.path),opts);

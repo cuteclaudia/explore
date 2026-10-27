@@ -17,7 +17,7 @@ export default async(request:Request)=>{
    try{if(options?.method?.toLowerCase()==='put'&&new URL(String(input)).pathname.includes('/_atomic-checks/')&&!new Headers(options.headers).get('accept')?.includes('type=signed-url')&&indexWrites.length<16)indexWrites.push({status:response.status});}catch{}
    return response;
   }})});
-  providers=storageProviders({connections:getStore({name:'studio-storage-connections',consistency:'strong',fetch:conditionalBlobFetch()}),index,indexWriteAudit:()=>indexWrites});
+  providers=storageProviders({connections:getStore({name:'studio-storage-connections',consistency:'strong',fetch:conditionalBlobFetch()}),index,backups:getStore({name:'kobo-google-recovery',consistency:'strong',fetch:conditionalBlobFetch()}),indexWriteAudit:()=>indexWrites});
   if(op==='callback'){
    if(request.method!=='GET')return new Response(null,{status:405,headers});
    const c=providers.google.client();if(url.origin!==c.origin)throw new KoboError('forbidden','Invalid callback origin.');

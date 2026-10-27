@@ -13,7 +13,7 @@ try{
   markup=markup.replace(/\{Object.entries\(KOBO_APPS\)[\s\S]*?<\/select>/,'<option value="hikari">Hikari</option></select>').replace(/<KoboIcon[^>]*\/>/g,'').replace(/\{tool.name\}/g,'Hikari').replace(/\{[^}]*\}/g,'"about:blank"');
   const css=source.match(/<style[^>]*>([\s\S]*?)<\/style>/)[1].replace(/:global\(([^)]+)\)/g,'$1');
   let script=source.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/import [^;]+;/g,'');
-  if(kind==='test')script='const mountKoboShell=options=>({close(message){options.onClosed(message)}});'+script;
+  if(kind==='test')script='const mountKoboSession=options=>({close(message){options.onClosed(message)}});'+script;
   const compiled=await transform(script,{loader:'ts'});
   await context.route('https://wrapper.test/**',route=>route.request().url().includes('/api/kobo/launch')?route.fulfill({json:{storageStatus:{available:true}}}):route.fulfill({contentType:'text/html',body:`<!doctype html><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0}*{box-sizing:border-box}${css}</style>${markup}<script>${compiled.code}</script>`}));
   const page=await context.newPage();await page.goto('https://wrapper.test/');

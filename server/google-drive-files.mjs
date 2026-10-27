@@ -1,13 +1,20 @@
 import {createHash,randomUUID} from 'node:crypto';
 import {KOBO_BYTES,KoboError,koboApp,koboPath,koboConditions} from '../src/lib/kobo-contract.mjs';
 import {revision,commit,locked} from './blob-revisions.mjs';
+import {indexContext} from './google-drive-recovery.mjs';
 import {driveId} from './google-drive-http.mjs';
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const folderType='application/vnd.google-apps.folder';
 // Drive objects are immutable revisions. A conditional Blobs index commit publishes
 // one current revision, so Drive need not provide WebDAV-style conditional updates.
-export function googleDriveFiles(config,app,{store,api}){
- const spec=koboApp(app),owner=hash(config.userId),prefix='entries/'+owner+'/'+config.connectionId+'/'+app+'/';
+export function googleDriveFiles(config,app,{store,api,recovery,expectedEpoch}){
+ const methods=['read','stat','list','put','remove'];return Object.fromEntries(methods.map(method=>[method,async(...args)=>{
+  const context=await indexContext(store,config,app);if(expectedEpoch!==undefined&&context.generation!==expectedEpoch)throw new KoboError('unauthorized','The private index was restored. Reopen the app.');await context.guard();
+  const files=filesAtIndex(config,app,{store,api,recovery,context});const result=await files[method](...args);await context.guard();return result;
+ }]));
+}
+function filesAtIndex(config,app,{store,api,recovery,context}){
+ const spec=koboApp(app),owner=hash(config.userId),prefix=context.prefix;
  const key=path=>prefix+hash(path),tag=record=>'"gd1-'+record.version+'"';
  const scope={owner,connectionId:config.connectionId,app};
  function own(record,path){if(record&&(record.owner!==owner||record.connectionId!==config.connectionId||record.app!==app||record.path!==path))throw new KoboError('forbidden','This Drive record belongs to a different workspace.');return record;}
@@ -18,7 +25,7 @@ export function googleDriveFiles(config,app,{store,api}){
   }
  }
  async function appFolder(){
-  const k='folders/'+owner+'/'+config.connectionId+'/'+app;
+  const k=context.folderKey;
   return locked(k,async()=>{const found=await revision(store,k);let folder;
    if(found){folder=await api.meta(found.data.id);}
    else{folder=await api.createFolder(spec.folder,config.rootId,{koboOwner:owner,koboApp:app});if(!driveId(folder.id))throw new KoboError('server','Google returned an invalid app folder.');try{await commit(store,k,{id:folder.id,...scope},null);}catch(e){const winner=await revision(store,k);if(!winner)throw e;folder=await api.meta(winner.data.id);}}
@@ -49,7 +56,12 @@ export function googleDriveFiles(config,app,{store,api}){
     // Only this atomic index update makes the uploaded object current. A losing
     // upload remains private/unreferenced; it never overwrites another revision.
     if(opts.signal?.aborted)throw new KoboError('timeout','This upload was cancelled before publishing its revision.');
-    await commit(store,key(path),record,before);return {etag:tag(record)};
+    // A recovery snapshot must exist before a control head can become current.
+    const checkpoint=recovery&&/(?:^|\/)(?:head|libraries)\.json$/.test(path)?await recovery.capture(config,app,{context,replacement:record,reason:'before-control-publication',signal:opts.signal}):null;
+    if(opts.signal?.aborted)throw new KoboError('cancelled','The save was cancelled before publishing its revision.');
+    await context.guard();await commit(store,key(path),record,before);
+    if(checkpoint)try{await recovery.confirmed(config,app,checkpoint);}catch{/* The complete prepared snapshot already exists; confirmation is informational. */}
+    return {etag:tag(record)};
    });
   },
   async remove(path,opts={}){koboPath(path);koboConditions(opts);return locked('drive-write:'+key(path),async()=>{const before=await current(path),r=before?.data;if(!r||r.deleted)return;if(r.kind!=='file')throw new KoboError('forbidden','Only individual files can be removed.');if(opts.ifMatch&&opts.ifMatch!==tag(r))throw new KoboError('conflict','This file changed before removal.');await commit(store,key(path),{...r,version:randomUUID(),deleted:true,modified:new Date().toISOString()},before);});},
