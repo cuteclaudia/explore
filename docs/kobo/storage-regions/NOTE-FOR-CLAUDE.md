@@ -11,3 +11,5 @@ The website will keep credentials, endpoint validation and region evidence outsi
 An in-region bucket alone cannot justify a whole-system residency claim: file relay, indexes, credentials/keys, Identity, logs and backups also matter. Strict residency needs a separate architecture/operational review. Official source requests were blocked by the execution proxy, so current provider plans/APIs/prices/terms are not verified.
 
 No work has been done to switch existing libraries, create cloud accounts, rotate keys, move files, enable write gates or publish app binaries. Keep current app acceptance and recovery work moving independently. Full proposal: `REGIONAL-STORAGE-PROPOSAL.md`.
+
+Implementation follow-up: the website now has a guided connection UI, a local Nextcloud URL helper and a separate account-bound planning-preference endpoint/store. It does not change provider credentials, app bridge messages or safe-write gates. No native build is needed. See `GUIDED-SETUP-HANDOFF.md` for validation and exact boundaries.

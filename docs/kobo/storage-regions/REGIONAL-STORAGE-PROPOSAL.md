@@ -1,6 +1,8 @@
 # Kōbō as a user-owned workspace: regional storage proposal
 
-29 October 2026 (Sydney). **Design/review only.** Claudia asked for a unified place to work with apps and chosen storage in Europe, Asia, Australia or elsewhere, without breaking existing work. The workspace/StratWatch change was built, tested and pushed before this proposal. No storage code, credentials, provider setting, library folder, grant or app binary is changed here.
+29 October 2026 (Sydney). **Original proposal; implementation update:** the first guided WebDAV/Nextcloud onboarding and separate account planning-preference record are now built; see [guided setup handoff](GUIDED-SETUP-HANDOFF.md). Regional provider qualification, new adapters and strict residency remain design/review work.
+
+Original proposal scope: Claudia asked for a unified place to work with apps and chosen storage in Europe, Asia, Australia or elsewhere, without breaking existing work. The workspace/StratWatch change was built, tested and pushed before this proposal. No storage code, credentials, provider setting, library folder, grant or app binary is changed here.
 
 ## Recommendation
 

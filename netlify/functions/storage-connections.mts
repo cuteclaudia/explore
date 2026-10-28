@@ -1,3 +1,5 @@
+import {storageOnboarding} from '../../server/storage-onboarding.mjs';
+import {conditionalBlobFetch} from '../../server/blob-fetch.mjs';
 import {mergePreferences} from '../../server/preferences.mjs';
 import {getStore} from '@netlify/blobs';
 import {verifyRequestOrigin} from '@netlify/identity';
@@ -9,7 +11,14 @@ import {verifyKoboConnection} from '../../server/kobo-storage.mjs';
 import {koboPath,KoboError} from '../../src/lib/kobo-contract.mjs';
 const json=value=>Response.json(value,{headers:{'Cache-Control':'private, no-store'}});
 export default async(request:Request)=>{try{
- const actor=await currentActor();const store=getStore({name:'studio-storage-connections',consistency:'strong'});const key='webdav/'+actor.user.id;const path=new URL(request.url).pathname.replace(/\/$/,'');
+ const actor=await currentActor();const path=new URL(request.url).pathname.replace(/\/$/,'');
+ if(path==='/api/storage/onboarding'){
+  const api=storageOnboarding(getStore({name:'studio-storage-onboarding',consistency:'strong',fetch:conditionalBlobFetch()}));
+  if(request.method==='GET')return json(await api.read(actor));
+  if(request.method!=='POST')throw new AccessError(405,'Method not allowed.');
+  verifyRequestOrigin(request);const raw=await request.text();if(raw.length>2000)throw new AccessError(413,'Planning preference is too large.');let input;try{input=JSON.parse(raw);}catch{throw new AccessError(400,'Invalid planning preference.');}return json(await api.save(actor,input));
+ }
+ const store=getStore({name:'studio-storage-connections',consistency:'strong'});const key='webdav/'+actor.user.id;
  if(path==='/api/storage/preferences'){
   const preferenceKey='preferences/'+actor.user.id;
   if(request.method==='GET')return json((await store.get(preferenceKey,{type:'json'}))||{defaultDestination:'download'});
