@@ -1,0 +1,15 @@
+# Website workspace handoff for Claudia and Claude
+
+29 October 2026 (Sydney).
+
+The public app showcase now has explicit Open workspace new-tab links. Private `/apps` is a dedicated Kōbō home with launcher, app search, same-tab app opening and an optional separate-tab action. Apps entered from Owner Studio open separately. App wrappers share the launcher; the native app frame source, sandbox and bridge remain unchanged. No app binary was rebuilt and no storage contract changed.
+
+`/apps/files` and Recently saved show real permitted private site revisions, not fabricated recents or a universal cloud/device file index. Revision names are text, current-owner filtered and rechecked against current web grants; account mismatch/ended sessions clear the view. The interface distinguishes Hikari libraries, Irodori device files and provider catalogues. Irodori legacy site files open the previous editor; library ZIPs are not passed as photo originals.
+
+HobbyNest's public entry opens the branded preview in its own tab. The custom Netlify shop backend and payments are still future work; its code/design is separate from Kōbō subscriptions.
+
+The working addresses remain on the existing site. `WORKSPACE-AND-SUBDOMAINS.md` documents intended Kōbō/HobbyNest hosts, gated entry URL configuration and the required DNS/authentication/browser-storage/CSP migration acceptance. No new subdomain was provisioned; there is no authenticated DNS/Netlify management connector in this environment. Do not set public subdomain URLs until the corresponding root actually serves the intended application and live acceptance passes.
+
+After implementing/testing the workspace, the existing StratWatch text link was upgraded to a compact website card on Writing & analysis and the homepage's writing section. It links to `https://www.stratwatch.net` in a new tab, with no remote iframe, automatic third-party requests or fabricated screenshot. Fresh source requests were blocked by proxy CONNECT 403, so no live frame-policy or current website-content verification is claimed. The description uses Claudia's supplied account of real-time public-source monitoring across geopolitical, cyber, financial and space domains, core access without login/paywall, and the monitoring/awareness role. These product claims are supplied by the owner, not independently verified by this workspace.
+
+Validation: 191 server tests pass, including exact front-door URL allowlists/fallbacks. Browser checks exercise actual workspace UI and file/controller behaviour with fixture accounts/storage, account/capability isolation and late responses, same-tab app entry/new-tab front doors, no-opener links, native wrappers, keyboard launcher behaviour and phone/tablet/desktop layout. Existing catalogue/settings/download checks pass. Login return tests include `/apps/files` and legacy Irodori file targets. StratWatch card checks cover home/writing/filter behaviour and widths. Production build and isolated packaged authorization/content checks passed before pushing. None of these fixture tests replaces live subdomain migration or actual external-site/provider acceptance.

@@ -31,6 +31,10 @@ Prepared 29 October 2026 (Sydney). Use this as the single release sign-off index
 - [ ] Fumi/Tsuzuri/Tayori/Goban: obtain their own reviewed candidate and app-specific acceptance; do not inherit Hikari/Irodori's result.
 - [ ] Check desktop installers on real target operating systems, checksum/version, licence notices and update behaviour. Publish only the accepted release. Microsoft Store submission and subscriber licence enforcement are separate checks: [desktop readiness](kobo/DESKTOP-RELEASE-READINESS.md).
 
+## Workspace subdomain cutover
+
+- [ ] Complete the authentication, app-CSP, browser-storage and two-device migration checks before enabling either new subdomain. Current entry links retain working site routes: [workspace and subdomain procedure](kobo/WORKSPACE-AND-SUBDOMAINS.md).
+
 ## HobbyNest (separate store launch)
 
 - [ ] Choose the commerce platform, real products/prices, shipping/tax settings and STL licence terms. Test physical-only, digital-only and mixed orders plus payment/refund/download recovery.

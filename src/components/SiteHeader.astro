@@ -1,5 +1,7 @@
 ---
 import Icon from './Icon.astro';
+import {productDestinations} from '../lib/product-destinations.mjs';
+const {workspace}=productDestinations({PUBLIC_KOBO_WORKSPACE_URL:import.meta.env.PUBLIC_KOBO_WORKSPACE_URL});
 const links = [
   ['/#home', 'Home', 'home'],
   ['/#writing', 'Writing & analysis', 'writing'],
@@ -22,13 +24,13 @@ const links = [
   </nav>
   <div class="explore-account" aria-label="Your account">
     <a class="explore-signin" href="/studio/login" data-account-signin>Sign in</a>
-    <a class="icon-control" href="/apps" aria-label="My apps" data-tooltip="My apps" data-account-apps hidden><Icon name="grid"/></a>
+    <a class="icon-control" href={workspace} target="_blank" rel="noopener" aria-label="Kōbō workspace (new tab)" data-tooltip="My apps" data-account-apps hidden><Icon name="grid"/></a>
     <a class="icon-control" href="/studio" aria-label="My Studio" data-tooltip="My Studio" data-account-studio hidden><Icon name="edit"/><span class="sr-only" data-account-label>My Studio</span></a>
     <details class="explore-account-menu" data-account-menu>
       <summary class="icon-control" aria-label="Account menu" data-tooltip="Account"><Icon name="user"/></summary>
       <div class="explore-account-panel">
         <span class="account-menu-label">Your space</span>
-        <a href="/apps" data-auth-link hidden><Icon name="grid"/>My apps</a><a href="/studio" data-owner-studio-link hidden><Icon name="edit"/>My Studio</a>
+        <a href={workspace} target="_blank" rel="noopener" data-auth-link hidden><Icon name="grid"/>My apps</a><a href="/studio" data-owner-studio-link hidden><Icon name="edit"/>My Studio</a>
         <a href="/trips"><Icon name="mountain"/>Trips & events</a><a href="/settings"><Icon name="settings"/>Settings</a>
         <a href="/studio/account" data-auth-link hidden><Icon name="shield"/>Sign-in & security</a>
         <a href="/studio/users" data-account-permissions hidden><Icon name="user"/>User permissions</a>
@@ -53,7 +55,7 @@ const links = [
     else if (/^\/(chinaseries|dailycyberreport|strategy)(\/|$)/.test(path)) section = 'writing';
     else if (path.startsWith('/tags')) section = 'tags';
     else if (path.startsWith('/trips')) section = 'trips';
-    else if (path === '/kobo'||path.startsWith('/apps')) section = 'software';
+    else if (path === '/kobo'||path.startsWith('/kobo/')||path.startsWith('/apps')) section = 'software';
     else if (path === '/3d-printing') section = 'printing';
     else if (path.startsWith('/journal')) section = 'journal';
     else if (path.startsWith('/photography')) section = 'photography';

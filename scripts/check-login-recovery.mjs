@@ -21,5 +21,7 @@ try{
  sessionCode=503;await page.goto('https://www.claudiagilbert.com/studio/login?next=%2Fstudio%2Fdownloads');await page.locator('#login-form').waitFor({state:'visible'});assert((await page.locator('#auth-status').textContent()).includes('unavailable'));assert.equal(visits,2,'Service failures must not trigger navigation');
  sessionCode=200;await page.locator('#login-email').fill('person@example.test');await page.locator('#login-password').fill('a-test-password');await page.locator('#login-form button[type=submit]').click();await page.waitForURL('**/studio/downloads');assert.equal(visits,3);assert.deepEqual(errors,[]);
  await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/places?stravaActivity=101'));await page.waitForURL('**/places?stravaActivity=101');
+ await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/apps/files'));await page.waitForURL('**/apps/files');
+ await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/apps/irodori-legacy?file=11111111-1111-4111-8111-111111111111'));await page.waitForURL('**/apps/irodori-legacy?file=11111111-1111-4111-8111-111111111111');
  console.log('PASS real login controller: awaited cookie refresh, exact Desktop installers destination, repeated-redirect recovery, explicit retry, service failure stability and successful password submission');
 }finally{await browser.close();await rm(directory,{recursive:true,force:true});}

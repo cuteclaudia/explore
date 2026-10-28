@@ -1,0 +1,10 @@
+---
+import KoboWorkspace from '../../layouts/KoboWorkspace.astro';
+import {protectPage} from '../../../server/identity';
+import {CRAFT_TOOLS} from '../../../server/craft-tools.mjs';
+export const prerender=false;
+const actor=await protectPage('/apps/files');if(actor instanceof Response)return actor;
+Astro.response.headers.set('Cache-Control','private, no-store');
+const tools=Object.fromEntries(Object.entries(CRAFT_TOOLS).filter(([id,t])=>actor.permissions[t.capability]).map(([id,t])=>[id,{name:t.name,slug:t.slug}]));
+---
+<KoboWorkspace actor={actor} title="Saved site files" section="files"><header class="workspace-heading"><h1>Saved site files</h1><p>Your latest private site revisions, with shortcuts to their file tools. Hikari libraries, Irodori device files and connected-provider catalogues are managed inside their respective apps.</p></header><section class="workspace-section"><button type="button" class="btn ghost" id="workspace-files-refresh">Refresh files</button><p id="workspace-files-status" role="status">Loading saved site revisions…</p><div id="workspace-files-list" class="workspace-file-list" data-tools={JSON.stringify(tools)} data-limit="30"></div><p class="workspace-note">Showing up to 30 latest revisions. This view does not copy, move or publish files.</p></section></KoboWorkspace>
