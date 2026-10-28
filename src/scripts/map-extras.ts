@@ -22,7 +22,7 @@ export function attachMapExtras(getMap:()=>maplibregl.Map|undefined,getReady:()=
  let outdoorData:any={type:'FeatureCollection',features:[]},climbData:any={type:'FeatureCollection',features:[]},selectedFeature='',outdoorPhase:'idle'|'loading'|'error'='idle';
  const list=document.getElementById('outdoor-list')!,listStatus=document.getElementById('route-list-status')!,count=document.getElementById('outdoor-count')!,detail=document.getElementById('outdoor-detail')!;
  // Keep the full message available on hover; all status rows have fixed geometry.
- for(const id of ['route-list-status','reference-status','climbing-status','satellite-status','outdoor-status']){const node=document.getElementById(id);if(!node)continue;const title=()=>{node.title=node.dataset.detail||node.textContent?.trim()||'';};title();new MutationObserver(title).observe(node,{childList:true,characterData:true,subtree:true});}
+ for(const id of ['map-status','route-list-status','reference-status','climbing-status','satellite-status','outdoor-status']){const node=document.getElementById(id);if(!node)continue;const title=()=>{node.title=node.dataset.detail||node.textContent?.trim()||'';};title();new MutationObserver(title).observe(node,{childList:true,characterData:true,subtree:true});}
  function listNote(short:string,full=short){listStatus.textContent=short;listStatus.dataset.detail=full;listStatus.title=full;}
 
  const climbs=attachClimbingRoutes({getMap,getReady,getTypes:()=>['climbRoutes','iceClimbing'].filter(k=>state[k]),onData:data=>{climbData=data;renderOutdoorList();},onStatus:text=>{document.getElementById('climbing-status')!.textContent=text;}});
