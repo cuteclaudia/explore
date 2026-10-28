@@ -6,14 +6,14 @@
 
 Use `hobbynest.claudiagilbert.com` as the intended shop address, with a separate storefront deployment/platform and a visible link back to Explore. Explore's 3D Printing page is the brand/process introduction; its current `/hobbynest` page is a noindex design preview, not the production shop. No DNS records, store accounts, payment services or charges have been created.
 
-My recommendation is a **managed Shopify storefront plus a supported secure digital-delivery application** for the first sales release. This keeps cart, checkout, orders, inventory and shipping in a maintained commerce platform rather than adding those responsibilities to the creative-app backend. Confirm current fees, regional payment availability, digital-delivery features and mixed physical/digital checkout in a trial before choosing it. No fresh provider documentation was accessible from this workspace, so those details are not verified here.
+**Updated preference:** Claudia wants a custom Netlify store rather than a Shopify subscription, with a possible reusable commercial platform later. The recommended path is now an independent Astro/Netlify storefront, transactional database, hosted payment checkout and private digital delivery. See [Netlify commerce scope and design](NETLIFY-COMMERCE-DESIGN.md) for effort, costs, stages and future-platform boundaries. No commerce backend or payments have been implemented by this planning update.
 
 Keep branding and editorial links consistent with Explore, while HobbyNest owns its logo, palette, product pages and checkout. Do not assume Explore sign-in automatically logs a customer into a store merely because both use subdomains. Guest checkout is a useful starting point; account linking can follow if there is a concrete customer benefit. App subscription purchases and HobbyNest orders remain separate.
 
 | Approach | Advantage | Trade-off |
 | --- | --- | --- |
-| Managed Shopify storefront (recommended starting point) | Maintained checkout/orders, hosted storefront, supported shipping/digital extensions | Recurring platform/app fees; verify fulfilment and policy fit |
-| Custom Netlify storefront + hosted commerce checkout | Full design control; Explore integration can be closer | More engineering, webhook/stock/security/fulfilment maintenance |
+| Managed Shopify storefront (alternative) | Maintained checkout/orders, hosted storefront, supported shipping/digital extensions | Recurring platform/app fees; verify fulfilment and policy fit |
+| Custom Netlify storefront + hosted payment checkout (preferred) | Full design control; Explore integration can be closer | More engineering, webhook/stock/security/fulfilment maintenance |
 | WordPress/WooCommerce | Broad commerce extension ecosystem | Another CMS/hosting stack and ongoing plugin maintenance |
 
 A separate domain later should attach to the **same chosen store**, preserving product URLs where practical and redirecting the old hostname. Retain order and licence records. Update canonical URLs, return links, checkout redirects and transactional email branding. The hosting/domain change is separate from moving store data.
@@ -31,7 +31,7 @@ For a future custom backend: derive amounts and product/file IDs from server-sid
 ## Decisions before commerce setup
 
 - Confirm legal trading/contact details, shipping origin, initial delivery countries, currency and tax/GST position. Australian audience/timezone does not establish tax registration.
-- Choose platform after checking current total fees and physical/digital workflow.
+- Select database, payment and private-file providers after checking current total fees and physical/digital workflow. The preferred hosting direction is Netlify.
 - Supply first real products, photographs, prices, variants, manufacturing lead times and owned/licensed STL files.
 - Agree STL licences, privacy, shipping, returns/refunds and digital fulfilment terms. Terms must reflect applicable consumer rights; do not use a blanket “no refunds” policy as a substitute.
 - Decide support inbox and transactional email sender. Preserve the existing Microsoft 365 DNS records when authenticating store mail.
