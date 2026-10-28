@@ -1,5 +1,5 @@
 import {AccessError} from './access.mjs';
-import {CRAFT_TOOLS,resolveToolId} from './craft-tools.mjs';
+import {DESKTOP_TOOLS as CRAFT_TOOLS,resolveDesktopToolId as resolveToolId} from './desktop-tools.mjs';
 import {revision,commit} from './blob-revisions.mjs';
 export const DESKTOP_PLATFORMS=Object.freeze({windows:'Windows',macos:'macOS',linux:'Linux'});
 export function desktopTool(actor,value){const id=resolveToolId(value),tool=CRAFT_TOOLS[id];if(!tool)throw new AccessError(404,'App not found.');if(!actor?.isOwner&&actor?.permissions?.[tool.capability]!==true&&actor?.permissions?.['desktop.'+id]!==true)throw new AccessError(403,'Desktop access has not been granted for this app.');return {id,tool};}

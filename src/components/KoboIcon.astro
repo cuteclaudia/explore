@@ -5,5 +5,5 @@ const regions={fumi:[325,24,300,295],goban:[629,24,300,295],akari:[933,24,300,29
 const r=regions[name]||regions.fumi,scale=size/r[2];
 const spriteStyle=`width:${size}px;height:${size}px;background-size:${1254*scale}px ${1254*scale}px;background-position:${-r[0]*scale}px ${-r[1]*scale+(size-r[3]*scale)/2}px`;
 ---
-{name==='hikari'?<img src="/kobo/hikari.png" width={size} height={size} alt="" aria-hidden="true" class="kobo-icon"/>:<span class="kobo-icon sprite" style={spriteStyle} aria-hidden="true"></span>}
+{['hikari','irodori','fumi','tsuzuri','tayori','goban'].includes(name)?<img src={'/kobo/icons/'+name+'-256.png'} width={size} height={size} alt="" aria-hidden="true" class="kobo-icon"/>:<span class="kobo-icon sprite" style={spriteStyle} aria-hidden="true"></span>}
 <style>.kobo-icon{display:inline-block;flex-shrink:0;border-radius:20%;vertical-align:middle}.sprite{background-image:url('/kobo/suite-icons.png');background-repeat:no-repeat}</style>

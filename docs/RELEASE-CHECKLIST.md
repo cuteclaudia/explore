@@ -31,6 +31,11 @@ Prepared 29 October 2026 (Sydney). Use this as the single release sign-off index
 - [ ] Fumi/Tsuzuri/Tayori/Goban: obtain their own reviewed candidate and app-specific acceptance; do not inherit Hikari/Irodori's result.
 - [ ] Check desktop installers on real target operating systems, checksum/version, licence notices and update behaviour. Publish only the accepted release. Microsoft Store submission and subscriber licence enforcement are separate checks: [desktop readiness](kobo/DESKTOP-RELEASE-READINESS.md).
 
+## HobbyNest (separate store launch)
+
+- [ ] Choose the commerce platform, real products/prices, shipping/tax settings and STL licence terms. Test physical-only, digital-only and mixed orders plus payment/refund/download recovery.
+- [ ] Configure `hobbynest.claudiagilbert.com` only with the chosen platform’s supplied DNS records, verify HTTPS, and link it from Explore after acceptance. The current `/hobbynest` page is a noindex preview and accepts no orders: [store plan](hobbynest/STORE-PLAN.md).
+
 ## Cutover and rollback
 
 - [ ] Record the release decision and app-specific gate. Open a small accepted cohort first; keep unfinished apps gated rather than enabling the suite indiscriminately.

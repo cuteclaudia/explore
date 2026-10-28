@@ -17,6 +17,6 @@ export default defineConfig({
     'domhandler', 'domutils', 'domelementtype', 'dom-serializer', 'entities',
     'launder', 'dayjs', 'parse-srcset', 'postcss', 'nanoid', 'picocolors', 'source-map-js',
   ] } },
-  integrations: [react(), markdoc(), keystatic(), sitemap({ filter: (page) => !page.includes('/keystatic') && !page.includes('/studio') })],
+  integrations: [react(), markdoc(), keystatic(), sitemap({ filter: (page) => !page.includes('/keystatic') && !page.includes('/studio') && !page.includes('/hobbynest') })],
   trailingSlash: 'ignore',
 });

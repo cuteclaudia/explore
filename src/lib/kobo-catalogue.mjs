@@ -1,0 +1,9 @@
+// Public product information; no grants, web routes or published-release claims.
+export const KOBO_APPS=Object.freeze([
+ {id:'hikari',name:'Hikari',kind:'Photo development',description:'Shape light, colour and exposure, and bring a collection of photographs together.',status:'In testing',web:true,features:['Photo development and colour adjustments','A photo library for your collection','Web sync remains subject to release acceptance']},
+ {id:'irodori',name:'Irodori',kind:'Image editing',description:'Build an image with layers, masks, selections and adjustments.',status:'In testing',web:true,features:['Layers, masks and selections','Image adjustments and composition','Local recovery is included in reviewed test builds']},
+ {id:'fumi',name:'Fumi',kind:'Documents',description:'A place for words, considered page layouts and documents you can share.',status:'In development',web:true,features:['Documents and page layout','References and PDF export','Desktop and web versions in development']},
+ {id:'tsuzuri',name:'Tsuzuri',kind:'PDF workspace',description:'Read, organise and work with PDFs in a dedicated workspace.',status:'In development',web:true,features:['PDF reading and page organisation','Annotations and forms','Supported PDF editing tools']},
+ {id:'tayori',name:'Tayori',kind:'Mail & calendar',description:'Mail, calendar, contacts and tasks in a desktop workspace.',status:'In development',web:false,features:['Mail, calendar, contacts and tasks','Desktop work with supported mail accounts','A web version is not available']},
+ {id:'goban',name:'Goban',kind:'Spreadsheets',description:'Work with spreadsheets and data, from everyday tables to more involved workbooks.',status:'In development',web:false,features:['Excel workbooks and CSV files','Formulas, charts, tables and pivot tables','A web version is not available']},
+]);

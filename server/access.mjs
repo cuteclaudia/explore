@@ -9,6 +9,8 @@ export const CAPABILITIES = Object.freeze({
   'desktop.lightcraft': 'Download Hikari desktop',
   'desktop.wordcraft': 'Download Fumi desktop',
   'desktop.pdfcraft': 'Download Tsuzuri desktop',
+  'desktop.tayori': 'Download Tayori desktop',
+  'desktop.goban': 'Download Goban desktop',
   'files.publish': 'Publish finished exports to the site',
   'photo.edit': 'Use photo editor',
   'media.upload': 'Upload photographs',
