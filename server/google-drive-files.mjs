@@ -57,7 +57,7 @@ function filesAtIndex(config,app,{store,api,recovery,context}){
     // upload remains private/unreferenced; it never overwrites another revision.
     if(opts.signal?.aborted)throw new KoboError('timeout','This upload was cancelled before publishing its revision.');
     // A recovery snapshot must exist before a control head can become current.
-    const checkpoint=recovery&&/(?:^|\/)(?:head|libraries)\.json$/.test(path)?await recovery.capture(config,app,{context,replacement:record,reason:'before-control-publication',signal:opts.signal}):null;
+    const checkpoint=recovery&&/(?:^|\/)(?:head|libraries|documents)\.json$/.test(path)?await recovery.capture(config,app,{context,replacement:record,reason:'before-control-publication',signal:opts.signal}):null;
     if(opts.signal?.aborted)throw new KoboError('cancelled','The save was cancelled before publishing its revision.');
     await context.guard();await commit(store,key(path),record,before);
     if(checkpoint)try{await recovery.confirmed(config,app,checkpoint);}catch{/* The complete prepared snapshot already exists; confirmation is informational. */}

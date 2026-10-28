@@ -39,3 +39,28 @@ test('competing restore jobs have one fence winner and an incomplete staging are
 test('a concurrent index mutation invalidates checkpoint capture rather than exporting a mixed mapping',async()=>{const f=fixture();await seed(f);const original=f.index.list;let scans=0;f.index.list=function(options){if(options.prefix.startsWith('entries/')&&++scans===2){const row=[...f.index.rows.values()].find(r=>r.data.path==='library/head.json');row.etag='"changed-during-scan"';}return original.call(this,options);};await assert.rejects(f.recovery.capture(f.config,'hikari'),e=>e.code==='conflict');});
 
 test('cancellation during snapshot persistence cannot publish the uploaded control head',async()=>{const f=fixture();await seed(f);const previous=await f.files.read('library/head.json'),controller=new AbortController(),set=f.backups.setJSON;f.backups.setJSON=async(key,...args)=>{const result=await set(key,...args);if(key.startsWith('snapshots/'))controller.abort();return result;};await assert.rejects(f.files.put('library/head.json',new Uint8Array([8]),{ifMatch:previous.etag,signal:controller.signal}),e=>e.code==='cancelled');assert.equal((await f.files.read('library/head.json')).etag,previous.etag);});
+
+test('Irodori document registry changes are checkpointed and a lost index restores names, hidden flags, heads, previews and bytes',async()=>{
+ const f=fixture(),app='irodori',files=googleDriveFiles(f.config,app,{store:f.index,api:f.api,recovery:f.recovery}),documents=[];
+ const image=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j4H0AAAAASUVORK5CYII=','base64'),expected=[];
+ for(let n=0;n<2;n++){
+  const id=randomUUID(),generation=randomUUID(),root='documents/'+id,body=Buffer.from('Layered document transport fixture '+n),parts=[{name:'document.pcraft',bytes:body},{name:'preview.png',bytes:image}];
+  for(let i=0;i<parts.length;i++){const path=root+'/gen/'+generation+'/'+i;await files.put(path,parts[i].bytes,{ifNoneMatch:'*'});expected.push({path,bytes:parts[i].bytes});}
+  // The index transport handles opaque document bytes. Native .pcraft decoding is
+  // not exercised by this service test and is not claimed as accepted here.
+  const head=Buffer.from(JSON.stringify({generation,logical:parts.map(p=>({file:p.name,size:p.bytes.length,sha256:hash(p.bytes)}))}));await files.put(root+'/head.json',head,{ifNoneMatch:'*'});expected.push({path:root+'/head.json',bytes:head});documents.push({id,name:'Document '+n,size:body.length,width:1,height:1,modified:new Date().toISOString(),hidden:false});
+ }
+ const registry=()=>Buffer.from(JSON.stringify({format:'kobo-irodori-documents',version:1,documents}));
+ let etag=(await files.put('documents.json',registry(),{ifNoneMatch:'*'})).etag;
+ documents[0].name='Renamed document';etag=(await files.put('documents.json',registry(),{ifMatch:etag})).etag;
+ const before=new Set((await f.recovery.list(f.config,app)).snapshots.map(s=>s.id));documents[1].hidden=true;await files.put('documents.json',registry(),{ifMatch:etag});
+ const checkpoint=(await f.recovery.list(f.config,app)).snapshots.find(s=>!before.has(s.id));assert.equal(checkpoint.publication,'confirmed','registry-only changes must create their own confirmed checkpoint');const registryBytes=registry();
+ f.index.rows.clear();const job=await f.recovery.begin(f.config,app,checkpoint.id);while(!(await f.recovery.step(f.config,app,job.id)).ready){}await f.recovery.publish(f.config,app,job.id);
+ assert.deepEqual(Buffer.from((await files.read('documents.json')).data),registryBytes);const restored=JSON.parse(Buffer.from((await files.read('documents.json')).data));assert.equal(restored.documents[0].name,'Renamed document');assert.equal(restored.documents[1].hidden,true);
+ for(const file of expected)assert.deepEqual(Buffer.from((await files.read(file.path)).data),file.bytes);
+});
+
+test('failed registry checkpoint refuses publication and leaves the previous document list current',async()=>{
+ const f=fixture(),files=googleDriveFiles(f.config,'irodori',{store:f.index,api:f.api,recovery:f.recovery}),original=Buffer.from('{"documents":[]}'),etag=(await files.put('documents.json',original,{ifNoneMatch:'*'})).etag;
+ f.backups.setJSON=async()=>{throw Error('Snapshot storage unavailable');};await assert.rejects(files.put('documents.json',Buffer.from('{"documents":[{"name":"must not publish"}]}'),{ifMatch:etag}));assert.deepEqual(Buffer.from((await files.read('documents.json')).data),original);assert.equal((await files.read('documents.json')).etag,etag);
+});
