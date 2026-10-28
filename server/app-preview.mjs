@@ -1,7 +1,7 @@
 import {AccessError} from './access.mjs';
 const shellOrigins=['https://explorebyclaudia.netlify.app','https://www.claudiagilbert.com','https://claudiagilbert.com'];
-// Device-only Irodori (preview and normal workspace) is deliberately separate from KOBO_IRODORI_ORIGIN: this binary has no
-// storage bridge and must never be offered as a connected Kōbō storage app.
+// Device-only Irodori (preview and normal workspace) is deliberately separate from KOBO_IRODORI_ORIGIN: local recovery may use an identity-only bridge, but this workspace must never
+// grant a connected cloud storage app session.
 export function irodoriPreviewOrigin(shellOrigin,env=process.env){
  const value=env.IRODORI_PREVIEW_ORIGIN;if(!value)return null;
  let url;try{url=new URL(value);}catch{throw new AccessError(503,'IRODORI_PREVIEW_ORIGIN must be a separate HTTPS origin.');}

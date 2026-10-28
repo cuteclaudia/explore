@@ -6,5 +6,5 @@ export const prerender=false;
 // is enabled by granting normal Irodori web access.
 export const GET=async({request})=>{try{
  const actor=await currentActor('tools.photocraft'),origin=irodoriPreviewOrigin(new URL(request.url).origin);
- return Response.json({configured:!!origin,origin,userKey:actor.user.id,launchId:randomUUID(),app:'irodori',version:'0.16.0',storageConnected:false},{headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'}});
+ return Response.json({configured:!!origin,origin,userKey:actor.user.id,launchId:randomUUID(),app:'irodori',storageConnected:false},{headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'}});
 }catch(error){return errorResponse(error);}};
