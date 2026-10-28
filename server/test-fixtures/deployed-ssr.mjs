@@ -15,4 +15,29 @@ for(const path of ['/studio/about','/studio','/studio/content','/apps','/studio/
 assert.equal((await response('/api/content/list')).status,401);
 assert.equal((await response('/api/apps/irodori-preview')).status,401);
 assert.equal((await response('/api/apps/irodori-session')).status,401);
+// A custom-domain request can have a valid browser/session API login while the
+// Astro runtime has no SDK identity global. Verify the real packaged middleware
+// uses the native session endpoint, not an unverified decoded cookie or claims.
+const originalFetch=globalThis.fetch,originalOwner=process.env.OWNER_IDENTITY_ID;
+const owner='11111111-1111-4111-8111-111111111111';let sessionStatus=200,sessionChecks=0;
+process.env.OWNER_IDENTITY_ID=owner;
+globalThis.fetch=async(input,options)=>{
+ const url=new URL(typeof input==='string'||input instanceof URL?input:input.url);
+ if(['www.claudiagilbert.com','claudiagilbert.com'].includes(url.hostname)&&url.pathname==='/api/studio/session'){
+  sessionChecks++;assert.equal(options.headers.Cookie,'nf_jwt=verified-by-session-service');assert.equal(options.redirect,'error');
+  return sessionStatus===200?Response.json({setupRequired:false,id:owner,email:'owner@example.test',isOwner:true,capabilities:{'settings.manage':true,'users.manage':true,'tools.photocraft':true}}):new Response(null,{status:sessionStatus});
+ }
+ return originalFetch(input,options);
+};
+try{
+ for(const origin of ['https://www.claudiagilbert.com','https://claudiagilbert.com'])for(const path of ['/studio','/studio/downloads','/studio/account','/studio/users','/apps']){
+  const r=await handler(new Request(origin+path,{headers:{Cookie:'nf_jwt=verified-by-session-service'}}),{ip:'127.0.0.1'});
+  assert.equal(r.status,200,origin+path+' must recognize the verified browser session');assert.equal(r.headers.get('Cache-Control'),'private, no-store');console.log('PASS packaged custom-domain account session',origin+path);
+ }
+ const check=()=>handler(new Request('https://www.claudiagilbert.com/studio/downloads',{headers:{Cookie:'nf_jwt=verified-by-session-service'}}),{ip:'127.0.0.1'});
+ sessionStatus=401;let r=await check();assert.equal(r.status,302);assert(new URL(r.headers.get('location'),'https://www.claudiagilbert.com').searchParams.get('reason')==='session');
+ sessionStatus=403;assert.equal((await check()).status,403);
+ sessionStatus=503;r=await check();assert.equal(r.status,503);assert(!r.headers.has('location'),'Identity outages must not redirect to login and loop');assert(sessionChecks>=13);
+ console.log('PASS packaged expired/revoked/unavailable sessions fail closed without an automatic login loop');
+}finally{globalThis.fetch=originalFetch;if(originalOwner===undefined)delete process.env.OWNER_IDENTITY_ID;else process.env.OWNER_IDENTITY_ID=originalOwner;}
 console.log('PASS isolated deploy package: require(ESM) disabled, public SSR/RSS, private guards, published snapshots and legacy unpublish.');

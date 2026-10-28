@@ -4,21 +4,24 @@ const form=document.querySelector<HTMLFormElement>('#login-form')!;
 const passwordForm=document.querySelector<HTMLFormElement>('#password-form')!;
 const google=document.querySelector<HTMLButtonElement>('#google-login')!;
 const signout=document.querySelector<HTMLButtonElement>('#logout')!;
+const resume=document.querySelector<HTMLButtonElement>('#continue-session')!;
+const returnedByGuard=new URLSearchParams(location.search).get('reason')==='session';
 let inviteToken='';
 let busy=false;
 let afterGoogle='';
 const googleRequested=new URLSearchParams(location.search).get('provider')==='google';
 const next=new URLSearchParams(location.search).get('next') || '/studio';
-const allowedDestinations=['/studio/about','/studio/kobo-test','/trips','/places','/','/apps/hikari','/apps/fumi','/apps/irodori','/apps/tsuzuri','/studio/tools/hikari','/studio/tools/fumi','/studio/tools/irodori','/studio/tools/tsuzuri','/apps','/apps/photocraft','/apps/lightcraft','/apps/wordcraft','/apps/pdfcraft','/studio','/studio/photo-editor','/studio/users','/studio/account','/studio/storage','/studio/content','/studio/content/edit','/studio/content/preview','/studio/tools/photocraft','/studio/tools/lightcraft','/studio/tools/wordcraft','/studio/tools/pdfcraft'];
+const allowedDestinations=['/studio/downloads','/studio/irodori-test','/settings','/settings/connections','/studio/about','/studio/kobo-test','/trips','/places','/','/apps/hikari','/apps/fumi','/apps/irodori','/apps/tsuzuri','/studio/tools/hikari','/studio/tools/fumi','/studio/tools/irodori','/studio/tools/tsuzuri','/apps','/apps/photocraft','/apps/lightcraft','/apps/wordcraft','/apps/pdfcraft','/studio','/studio/photo-editor','/studio/users','/studio/account','/studio/storage','/studio/content','/studio/content/edit','/studio/content/preview','/studio/tools/photocraft','/studio/tools/lightcraft','/studio/tools/wordcraft','/studio/tools/pdfcraft'];
 let destination='/studio';try{const target=new URL(next,location.origin);const path=target.pathname.replace(/\/$/,'')||'/';if(target.origin===location.origin&&allowedDestinations.includes(path)){destination=path;const file=target.searchParams.get('file');const query=new URLSearchParams();if(file&&/^[0-9a-f-]{36}$/i.test(file))query.set('file',file);const entry=target.searchParams.get('entry');if(entry&&(entry==='pages/about'||/^(journal|essays|cyber|photography)\/[a-z0-9][a-z0-9-]{0,199}$/.test(entry)))query.set('entry',entry);const collection=target.searchParams.get('collection');if(collection&&['journal','essays','cyber','photography'].includes(collection))query.set('collection',collection);if(path==='/trips'){const eventId=target.searchParams.get('event');if(eventId&&/^[0-9a-f-]{36}$/i.test(eventId))query.set('event',eventId);const view=target.searchParams.get('view');if(['mine','public','bin'].includes(view||''))query.set('view',view!);if(target.searchParams.get('new')==='1')query.set('new','1');for(const key of ['lat','lng']){const value=target.searchParams.get(key);if(value!==null&&Number.isFinite(Number(value))&&Math.abs(Number(value))<=(key==='lat'?85.05112878:180))query.set(key,value);}}if(query.size)destination+='?'+query.toString();}}catch{}
 const loginError=new URLSearchParams(location.search).get('error');
 if(loginError)status.textContent='Sign-in could not be completed. Check your email and password, or use password recovery.';
 const message=(error:unknown)=>error instanceof Error?error.message:'Sign-in could not be completed. Please try again.';
-async function session() {
-  const response=await fetch('/api/studio/session',{cache:'no-store'});
+async function session(allowRedirect=true) {
+  const response=await fetch('/api/studio/session',{cache:'no-store',signal:AbortSignal.timeout(10000)});
   const data=await response.json();
   if(!response.ok) throw Error(data.error || 'You do not have access to this studio.');
   form.hidden=true;google.hidden=true;signout.hidden=false;
+  if(!data.setupRequired&&!allowRedirect){resume.hidden=false;status.textContent='You are signed in, but the account page could not confirm your session. Continue to retry, or sign out and sign in again.';return;}
   if(data.setupRequired){document.querySelector('#owner-setup')!.removeAttribute('hidden');document.querySelector('#owner-id')!.textContent=data.id;document.querySelector('#owner-variable')!.textContent=data.variable==='OWNER_GOOGLE_IDENTITY_ID'?'OWNER_GOOGLE_IDENTITY_ID':'OWNER_IDENTITY_ID';status.textContent='Signed in. Your permanent owner ID still needs to be connected.';}
   else{let landing='/studio';if(!new URLSearchParams(location.search).has('next')&&!afterGoogle){try{const response=await fetch('/api/storage/preferences',{cache:'no-store'}),p=await response.json();const preferred=response.ok?p.landingPage:localStorage.getItem('explore-landing-page');if(preferred==='home')landing='/';}catch{try{if(localStorage.getItem('explore-landing-page')==='home')landing='/';}catch{}}}location.replace(afterGoogle||(new URLSearchParams(location.search).has('next')?destination:landing));}
 }
@@ -39,7 +42,7 @@ async function initialize() {
       oauthLogin('google');
       return;
     }
-    if(await getUser()){await session();return;}
+    if(await getUser()){await session(!returnedByGuard);return;}
     form.hidden=false;
     if(!loginError)status.textContent='Use your invited account to sign in.';
     // Provider discovery must never prevent email/password sign-in.
@@ -51,4 +54,5 @@ passwordForm.addEventListener('submit',async event=>{event.preventDefault();if(b
 document.querySelector('#recover-password')!.addEventListener('click',async()=>{const email=document.querySelector<HTMLInputElement>('#login-email')!;if(!email.reportValidity())return;try{await requestPasswordRecovery(email.value.trim());status.textContent='If this email belongs to an account, a password reset link has been requested.';}catch{status.textContent='The password reset request could not be sent. Please try again.';}});
 google.addEventListener('click',()=>{location.assign('/studio/login?provider=google');});
 signout.addEventListener('click',async()=>{try{await logout();location.replace('/studio/login');}catch(error){status.textContent=message(error);}});
+resume.addEventListener('click',async()=>{if(busy)return;busy=true;resume.disabled=true;status.textContent='Checking your account…';try{await session();}catch(error){status.textContent=message(error);}finally{busy=false;resume.disabled=false;}});
 initialize();
