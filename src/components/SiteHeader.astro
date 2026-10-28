@@ -7,6 +7,8 @@ const links = [
   ['/#photography', 'Photography', 'photography'],
   ['/journal', 'Journal', 'journal'],
   ['/trips', 'Trips', 'trips'],
+  ['/kobo', 'Apps', 'software'],
+  ['/3d-printing', '3D Printing', 'printing'],
   ['/about', 'About Claudia', 'about'],
   ['/contact', 'Contact', 'contact'],
 ];
@@ -51,6 +53,8 @@ const links = [
     else if (/^\/(chinaseries|dailycyberreport|strategy)(\/|$)/.test(path)) section = 'writing';
     else if (path.startsWith('/tags')) section = 'tags';
     else if (path.startsWith('/trips')) section = 'trips';
+    else if (path === '/kobo'||path.startsWith('/apps')) section = 'software';
+    else if (path === '/3d-printing') section = 'printing';
     else if (path.startsWith('/journal')) section = 'journal';
     else if (path.startsWith('/photography')) section = 'photography';
     else if (path.startsWith('/places')) section = 'map';
