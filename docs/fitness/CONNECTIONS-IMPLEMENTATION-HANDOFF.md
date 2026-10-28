@@ -15,7 +15,7 @@ Claudia asked for the connections to be built while she sleeps. The first delive
 | Provider | Current working path | Direct-connection dependency |
 | --- | --- | --- |
 | Komoot | View a GPX export where the user's account permits it | Approved/documented access and current reuse rules; no unofficial password-based API. |
-| Garmin | View exported GPX activities | Garmin Connect Developer Program approval and documented Activity/Health API access. FIT/TCX parsing is future work, not advertised as delivered. |
+| Garmin | View exported GPX, TCX or FIT GPS routes | Garmin Connect Developer Program approval and documented Activity/Health API access. Local FIT/TCX GPS route parsing is now implemented; see `ACTIVITY-FILE-IMPORTS.md`. |
 | Google Fit | No new direct Fit integration | Deprecated developer API route must be replaced/verified; Android Health Connect needs a mobile companion and scoped device permissions. |
 | MyFitnessPal | No nutrition connection delivered | Approved partner access or verified supported export format, plus optional nutrition consent/data design. |
 | Xiaomi | No direct wearable connection delivered | Confirm Mi Fitness versus Zepp Life and device model; then a supported Health Connect/export/approved partner route. |

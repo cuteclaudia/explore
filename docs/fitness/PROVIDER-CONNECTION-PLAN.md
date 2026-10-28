@@ -1,6 +1,6 @@
 # Fitness connections for Explore
 
-Claudia's requested order starts with Strava, and includes Komoot, Garmin, Google Fit, MyFitnessPal and Xiaomi. The public website and Kōbō releases need not wait for these integrations. `/settings/connections` now lists all six, with distinct readiness information. **Strava’s read-only OAuth and selected-activity preview are now implemented, but remain disabled until administrator configuration and real-provider acceptance.** The other five direct connections are not implemented. GPX viewing and route-derived statistics work now; neither GPX nor Strava preview is a persisted activity history or automatic background sync. See `STRAVA-SETUP.md`.
+Claudia's requested order starts with Strava, and includes Komoot, Garmin, Google Fit, MyFitnessPal and Xiaomi. The public website and Kōbō releases need not wait for these integrations. `/settings/connections` now lists all six, with distinct readiness information. **Strava’s read-only OAuth and selected-activity preview are now implemented, but remain disabled until administrator configuration and real-provider acceptance.** The other five direct connections are not implemented. GPX/TCX/FIT viewing and route-derived statistics work now; neither GPX nor Strava preview is a persisted activity history or automatic background sync. See `STRAVA-SETUP.md`.
 
 ## Research status
 
@@ -10,7 +10,7 @@ The implementation inventory is verified against the repository. Fresh requests 
 | --- | --- | --- | --- |
 | Strava | Selected activities, routes, distance, elapsed/moving time and source elevation | Dedicated OAuth application and documented activity/stream APIs; begin read-only | Register app; review current API agreement and allowed display/retention; confirm test-athlete/production capacity and required approval. |
 | Komoot | Planned tours/completed routes for trip planning | Approved documented partner access; GPX import where the user's account permits export | Confirm a supported integration/partner route. Do not assume an unrestricted self-service developer API. |
-| Garmin Connect | Recorded activity files/routes; later separately consented wellness data | Garmin Connect Developer Program, with Activity/Health access as appropriate | Apply for approved programme/data access and confirm commercial terms. Existing GPX preview is a manual fallback; FIT/TCX import is not implemented. |
+| Garmin Connect | Recorded activity files/routes; later separately consented wellness data | Garmin Connect Developer Program, with Activity/Health access as appropriate | Apply for approved programme/data access and confirm commercial terms. Existing GPX preview is a manual fallback; Local FIT/TCX route preview is now implemented; this does not create a direct account connection. |
 | Google Fit | Android activity/wearable summaries | Assess Android Health Connect with a companion app, rather than starting new work on deprecated Google Fit developer APIs | Verify current Fit retirement/export status, Health Connect policy, Android packaging and which source apps actually write the requested data. Website OAuth cannot directly read a phone's Health Connect store. |
 | MyFitnessPal | Optional nutrition/energy information alongside activity summaries | Approved partner API or an explicitly supported user export | Confirm access and permitted uses. Do not assume open developer registration or treat nutrition entries as GPS routes. |
 | Xiaomi | Activity/wellness information from a wearable | Supported Mi Fitness/Zepp Life export, Health Connect if supported by that app/device, or approved Xiaomi/partner access | Confirm the wearable model and companion app first. Mi Fitness and Zepp Life are distinct ecosystems; a supported path for one does not establish it for the other. |
@@ -39,8 +39,10 @@ Weekly/monthly summaries need a real private activity store and the user's chose
 
 Only request data that serves an actual feature. Route planning needs geometry; it does not automatically need heart rate, sleep, weight or food diaries. Those later additions need separate controls and deletion/retention design. Keep connected activities private to their owner; public route/journal sharing is a separate, provider-permitted action with location privacy controls.
 
-GPX imports stay useful while partner access is pending. FIT/TCX support would require bounded parsers, validation and integrity tests before being advertised. Manual user exports and provider-derived API data must retain distinct provenance and obligations.
+GPX imports stay useful while partner access is pending. Bounded FIT/TCX route readers are now implemented and fixture-tested; see `ACTIVITY-FILE-IMPORTS.md` for limits. Manual user exports and provider-derived API data must retain distinct provenance and obligations.
 
 ## Practical sequence
 
 First finish the live website/account smoke checks. Next verify Strava's current documentation and register the application. Build selected-activity import and real totals before background sync. In parallel, request Garmin access, clarify Komoot/MyFitnessPal access, and establish the Xiaomi device/app. Health Connect needs a separate Android companion workstream; it is not a website toggle or an existing Kōbō app capability. No provider credentials, grants, API approvals or paid services have been created by this work.
+
+Next-provider applications and approval evidence are prepared in `GARMIN-KOMOOT-APPROVAL.md`. No application has been submitted. The consolidated website and app sign-off list is `../RELEASE-CHECKLIST.md`.
