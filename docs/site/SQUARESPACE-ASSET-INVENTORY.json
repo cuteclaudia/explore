@@ -1,0 +1,81 @@
+{
+  "checked": "2026-10-28",
+  "scope": "Repository source content only; excludes Studio drafts and published Blobs overrides.",
+  "downloadStatus": "Not downloaded; network proxy refused source image access.",
+  "uniqueImages": 12,
+  "sourceFiles": 9,
+  "images": [
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/69a5714b01c5ef1dbd23516a/1774560723148-O7XLI2GG0YHPVQ79IHDE/puertochancay.jpg?format=original",
+      "sourceFiles": [
+        "src/content/essays/puertochancay.mdoc"
+      ]
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/69a5714b01c5ef1dbd23516a/1776678108779-4JQ20B1YNMP3PKLUR99N/China.jpg?format=original",
+      "sourceFiles": [
+        "src/content/essays/the-war-they-studied-strategic-shock-hormuz-and-chinas-deepening-turn-to-systemic-self-reliance.mdoc"
+      ]
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/69a5714b01c5ef1dbd23516a/1776678173365-F578CN7SABELQGRK3Y6V/download.jpg?format=original",
+      "sourceFiles": [
+        "src/content/essays/the-war-they-studied-strategic-shock-hormuz-and-chinas-deepening-turn-to-systemic-self-reliance.mdoc"
+      ]
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/69a5714b01c5ef1dbd23516a/1776941847823-RT9K6TII7K7RNR94HQV6/ChatGPT+Image+Apr+23%2C+2026%2C+08_56_58+PM.png?format=original",
+      "sourceFiles": [
+        "src/content/cyber/daily-cyber-threat-report-australia-japan-asia-23-april-2026.mdoc"
+      ]
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/69a5714b01c5ef1dbd23516a/1777029347294-JINDZLFX2UV9EODW3ELJ/ChatGPT+Image+Apr+24%2C+2026%2C+09_00_40+PM.png?format=original",
+      "sourceFiles": [
+        "src/content/cyber/daily-cyber-threat-report-australia-japan-asia-24-april-2026.mdoc"
+      ]
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/69a5714b01c5ef1dbd23516a/1777199052057-IHCA3NRDFK1A35DCWEP0/ChatGPT+Image+Apr+26%2C+2026%2C+08_19_47+PM.png?format=original",
+      "sourceFiles": [
+        "src/content/cyber/daily-cyber-threat-report-australia-japan-asia-26-april-2026.mdoc"
+      ]
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/69a5714b01c5ef1dbd23516a/1777284294250-K75MOIX5WFI2ZOMXGW6D/ChatGPT+Image+Apr+27%2C+2026%2C+08_04_19+PM.png?format=original",
+      "sourceFiles": [
+        "src/content/cyber/daily-cyber-threat-report-australia-japan-asia-27-april-2026.mdoc"
+      ]
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/69a5714b01c5ef1dbd23516a/1777460747700-LFSONG8HOWST6M1FTQGK/ChatGPT+Image+Apr+29%2C+2026%2C+09_05_31+PM.png?format=original",
+      "sourceFiles": [
+        "src/content/cyber/daily-cyber-threat-reportaustralia-japan-asia-29-april-2026.mdoc"
+      ]
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/69a5714b01c5ef1dbd23516a/512be974-9524-4e62-9b41-87a85d014a8b/spratly_islands.webp?format=original",
+      "sourceFiles": [
+        "src/content/pages/about.mdoc"
+      ]
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/69a5714b01c5ef1dbd23516a/59dad4c3-7182-454b-be29-596584d72d74/aniversario-puerto-de-chancay.png?format=original",
+      "sourceFiles": [
+        "src/content/essays/puertochancay.mdoc"
+      ]
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/69a5714b01c5ef1dbd23516a/962d2c97-540c-48ea-b7b0-57822aca9dff/PLA-N+LHD.jpg?format=original",
+      "sourceFiles": [
+        "src/content/essays/the-clock-they-cannot-read-why-western-policy-analysts-consistently-misunderstand-chinese-strategic-intent.mdoc"
+      ]
+    },
+    {
+      "url": "https://images.squarespace-cdn.com/content/v1/69a5714b01c5ef1dbd23516a/b7b443a5-c21b-4c13-99f5-0e7b8199a78c/Great+Wall.png?format=original",
+      "sourceFiles": [
+        "src/content/essays/the-clock-they-cannot-read-why-western-policy-analysts-consistently-misunderstand-chinese-strategic-intent.mdoc"
+      ]
+    }
+  ]
+}

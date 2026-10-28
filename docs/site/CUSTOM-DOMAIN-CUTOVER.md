@@ -2,6 +2,12 @@
 
 Status: preparation only. No DNS, domain registration, Netlify setting, OAuth setting or Squarespace subscription has been changed. Claudia has requested this move. The website can become public while Kōbō remains an invitation-only beta.
 
+28 October 2026 update: Claudia confirmed that DNS is managed in Squarespace. Keep that DNS service and change only the necessary website records when ready. This does not independently establish the registrar or the email provider. Strava is the selected first fitness integration; it is separate from the website launch and must not delay the cutover.
+
+Current handoff: open Squarespace → Domains → claudiagilbert.com → DNS settings and record the existing records; also open the existing explorebyclaudia Netlify project's Domain management. Compare the current website records with the exact targets Netlify displays before editing anything. Export/screenshot the current zone for rollback, retaining mail and verification records.
+
+The migration asset inventory is recorded in `SQUARESPACE-ASSET-INVENTORY.json`. A fresh attempt to fetch a source image from this workspace was refused by the network proxy (HTTP tunnel 403), so none has been copied or rewritten. The old sitemap and current Netlify sitemap were also inaccessible here. These are outstanding external checks, not passes. Saved Studio content still requires a separate signed-in check.
+
 ## Findings from the repository
 
 - `astro.config.mjs`, canonical links, RSS and `public/robots.txt` already target `https://www.claudiagilbert.com`.
@@ -57,4 +63,4 @@ If cutover fails, restore the recorded website DNS values and relevant Netlify p
 
 ## Responsibility and outstanding information
 
-Registrar/DNS-provider location and domain-email dependencies are awaiting Claudia's confirmation. Account-console and DNS changes require Claudia's access; no suitable Netlify/Squarespace connector is available in this session. The final record values must come from Netlify and the current DNS zone, not this document. The cutover is not complete until the live checks pass.
+DNS is managed in Squarespace. Registrar and domain-email dependencies remain unverified. Account-console and DNS changes require Claudia's access; no suitable Netlify/Squarespace connector is available in this session. The final record values must come from Netlify and the current DNS zone, not this document. The cutover is not complete until the live checks pass.
