@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import {protectPage} from '../../../server/identity';
+export const prerender=false;
+const actor=await protectPage('/studio/irodori-test','settings.manage');if(actor instanceof Response)return actor;
+if(!actor.isOwner)return new Response('This preview is owner-only.',{status:403,headers:{'Cache-Control':'private, no-store'}});
+Astro.response.headers.set('Cache-Control','private, no-store');
+---
+<Base title="Irodori image editor · Owner preview" noindex>
+<section class="wrap irodori-preview"><header><a href="/studio">← My Studio</a><h1>Irodori <span>Image editing & design · 0.16.0</span></h1><p>Owner preview, separate from Hikari. Open a device image, edit it and download your result. This build has no Kōbō sync or account-isolated document recovery. Download your work before leaving.</p><p class="device-note">Desktop and tablet testing first. Irodori’s phone layout is not ready yet.</p></header>
+<div id="irodori-setup" hidden><p>Create a separate static Netlify test site for Irodori, deploy the prepared folder with its <code>_headers</code>, then set <code>IRODORI_PREVIEW_ORIGIN</code> on Explore to that site’s HTTPS origin and redeploy Explore. Keep Hikari’s origin unchanged.</p></div>
+<div class="preview-bar"><label class="compatibility-option"><input type="checkbox" id="irodori-compatibility" checked />Compatibility renderer (WebGL2)</label><button type="button" id="irodori-open" class="btn" disabled>Open Irodori</button><button type="button" id="irodori-close" class="btn ghost" disabled>Close</button><button type="button" id="irodori-fullscreen" class="btn ghost" disabled>Full screen</button></div><p id="irodori-state" role="status">Checking owner preview configuration…</p>
+<iframe id="irodori-frame" title="Irodori — image editing and design" sandbox="allow-scripts allow-same-origin allow-downloads allow-popups allow-modals" allow="clipboard-read; clipboard-write; fullscreen" referrerpolicy="no-referrer" hidden></iframe>
+</section></Base>
+<script>import '../../scripts/irodori-preview';</script>
+<style>.irodori-preview{max-width:1440px;padding-block:20px 30px}.irodori-preview header>a{font-size:12px}.irodori-preview h1{font:450 30px var(--serif);margin:10px 0}.irodori-preview h1 span{font:13px var(--sans);margin-left:10px}.irodori-preview header p{font-size:13px;max-width:90ch;margin:8px 0}.device-note{opacity:.7}#irodori-setup{padding:10px 14px;border:1px solid var(--border);border-radius:6px;font-size:13px}.compatibility-option{display:flex;align-items:center;gap:6px;font-size:13px}.preview-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px}#irodori-state{font-size:13px}iframe{display:block;width:100%;height:calc(100dvh - 140px);min-height:480px;border:1px solid var(--border);background:#1c2135}iframe:fullscreen{height:100%;min-height:0;border:0}@media(max-width:700px){.irodori-preview{padding-inline:16px}.irodori-preview h1 span{display:block;margin:7px 0 0}.preview-bar button{min-height:44px}iframe{height:70dvh}}</style>
