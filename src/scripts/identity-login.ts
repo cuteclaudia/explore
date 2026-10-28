@@ -1,4 +1,4 @@
-import { login, logout, getUser, getSettings, oauthLogin, handleAuthCallback, acceptInvite, updateUser, requestPasswordRecovery } from '@netlify/identity';
+import { login, logout, getUser, getSettings, oauthLogin, handleAuthCallback, acceptInvite, updateUser, requestPasswordRecovery, refreshSession } from '@netlify/identity';
 const status=document.querySelector<HTMLElement>('#auth-status')!;
 const form=document.querySelector<HTMLFormElement>('#login-form')!;
 const passwordForm=document.querySelector<HTMLFormElement>('#password-form')!;
@@ -26,6 +26,7 @@ async function session(allowRedirect=true) {
   else{let landing='/studio';if(!new URLSearchParams(location.search).has('next')&&!afterGoogle){try{const response=await fetch('/api/storage/preferences',{cache:'no-store'}),p=await response.json();const preferred=response.ok?p.landingPage:localStorage.getItem('explore-landing-page');if(preferred==='home')landing='/';}catch{try{if(localStorage.getItem('explore-landing-page')==='home')landing='/';}catch{}}}location.replace(afterGoogle||(new URLSearchParams(location.search).has('next')?destination:landing));}
 }
 async function initialize() {
+  form.hidden=true;if(!loginError)status.textContent='Checking your sign-in…';
   if(/^#(?:confirmation_token|recovery_token|invite_token|email_change_token|access_token)=/.test(location.hash))form.hidden=true;
   try {
     const callback=await handleAuthCallback();
@@ -42,7 +43,7 @@ async function initialize() {
       oauthLogin('google');
       return;
     }
-    if(await getUser()){await session(!returnedByGuard);return;}
+    if(await getUser()){await refreshSession();await session(!returnedByGuard);return;}
     form.hidden=false;
     if(!loginError)status.textContent='Use your invited account to sign in.';
     // Provider discovery must never prevent email/password sign-in.
