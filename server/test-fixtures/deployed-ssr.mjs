@@ -9,6 +9,7 @@ for(const path of ['/about','/journal','/journal/deployment-check','/chinaseries
  if(path==='/prototype-content.json'){const content=JSON.parse(body);assert(content.essays.length>0);assert(!content.essays.some(x=>x.href==='/chinaseries/puertochancay'));}
  console.log('PASS packaged SSR',path);
 }
+const oldExplore=await response('/explore?place=3');assert.equal(oldExplore.status,301);assert.equal(oldExplore.headers.get('location'),'/places?place=3');
 assert.equal((await response('/chinaseries/puertochancay')).status,404,'Unpublished legacy page must remain hidden');
 for(const path of ['/studio/about','/studio','/studio/content','/apps','/studio/kobo-test','/studio/irodori-test','/apps/irodori','/apps/irodori-legacy']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
 assert.equal((await response('/api/content/list')).status,401);
