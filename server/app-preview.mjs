@@ -1,6 +1,6 @@
 import {AccessError} from './access.mjs';
 const shellOrigins=['https://explorebyclaudia.netlify.app','https://www.claudiagilbert.com','https://claudiagilbert.com'];
-// Preview is deliberately separate from KOBO_IRODORI_ORIGIN: this binary has no
+// Device-only Irodori (preview and normal workspace) is deliberately separate from KOBO_IRODORI_ORIGIN: this binary has no
 // storage bridge and must never be offered as a connected Kōbō storage app.
 export function irodoriPreviewOrigin(shellOrigin,env=process.env){
  const value=env.IRODORI_PREVIEW_ORIGIN;if(!value)return null;

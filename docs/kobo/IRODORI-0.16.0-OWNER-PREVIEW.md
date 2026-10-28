@@ -1,6 +1,6 @@
 # Irodori 0.16.0: owner preview setup and review
 
-28 October 2026, Australia/Sydney. Prepared for owner testing. This does not replace `/apps/irodori`, enable Irodori storage, alter Hikari's origin/access or approve v1.4. Hikari's real two-device acceptance remains first.
+28 October 2026, Australia/Sydney. Original owner-preview record. The user has since deployed the separate site, configured Explore and reported that it opens. The later normal-workspace promotion is documented in `IRODORI-0.16.0-LIVE-WORKSPACE.md`. This preview does not enable Irodori storage, alter Hikari's origin/access or approve v1.4. Hikari's real two-device acceptance remains first.
 
 ## Verified package
 
@@ -15,7 +15,7 @@ Reproducible preparation: `node scripts/prepare-irodori-test.mjs SOURCE_ZIP EMPT
 
 ## Netlify steps for Claudia
 
-A Netlify connector/deployment credential was not available in this workspace; no site has been created or deployed by these checks. The proposed name is not a claim that the address is registered.
+A Netlify connector/deployment credential was not available in this workspace; no site was created or deployed by these automated checks. Claudia subsequently completed the manual setup and reported success. The proposed name is not a claim that the address is registered.
 
 1. Download `irodori-test-site-0.16.0.zip` and extract it. The extracted folder must have `index.html`, `_headers`, `netlify.toml`, `start-1.js` and `app/` directly inside it.
 2. In Netlify, create a **new project/site** using the manual deploy option. Drop that extracted folder into the deploy area. Never upload it over Explore or the Hikari test site. Keep the `.part-*` bytes/names unchanged; the app decompresses them itself.
@@ -25,7 +25,7 @@ A Netlify connector/deployment credential was not available in this workspace; n
 
 The origin validator refuses the website's own origins and the configured Hikari/Fumi/Tsuzuri origins. The iframe has the same sandbox/allow/referrer attributes as Hikari. The status endpoint requires a fresh owner identity and returns private/no-store responses. Hikari beta permission is insufficient. Logout/revocation destroys the frame; startup responses arriving after logout are ignored. Existing legacy editors and storage-contract operations remain unchanged.
 
-**Scope of “owner-only”:** the website route and launch controls are owner-only. The static app itself has no authentication and can run directly if someone knows its URL, just like an ordinary manually deployed static app. If direct asset/site privacy is required too, configure appropriate Netlify site/deploy protection and verify cross-origin embedding; the wrapper alone cannot make public static assets private. No public app-directory link is added.
+**Scope of “owner-only”:** the website route and launch controls are owner-only. The static app itself has no authentication and can run directly if someone knows its URL, just like an ordinary manually deployed static app. If direct asset/site privacy is required too, configure appropriate Netlify site/deploy protection and verify cross-origin embedding; the wrapper alone cannot make public static assets private. The original preview added no public app-directory link. The later permission-protected normal workspace reuses the existing Irodori app card.
 
 ## Rendering finding and compatibility mode
 

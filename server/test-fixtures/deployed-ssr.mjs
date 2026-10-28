@@ -10,7 +10,8 @@ for(const path of ['/about','/journal','/journal/deployment-check','/chinaseries
  console.log('PASS packaged SSR',path);
 }
 assert.equal((await response('/chinaseries/puertochancay')).status,404,'Unpublished legacy page must remain hidden');
-for(const path of ['/studio/about','/studio','/studio/content','/apps','/studio/kobo-test','/studio/irodori-test']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
+for(const path of ['/studio/about','/studio','/studio/content','/apps','/studio/kobo-test','/studio/irodori-test','/apps/irodori','/apps/irodori-legacy']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
 assert.equal((await response('/api/content/list')).status,401);
 assert.equal((await response('/api/apps/irodori-preview')).status,401);
+assert.equal((await response('/api/apps/irodori-session')).status,401);
 console.log('PASS isolated deploy package: require(ESM) disabled, public SSR/RSS, private guards, published snapshots and legacy unpublish.');

@@ -15,3 +15,7 @@
 Update recorded 28 October 2026, Australia/Sydney. These are the user’s reported live results, not a new independent execution by the website agent. Normal two-device syncing does not by itself establish deliberate conflict recovery.
 
 The report does not independently establish the deployed artifact checksum or complete every two-device acceptance item. Do not treat it as approval to expose other users' libraries, publish installers or cut over the live app. Follow `TWO-DEVICE-ACCEPTANCE.md` for the remaining checks.
+
+## Irodori hosting report
+
+Claudia reports the separate-origin Irodori 0.16.0 preview opens successfully and explicitly authorizes using it from My Studio as the normal Irodori editor. This is permission to promote the device-download editor, not evidence of cloud storage, account-separated recovery, a phone canvas layout or edited-file export/reopen acceptance. Claudia confirms the original 0.16.0 ZIP remains deployed; Claude's draft 2 step 1 is in progress and will arrive as a new versioned ZIP and handoff.
