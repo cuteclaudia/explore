@@ -5,7 +5,7 @@
 - Login recovery: protected Astro pages use the same fresh authorization service as the browser; session mismatches stop instead of looping. Browser initialization waits for near-expiry cookie refresh. Desktop installers and Settings return paths are retained. No account/password/grant reset was performed.
 - Shared public menu: **Apps** → `/kobo`; **3D Printing** → `/3d-printing`. The authenticated `/apps` library remains gated. Public app releases are clearly in testing/development; Store links are forthcoming. The 3D project gallery is explicitly in preparation.
 - macOS remains visible as **Planned** in the public showcase and enabled app cards, with all installer fields retained for future builds. No draft release was published, installer URL configured in live settings, Microsoft product submitted, repository created or token changed.
-- Fitness settings list Strava, Komoot, Garmin, Google Fit/Health Connect, MyFitnessPal and Xiaomi, with provider-specific availability and no fake Connect action. Current GPX preview remains functional. Direct fitness syncing is not implemented/enabled.
+- Fitness settings list Strava, Komoot, Garmin, Google Fit/Health Connect, MyFitnessPal and Xiaomi, with provider-specific availability and no fake Connect action. Current GPX preview remains functional. Follow-up: the Strava read-only connection is now implemented but disabled pending credentials, current provider requirements and real-athlete acceptance. The other five direct integrations remain pending. See `docs/fitness/STRAVA-SETUP.md` and `docs/fitness/CONNECTIONS-IMPLEMENTATION-HANDOFF.md`.
 
 ## Verification
 
@@ -21,7 +21,7 @@
 1. After Netlify deploys, refresh the site, sign in normally and open My Studio → Settings → Desktop installers. The new login controller should no longer bounce. Record the URL/status if a real-account problem remains; local fixtures are not a live authentication attestation.
 2. Review `/kobo` and `/3d-printing` on a phone/tablet. Add actual Store URLs only after products are published. The printing gallery needs Claudia's real photographs/project descriptions; no invented work was uploaded.
 3. Revisit Netlify's `www` certificate-renewal warning using `DOMAIN-RENEWAL-CHECK.md`. It remains unverified from here. Continue domain callback/mail/forms checks and preserve Squarespace-hosted assets before cancelling its website subscription.
-4. Start Strava developer registration/documentation review. Then implement the dedicated callback/token/import path and test with an approved athlete. Credentials belong in server-side configuration, never chat. See `docs/fitness/PROVIDER-CONNECTION-PLAN.md`; other providers need the listed access/mobile prerequisites.
+4. Start Strava developer registration/documentation review. The dedicated callback/token/preview path is now built; configure it and test with an approved athlete. Credentials belong in server-side configuration, never chat. See `docs/fitness/PROVIDER-CONNECTION-PLAN.md`; other providers need the listed access/mobile prerequisites.
 5. Coordinate app candidates/Windows and Hikari two-device checks with Claude. Microsoft developer registration alone does not publish products or connect Store licences to website entitlements. See `docs/kobo/MICROSOFT-STORE-PUBLIC-PAGES.md`.
 
 A short note to forward is in `docs/kobo/WEBSITE-UPDATE-FOR-CLAUDE-2026-10-28.md`.

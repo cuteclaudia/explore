@@ -9,8 +9,8 @@ import Icon from './Icon.astro';
   </div>
   <section class="activity-glance" aria-labelledby="activity-heading">
     <div class="glance-intro"><span class="eyebrow">Your own perspective</span><h2 id="activity-heading">Your route, at a glance.</h2><p id="activity-summary-note" role="status">Open a GPX track to see your route statistics here. It stays in this browser view.</p><button type="button" id="open-route-preview"><Icon name="plus" size={16}/>Open GPX track</button><button type="button" id="clear-route-preview" hidden>Clear preview</button></div>
-    <dl class="activity-numbers"><div><dt>Distance</dt><dd id="activity-distance">—</dd><span>Mapped track</span></div><div><dt>Elevation gain</dt><dd id="activity-ascent">—</dd><span>From your GPX</span></div><div><dt>Highest point</dt><dd id="activity-highest">—</dd><span>With full elevation data</span></div><div><dt>Track points</dt><dd id="activity-points">—</dd><span>In this preview</span></div></dl>
-    <div class="connection-note"><Icon name="layers" size={16}/><p><strong>Bring your activities together.</strong> Strava is our first planned connection. Account syncing is not connected yet.</p><a href="/settings/connections">Activity connections <Icon name="arrow" size={14}/></a></div>
+    <dl class="activity-numbers"><div><dt>Distance</dt><dd id="activity-distance">—</dd><span>Mapped track</span></div><div><dt>Elevation gain</dt><dd id="activity-ascent">—</dd><span id="activity-source-label">From your GPX</span></div><div><dt>Highest point</dt><dd id="activity-highest">—</dd><span>With full elevation data</span></div><div><dt>Track points</dt><dd id="activity-points">—</dd><span>In this preview</span></div></dl>
+    <div class="connection-note"><Icon name="layers" size={16}/><p><strong>Bring your activities together.</strong> Preview selected activities from Strava once your account is connected.</p><a href="/settings/connections">Activity connections <Icon name="arrow" size={14}/></a></div>
   </section>
 </section>
 <style>
