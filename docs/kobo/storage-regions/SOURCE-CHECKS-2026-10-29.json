@@ -1,0 +1,12 @@
+{
+  "dateSydney": "2026-10-29",
+  "status": "Official source content not retrieved; execution proxy refused CONNECT with HTTP 403 (curl exit 56). These are not provider denial responses or proof of API availability.",
+  "sources": [
+    {"provider":"Nextcloud", "url":"https://nextcloud.com/providers/", "result":"proxy-connect-403"},
+    {"provider":"Proton Drive", "url":"https://proton.me/drive", "result":"proxy-connect-403"},
+    {"provider":"Google Workspace data regions", "url":"https://support.google.com/a/answer/9223653", "result":"proxy-connect-403"},
+    {"provider":"AWS S3 regions", "url":"https://docs.aws.amazon.com/general/latest/gr/s3.html", "result":"proxy-connect-403"},
+    {"provider":"Infomaniak kDrive", "url":"https://www.infomaniak.com/en/kdrive", "result":"proxy-connect-403"}
+  ],
+  "limits": "No current pricing, hosting plan/country guarantee, provider API permission, encryption validation or production acceptance is asserted. Proposal uses known integration models and existing repository contracts."
+}
