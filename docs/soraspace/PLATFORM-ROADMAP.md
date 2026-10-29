@@ -14,6 +14,8 @@ A workspace can exist without a public site. A site can exist without a shop. Bu
 
 ## Target customer journey
 
+An owner-only four-step questionnaire and downloadable private template draft are now available; see [guided site setup](SITE-SETUP-WORKFLOW.md). This is a usability preview, not customer provisioning or publication.
+
 1. Create a verified account and a workspace. Keep invitation-only access until onboarding and isolation pass the gates below.
 2. Choose a template and optional pages: Home, About, Blog, Articles, Journal, Galleries and Contact. Shop appears only when the commerce module is available and deliberately enabled.
 3. Rename/reorder navigation, choose the homepage, colours, fonts, logo, hero and page-specific highlights. Start with a constrained section editor and approved themes; arbitrary script/HTML/theme uploads are outside the first version.

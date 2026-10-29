@@ -15,7 +15,7 @@ for(const path of ['/about','/journal','/journal/deployment-check','/chinaseries
 const oldExplore=await response('/explore?place=3');assert.equal(oldExplore.status,301);assert.equal(oldExplore.headers.get('location'),'/places?place=3');
 assert.equal((await response('/osint-brief/trashed-brief')).status,404,'Category-binned article must not be public');
 assert.equal((await response('/chinaseries/puertochancay')).status,404,'Unpublished legacy page must remain hidden');
-for(const path of ['/studio/hobbynest','/studio/hobbynest/products/new','/studio/about','/studio','/studio/content','/apps','/studio/kobo-test','/studio/irodori-test','/apps/irodori','/apps/irodori-legacy']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
+for(const path of ['/studio/soraspace-setup','/studio/hobbynest','/studio/hobbynest/products/new','/studio/about','/studio','/studio/content','/apps','/studio/kobo-test','/studio/irodori-test','/apps/irodori','/apps/irodori-legacy']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
 assert.equal((await response('/api/content/list')).status,401);
 assert.equal((await response('/api/hobbynest/images/fixture/11111111-1111-4111-8111-111111111111?draft=1')).status,401,'Draft photos require sign-in');
 assert.equal((await handler(new Request('https://explorebyclaudia.netlify.app/api/hobbynest/images',{method:'POST',body:'not-an-image'}),{ip:'127.0.0.1'})).status,401,'Product photo upload requires authentication');
@@ -42,7 +42,7 @@ globalThis.fetch=async(input,options)=>{
  return originalFetch(input,options);
 };
 try{
- for(const origin of ['https://www.claudiagilbert.com','https://claudiagilbert.com'])for(const path of ['/studio','/studio/hobbynest','/studio/downloads','/studio/account','/studio/users','/apps']){
+ for(const origin of ['https://www.claudiagilbert.com','https://claudiagilbert.com'])for(const path of ['/studio/soraspace-setup','/studio','/studio/hobbynest','/studio/downloads','/studio/account','/studio/users','/apps']){
   const r=await handler(new Request(origin+path,{headers:{Cookie:'nf_jwt=verified-by-session-service'}}),{ip:'127.0.0.1'});
   assert.equal(r.status,200,origin+path+' must recognize the verified browser session');assert.equal(r.headers.get('Cache-Control'),'private, no-store');console.log('PASS packaged custom-domain account session',origin+path);
  }
