@@ -4,7 +4,9 @@ export const SITE_PAGES=freeze({home:'Home',about:'About',blog:'Blog',articles:'
 export const SITE_TEMPLATES=freeze({
  folio:{name:'Folio',description:'A clear introduction with space for research, articles and projects.'},
  editorial:{name:'Editorial',description:'Writing first, with a featured introduction and a compact reading list.'},
- horizon:{name:'Horizon',description:'A visual introduction with room for galleries and creative work.'}
+ horizon:{name:'Horizon',description:'A visual introduction with room for galleries and creative work.'},
+ practice:{name:'Practice',description:'A focused introduction for independent businesses and professional services.'},
+ canvas:{name:'Canvas',description:'A simple, flexible personal space with a compact collection of pages.'}
 });
 export const SITE_PALETTES=freeze({moss:{name:'Moss',accent:'#36594a',wash:'#e7eee9'},ink:{name:'Ink',accent:'#344e72',wash:'#e8edf5'},clay:{name:'Clay',accent:'#854a36',wash:'#f4e9e3'}});
 export const SITE_PURPOSES=freeze({
@@ -12,8 +14,8 @@ export const SITE_PURPOSES=freeze({
  academic:{name:'Research & academic work',description:'Present your interests, articles and ways to get in touch.',pages:['home','about','articles','contact'],template:'folio'},
  writer:{name:'Writing & blogging',description:'Give your writing a home and help readers find what is new.',pages:['home','about','blog','contact'],template:'editorial'},
  creative:{name:'Photography & creative work',description:'Show your work through a visual portfolio.',pages:['home','about','galleries','contact'],template:'horizon'},
- business:{name:'A business or independent practice',description:'Introduce your work and help people contact you.',pages:['home','about','contact'],template:'folio'},
- personal:{name:'A personal space',description:'Start simply, then add pages as your interests grow.',pages:['home','about','blog'],template:'editorial'}
+ business:{name:'A business or independent practice',description:'Introduce your work and help people contact you.',pages:['home','about','contact'],template:'practice'},
+ personal:{name:'A personal space',description:'Start simply, then add pages as your interests grow.',pages:['home','about','blog'],template:'canvas'}
 });
 export class SiteSetupError extends Error{constructor(field,message){super(message);this.name='SiteSetupError';this.field=field;}}
 function text(value,key,max,required=false){

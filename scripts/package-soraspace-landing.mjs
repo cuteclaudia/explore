@@ -1,0 +1,23 @@
+// Packages only the approved static deployment output, never source or secrets.
+import {execFileSync} from 'node:child_process';
+import {mkdir,readFile,writeFile,copyFile,readdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+import {join,resolve} from 'node:path';
+import assert from 'node:assert/strict';
+import {zipSync,unzipSync} from 'fflate';
+const repo=fileURLToPath(new URL('../',import.meta.url)),site=join(repo,'sites/soraspace');
+const output=resolve(process.argv[2]||'/workspace/reviews/soraspace-release');
+execFileSync(process.execPath,[join(site,'build.mjs')],{cwd:site,stdio:'inherit'});
+const allowed=['404.html','_headers','favicon.svg','index.html','robots.txt','sitemap.xml','styles.css'];
+assert.deepEqual((await readdir(join(site,'dist'))).sort(),allowed.sort());
+const entries=Object.fromEntries(await Promise.all(allowed.map(async file=>['soraspace/'+file,new Uint8Array(await readFile(join(site,'dist',file)))])));
+const archive=zipSync(entries,{level:9,mtime:new Date('2026-10-30T00:00:00Z')});
+const unpacked=unzipSync(archive);assert.deepEqual(Object.keys(unpacked).sort(),Object.keys(entries).sort());
+for(const [key,bytes] of Object.entries(entries))assert.deepEqual(unpacked[key],bytes);
+const filename='soraspace-public-site-2026-10-30.zip',hash=createHash('sha256').update(archive).digest('hex');
+await mkdir(output,{recursive:true});await writeFile(join(output,filename),archive);
+await writeFile(join(output,'SHA256SUMS.txt'),hash+'  '+filename+'\n');
+await copyFile(join(repo,'docs/soraspace/NETLIFY-AND-DOMAIN-SETUP.md'),join(output,'SoraSpace-setup-guide.md'));
+await writeFile(join(output,'START-HERE.txt'),`SoraSpace public site — 30 October 2026\n\n1. Extract ${filename}.\n2. In Netlify, add a NEW project/site using Deploy manually (or Netlify Drop).\n3. Drop the extracted soraspace folder, with index.html directly inside it.\n4. Open the assigned Netlify URL and check the SoraSpace landing page.\n5. Rename the new project to soraspace if available; otherwise choose a variation.\n6. Keep Explore unchanged. Do not copy its secrets or Identity settings.\n7. Connecting www.soraspace.studio and the root domain is a separate DNS/HTTPS step.\n\nFull instructions: SoraSpace-setup-guide.md (Option A).\nNo Git/build settings are required for this ZIP. Registration/checkout are not enabled.\nExisting-user sign-in links to the current Explore workspace.\nFor updates, upload the next prepared folder to the SAME project's Deploys area.\n`);
+console.log(`Verified ZIP: ${join(output,filename)} (${archive.length} bytes)\nSHA-256: ${hash}`);

@@ -41,6 +41,15 @@ try{
   }
   for(let i=0;i<3;i++)await page.locator('#setup-next').click();
  }
+ // Each added template must also render safely at phone width, not just validate.
+ await page.setViewportSize({width:390,height:844});
+ for(const template of ['practice','canvas']){
+  await page.locator('#setup-back').click();await page.locator('#setup-back').click();
+  await page.locator(`[name=template][value=${template}]`).check();
+  await page.locator('#setup-next').click();await page.locator('#setup-next').click();
+  assert.equal(await page.locator('.draft-preview').getAttribute('data-template'),template);
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ }
  await page.keyboard.press('Shift+Tab');assert(await page.locator('#site-setup').evaluate(root=>root.contains(document.activeElement)));
  await page.goto(base+'/studio');assert.equal(await page.locator('a[href="/studio/soraspace-setup"]').count(),1);
  assert.deepEqual(errors,[]);console.log('PASS suggested templates/pages, custom choice preservation, validation, edit/regenerate, XSS-safe preview, private JSON download, no mutations, keyboard and 320–1366px layouts');

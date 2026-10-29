@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {SITE_PAGES,SITE_PURPOSES,recommendedSiteAnswers,validateSiteAnswers,createSiteDraft} from '../src/lib/soraspace-site-setup.mjs';
+import {SITE_PAGES,SITE_PURPOSES,SITE_TEMPLATES,recommendedSiteAnswers,validateSiteAnswers,createSiteDraft} from '../src/lib/soraspace-site-setup.mjs';
 const input=extra=>({...recommendedSiteAnswers('academic'),siteName:'Research by Alex',...extra});
 test('each purpose produces an editable private draft with only the selected navigation and no invented work',()=>{
  for(const purpose of Object.keys(SITE_PURPOSES)){
@@ -29,4 +29,15 @@ test('user text stays plain data; defaults and catalogue cannot be mutated by an
  const one=recommendedSiteAnswers('student');one.pages.push('journal');assert(!recommendedSiteAnswers('student').pages.includes('journal'));
  assert.throws(()=>SITE_PURPOSES.student.pages.push('journal'));assert(Object.isFrozen(SITE_PAGES));
  assert.equal(validateSiteAnswers(input({siteName:'  A site  '})).siteName,'A site');
+});
+
+test('all five starter templates preserve selected pages and private draft status',()=>{
+ assert.equal(Object.keys(SITE_TEMPLATES).length,5);
+ for(const template of Object.keys(SITE_TEMPLATES)){
+  const draft=createSiteDraft(input({template,pages:['home','articles','journal']}));
+  assert.equal(draft.theme.template,template);assert.equal(draft.visibility,'private');
+  assert.deepEqual(draft.navigation.map(item=>item.page),['home','articles','journal']);
+ }
+ assert.equal(recommendedSiteAnswers('business').template,'practice');
+ assert.equal(recommendedSiteAnswers('personal').template,'canvas');
 });

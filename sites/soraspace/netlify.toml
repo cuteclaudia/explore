@@ -1,0 +1,8 @@
+# Separate Netlify project. Set its Base directory to sites/soraspace in Netlify.
+# This file must never replace the repository root's Explore configuration.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"

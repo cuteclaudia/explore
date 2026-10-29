@@ -9,3 +9,6 @@ dist/
 
 public/vendor/craft/
 src/generated/craft/
+
+# Separate public SoraSpace landing build
+sites/soraspace/dist/
