@@ -8,6 +8,7 @@ import {BlobsServer} from '@netlify/blobs/server';
 import {hobbyNest,storeQuote,productAvailability} from './hobbynest.mjs';
 import sharp from 'sharp';
 import {AccessError} from './access.mjs';
+import {costDefaults} from '../src/lib/hobbynest-costing.mjs';
 const owner={user:{id:'owner'},isOwner:true},product={id:'planter',name:'Test planter',sku:'PRINT-1',kind:'physical',priceCents:2500,description:'A test fixture, not a real listing.',collectionIds:[],allowBackorder:true,printMinDays:3,printMaxDays:5,dispatchMinDays:1,dispatchMaxDays:2,weightGrams:200,lengthMm:150,widthMm:150,heightMm:100,licence:''};
 async function fixture(run){const directory=await mkdtemp(join(tmpdir(),'nest-')),server=new BlobsServer({directory,token:'local-only',logger:()=>{}});try{const address=await server.start(),url='http://127.0.0.1:'+address.port,store=getStore({name:'nest',siteID:'local',token:'local-only',apiURL:url,edgeURL:url,uncachedEdgeURL:url,consistency:'strong'}),service=hobbyNest(store);let settings=await service.settings(owner);const save=async(operation,value)=>settings=await service.save(owner,{expectedAccount:'owner',etag:settings.etag,operation,value});await run({service,store,save,settings:()=>settings});}finally{await server.stop();await rm(directory,{recursive:true,force:true});}}
 const colour=(name='Blue',filamentAvailable=true)=>({productId:'planter',id:'standard',name,enabled:true,filamentAvailable});
@@ -128,4 +129,30 @@ test('enabling live carrier estimates replaces manual shipping; an outage never 
  fail=true;await assert.rejects(live.quote(owner,input),e=>e.status===503);
  state=await live.save(owner,{expectedAccount:'owner',etag:state.etag,operation:'carrier.save',value:{enabled:false,monthlyEnabled:false,referencePostcode:'2000'}});
  q=await live.quote(owner,input);assert.equal(q.shipping[0].amountCents,900);assert.equal(calls,2);
+}));
+test('saved costing stays private and its suggested price is applied only to the draft on explicit request',()=>fixture(async({service,save,settings})=>{
+ await save('product.save',product);await save('product.publish',{id:product.id});const model={...costDefaults(),otherCents:500,targetMarginPercent:50};
+ await save('costing.save',{productId:product.id,model,applyPrice:false});assert.equal(settings().products[0].draft.priceCents,2500);assert.equal(settings().products[0].costing.otherCents,500);
+ await save('costing.save',{productId:product.id,model,applyPrice:true});assert.equal(settings().products[0].draft.priceCents,1000);assert.equal((await service.publicCatalogue()).products[0].priceCents,2500);assert(!JSON.stringify(await service.publicCatalogue()).includes('targetMarginPercent'));
+ await assert.rejects(save('costing.save',{productId:product.id,model:{...model,targetMarginPercent:95,feePercent:20},applyPrice:true}),e=>e.status===400);
+}));
+const importRow=(row,fields)=>({row,fields:{sku:'EXCEL-1',name:'Imported planter',kind:'physical',price:'19.95',...fields}});
+const importRequest=(state,rows,options={updateExisting:false,openingStock:false})=>({expectedAccount:'owner',etag:state.etag,importId:'33333333-3333-4333-8333-333333333333',rows,options});
+test('spreadsheet preview is read-only; grouped colour opening stock is atomic, private and idempotent',()=>fixture(async({service})=>{
+ const request=importRequest(await service.settings(owner),[importRow(2,{colour:'Blue',stock:'2',filamentAvailable:'yes'}),importRow(3,{colour:'Red',stock:'3'}),importRow(4,{sku:'EXCEL-STL',name:'Digital design',kind:'digital',price:'5.00',licence:'Personal use only'})],{updateExisting:false,openingStock:true});
+ const preview=await service.importProducts(owner,request);assert.equal(preview.errors.length,0);assert.equal(preview.counts.create,2);assert.equal((await service.settings(owner)).products.length,0);
+ const apply={...request,previewHash:preview.previewHash},result=await service.importProducts(owner,apply,true);assert.equal(result.applied,true);assert.equal(result.settings.products.length,2);assert.equal(result.settings.products[0].colours.reduce((sum,c)=>sum+c.stock,0),5);assert.equal(result.settings.movements.length,2);assert.equal((await service.publicCatalogue()).products.length,0);
+ const again=await service.importProducts(owner,apply,true);assert.equal(again.alreadyApplied,true);assert.equal(again.settings.movements.length,2);
+}));
+test('spreadsheet updates preserve existing stock, colours, costing and published listing; bad rows block the entire batch',()=>fixture(async({service,save})=>{
+ await save('product.save',product);await save('inventory.adjust',{id:product.id,colourId:'standard',delta:4,reason:'received',note:'Existing batch'});await save('costing.save',{productId:product.id,model:{...costDefaults(),otherCents:400},applyPrice:false});await save('product.publish',{id:product.id});
+ let request=importRequest(await service.settings(owner),[importRow(2,{sku:product.sku,name:'Updated draft',colour:'New colour ignored',stock:'99'})],{updateExisting:true,openingStock:true});let preview=await service.importProducts(owner,request);assert.equal(preview.counts.update,1);assert(preview.warnings.length>0);
+ let result=await service.importProducts(owner,{...request,previewHash:preview.previewHash},true);const p=result.settings.products[0];assert.equal(p.colours[0].stock,4);assert.equal(p.colours.length,1);assert.equal(p.costing.otherCents,400);assert.equal(p.draft.name,'Updated draft');assert.equal(p.published.name,product.name);
+ request=importRequest(await service.settings(owner),[importRow(2,{sku:'NEW-VALID'}),importRow(3,{sku:'NEW-BAD',price:'not money'})]);preview=await service.importProducts(owner,request);assert.equal(preview.errors[0].row,3);result=await service.importProducts(owner,{...request,previewHash:preview.previewHash},true);assert.equal(result.applied,false);assert.equal((await service.settings(owner)).products.length,1);
+}));
+test('spreadsheet imports fence account, permission, stale preview and changed mapped data',()=>fixture(async({service,save})=>{
+ const request=importRequest(await service.settings(owner),[importRow(2,{})]);const preview=await service.importProducts(owner,request);
+ await assert.rejects(service.importProducts({isOwner:false},request),e=>e.status===403);await assert.rejects(service.importProducts(owner,{...request,expectedAccount:'other'}),e=>e.status===409);
+ await assert.rejects(service.importProducts(owner,{...request,rows:[importRow(2,{price:'1.00'})],previewHash:preview.previewHash},true),e=>e.status===409);
+ await save('product.save',product);await assert.rejects(service.importProducts(owner,{...request,previewHash:preview.previewHash},true),e=>e.status===409);assert.equal((await service.settings(owner)).products.length,1);
 }));

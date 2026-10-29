@@ -3,6 +3,8 @@ import {AccessError} from './access.mjs';
 import {revision,commit} from './blob-revisions.mjs';
 import sharp from 'sharp';
 import {auspostPAC,carrierDefaults,reviewAuspost} from './hobbynest-auspost.mjs';
+import {validateCosting,calculateCosting} from '../src/lib/hobbynest-costing.mjs';
+import {planImport,validateImportRequest} from './hobbynest-import.mjs';
 
 // Catalogue/back-office only. No checkout, payment, stock reservation or paid-file grants.
 const KEY='catalogue',MAX_PRODUCTS=150,MAX_COLLECTIONS=40,MAX_DISCOUNTS=80;
@@ -113,6 +115,11 @@ export function hobbyNest(store,{carrier=auspostPAC()}={}){
      object(value,['id']);const p=data.products.find(v=>v.id===id(value.id));if(!p)fail('Product not found.');
      p.published=input.operation==='product.publish'?structuredClone(p.draft):null;p.updatedAt=stamp();break;
     }
+    case 'costing.save':{
+     object(value,['productId','model','applyPrice']);const p=data.products.find(p=>p.id===id(value.productId));if(!p)fail('Save the product first.');
+     let model,result;try{model=validateCosting(value.model);result=calculateCosting(model,p.draft.priceCents);}catch(error){fail(error.message);}
+     p.costing=model;if(boolean(value.applyPrice)){if(result.suggestedPriceCents<1)fail('Add your costs before applying a suggested price.');p.draft.priceCents=result.suggestedPriceCents;}p.updatedAt=stamp();break;
+    }
     case 'image.update':{
      object(value,['productId','images']);const p=data.products.find(p=>p.id===id(value.productId));if(!p)fail('Product not found.');
      if(!Array.isArray(value.images)||value.images.length>12)fail('Use up to 12 images per product.');
@@ -179,5 +186,20 @@ export function hobbyNest(store,{carrier=auspostPAC()}={}){
  }
  async function quote(actor,input){owner(actor);const {data}=await read(),q=storeQuote(data,input);if(data.carrier.enabled&&q.shippingRequired){q.shipping=await carrier.basket(data,q.lines,input.postcode);q.canTestOrder=q.lines.every(l=>l.available&&l.channelOpen)&&q.shipping.length>0;q.notice+=' Australia Post PAC estimates are provider-reported, with one parcel per physical unit; contract prices, extras and GST presentation must be verified before sales.';}return q;}
  async function carrierCheck(actor){owner(actor);return reviewAuspost(store,{provider:carrier,force:true});}
- return {settings,save,publicCatalogue,quote,upload,media,carrierCheck};
+ async function importProducts(actor,input,apply=false){
+  owner(actor);let hash;try{hash=validateImportRequest(input);}catch(error){fail(error.message);}
+  if(input.expectedAccount!==actor.user.id)throw new AccessError(409,'Your account changed. Reload before importing.');
+  const {data,etag,before}=await read();
+  if(apply&&data.lastImport?.id===input.importId&&data.lastImport.hash===hash)return {applied:true,alreadyApplied:true,settings:await settings(actor),counts:data.lastImport.counts};
+  if(input.etag!==etag)throw new AccessError(409,'The catalogue changed. Preview the spreadsheet again before importing.');
+  let plan;try{plan=planImport(data,input,productInput);}catch(error){fail(error.message);}
+  const preview={etag,previewHash:hash,summary:plan.summary,errors:plan.errors,warnings:plan.warnings,counts:plan.counts};if(!apply||plan.errors.length)return {...preview,applied:false};
+  if(input.previewHash!==hash)throw new AccessError(409,'The mapping or import options changed. Preview again before importing.');
+  for(const item of plan.products){if(item.existing){if(!input.options.updateExisting)continue;item.existing.draft={...item.draft,images:item.existing.draft.images||[]};if(item.existing.draft.kind==='digital')item.existing.colours=[];else if(!item.existing.colours.length)item.existing.colours=[{id:'standard',name:'Standard',enabled:true,filamentAvailable:false,stock:0}];item.existing.updatedAt=stamp();}
+   else{data.products.push({id:item.id,draft:{...item.draft,images:[]},published:null,colours:item.colours,updatedAt:stamp()});for(const c of item.colours)if(c.stock)data.movements.push({id:randomUUID(),productId:item.id,colourId:c.id,colourName:c.name,delta:c.stock,after:c.stock,reason:'received',note:'Opening stock from spreadsheet import '+input.importId,at:stamp(),actor:actor.user.id});}}
+  data.movements=data.movements.slice(-500);data.lastImport={id:input.importId,hash,at:stamp(),actor:actor.user.id,counts:plan.counts};
+  try{await commit(store,KEY,data,before);}catch(error){if(error.code==='conflict')throw new AccessError(409,'The import could not be confirmed. Reload and check the catalogue before retrying.');throw error;}
+  return {applied:true,counts:plan.counts,settings:await settings(actor)};
+ }
+ return {settings,save,publicCatalogue,quote,upload,media,carrierCheck,importProducts};
 }

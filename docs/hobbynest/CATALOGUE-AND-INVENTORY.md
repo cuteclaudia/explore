@@ -16,6 +16,8 @@ Catalogue JSON exports contain image references/alt text, not the actual photo b
 
 Square is the preferred payment integration to investigate next; see [Square checkout direction](SQUARE-CHECKOUT.md). No Square credentials/resources/payments were created.
 
+Spreadsheet importing and private per-product cost/margin estimates are now available too; see [Spreadsheet imports and cost estimates](SPREADSHEET-IMPORT-AND-COSTING.md).
+
 ## Available in this increment
 
 Owner-only **Settings → HobbyNest store** (`/studio/hobbynest`) and a shortcut in My Studio. All store API writes require fresh owner authorization, same-origin verification, an account fence and the latest catalogue ETag. A stale form or uncertain save stops editing until reload. Do not blindly repeat a stock adjustment after a connection failure; reload and check the recent movements first.
