@@ -26,6 +26,6 @@ export function legacyContent(){return legacyPromise||=(async()=>{
  if(!records.some(r=>r.key===key))records.push({key,collection:'photography',slug:'landscape-inspiration',ownerId:'legacy',version:0,updatedAt:'2026-04-01T00:00:00Z',draft,published:structuredClone(draft)});
  return records;
 })();}
-export function siteContent(){return contentService(getStore({name:'studio-content',consistency:'strong'}),legacyContent,async()=>(await writingCategories(getStore({name:'studio-writing-categories',consistency:'strong'})).read()).categories);}
+export function siteContent(){return contentService(getStore({name:'studio-content',consistency:'strong'}),legacyContent,async()=>await writingCategories(getStore({name:'studio-writing-categories',consistency:'strong'})).read());}
 export const contentHref=(collection,slug)=>collection==='pages'?'/about':'/' + ({journal:'journal',essays:'chinaseries',cyber:'dailycyberreport',osint:'osint-brief',photography:'photography'}[collection])+'/'+slug;
 export async function liveCollection(collection){return (await siteContent().publicList(collection)).map(item=>({id:item.slug,body:item.html,studioHTML:item.html,data:{...item,date:new Date(item.date+'T00:00:00Z'),draft:false,heroImage:item.cover,heroAlt:item.coverAlt,region:item.location||'Australia – Japan – Asia'}}));}

@@ -17,6 +17,7 @@ try {
    return route.fulfill({json:{categories:registry.categories,essays:[item('China perspective','2026-10-27','/chinaseries/perspective')],reports:[item('Cyber update','2026-10-28','/dailycyberreport/update')],osint:[{...item('Weekly OSINT Brief','2026-10-29','/osint-brief/weekly'),category:writingCategoryFor({collection:'osint',writingCategory:custom||undefined},registry)}],galleries:[]}});
   }
   if(u.pathname==='/api/content/entry'&&u.searchParams.get('slug')==='reassigned')return route.fulfill({json:{version:3,draft:{title:'Reassigned article',date:'2026-10-29',summary:'',tags:[],location:'',locationPrecision:'hidden',cover:'',coverAlt:'',photos:[],html:'<p>Kept content</p>',writingCategory:custom}}});
+  if(['/api/content/list','/api/content/manage'].includes(u.pathname))return route.continue();
   if(u.pathname.startsWith('/api/')||u.pathname.startsWith('/.netlify/identity/'))return route.fulfill({status:401,json:{error:'Fixture unavailable'}});
   return route.continue();
  });
@@ -60,7 +61,7 @@ try {
  for(const width of [320,390,768]){await page.setViewportSize({width,height:900});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
  await categoryItem.getByRole('button',{name:'Cancel',exact:true}).click();assert(await categoryItem.locator('.category-delete').isHidden());
  await categoryItem.getByRole('button',{name:'Delete Regional & strategic outlook',exact:true}).click();
- await categoryItem.getByRole('combobox').selectOption('reports');await categoryItem.getByRole('button',{name:'Confirm delete'}).click();
+ await categoryItem.getByRole('combobox',{name:'Move articles from Regional & strategic outlook to'}).selectOption('reports');await categoryItem.getByRole('button',{name:'Confirm delete'}).click();
  await page.waitForFunction(()=>document.querySelector('#category-status').textContent.startsWith('Category deleted'));
  assert.equal(await page.getByLabel('Category name: Regional & strategic outlook',{exact:true}).count(),0);
  await page.goto(base+'/#writing');await page.locator('[data-writing="reports"]').click();
@@ -70,6 +71,20 @@ try {
  await page.goto(base+'/osint-brief');assert.equal(await page.locator('h1').textContent(),'OSINT Brief');
  assert((await page.locator('main').textContent()).includes('No OSINT briefs published yet'));
  const unpublished=await context.request.get(base+'/osint-brief/not-published');assert.equal(unpublished.status(),404);
+ const article=await context.request.put(base+'/api/content/entry?collection=osint&slug=bin-browser',{headers:{Origin:base},data:{version:0,action:'publish',draft:{title:'Browser bin test',date:'2026-10-29',html:'<p>Recoverable writing</p>',writingCategory:'osint'}}});assert.equal(article.status(),200);
+ await page.goto(base+'/studio/content');await page.locator('.category-manager summary').click();
+ const binItem=page.locator('.category-item').filter({has:page.getByLabel('Category name: OSINT Brief',{exact:true})});
+ await binItem.getByRole('button',{name:'Delete OSINT Brief',exact:true}).click();
+ await binItem.getByRole('combobox',{name:'Articles in OSINT Brief'}).selectOption('bin');
+ await binItem.getByRole('combobox',{name:'Move articles from OSINT Brief to'}).selectOption('reports');
+ for(const width of [320,768]){await page.setViewportSize({width,height:900});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
+ await binItem.getByRole('button',{name:'Confirm delete'}).click();await page.waitForFunction(()=>document.querySelector('#category-status').textContent.includes('articles moved to Deleted items'));
+ assert.equal((await context.request.get(base+'/osint-brief/bin-browser')).status(),404);
+ const feed=await (await context.request.get(base+'/prototype-content.json')).json();assert(!feed.osint.some(x=>x.title==='Browser bin test'));
+ await page.locator('#content-state').selectOption('bin');await page.getByRole('link',{name:'Restore as draft',exact:true}).click();
+ await page.waitForFunction(()=>document.querySelectorAll('#content-items article').length===0);
+ const restored=await (await context.request.get(base+'/api/content/entry?collection=osint&slug=bin-browser')).json();assert.equal(restored.deletedAt,null);assert.equal(restored.published,null);assert.equal(restored.draft.writingCategory,'reports');
+ assert.equal((await context.request.get(base+'/osint-brief/bin-browser')).status(),404,'restoring must not republish');
  assert.deepEqual(errors,[]);
- console.log('PASS create/rename/delete categories, explicit move/cancel, retained articles, retired assignments in editor, and category API through real isolated Blobs API, automatic public filters and editor options, stable assignments, four initial writing filters, date order, isolated categories, search/empty state, accessible pressed state, 320–1440px layouts, OSINT authoring entry and unpublished 404; publication data is a fixture');
+ console.log('PASS category move/bin choices, actual unpublished/public removal and bin restore as draft, create/rename/delete categories, explicit move/cancel, retained articles, retired assignments in editor, and category API through real isolated Blobs API, automatic public filters and editor options, stable assignments, four initial writing filters, date order, isolated categories, search/empty state, accessible pressed state, 320–1440px layouts, OSINT authoring entry and unpublished 404; publication data is a fixture');
 } finally {await browser.close();}

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import handler from './ssr.mjs';
 const response=path=>handler(new Request('https://explorebyclaudia.netlify.app'+path),{ip:'127.0.0.1'});
 for(const path of ['/about','/journal','/journal/deployment-check','/chinaseries','/dailycyberreport','/osint-brief','/osint-brief/deployment-brief','/api/writing-categories','/photography','/rss.xml','/prototype-content.json']){
- const r=await response(path);assert.equal(r.status,200,path+' should render');const body=await r.text();assert(!body.includes('PRIVATE DRAFT MUST NOT LEAK')&&!body.includes('PRIVATE OSINT DRAFT MUST NOT LEAK'),path+' leaked a draft');
+ const r=await response(path);assert.equal(r.status,200,path+' should render');const body=await r.text();assert(!body.includes('BINNED BRIEF MUST NOT LEAK')&&!body.includes('PRIVATE DRAFT MUST NOT LEAK')&&!body.includes('PRIVATE OSINT DRAFT MUST NOT LEAK'),path+' leaked a draft');
  if(path==='/osint-brief/deployment-brief')assert(body.includes('Published OSINT build-check brief'));
  if(path==='/api/writing-categories')assert.deepEqual(JSON.parse(body).categories.map(c=>c.name),['China Series','Cyber Briefs','OSINT Brief']);
  if(path==='/journal/deployment-check')assert(body.includes('Published build-check body'));
@@ -12,6 +12,7 @@ for(const path of ['/about','/journal','/journal/deployment-check','/chinaseries
  console.log('PASS packaged SSR',path);
 }
 const oldExplore=await response('/explore?place=3');assert.equal(oldExplore.status,301);assert.equal(oldExplore.headers.get('location'),'/places?place=3');
+assert.equal((await response('/osint-brief/trashed-brief')).status,404,'Category-binned article must not be public');
 assert.equal((await response('/chinaseries/puertochancay')).status,404,'Unpublished legacy page must remain hidden');
 for(const path of ['/studio/about','/studio','/studio/content','/apps','/studio/kobo-test','/studio/irodori-test','/apps/irodori','/apps/irodori-legacy']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
 assert.equal((await response('/api/content/list')).status,401);

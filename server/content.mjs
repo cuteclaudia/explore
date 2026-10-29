@@ -1,4 +1,4 @@
-import {DEFAULT_WRITING_CATEGORIES} from './writing-categories.mjs';
+import {DEFAULT_WRITING_CATEGORIES,categoryTrashFor} from './writing-categories.mjs';
 import sanitize from 'sanitize-html';
 import {randomUUID} from 'node:crypto';
 import {AccessError,requireCapability} from './access.mjs';
@@ -48,6 +48,8 @@ export function mayEdit(actor,record){
 }
 function mayPublish(actor,record){if(actor.isOwner)return;requireCapability(actor,record.ownerId===actor.user.id?'journal.publish_own':'articles.publish_any');}
 export function contentService(store,legacy=async()=>[],categories=async()=>DEFAULT_WRITING_CATEGORIES){
+ async function categoryRegistry(){const state=await categories();return Array.isArray(state)?{categories:state}:state;}
+ function applyCategoryTrash(record,state){const categoryTrash=categoryTrashFor(record,state);return categoryTrash?{...record,deletedAt:record.deletedAt||categoryTrash.deletedAt,published:null,categoryTrash}:record;}
  async function source(key){return (await legacy()).find(x=>x.key===key);}
  async function stored(key){
   const path='entries/'+key;const result=await store.getWithMetadata(path,{type:'json'});
@@ -59,21 +61,21 @@ export function contentService(store,legacy=async()=>[],categories=async()=>DEFA
   if(!before||before!==after||!fresh)throw new AccessError(409,'The item changed while loading. Please retry.');
   return {...fresh,etag:after};
  }
- async function get(key){const [collection,slug,...rest]=String(key).split('/');if(rest.length)throw new AccessError(400,'Invalid content address.');keyFor(collection,slug);const saved=await stored(key);if(saved)return saved.data;const old=await source(key);if(old)return old;throw new AccessError(404,'Content not found.');}
- async function all(){const {blobs}=await store.list({prefix:'entries/'});const records=new Map((await legacy()).map(x=>[x.key,x]));for(const b of blobs){const r=await store.get(b.key,{type:'json'});if(r)records.set(r.key,r);}return [...records.values()];}
+ async function get(key){const [collection,slug,...rest]=String(key).split('/');if(rest.length)throw new AccessError(400,'Invalid content address.');keyFor(collection,slug);const saved=await stored(key);if(saved)return applyCategoryTrash(saved.data,await categoryRegistry());const old=await source(key);if(old)return applyCategoryTrash(old,await categoryRegistry());throw new AccessError(404,'Content not found.');}
+ async function all(){const {blobs}=await store.list({prefix:'entries/'});const records=new Map((await legacy()).map(x=>[x.key,x]));for(const b of blobs){const r=await store.get(b.key,{type:'json'});if(r)records.set(r.key,r);}const state=await categoryRegistry();return [...records.values()].map(r=>applyCategoryTrash(r,state));}
  async function publicList(collection){return (await all()).filter(r=>!r.deletedAt&&r.published&&(!collection||r.collection===collection)).map(r=>({key:r.key,collection:r.collection,slug:r.slug,...r.published})).sort((a,b)=>b.date.localeCompare(a.date));}
  async function publicEntry(key){const r=await get(key);if(r.deletedAt||!r.published)throw new AccessError(404,'This page is not published.');return {key:r.key,collection:r.collection,slug:r.slug,...r.published};}
  async function save(actor,key,body){return locked(key,async()=>{
   const [collection,slug]=key.split('/');keyFor(collection,slug);
   const existing=await stored(key);const before=existing?.data||await source(key);
   if(!before&&!actor.isOwner)requireCapability(actor,'journal.create');
-  const record=before||{key,collection,slug,ownerId:actor.user.id,version:0,published:null};mayEdit(actor,record);
+  const record=before?applyCategoryTrash(before,await categoryRegistry()):{key,collection,slug,ownerId:actor.user.id,version:0,published:null};mayEdit(actor,record);
   if(record.deletedAt)throw new AccessError(409,'Restore this item from the bin before editing it.');
   if(body.version!==record.version)throw new AccessError(409,'This item changed in another tab. Reload it before saving so those changes are not overwritten.');
   if(!['draft','publish','unpublish'].includes(body.action))throw new AccessError(400,'Choose Save draft, Publish or Unpublish.');
   if(body.action!=='draft')mayPublish(actor,record);
   const draft=cleanDraft(body.draft,key);
-  if(draft.writingCategory&&!(await categories()).some(c=>c.id===draft.writingCategory))throw new AccessError(400,'Writing category no longer exists. Reload the editor before saving.');
+  if(draft.writingCategory&&!(await categoryRegistry()).categories.some(c=>c.id===draft.writingCategory))throw new AccessError(400,'Writing category no longer exists. Reload the editor before saving.');
   if(body.action==='publish'&&collection==='photography'&&!draft.photos.length)throw new AccessError(400,'Add at least one photograph before publishing a gallery.');
   const result={...record,draft,version:record.version+1,writeId:randomUUID(),updatedAt:new Date().toISOString(),published:body.action==='publish'?structuredClone(draft):body.action==='unpublish'?null:record.published};
   if(existing&&!existing.etag)throw new AccessError(503,'The storage revision could not be verified. Please retry.');
@@ -89,7 +91,7 @@ export function contentService(store,legacy=async()=>[],categories=async()=>DEFA
  function references(draft,id,key){const url=mediaURL(id,key);return draft&&(draft.cover===url||draft.photos?.some(p=>p.image===url)||draft.html?.includes(url.replaceAll('&','&amp;'))||draft.html?.includes(url)||draft.blocks?.some(b=>b.image===url||b.html?.includes(url)||b.html?.includes(url.replaceAll('&','&amp;'))));}
  async function media(id,key,actor){if(!/^[0-9a-f-]{36}$/i.test(id))throw new AccessError(404,'Image not found.');const record=await get(key);if(actor)mayEdit(actor,record);const image=await store.getWithMetadata('images/'+id,{type:'arrayBuffer'});if(!image||image.metadata.entry!==key)throw new AccessError(404,'Image not found.');if(!actor&&!references(record.published,id,key))throw new AccessError(404,'Image is not published.');return image;}
  async function manage(actor,key,body){return locked(key,async()=>{
-  const existing=await stored(key);const record=existing?.data||await source(key);if(!record)throw new AccessError(404,'Content not found.');mayEdit(actor,record);
+  const existing=await stored(key);const rawRecord=existing?.data||await source(key);const record=rawRecord?applyCategoryTrash(rawRecord,await categoryRegistry()):null;if(!record)throw new AccessError(404,'Content not found.');mayEdit(actor,record);
   if(record.collection==='pages')throw new AccessError(400,'Edit and publish the About page without copying or deleting its fixed address.');
   if(body.version!==record.version)throw new AccessError(409,'This item changed. Reload before continuing.');
   if(body.action==='copy'){
@@ -104,7 +106,9 @@ export function contentService(store,legacy=async()=>[],categories=async()=>DEFA
   }
   if(!['delete','restore'].includes(body.action))throw new AccessError(400,'Choose copy, delete or restore.');
   if(!actor.isOwner)requireCapability(actor,record.ownerId===actor.user.id?'content.delete_own':'content.delete_any');
-  const result={...record,published:null,deletedAt:body.action==='delete'?new Date().toISOString():null,version:record.version+1,writeId:randomUUID(),updatedAt:new Date().toISOString()};
+  const {categoryTrash,...retained}=record;
+  const restoredDraft=body.action==='restore'&&categoryTrash?{...record.draft,writingCategory:categoryTrash.replacement}:record.draft;
+  const result={...retained,draft:restoredDraft,published:null,deletedAt:body.action==='delete'?new Date().toISOString():null,version:record.version+1,writeId:randomUUID(),updatedAt:new Date().toISOString()};
   if(existing&&!existing.etag)throw new AccessError(503,'The storage revision could not be verified. Please retry.');
   const written=await store.setJSON('entries/'+key,result,existing?{onlyIfMatch:existing.etag}:{onlyIfNew:true});if(written?.modified===false)throw new AccessError(409,'Another change completed first. Reload before continuing.');if((await store.get('entries/'+key,{type:'json'}))?.writeId!==result.writeId)throw new AccessError(409,'The change could not be confirmed. Reload before retrying.');return result;
  });}

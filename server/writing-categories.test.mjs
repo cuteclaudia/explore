@@ -75,3 +75,47 @@ test('category deletion refuses invalid destinations, non-owners and stale concu
  assert.equal(results.filter(r=>r.status==='rejected'&&r.reason.status===409).length,1);
  assert.equal((await service.read()).categories.length,2);
 }));
+test('binning a category removes published and draft articles, revokes media and restores independently as drafts',()=>fixture(async(service,store)=>{
+ const legacyDraft={title:'Legacy brief',date:'2026-10-29',html:'<p>Legacy body</p>',tags:[],photos:[]};
+ const legacy={key:'osint/legacy',collection:'osint',slug:'legacy',version:0,ownerId:'legacy',draft:legacyDraft,published:legacyDraft};
+ const api=contentService(store,async()=>[legacy],()=>service.read());
+ const draft={title:'Keep my content',date:'2026-10-29',html:'<p>Private writing</p>',writingCategory:'osint'};
+ let published=await api.save(owner,'osint/published',{version:0,action:'draft',draft});
+ const image=await api.upload({...owner,permissions:{'media.upload':true}},published.key,new Uint8Array([255,216,255,0]).buffer,'image/jpeg');
+ published=await api.save(owner,published.key,{version:published.version,action:'publish',draft:{...draft,cover:image.url}});
+ const unpublished=await api.save(owner,'essays/unpublished',{version:0,action:'draft',draft});
+ const other=await api.save(owner,'essays/other',{version:0,action:'publish',draft:{...draft,writingCategory:'essays'}});
+ await service.save(owner,{expectedAccount:'owner',etag:null,action:'delete',id:'osint',replacement:'reports',articleAction:'bin'});
+ for(const key of [published.key,unpublished.key,legacy.key]){
+  const record=await api.get(key);assert(record.deletedAt);assert.equal(record.published,null);
+  await assert.rejects(api.publicEntry(key),e=>e.status===404);
+ }
+ assert.deepEqual((await api.publicList()).map(r=>r.key),[other.key]);
+ assert.equal((await api.all()).filter(r=>r.deletedAt).length,3);
+ assert.deepEqual(await store.get('entries/'+published.key,{type:'json'}),published,'bulk binning keeps stored snapshots intact');
+ await assert.rejects(api.media(image.id,published.key),e=>e.status===404);
+ await assert.rejects(api.save(owner,published.key,{version:published.version,action:'publish',draft}),e=>e.status===409);
+ const restored=await api.manage(owner,published.key,{version:published.version,action:'restore'});
+ assert.equal(restored.draft.writingCategory,'reports');assert.equal(restored.deletedAt,null);assert.equal(restored.published,null);
+ assert.equal((await api.get(published.key)).deletedAt,null);
+ assert((await api.get(unpublished.key)).deletedAt,'restoring one article must not restore the rest');
+ await assert.rejects(api.publicEntry(published.key),e=>e.status===404,'restore never auto-publishes');
+ await api.save(owner,published.key,{version:restored.version,action:'publish',draft:restored.draft});
+ assert.equal((await api.publicEntry(published.key)).cover,image.url);
+ assert.equal((await api.media(image.id,published.key)).data.byteLength,4);
+ const legacyRestored=await api.manage(owner,legacy.key,{version:0,action:'restore'});
+ assert.equal(legacyRestored.draft.writingCategory,'reports');assert.equal(legacyRestored.published,null);
+}));
+test('binning follows earlier category moves and includes a published article with a different private draft category',()=>fixture(async(service,store)=>{
+ const api=contentService(store,async()=>[],()=>service.read());
+ const draft={title:'A brief',date:'2026-10-29',html:'<p>Content</p>',writingCategory:'osint'};
+ let record=await api.save(owner,'osint/branch',{version:0,action:'publish',draft});
+ record=await api.save(owner,record.key,{version:record.version,action:'draft',draft:{...draft,writingCategory:'essays'}});
+ let registry=await service.save(owner,{expectedAccount:'owner',etag:null,action:'delete',id:'osint',replacement:'reports',articleAction:'move'});
+ assert.equal((await api.publicList()).length,1,'moving does not bin articles');
+ registry=await service.save(owner,{expectedAccount:'owner',etag:registry.etag,action:'delete',id:'reports',replacement:'essays',articleAction:'bin'});
+ assert.equal((await api.publicList()).length,0);
+ const restored=await api.manage(owner,record.key,{version:record.version,action:'restore'});
+ assert.equal(restored.draft.html,record.draft.html);assert.equal(restored.draft.writingCategory,'essays');
+ assert.equal((await api.all()).filter(r=>r.deletedAt).length,0);
+}));
