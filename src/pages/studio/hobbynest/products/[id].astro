@@ -1,0 +1,12 @@
+---
+import HobbyNestAdmin from '../../../../components/HobbyNestAdmin.astro';
+import {protectPage} from '../../../../../server/identity';
+import {getStore} from '@netlify/blobs';
+import {hobbyNest} from '../../../../../server/hobbynest.mjs';
+export const prerender=false;
+const productId=Astro.params.id||'';
+const actor=await protectPage('/studio/hobbynest/products/'+encodeURIComponent(productId),'settings.manage');if(actor instanceof Response)return actor;
+Astro.response.headers.set('Cache-Control','private, no-store');
+if(!/^[a-z0-9-]{1,64}$/.test(productId)||productId!=='new'&&!(await hobbyNest(getStore({name:'hobbynest-catalogue',consistency:'strong'})).settings(actor)).products.some(p=>p.id===productId))return new Response('Product not found.',{status:404,headers:{'Cache-Control':'private, no-store'}});
+---
+<HobbyNestAdmin productId={productId}/>

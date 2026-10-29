@@ -15,8 +15,11 @@ for(const path of ['/about','/journal','/journal/deployment-check','/chinaseries
 const oldExplore=await response('/explore?place=3');assert.equal(oldExplore.status,301);assert.equal(oldExplore.headers.get('location'),'/places?place=3');
 assert.equal((await response('/osint-brief/trashed-brief')).status,404,'Category-binned article must not be public');
 assert.equal((await response('/chinaseries/puertochancay')).status,404,'Unpublished legacy page must remain hidden');
-for(const path of ['/studio/hobbynest','/studio/about','/studio','/studio/content','/apps','/studio/kobo-test','/studio/irodori-test','/apps/irodori','/apps/irodori-legacy']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
+for(const path of ['/studio/hobbynest','/studio/hobbynest/products/new','/studio/about','/studio','/studio/content','/apps','/studio/kobo-test','/studio/irodori-test','/apps/irodori','/apps/irodori-legacy']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
 assert.equal((await response('/api/content/list')).status,401);
+assert.equal((await response('/api/hobbynest/images/fixture/11111111-1111-4111-8111-111111111111?draft=1')).status,401,'Draft photos require sign-in');
+assert.equal((await handler(new Request('https://explorebyclaudia.netlify.app/api/hobbynest/images',{method:'POST',body:'not-an-image'}),{ip:'127.0.0.1'})).status,401,'Product photo upload requires authentication');
+assert.equal((await handler(new Request('https://explorebyclaudia.netlify.app/api/hobbynest/carrier-check',{method:'POST',headers:{Origin:'https://explorebyclaudia.netlify.app','Content-Type':'application/json'},body:'{}'}),{ip:'127.0.0.1'})).status,401,'Carrier checks require owner authentication');
 assert.equal((await response('/api/hobbynest/settings')).status,401,'Store settings require owner authentication');
 for(const method of ['PUT','POST'])assert.equal((await handler(new Request('https://explorebyclaudia.netlify.app/api/hobbynest/settings',{method,headers:{Origin:'https://explorebyclaudia.netlify.app','Content-Type':'application/json'},body:'{}'}),{ip:'127.0.0.1'})).status,401,'Store edits and estimates require authentication');
 assert.equal((await response('/api/content-features')).status,401,'Feature controls require owner authentication');
@@ -42,6 +45,17 @@ try{
   const r=await handler(new Request(origin+path,{headers:{Cookie:'nf_jwt=verified-by-session-service'}}),{ip:'127.0.0.1'});
   assert.equal(r.status,200,origin+path+' must recognize the verified browser session');assert.equal(r.headers.get('Cache-Control'),'private, no-store');console.log('PASS packaged custom-domain account session',origin+path);
  }
+ const origin='https://www.claudiagilbert.com',ownerRequest=(path,options={})=>handler(new Request(origin+path,{...options,headers:{Cookie:'nf_jwt=verified-by-session-service',Origin:origin,...options.headers}}),{ip:'127.0.0.1'});
+ let nest=await (await ownerRequest('/api/hobbynest/settings')).json();
+ const product={id:'fixture-print',name:'Packaged photo fixture',sku:'PACKAGE-1',kind:'physical',priceCents:2000,description:'Isolated package test only',collectionIds:[],licence:'',allowBackorder:true,printMinDays:3,printMaxDays:5,dispatchMinDays:1,dispatchMaxDays:2,weightGrams:0,lengthMm:0,widthMm:0,heightMm:0};
+ let saved=await ownerRequest('/api/hobbynest/settings',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({expectedAccount:owner,etag:nest.etag,operation:'product.save',value:product})});assert.equal(saved.status,200);nest=await saved.json();
+ assert.equal((await ownerRequest('/studio/hobbynest/products/fixture-print')).status,200);assert.equal((await ownerRequest('/studio/hobbynest/products/missing')).status,404);
+ const imageHeaders={'Content-Type':'image/png','X-Product-Id':product.id,'X-Store-Account':owner,'X-Store-Etag':nest.etag,'X-Image-Alt':'Blue%20printed%20piece'};
+ assert.equal((await ownerRequest('/api/hobbynest/images',{method:'POST',headers:{...imageHeaders,Origin:'https://untrusted.invalid'},body:Buffer.from(process.env.HOBBY_NEST_TEST_IMAGE,'base64')})).status,403,'Cross-origin photo uploads must be refused');
+ const uploaded=await ownerRequest('/api/hobbynest/images',{method:'POST',headers:imageHeaders,body:Buffer.from(process.env.HOBBY_NEST_TEST_IMAGE,'base64')});assert.equal(uploaded.status,200,await uploaded.clone().text());nest=await uploaded.json();const photo=nest.products[0].draft.images[0];
+ assert.equal((await ownerRequest(photo.url+'?draft=1')).headers.get('Content-Type'),'image/webp','The packaged native image decoder must work');assert.equal((await response(photo.url)).status,404,'An unpublished photo stays private');
+ saved=await ownerRequest('/api/hobbynest/settings',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({expectedAccount:owner,etag:nest.etag,operation:'product.publish',value:{id:product.id}})});assert.equal(saved.status,200);assert.equal((await response(photo.url)).status,200);
+ console.log('PASS packaged HobbyNest product pages, owner image upload/native decode, CSRF and publication boundary');
  const check=()=>handler(new Request('https://www.claudiagilbert.com/studio/downloads',{headers:{Cookie:'nf_jwt=verified-by-session-service'}}),{ip:'127.0.0.1'});
  sessionStatus=401;let r=await check();assert.equal(r.status,302);assert(new URL(r.headers.get('location'),'https://www.claudiagilbert.com').searchParams.get('reason')==='session');
  sessionStatus=403;assert.equal((await check()).status,403);

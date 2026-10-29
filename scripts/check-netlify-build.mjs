@@ -6,6 +6,7 @@ import {resolve,join} from 'node:path';
 import {spawn} from 'node:child_process';
 import {getStore} from '@netlify/blobs';
 import {BlobsServer} from '@netlify/blobs/server';
+import sharp from 'sharp';
 const directory=await mkdtemp(join(tmpdir(),'explore-deploy-smoke-'));
 let server;
 try{
@@ -22,6 +23,7 @@ try{
  // An override must prevent a repository original from reappearing after unpublish.
  await store.setJSON('entries/essays/puertochancay',{key:'essays/puertochancay',collection:'essays',slug:'puertochancay',ownerId:'local-owner',version:1,draft:{...draft,title:'Unpublished legacy article'},published:null});
  const check=await readFile(new URL('../server/test-fixtures/deployed-ssr.mjs',import.meta.url),'utf8');await writeFile(join(isolated,'check.mjs'),check);
- const exitCode=await new Promise((done,reject)=>{const child=spawn(process.execPath,['--no-require-module','check.mjs'],{cwd:isolated,stdio:'inherit',env:{...process.env,NETLIFY_BLOBS_CONTEXT:Buffer.from(JSON.stringify(context)).toString('base64')}});child.on('error',reject);child.on('exit',done);});
+ const testImage=(await sharp({create:{width:8,height:8,channels:3,background:'#226688'}}).png().toBuffer()).toString('base64');
+ const exitCode=await new Promise((done,reject)=>{const child=spawn(process.execPath,['--no-require-module','check.mjs'],{cwd:isolated,stdio:'inherit',env:{...process.env,HOBBY_NEST_TEST_IMAGE:testImage,NETLIFY_BLOBS_CONTEXT:Buffer.from(JSON.stringify(context)).toString('base64')}});child.on('error',reject);child.on('exit',done);});
  if(exitCode!==0)throw Error('Isolated Netlify package checks failed.');
 }finally{await server?.stop();await rm(directory,{recursive:true,force:true});}

@@ -1,5 +1,21 @@
 # HobbyNest catalogue and inventory · 29 October 2026
 
+## Compact administration, photos and shop switches
+
+The owner product overview is now a searchable table: thumbnail, name/SKU/type, AUD price, stock by colour, dispatch ranges and publication status. Select a row/product name to open `/studio/hobbynest/products/<id>`; Add product opens its own page. Phone layouts use compact stacked summaries. Product details, Images and Stock & colours are separate tabs. Existing products keep their IDs and stock.
+
+In **Store controls**, tick **Physical shop open** and/or **Digital shop open**, then Save store controls. Either, both or neither can be enabled; each section has its own pause message. Both start paused, including existing stores with no configuration. Pausing leaves published listings visible with that message. These are test-availability switches; they cannot bypass the hard `checkoutEnabled: false` gate.
+
+Choose **Open test shop** for an owner-only basket. Add published products, choose colours/quantities, enter a code and calculate against current server prices, stock, shipping and shop switches. Closing a section is caught by a new quote even if the page/basket was opened earlier. This creates no orders, reservations, payments or stock deductions and is not yet a Square sandbox checkout. The normal public shop has no basket controls. Test baskets stay in memory and are not saved to browser storage.
+
+Each product is marked Physical (printed product) or Digital (STL) in its editor. Physical products have packed weight in grams and three packed dimensions in millimetres, including packaging. Complete all four, or leave them all blank until measured. Manual shipping rates are still manually configured: entering measurements does not yet connect a weight/size-based carrier tariff. Multi-item parcel packing, carrier dimensional/chargeable-weight rules, region and service prices must be confirmed for a live Australia Post quote.
+
+Images support up to 12 still JPEG/PNG/WebP photos per product. The browser accepts up to 20 MiB / 40 megapixels and optimises to WebP at 1600px; the server independently validates/decode/re-encodes bounded inputs and strips embedded metadata. Output is stored privately, separately from the catalogue JSON. Uploads require owner authentication, same-origin verification, current account and catalogue revision. Add alt text, choose a cover, reorder/remove photos and publish the saved draft. Anonymous image requests succeed only while that exact image is referenced by the product's published snapshot; draft requests require owner sign-in. Unpublishing revokes public image access. Removing an image from a draft does not remove it from the published listing until that draft is published. Retained binary objects are not automatically deleted; a future reachability-based cleanup must retain all published references and handle orphaned/conflicted uploads safely.
+
+Catalogue JSON exports contain image references/alt text, not the actual photo binaries. They remain incomplete disaster recovery until an image-inclusive backup and tested restore are implemented.
+
+Square is the preferred payment integration to investigate next; see [Square checkout direction](SQUARE-CHECKOUT.md). No Square credentials/resources/payments were created.
+
 ## Available in this increment
 
 Owner-only **Settings → HobbyNest store** (`/studio/hobbynest`) and a shortcut in My Studio. All store API writes require fresh owner authorization, same-origin verification, an account fence and the latest catalogue ETag. A stale form or uncertain save stops editing until reload. Do not blindly repeat a stock adjustment after a connection failure; reload and check the recent movements first.
@@ -35,6 +51,27 @@ Use a managed transactional commerce database for orders, reservations and payme
 - Reserve **finished stock by colour** when creating checkout; allocate any permitted remainder to a production queue. Confirm availability and price on the server. Expire abandoned reservations; handle payment/expiration races and duplicate webhooks exactly once. Decide explicitly whether long printing queues should limit backorders even when filament exists.
 - Reduce sellable finished stock through the order/reservation transaction, not the success page or a browser callback. Keep physical on-hand, reserved, available and production quantities distinct. Record cancellations/refunds/returns; refunding does not automatically mean a dispatched item is back in sellable stock.
 - Clearly show the ready/to-print split and agreed dispatch range before payment, snapshot it on the order and receipt, and show a combined expected delivery window only when both preparation and carrier estimates are known. Add production/dispatch/delivery status and notifications for changed estimates.
-- Product photos/alt text and upload validation, material/size variants, mixed-colour personalization rules, printing instructions, safety/age/use information, per-colour lead-time overrides if needed, and image/licence/content rights checks.
+- Material/size variants, mixed-colour personalization rules, printing instructions, safety/age/use information, per-colour lead-time overrides if needed, and image/licence/content rights checks. Product photo upload/alt text are now delivered above.
 - Hosted payment sandbox, tax/GST policy appropriate to the actual business, signed/reconciled callbacks, receipts, order administration, secure immutable paid-STL delivery, licence acceptance, refund/consumer guarantees, privacy/contact/shipping policies and secure customer order recovery.
 - Shipping address validation, rate testing, tracking, backup **restore** drills, stock/order reconciliation, accessibility and real physical/digital/mixed-order acceptance. No production charges or paid carrier service activation in this increment.
+
+
+## Australia Post connector and monthly review · 30 October 2026 (Sydney)
+
+An **experimental PAC connector** is now wired into owner test-basket estimates, with no hardcoded postage prices. It is disabled by default. No genuine carrier request, tariff, credential or account eligibility has been verified: official developer/pricing pages are blocked by the execution environment's outbound proxy (CONNECT 403). The request/response integration still needs comparison against the current official API documentation and an actual account before any sales release. Automated tests use clearly synthetic carrier responses, not today's Australia Post prices.
+
+Preparation/activation for testing:
+
+1. Obtain appropriate Australia Post developer/PAC access for the actual account. Confirm that PAC public service prices are the intended tariff; MyPost Business/eParcel/contract pricing and labels are separate and not connected here.
+2. Add **AUSPOST_PAC_API_KEY** as a server-only secret in Netlify's environment settings (Functions scope). Never put it in a public variable, client script, catalogue export, repository or chat. Redeploy if Netlify requires it for runtime availability.
+3. Enter the dispatch postcode in Shipping. Set every physical product's **packed** grams and length/width/height in millimetres, save and publish. The adapter converts to kilograms and centimetres for PAC. No guessed carrier dimensional-weight multiplier or rate table is used; the provider receives the actual measurements.
+4. In **Shipping → Australia Post live estimates & monthly check**, enable live estimates, choose a sample destination postcode, save and run the connection check. The test basket/estimate also needs a destination postcode. No postcodes are persisted with a basket.
+5. Verify real metro/regional/remote rates, product dimensions, GST/account tariff and service restrictions against Australia Post before relying on these results. The current connector accepts supported Parcel Post/Express Post service prices only. Extra cover, signature, labels, negotiated rates and transit guarantees are not implemented.
+
+The initial explicit packing policy is **one physical unit per measured parcel**, including each item in a mixed cart. Matching service costs are summed; digital items add no postage. Up to 20 separate parcels and 8 product types are supported per quote. Requests for independent product types are bounded and run concurrently. Combining products into one parcel needs a separate packing policy; do not represent these estimates as optimal combined-parcel pricing. Reference/live carrier amounts are provider-reported; tax and surcharges still need actual-account verification before checkout.
+
+When live estimates are enabled, each owner basket calculation asks the carrier again, with server-only credentials, fixed allowlisted host, no redirects, bounded responses and an 8-second request timeout. Missing measurements, credentials, invalid postcodes, unexpected responses or unavailable services fail closed. There is no silent manual/free-postage fallback.
+
+The optional monthly switch runs a published Netlify Scheduled Function at **03:00 UTC on the first day of each month** (13:00 Sydney standard time / 14:00 daylight time). It checks one stated reference parcel (1 kg, 200 × 150 × 100 mm) and records success/failure and changes from the previous comparable sample. It does **not** certify every tariff/destination or overwrite manually configured prices. Live baskets are the mechanism for current per-order costs. Last successful samples remain visible after failures, clearly marked as history, not usable fallback quotes. The owner can run a check manually; there is no email alert service configured.
+
+The scheduled function and all live requests stay inactive until the owner opts in and configures the necessary key/settings. No API account, paid carrier service, labels, payment or real order has been activated by this change.
