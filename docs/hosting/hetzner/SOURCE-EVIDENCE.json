@@ -1,0 +1,173 @@
+{
+  "dateSydney": "2026-10-29",
+  "firstPartyGitSources": [
+    {
+      "repository": "coollabsio/coolify",
+      "commit": "f778942630954304c26fcb35ea70b365d807def7",
+      "paths": [
+        {
+          "path": "README.md",
+          "permalink": "https://github.com/coollabsio/coolify/blob/f778942630954304c26fcb35ea70b365d807def7/README.md"
+        },
+        {
+          "path": "LICENSE",
+          "permalink": "https://github.com/coollabsio/coolify/blob/f778942630954304c26fcb35ea70b365d807def7/LICENSE"
+        }
+      ]
+    },
+    {
+      "repository": "coollabsio/coolify-docs",
+      "commit": "cb83e74f479031ce28a2c073ce1f29bd530caba4",
+      "paths": [
+        {
+          "path": "content/docs/core/selfhosted-cloud-comparison.mdx",
+          "permalink": "https://github.com/coollabsio/coolify-docs/blob/cb83e74f479031ce28a2c073ce1f29bd530caba4/content/docs/core/selfhosted-cloud-comparison.mdx"
+        },
+        {
+          "path": "content/docs/core/security-model.mdx",
+          "permalink": "https://github.com/coollabsio/coolify-docs/blob/cb83e74f479031ce28a2c073ce1f29bd530caba4/content/docs/core/security-model.mdx"
+        },
+        {
+          "path": "content/docs/core/backup-and-recovery/instance-backup.mdx",
+          "permalink": "https://github.com/coollabsio/coolify-docs/blob/cb83e74f479031ce28a2c073ce1f29bd530caba4/content/docs/core/backup-and-recovery/instance-backup.mdx"
+        },
+        {
+          "path": "content/docs/core/infrastructure/servers/firewall.mdx",
+          "permalink": "https://github.com/coollabsio/coolify-docs/blob/cb83e74f479031ce28a2c073ce1f29bd530caba4/content/docs/core/infrastructure/servers/firewall.mdx"
+        },
+        {
+          "path": "content/docs/core/infrastructure/servers/provision-cloud-server.mdx",
+          "permalink": "https://github.com/coollabsio/coolify-docs/blob/cb83e74f479031ce28a2c073ce1f29bd530caba4/content/docs/core/infrastructure/servers/provision-cloud-server.mdx"
+        },
+        {
+          "path": "content/docs/hetzner.mdx",
+          "permalink": "https://github.com/coollabsio/coolify-docs/blob/cb83e74f479031ce28a2c073ce1f29bd530caba4/content/docs/hetzner.mdx"
+        }
+      ]
+    },
+    {
+      "repository": "hetznercloud/cli",
+      "commit": "80c634c2e87d2deecf69154d861428f34d2eae08",
+      "paths": [
+        {
+          "path": "README.md",
+          "permalink": "https://github.com/hetznercloud/cli/blob/80c634c2e87d2deecf69154d861428f34d2eae08/README.md"
+        },
+        {
+          "path": "docs/reference/manual/hcloud_server-type_list.md",
+          "permalink": "https://github.com/hetznercloud/cli/blob/80c634c2e87d2deecf69154d861428f34d2eae08/docs/reference/manual/hcloud_server-type_list.md"
+        },
+        {
+          "path": "docs/reference/manual/hcloud_location_list.md",
+          "permalink": "https://github.com/hetznercloud/cli/blob/80c634c2e87d2deecf69154d861428f34d2eae08/docs/reference/manual/hcloud_location_list.md"
+        }
+      ]
+    },
+    {
+      "repository": "Scalingo/documentation",
+      "commit": "ffef90090ffecb914c550a87a733c47c680f33cf",
+      "paths": [
+        {
+          "path": "src/_posts/platform/getting-started/2000-01-01-free-trial.md",
+          "permalink": "https://github.com/Scalingo/documentation/blob/ffef90090ffecb914c550a87a733c47c680f33cf/src/_posts/platform/getting-started/2000-01-01-free-trial.md"
+        },
+        {
+          "path": "src/_posts/platform/internals/2000-01-01-regions.md",
+          "permalink": "https://github.com/Scalingo/documentation/blob/ffef90090ffecb914c550a87a733c47c680f33cf/src/_posts/platform/internals/2000-01-01-regions.md"
+        },
+        {
+          "path": "src/_posts/languages/nodejs/2000-01-01-start.md",
+          "permalink": "https://github.com/Scalingo/documentation/blob/ffef90090ffecb914c550a87a733c47c680f33cf/src/_posts/languages/nodejs/2000-01-01-start.md"
+        },
+        {
+          "path": "src/_posts/databases/about/2000-01-01-backup-policies.md",
+          "permalink": "https://github.com/Scalingo/documentation/blob/ffef90090ffecb914c550a87a733c47c680f33cf/src/_posts/databases/about/2000-01-01-backup-policies.md"
+        },
+        {
+          "path": "src/_posts/databases/postgresql/about/2000-01-01-ha.md",
+          "permalink": "https://github.com/Scalingo/documentation/blob/ffef90090ffecb914c550a87a733c47c680f33cf/src/_posts/databases/postgresql/about/2000-01-01-ha.md"
+        },
+        {
+          "path": "src/_posts/platform/app/2000-01-01-static-files-hosting.md",
+          "permalink": "https://github.com/Scalingo/documentation/blob/ffef90090ffecb914c550a87a733c47c680f33cf/src/_posts/platform/app/2000-01-01-static-files-hosting.md"
+        }
+      ]
+    },
+    {
+      "repository": "CleverCloud/documentation",
+      "commit": "b0fef7bc483c38e426431b5cc143adf7b26e4a08",
+      "paths": [
+        {
+          "path": "content/doc/deploy/applications/nodejs.md",
+          "permalink": "https://github.com/CleverCloud/documentation/blob/b0fef7bc483c38e426431b5cc143adf7b26e4a08/content/doc/deploy/applications/nodejs.md"
+        },
+        {
+          "path": "content/doc/deploy/databases/postgresql.md",
+          "permalink": "https://github.com/CleverCloud/documentation/blob/b0fef7bc483c38e426431b5cc143adf7b26e4a08/content/doc/deploy/databases/postgresql.md"
+        }
+      ]
+    }
+  ],
+  "blockedHttpSources": [
+    {
+      "url": "https://www.hetzner.com/cloud/",
+      "result": "Execution proxy CONNECT HTTP 403; curl exit 56, provider page not retrieved"
+    },
+    {
+      "url": "https://docs.hetzner.com/cloud/general/locations/",
+      "result": "Execution proxy CONNECT HTTP 403; curl exit 56, provider page not retrieved"
+    },
+    {
+      "url": "https://docs.hetzner.com/cloud/servers/faq/",
+      "result": "Execution proxy CONNECT HTTP 403; curl exit 56, provider page not retrieved"
+    },
+    {
+      "url": "https://www.hetzner.com/storage/object-storage/",
+      "result": "Execution proxy CONNECT HTTP 403; curl exit 56, provider page not retrieved"
+    },
+    {
+      "url": "https://coolify.io/docs/get-started/installation",
+      "result": "Execution proxy CONNECT HTTP 403; curl exit 56, provider page not retrieved"
+    },
+    {
+      "url": "https://deploybase.eu/",
+      "result": "Execution proxy CONNECT HTTP 403; curl exit 56, provider page not retrieved"
+    },
+    {
+      "url": "https://deploybase.eu/vs/netlify-forms",
+      "result": "Execution proxy CONNECT HTTP 403; curl exit 56, provider page not retrieved"
+    },
+    {
+      "url": "https://statichost.eu/",
+      "result": "Execution proxy CONNECT HTTP 403; curl exit 56, provider page not retrieved"
+    },
+    {
+      "url": "https://www.ionos.com/hosting/deploy-now",
+      "result": "Execution proxy CONNECT HTTP 403; curl exit 56, provider page not retrieved"
+    },
+    {
+      "url": "https://docs.ionos.space/",
+      "result": "Execution proxy CONNECT HTTP 403; curl exit 56, provider page not retrieved"
+    },
+    {
+      "url": "https://europeantechmap.eu/alternative-to/vercel",
+      "result": "Execution proxy CONNECT HTTP 403; curl exit 56, provider page not retrieved"
+    },
+    {
+      "url": "https://euroalternative.eu/alternatives/netlify",
+      "result": "Execution proxy CONNECT HTTP 403; curl exit 56, provider page not retrieved"
+    }
+  ],
+  "userSuppliedEvidence": {
+    "coolifyScreenshot": "Self-hosted free; Cloud $5/month/two connected servers, $3/additional server, annual discount shown. Currency/taxes and checkout not independently verified.",
+    "additionalPlatforms": "Deploybase, Statichost, IONOS Deploy Now and Lucity descriptions came from Claudia; no feature or sovereignty claim is independently accepted."
+  },
+  "verificationBoundaries": [
+    "No live Hetzner/managed-provider quote obtained",
+    "No credit eligibility confirmed or credit redeemed",
+    "No provider account or billable resource created",
+    "No contract/legal/jurisdiction certification",
+    "Caddy/Docker test is local and does not prove any hosting provider SLA",
+    "Specimen Irodori 0.16.1 is a hosting sample, not acceptance of current app builds"
+  ]
+}

@@ -1,0 +1,22 @@
+# HTTP is for loopback testing only. This is NOT an Internet deployment config.
+{
+ admin off
+ auto_https off
+ persist_config off
+}
+:8080 {
+ root * /srv
+ @wasm path *.wasm
+ @immutable path /app/*
+ @mutable path / /index.html /start-*.js /kobo-bridge.js /kobo-sync.js /kobo.json /app/photocraft-web.js /app/parts.txt
+ # Preserve header ordering: general default, hashed files, then mutable exceptions.
+ route {
+  header X-Content-Type-Options nosniff
+  header Content-Security-Policy "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self' blob:; font-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'self' https://explorebyclaudia.netlify.app https://www.claudiagilbert.com https://claudiagilbert.com"
+  header Cache-Control no-cache
+  header @wasm Content-Type application/wasm
+  header @immutable Cache-Control "public, max-age=31536000, immutable"
+  header @mutable Cache-Control no-cache
+  file_server
+ }
+}

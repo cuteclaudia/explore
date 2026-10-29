@@ -1,0 +1,37 @@
+{
+  "dateSydney": "2026-10-29",
+  "scope": "Local Caddy/Docker portability, not Hetzner or current release acceptance",
+  "image": "caddy@sha256:eb4d35b7452d1ab6171fbdbe8d9275b2301dad6dad92115d91e19fb9b24d510f",
+  "caddyVersion": "v2.11.7 h1:yj0Y4fYZGPkSvibBJ1sTWE33xC0fxztVyXEW5iIdUT4=",
+  "files": {
+    "ATTRIBUTION.md": "df2da858ad94e781185f9e6dcd08dbbe379cd5c06bf4752a20593fdcea9614dc",
+    "HOSTING.md": "c67197774501e2e4c01d34ed2da8a5b7e4224b2b3a1dc7dc07f3598d2e155b42",
+    "LICENSE-APACHE": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+    "LICENSE-MIT": "1a8f66d8a86b146f5336fa0d4b1186576c8aa98e60823080c85c7811cfd810af",
+    "NOTICE": "26185d8b8b4f810cf15947af7f86c87d80dfe10556f58206e3cb86c1b3685b4f",
+    "README.md": "ef88681dc61df3f05d6a9dc89a0e717414fb39ae3b1f9fad9aee95a8e054223b",
+    "_headers": "6f5d95c238c662654548cebb4549ce82dc8a4c3edebada7e4737be25f9eed475",
+    "app/parts.txt": "9d02dab60b6db61e3cb4bb7f3808fe76393bd242d18880f24ba4c14bb618a54c",
+    "app/photocraft-web-56c85c8dcfb4eb67.part-aa": "ef0cf269e77e791e5117275c458c68a6bb39a6c68a5fa6528d3ce0ecec150fc4",
+    "app/photocraft-web.js": "efc6eebab852e7172bc5dc7ab70c8882d054088246be13612b435530e4606d20",
+    "app/snippets/eframe-d31a8450ea12dfc1/inline0.js": "22a98f9d0c5a0532d291bdc9a3050439420b3d11143b4568fcfd3c66fff36995",
+    "index.html": "b5e72312dea68113a716c78519603fd043dca664810466a7a30866c23e20936d",
+    "kobo-bridge.js": "2a5bce8944c47c9e12d99fd52120f624ae6f09fd24459f20f1185569aac740f0",
+    "kobo-sync.js": "0c026443d817e85fda76641c6453771c3825e6431ff744f9aa7e3db38cf8cec5",
+    "kobo.json": "7028e9a2f1c1573e4289f9f1ea767180443eabfb939d552a5e3b519ec2bdf3ef",
+    "netlify.toml": "96fffd899af349d3bd850c79c89581aad9e30e2872c563f1574e2ac5ac1b7a33",
+    "photocraft-web-boot-a2d3049220827412.js": "066fce4102ef61df915b5a5441929abccdcaaf8ca30ffeaa6c762f0ba4c9fd3c",
+    "photocraft-web-boot-a2d3049220827412_bg.wasm": "82edba8f14d877fb20ebc4cf0941f9c492eb731cd3c0a6b66bce20471e675afe",
+    "snippets/eframe-d31a8450ea12dfc1/inline0.js": "22a98f9d0c5a0532d291bdc9a3050439420b3d11143b4568fcfd3c66fff36995",
+    "start-1.js": "5d61384080dbda371fb000d97f02c71fd28a490da437aed5d03b24c09d4a973e"
+  },
+  "security": {
+    "nonRoot": true,
+    "readOnly": true,
+    "capabilities": "none",
+    "listen": "localhost-only"
+  },
+  "browser": "Chromium software WebGL",
+  "realAccounts": false,
+  "realCustomerFiles": false
+}
