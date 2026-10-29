@@ -50,13 +50,11 @@ Before onboarding a second business: implement and test tenant isolation (includ
 
 A dedicated platform domain can follow later. HobbyNest remains the first shop and proving ground. Domain naming and marketing do not establish product readiness or trademark clearance.
 
-## Names: working candidates only
+## Platform name: SoraShop
 
-- **Nestlane** — connects to HobbyNest while leaving room for other kinds of shops.
-- **Shopweave** — suggests bringing storefront, orders and downloads together.
-- **MakerHarbour** — fits a product aimed first at makers and independent businesses.
+Claudia selected **SoraShop** as the working name for the reusable commerce engine. **HobbyNest** remains her 3D-printing shop and keeps its existing branding, paths and catalogue. SoraShop would be an optional module within SoraSpace; other sellers use their own shop identity. Name/trademark/domain checks remain outstanding, and no domain is purchased or configured here.
 
-These are brainstorming candidates, **not cleared trademarks or confirmed available domains**. Search the intended markets (including IP Australia and relevant international registries), domain/handle availability and similar commerce/software brands before committing. Do not rename HobbyNest or buy a domain from this list without Claudia's choice.
+See [SoraSpace platform roadmap](../soraspace/PLATFORM-ROADMAP.md) for tenant isolation, publishing, domains, subscription boundaries and release gates. Existing HobbyNest administration is not yet suitable for multiple sellers. No code namespace, storage key or payment account is renamed by this naming decision.
 
 ## Immediate next implementation
 
