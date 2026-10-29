@@ -14,7 +14,8 @@
     "predev:content": "node --use-env-proxy scripts/prepare-craft-tools.mjs",
     "dev:content": "node scripts/dev-content.mjs",
     "test:deploy": "node scripts/check-netlify-build.mjs",
-    "postbuild": "npm run test:deploy"
+    "postbuild": "npm run test:deploy",
+    "test:soraspace-tenants": "node scripts/check-soraspace-tenants.mjs"
   },
   "dependencies": {
     "@astrojs/markdoc": "^2.1.1",
@@ -41,5 +42,8 @@
     "sanitize-html": "^2.18.1",
     "sax": "1.6.1",
     "sharp": "0.35.5"
+  },
+  "devDependencies": {
+    "pg": "8.23.1"
   }
 }

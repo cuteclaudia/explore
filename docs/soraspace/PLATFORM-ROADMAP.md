@@ -25,6 +25,8 @@ Switching a page off hides its navigation and public route, including direct lin
 
 ## First technical prerequisite: explicit tenant boundaries
 
+Implementation update: an isolated PostgreSQL schema, tenant service and real-database adversarial tests are now built; see [tenant foundation](TENANT-FOUNDATION.md). They are not connected to live routes or a managed database. The full isolation release gate below remains open.
+
 Current owner-centric Explore content stores and HobbyNest's single catalogue are not a safe multi-tenant backend. Do not accept a browser-provided customer ID or prepend an ID to existing keys and call isolation complete. Do not onboard a second seller to the existing single-shop record.
 
 Design a transactional database with workspace, verified membership/role, site, publication, domain binding, entitlement and audit records. Use non-null tenant IDs on tenant-owned records and tenant-scoped uniqueness, foreign keys and database policies; enforce authorization in the service layer as well. Jobs, exports, object storage and backups must carry explicit authorized tenant scope. Platform administration and billing support are distinct from customer roles.
