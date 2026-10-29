@@ -1,6 +1,6 @@
-# Subscription specification — proposed first release
+# SoraSpace subscription specification — proposed first release
 
-29 October 2026 (Sydney). Reviewable implementation proposal, not a commercial launch. **Explore stays on Netlify. Existing access, apps, files, checkout and registration settings remain unchanged.** The suite name is a working label; product and app identifiers must survive a later rebrand.
+29 October 2026 (Sydney). Reviewable implementation proposal, not a commercial launch. **Explore stays on Netlify. Existing access, apps, files, checkout and registration settings remain unchanged.** SoraSpace is the chosen suite name, with intended address `https://www.soraspace.studio`. Domain setup is a separate pending cutover; product and app identifiers remain independent of the name.
 
 The user has agreed to no permanent founding discount and a maximum 25% reduction for the first year. Prices, bundle membership, trial/device limits, grace periods and provider selection below are recommendations for approval before checkout goes live. Claude’s attached licensing draft is input to this proposal, not an instruction to enable billing or proof of native licence enforcement.
 

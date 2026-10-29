@@ -41,7 +41,7 @@ export function koboStorageService({launchStore,loadConnection,files=davFiles,in
     if((record.storageEpoch||'legacy')!==index.epoch)throw new KoboError('unauthorized','The private index was restored. Reopen the app with a fresh launch.');
     if(!config)throw new KoboError('forbidden','Configure your storage connection in Account settings first.');
     if(!args.connectionId||args.connectionId!==status.connectionId)throw new KoboError('conflict','Your storage destination changed. Reopen the app before continuing.');
-    if(!status.available)throw new KoboError('forbidden','Verify Kōbō sync in Files & storage before using this connection.');
+    if(!status.available)throw new KoboError('forbidden','Verify SoraSpace sync in Files & storage before using this connection.');
     if(status.readOnly&&['put','remove'].includes(op))throw new KoboError('forbidden','Google Drive is read-only until competing-save checks pass. Run Test connection in Files & storage.');
     const api=files(config,record.app,{signal:args.signal,storageEpoch:record.storageEpoch||'legacy'}),opts={ifMatch:args.ifMatch,ifNoneMatch:args.ifNoneMatch,signal:args.signal};
     switch(op){
@@ -59,7 +59,7 @@ export function koboStorageService({launchStore,loadConnection,files=davFiles,in
 // Opt-in probe. Existing WebDAV copy support does not imply safe multi-device sync.
 export async function verifyKoboConnection(config,{files=davFiles}={}){
   const api=files(config,'hikari'),path='_kobo-connection-check/'+randomUUID()+'.bin';let etag;
-  const expectConflict=async fn=>{try{await fn();}catch(e){if(e.code==='conflict')return;throw e;}throw new KoboError('forbidden','This provider did not honour a conditional request. Kōbō sync stays disabled.');};
+  const expectConflict=async fn=>{try{await fn();}catch(e){if(e.code==='conflict')return;throw e;}throw new KoboError('forbidden','This provider did not honour a conditional request. SoraSpace sync stays disabled.');};
   try{
     etag=(await api.put(path,new Uint8Array([1,2,3]),{ifNoneMatch:'*'})).etag;
     const value=await api.read(path,{ifMatch:etag});if(!value||Buffer.compare(value.data,Buffer.from([1,2,3]))!==0)throw new KoboError('server','Storage read-back did not match.');

@@ -5,5 +5,5 @@ export const APP_PRESENTATION=Object.freeze({
  fumi:{name:'Fumi',purpose:'writing and document editing'},
  tsuzuri:{name:'Tsuzuri',purpose:'PDF editing and organisation'},
 });
-export const appIdentity=app=>Object.hasOwn(APP_PRESENTATION,app)?APP_PRESENTATION[app].name+' — '+APP_PRESENTATION[app].purpose:'Kōbō app';
+export const appIdentity=app=>Object.hasOwn(APP_PRESENTATION,app)?APP_PRESENTATION[app].name+' — '+APP_PRESENTATION[app].purpose:'SoraSpace app';
 export const openingAppMessage=app=>'Opening '+appIdentity(app)+'…';

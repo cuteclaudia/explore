@@ -19,12 +19,12 @@ function show(data:any){
  document.querySelector('.connection-details summary')!.textContent=connected?'Manage connection':'Connect WebDAV';
  status.textContent=connected?'WebDAV connection saved for your current account.':'No WebDAV connection saved for your current account.';status.dataset.state='normal';
  for(const name of ['url','username','baseFolder','label'])if(typeof data[name]==='string')(form.elements.namedItem(name) as HTMLInputElement).value=data[name];
- verification.textContent=!connected?'Step 1: enter your connection details, then click Test & save.':data.koboVerified?'Connection checks passed. Full app sync remains experimental.':'Step 2: connection saved. You can now test Kōbō sync.';verification.dataset.state='normal';
+ verification.textContent=!connected?'Step 1: enter your connection details, then click Test & save.':data.koboVerified?'Connection checks passed. Full app sync remains experimental.':'Step 2: connection saved. You can now test SoraSpace sync.';verification.dataset.state='normal';
 }
 controls();
 const initialRevision=revision;
 request('/api/storage/webdav').then(data=>{if(initialRevision!==revision)return;if(!dirty)show(data);else{connected=data.connected===true;controls();}}).catch(e=>{if(initialRevision===revision)note(e.message,true);});
-form.addEventListener('input',()=>{dirty=true;controls();verification.textContent='Connection details changed. Click Test & save before testing Kōbō sync.';verification.dataset.state='normal';});
+form.addEventListener('input',()=>{dirty=true;controls();verification.textContent='Connection details changed. Click Test & save before testing SoraSpace sync.';verification.dataset.state='normal';});
 form.addEventListener('invalid',event=>{const field=event.target as HTMLInputElement;const name={url:'HTTPS WebDAV URL',username:'username',password:'app password'}[field.name]||'required field';note('Complete the '+name+' in Connection details, then click Test & save.',true);},true);
 form.addEventListener('submit',async event=>{
  event.preventDefault();if(busy)return;revision++;busy=true;controls();note('Testing your WebDAV folder, writing a temporary file and saving the connection…');
@@ -33,7 +33,7 @@ form.addEventListener('submit',async event=>{
  finally{(form.elements.namedItem('password') as HTMLInputElement).value='';busy=false;controls();}
 });
 verify.onclick=async()=>{
- if(busy||!connected||dirty){note('Complete Test & save successfully for this account before testing Kōbō sync.',true);return;}
+ if(busy||!connected||dirty){note('Complete Test & save successfully for this account before testing SoraSpace sync.',true);return;}
  busy=true;controls();verification.textContent='Checking conditional writes and reading back a temporary file…';verification.dataset.state='normal';
  try{await request('/api/storage/webdav/verify-kobo',{method:'POST'});verification.textContent='Connection checks passed. Full app sync remains experimental.';}
  catch(e){verification.textContent=e instanceof Error?e.message:'Verification failed.';verification.dataset.state='error';}
@@ -55,5 +55,5 @@ async function googleRun(fn){if(googleBusy)return;googleBusy=true;for(const b of
 googleConnect.onclick=()=>googleRun(async()=>{const d=await request('/api/google-drive/start',{method:'POST'});const u=new URL(d.authorizationUrl);if(u.origin!=='https://accounts.google.com')throw Error('The authorization address could not be verified.');location.assign(u.href);});
 googleVerify.onclick=()=>googleRun(async()=>{googleStatus.textContent='Testing a private Drive revision and competing saves…';await request('/api/google-drive/verify',{method:'POST'});await refreshGoogle();});
 googleDisconnect.onclick=()=>{if(confirm('Disconnect Google Drive from your Explore account? Your Drive files will be kept.'))googleRun(async()=>{const result=await request('/api/google-drive/disconnect',{method:'POST'});await refreshGoogle();if(result.revoked===false)googleStatus.textContent='Disconnected here. Google could not confirm revocation; you can also remove access in your Google account security settings.';});};
-providerSave.onclick=()=>googleRun(async()=>{if(!confirm('Use '+(provider.value==='google-drive'?'Google Drive':'WebDAV')+' for new Kōbō app sessions? Libraries are separate and will not be copied.'))return;await request('/api/google-drive/select',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({provider:provider.value})});await refreshGoogle();providerStatus.textContent+=' Reopen any app to use this connection.';});
+providerSave.onclick=()=>googleRun(async()=>{if(!confirm('Use '+(provider.value==='google-drive'?'Google Drive':'WebDAV')+' for new SoraSpace app sessions? Libraries are separate and will not be copied.'))return;await request('/api/google-drive/select',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({provider:provider.value})});await refreshGoogle();providerStatus.textContent+=' Reopen any app to use this connection.';});
 refreshGoogle().then(()=>{const u=new URL(location.href),result=u.searchParams.get('googleDrive');if(result){if(result==='failed')googleStatus.textContent='Google authorization was not completed. Start again from Connect Google Drive. If it repeats, check the OAuth client and callback setup.';if(result==='cancelled')googleStatus.textContent='Google authorization was cancelled. Your connection was not changed.';u.searchParams.delete('googleDrive');history.replaceState(null,'',u.pathname+u.search);}}).catch(e=>googleStatus.textContent=e.message);

@@ -15,7 +15,7 @@ export function driveClient(env=process.env){
 function tokens(value,now=Date.now()){
  if(typeof value?.access_token!=='string'||value.access_token.length>8192||!Number.isFinite(value.expires_in)||value.expires_in<30||value.expires_in>86400||value.token_type?.toLowerCase()!=='bearer')throw new KoboError('server','Google returned an invalid authorization response.');
  if(value.scope&&!value.scope.split(' ').includes(DRIVE_SCOPE))throw new KoboError('forbidden','Google Drive file access was not granted.');
- if(value.scope?.split(' ').some(s=>/^https:\/\/www.googleapis.com\/auth\/drive(?:\.|$)/.test(s)&&s!==DRIVE_SCOPE))throw new KoboError('forbidden','The returned Google access is broader than the requested file permission. Use the dedicated Kōbō OAuth client.');
+ if(value.scope?.split(' ').some(s=>/^https:\/\/www.googleapis.com\/auth\/drive(?:\.|$)/.test(s)&&s!==DRIVE_SCOPE))throw new KoboError('forbidden','The returned Google access is broader than the requested file permission. Use the dedicated app OAuth client.');
  return {accessToken:value.access_token,expiresAt:now+value.expires_in*1000,...(typeof value.refresh_token==='string'&&value.refresh_token.length<=8192?{refreshToken:value.refresh_token}:{})};
 }
 export function googleConnection({store,fetcher=fetch,env=process.env,now=()=>Date.now()}){
@@ -39,7 +39,7 @@ export function googleConnection({store,fetcher=fetch,env=process.env,now=()=>Da
    const unchanged=async()=>{const r=await revision(store,'google-drive/'+user);if((r?.data.writeId||null)!==flow.connectionWriteId)throw new KoboError('conflict','Your storage connection changed while Google authorization was open. Start again.');return r;};await unchanged();if(typeof code!=='string'||!code||code.length>4096)throw new KoboError('invalid','Google did not return an authorization code.');
    const c=client(),auth=await tokenPost({code,code_verifier:flow.verifier,redirect_uri:c.redirect,grant_type:'authorization_code'});if(!auth.refreshToken)throw new KoboError('forbidden','Google did not grant offline access. Reconnect and approve the requested access.');
    const api=googleDriveAPI(auth.accessToken,{fetcher}),about=await api.about();if(typeof about.user?.permissionId!=='string'||about.user.permissionId.length>200)throw new KoboError('server','Google did not identify the connected Drive account.');
-   const owner=hash(user),root=await api.root(owner);if(!driveId(root.id)||root.appProperties?.koboOwner!==owner||root.appProperties?.koboRoot!=='1'||root.trashed)throw new KoboError('server','Google did not confirm the private Kōbō folder.');
+   const owner=hash(user),root=await api.root(owner);if(!driveId(root.id)||root.appProperties?.koboOwner!==owner||root.appProperties?.koboRoot!=='1'||root.trashed)throw new KoboError('server','Google did not confirm the private app folder.');
    return locked('google-connect:'+user,async()=>{const previous=await unchanged();const connectionId=hash(JSON.stringify([user,c.id,about.user.permissionId,root.id]));const config={provider:'google-drive',userId:user,clientId:c.id,accountId:about.user.permissionId,email:String(about.user.emailAddress||'').slice(0,250),rootId:root.id,connectionId,label:'Google Drive',connectedAt:new Date().toISOString(),quota:about.storageQuota||{},...auth};await storeConfig(user,config,previous);return {connected:true};});
   },
   load:async user=>(await saved(user))?.config||null,

@@ -2,7 +2,7 @@ const theme=(window as any).exploreTheme;
 const status=document.querySelector<HTMLElement>('#appearance-status')!;
 const inputs=Array.from(document.querySelectorAll<HTMLInputElement>('[data-theme-colour]'));
 const density=document.querySelector<HTMLSelectElement>('#setting-density')!,motion=document.querySelector<HTMLInputElement>('#setting-motion')!;
-const labels={alpine:'Alpine',coastal:'Coastal',forest:'Forest',desert:'Desert',midnight:'Midnight',rose:'Sakura Pink',kobo:'Kōbō'};
+const labels={alpine:'Alpine',coastal:'Coastal',forest:'Forest',desert:'Desert',midnight:'Midnight',rose:'Sakura Pink',kobo:'SoraSpace'};
 const landing=document.querySelector<HTMLSelectElement>('#setting-landing')!;try{landing.value=localStorage.getItem('explore-landing-page')==='home'?'home':'studio';}catch{}
 let colours=theme.read(),dirty=false,signedIn=false;
 function mark(){dirty=true;status.textContent='Previewing your changes. Save preferences to keep them.';}

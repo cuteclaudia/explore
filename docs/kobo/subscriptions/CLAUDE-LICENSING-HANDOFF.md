@@ -2,7 +2,7 @@
 
 29 October 2026. Proposal for review when app development resumes. No external message was sent, and no licence endpoint/key/payment service is live.
 
-Claudia wants lower-cost Desktop bundles and Web + Desktop bundles, with the latter including desktop. No permanent founding discount; maximum 25% for the first year. The website remains on Netlify while we stabilise it. The suite may be renamed; preserve app IDs and account/file bindings independently of branding.
+Claudia wants lower-cost Desktop bundles and Web + Desktop bundles, with the latter including desktop. No permanent founding discount; maximum 25% for the first year. The website remains on Netlify while we stabilise it. The suite is now named SoraSpace (ソラスペース), with intended address https://www.soraspace.studio. Preserve app IDs and account/file bindings independently of branding; no launch/storage contract or origin migration is authorised by the display-name change.
 
 Please review the [subscription specification](SUBSCRIPTION-SPECIFICATION.md), particularly sections 3, 4 and 8. It supersedes the earlier draft’s identical desktop/web access and permanent founding discount as a proposed direction, not a frozen API contract.
 

@@ -11,7 +11,7 @@ try{
  for(const kind of ['test','app']){
   const file=kind==='test'?'src/pages/studio/kobo-test.astro':'src/pages/apps/[tool].astro';const source=await readFile(file,'utf8');
   let markup=kind==='test'?source.match(/<main[\s\S]*?<\/main>/)[0]:source.match(/<header[\s\S]*?<\/dialog>/)[0];
-  markup=markup.replace(/\{availableApps[\s\S]*?<\/select>/,'<option value="hikari">Hikari</option></select>').replace(/<KoboIcon[^>]*\/>/g,'').replace(/\{tool.name\}/g,'Hikari').replace(/\{[^}]*\}/g,'"about:blank"');
+  markup=markup.replace(/<KoboLauncher[^>]*\/>/g,'<button type="button" style="width:44px;padding:0" aria-label="Switch app">Apps</button>').replace(/\{availableApps[\s\S]*?<\/select>/,'<option value="hikari">Hikari</option></select>').replace(/<KoboIcon[^>]*\/>/g,'').replace(/\{tool.name\}/g,'Hikari').replace(/\{[^}]*\}/g,'"about:blank"');
   const css=source.match(/<style[^>]*>([\s\S]*?)<\/style>/)[1].replace(/:global\(([^)]+)\)/g,'$1');
   let script=source.match(/<script>([\s\S]*?)<\/script>/)[1].replace(/import [^;]*(?:kobo-shell|workspace-files)[^;]*;/g,'');
   if(kind==='test')script='const mountKoboSession=options=>({close(message){options.onClosed(message)}});'+script;

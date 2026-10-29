@@ -34,7 +34,7 @@ function filesAtIndex(config,app,{store,api,recovery,context}){
  }
  async function remote(record){
   const file=await api.meta(record.remoteId);
-  if(!file||file.trashed||file.mimeType===folderType||!file.parents?.includes(record.parentId)||file.appProperties?.koboOwner!==owner||file.appProperties?.koboApp!==app||file.appProperties?.koboRevision!==record.version||file.appProperties?.koboHash!==record.sha256||Number(file.size)!==record.size)throw new KoboError('conflict','A working revision was changed or removed outside Kōbō. Your local work has not been overwritten.');return file;
+  if(!file||file.trashed||file.mimeType===folderType||!file.parents?.includes(record.parentId)||file.appProperties?.koboOwner!==owner||file.appProperties?.koboApp!==app||file.appProperties?.koboRevision!==record.version||file.appProperties?.koboHash!==record.sha256||Number(file.size)!==record.size)throw new KoboError('conflict','A working revision was changed or removed outside SoraSpace. Your local work has not been overwritten.');return file;
  }
  return {
   async read(path,opts={}){koboPath(path);koboConditions(opts);const found=await current(path),record=found?.data;if(!record||record.deleted)return null;if(record.kind!=='file')throw new KoboError('forbidden','Choose an individual file.');if(opts.ifMatch&&opts.ifMatch!==tag(record))throw new KoboError('conflict','This Drive file changed.');await remote(record);const bytes=await api.download(record.remoteId);if(!bytes||bytes.byteLength!==record.size||hash(bytes)!==record.sha256)throw new KoboError('conflict','Drive file bytes do not match the saved revision.');return {data:bytes,etag:tag(record)};},
