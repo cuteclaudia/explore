@@ -2,9 +2,10 @@
 import assert from 'node:assert/strict';
 import handler from './ssr.mjs';
 const response=path=>handler(new Request('https://explorebyclaudia.netlify.app'+path),{ip:'127.0.0.1'});
-for(const path of ['/about','/journal','/journal/deployment-check','/chinaseries','/dailycyberreport','/osint-brief','/osint-brief/deployment-brief','/api/writing-categories','/photography','/rss.xml','/prototype-content.json']){
+for(const path of ['/about','/journal','/journal/deployment-check','/chinaseries','/dailycyberreport','/osint-brief','/osint-brief/deployment-brief','/api/writing-categories','/api/hobbynest/catalogue','/photography','/rss.xml','/prototype-content.json']){
  const r=await response(path);assert.equal(r.status,200,path+' should render');const body=await r.text();assert(!body.includes('BINNED BRIEF MUST NOT LEAK')&&!body.includes('PRIVATE DRAFT MUST NOT LEAK')&&!body.includes('PRIVATE OSINT DRAFT MUST NOT LEAK'),path+' leaked a draft');
  if(path==='/osint-brief/deployment-brief')assert(body.includes('Published OSINT build-check brief'));
+ if(path==='/api/hobbynest/catalogue'){const catalogue=JSON.parse(body);assert.equal(catalogue.checkoutEnabled,false);assert.deepEqual(catalogue.products,[]);}
  if(path==='/api/writing-categories')assert.deepEqual(JSON.parse(body).categories.map(c=>c.name),['China Series','Cyber Briefs','OSINT Brief']);
  if(path==='/journal/deployment-check')assert(body.includes('Published build-check body'));
  if(path==='/rss.xml')assert(body.includes('Published build-check journal'));
@@ -14,8 +15,10 @@ for(const path of ['/about','/journal','/journal/deployment-check','/chinaseries
 const oldExplore=await response('/explore?place=3');assert.equal(oldExplore.status,301);assert.equal(oldExplore.headers.get('location'),'/places?place=3');
 assert.equal((await response('/osint-brief/trashed-brief')).status,404,'Category-binned article must not be public');
 assert.equal((await response('/chinaseries/puertochancay')).status,404,'Unpublished legacy page must remain hidden');
-for(const path of ['/studio/about','/studio','/studio/content','/apps','/studio/kobo-test','/studio/irodori-test','/apps/irodori','/apps/irodori-legacy']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
+for(const path of ['/studio/hobbynest','/studio/about','/studio','/studio/content','/apps','/studio/kobo-test','/studio/irodori-test','/apps/irodori','/apps/irodori-legacy']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
 assert.equal((await response('/api/content/list')).status,401);
+assert.equal((await response('/api/hobbynest/settings')).status,401,'Store settings require owner authentication');
+for(const method of ['PUT','POST'])assert.equal((await handler(new Request('https://explorebyclaudia.netlify.app/api/hobbynest/settings',{method,headers:{Origin:'https://explorebyclaudia.netlify.app','Content-Type':'application/json'},body:'{}'}),{ip:'127.0.0.1'})).status,401,'Store edits and estimates require authentication');
 assert.equal((await response('/api/content-features')).status,401,'Feature controls require owner authentication');
 assert.equal((await handler(new Request('https://explorebyclaudia.netlify.app/api/writing-categories',{method:'PUT',headers:{Origin:'https://explorebyclaudia.netlify.app','Content-Type':'application/json'},body:'{}'}),{ip:'127.0.0.1'})).status,401,'Category editing requires sign-in');
 assert.equal((await response('/api/apps/irodori-preview')).status,401);
@@ -35,7 +38,7 @@ globalThis.fetch=async(input,options)=>{
  return originalFetch(input,options);
 };
 try{
- for(const origin of ['https://www.claudiagilbert.com','https://claudiagilbert.com'])for(const path of ['/studio','/studio/downloads','/studio/account','/studio/users','/apps']){
+ for(const origin of ['https://www.claudiagilbert.com','https://claudiagilbert.com'])for(const path of ['/studio','/studio/hobbynest','/studio/downloads','/studio/account','/studio/users','/apps']){
   const r=await handler(new Request(origin+path,{headers:{Cookie:'nf_jwt=verified-by-session-service'}}),{ip:'127.0.0.1'});
   assert.equal(r.status,200,origin+path+' must recognize the verified browser session');assert.equal(r.headers.get('Cache-Control'),'private, no-store');console.log('PASS packaged custom-domain account session',origin+path);
  }

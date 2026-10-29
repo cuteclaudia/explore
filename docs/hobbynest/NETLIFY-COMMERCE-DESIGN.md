@@ -2,6 +2,8 @@
 
 29 October 2026 (Sydney). Claudia prefers to avoid Shopify's recurring platform subscription and wants the option to commercialise the store software later. This supersedes the earlier recommendation to start with Shopify. It authorizes planning and a custom implementation path, not creating paid accounts, charging customers or declaring checkout ready.
 
+Current implementation: [catalogue and inventory](CATALOGUE-AND-INVENTORY.md) adds owner catalogue/colour-stock/offer/shipping administration and a public preview. It does not enable checkout or replace the transactional order architecture below.
+
 ## Feasibility and effort
 
 Netlify can host a custom storefront, owner UI and stateless server functions. It does not itself supply a complete commerce engine, card processor, fulfilment system or transactional database simply by deploying an Astro site. The features HobbyNest needs are achievable; full parity with Shopify's international/channel/POS/app ecosystem is a much larger product and is not required for the first store.
@@ -58,4 +60,4 @@ These are brainstorming candidates, **not cleared trademarks or confirmed availa
 
 ## Immediate next implementation
 
-Start with the catalogue/data model and an owner-only product editor against a selected development database, followed by sandbox checkout. Keep storefront payment controls disabled until the matching backend and live acceptance exist. Confirm initial shipping regions, currency/tax position, stock/made-to-order rules and STL licence choices as product setup inputs, rather than blocking all independent implementation now.
+The catalogue/data model and owner-only editor now have a conditional-write Blobs preparation implementation. Next select the transactional commerce database, import/reconcile the catalogue and stock, and build sandbox checkout. Keep storefront payment controls disabled until the matching backend and live acceptance exist. Confirm initial shipping regions, currency/tax position, stock/made-to-order rules and STL licence choices as product setup inputs, rather than blocking all independent implementation now.

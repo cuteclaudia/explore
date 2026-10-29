@@ -1,0 +1,71 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdtemp,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {getStore} from '@netlify/blobs';
+import {BlobsServer} from '@netlify/blobs/server';
+import {hobbyNest,storeQuote,productAvailability} from './hobbynest.mjs';
+const owner={user:{id:'owner'},isOwner:true},product={id:'planter',name:'Test planter',sku:'PRINT-1',kind:'physical',priceCents:2500,description:'A test fixture, not a real listing.',collectionIds:[],allowBackorder:true,printMinDays:3,printMaxDays:5,dispatchMinDays:1,dispatchMaxDays:2,weightGrams:200,lengthMm:150,widthMm:150,heightMm:100,licence:''};
+async function fixture(run){const directory=await mkdtemp(join(tmpdir(),'nest-')),server=new BlobsServer({directory,token:'local-only',logger:()=>{}});try{const address=await server.start(),url='http://127.0.0.1:'+address.port,store=getStore({name:'nest',siteID:'local',token:'local-only',apiURL:url,edgeURL:url,uncachedEdgeURL:url,consistency:'strong'}),service=hobbyNest(store);let settings=await service.settings(owner);const save=async(operation,value)=>settings=await service.save(owner,{expectedAccount:'owner',etag:settings.etag,operation,value});await run({service,store,save,settings:()=>settings});}finally{await server.stop();await rm(directory,{recursive:true,force:true});}}
+const colour=(name='Blue',filamentAvailable=true)=>({productId:'planter',id:'standard',name,enabled:true,filamentAvailable});
+test('draft products and private codes never leak; publishing is explicit and separate from stock',()=>fixture(async({service,save})=>{
+ await save('product.save',product);assert.deepEqual((await service.publicCatalogue()).products,[]);
+ await save('product.publish',{id:'planter'});let p=(await service.publicCatalogue()).products[0];assert.equal(p.stock,0);assert.equal(p.colours[0].filamentAvailable,false);assert.equal(p.colours[0].availability.available,false);
+ await save('product.save',{...product,name:'Private next draft',priceCents:5000});p=(await service.publicCatalogue()).products[0];assert.equal(p.name,product.name);assert.equal(p.priceCents,2500);
+ await save('colour.save',colour());await save('inventory.adjust',{id:'planter',colourId:'standard',delta:2,reason:'printed',note:'Batch 1'});
+ p=(await service.publicCatalogue()).products[0];assert.equal(p.stock,2);assert.equal(p.colours[0].availability.maxDays,2);
+ await save('discount.save',{id:'private-code',name:'Private code',code:'SECRET25',type:'percent',value:25,minSubtotalCents:0,collectionId:null,startsAt:null,endsAt:null,enabled:true});
+ assert(!JSON.stringify(await service.publicCatalogue()).includes('SECRET25'));
+ await save('product.unpublish',{id:'planter'});assert.equal((await service.publicCatalogue()).products.length,0);
+}));
+test('colour-specific inventory, filament and editable dispatch estimates govern mixed quantities',()=>fixture(async({service,save,settings})=>{
+ await save('product.save',product);await save('colour.save',colour());await save('colour.save',{productId:'planter',id:'red',name:'Red',enabled:true,filamentAvailable:false});
+ await save('inventory.adjust',{id:'planter',colourId:'standard',delta:2,reason:'received',note:'Counted ready stock'});await save('product.publish',{id:'planter'});
+ let q=await service.quote(owner,{items:[{id:'planter',colourId:'standard',quantity:3}],code:'',state:'NSW'});assert.equal(q.lines[0].ready,2);assert.equal(q.lines[0].toPrint,1);assert.equal(q.dispatchMaxDays,5);assert.equal(q.canFulfil,true);assert.equal(settings().products[0].colours[0].stock,2,'estimates never reserve or reduce stock');
+ q=await service.quote(owner,{items:[{id:'planter',colourId:'red',quantity:1}],code:'',state:'NSW'});assert.equal(q.canFulfil,false);
+ await save('colour.save',colour('Blue',false));
+ let ready=await service.quote(owner,{items:[{id:'planter',colourId:'standard',quantity:1}],code:'',state:'NSW'});assert.equal(ready.canFulfil,true,'finished stock remains available without filament');
+ ready=await service.quote(owner,{items:[{id:'planter',colourId:'standard',quantity:3}],code:'',state:'NSW'});assert.equal(ready.canFulfil,false,'extra units cannot be promised without filament');await save('colour.save',colour());
+ await save('product.save',{...product,printMinDays:6,printMaxDays:9});await save('product.publish',{id:'planter'});
+ q=await service.quote(owner,{items:[{id:'planter',colourId:'standard',quantity:3}],code:'',state:'NSW'});assert.equal(q.dispatchMaxDays,9);
+ await save('product.save',{...product,allowBackorder:false});await save('product.publish',{id:'planter'});
+ q=await service.quote(owner,{items:[{id:'planter',colourId:'standard',quantity:3}],code:'',state:'NSW'});assert.equal(q.canFulfil,false);
+ await assert.rejects(save('inventory.adjust',{id:'planter',colourId:'standard',delta:-3,reason:'damaged',note:'Too many'}),e=>e.status===400);
+ await assert.rejects(save('inventory.adjust',{id:'planter',colourId:'standard',delta:-1,reason:'printed',note:'Wrong direction'}),e=>e.status===400);
+ await save('inventory.adjust',{id:'planter',colourId:'standard',delta:-1,reason:'manual-sale',note:'Market sale'});assert.equal(settings().products[0].colours[0].stock,1);assert.equal(settings().movements.at(-1).after,1);
+ await save('colour.save',{...colour(),enabled:false});assert.equal((await service.publicCatalogue()).products[0].colours.length,1);assert.equal((await service.publicCatalogue()).products[0].stock,0);
+}));
+test('store edits enforce ownership, account fence and optimistic concurrency including inventory',()=>fixture(async({service,save,settings})=>{
+ await assert.rejects(service.settings({isOwner:false}),e=>e.status===403);
+ await assert.rejects(service.save({isOwner:false},{}),e=>e.status===403);
+ await assert.rejects(service.quote({isOwner:false},{}),e=>e.status===403);
+ await assert.rejects(service.save(owner,{expectedAccount:'other',etag:null,operation:'product.save',value:product}),e=>e.status===409);
+ await save('product.save',product);const etag=settings().etag;
+ const edit=delta=>service.save(owner,{expectedAccount:'owner',etag,operation:'inventory.adjust',value:{id:'planter',colourId:'standard',delta,reason:'printed',note:'Concurrent batch'}});
+ const results=await Promise.allSettled([edit(1),edit(2)]);assert.equal(results.filter(r=>r.status==='fulfilled').length,1);assert.equal(results.filter(r=>r.status==='rejected'&&r.reason.status===409).length,1);
+ const current=await service.settings(owner);assert.equal(current.movements.length,1);assert.equal(current.products[0].colours[0].stock,current.movements[0].delta);
+ await assert.rejects(edit(1),e=>e.status===409);
+}));
+test('collections, bounded prices and discount codes are validated; used collections cannot be silently deleted',()=>fixture(async({save,service})=>{
+ await save('collection.save',{id:'gifts',name:'Gifts',description:'Gift collection',visible:true});
+ await save('product.save',{...product,collectionIds:['gifts']});
+ await assert.rejects(save('collection.delete',{id:'gifts'}),e=>e.status===400);
+ for(const update of [{priceCents:1.5},{priceCents:-1},{collectionIds:['missing']},{name:''},{weightGrams:0},{printMinDays:9,printMaxDays:2},{stock:999}])await assert.rejects(save('product.save',{...product,...update}),e=>e.status===400);
+ await save('discount.save',{id:'offer',name:'Gift offer',code:'SAVE25',type:'percent',value:25,minSubtotalCents:1000,collectionId:'gifts',startsAt:null,endsAt:null,enabled:true});
+ await assert.rejects(save('discount.save',{id:'dup',name:'Duplicate',code:'save25',type:'percent',value:10,minSubtotalCents:0,collectionId:null,startsAt:null,endsAt:null,enabled:true}),e=>e.status===400);
+ await save('product.publish',{id:'planter'});await save('collection.save',{id:'gifts',name:'Gift ideas',description:'Renamed',visible:false});assert.equal((await service.publicCatalogue()).collections.length,0);
+ assert.equal((await service.publicCatalogue()).products.length,1,'hiding a filter does not unpublish listings');
+}));
+test('quotes apply one best eligible discount, dates, shipping zones, thresholds and digital-only delivery',()=>{
+ const physical={id:'planter',draft:product,published:product,colours:[{id:'blue',name:'Blue',enabled:true,filamentAvailable:true,stock:1}]},digital={id:'file',draft:{...product,id:'file',kind:'digital'},published:{...product,id:'file',kind:'digital',priceCents:1000},colours:[]};
+ const base={products:[physical,digital],collections:[],discounts:[{id:'automatic',name:'Automatic 10%',code:'',enabled:true,type:'percent',value:10,minSubtotalCents:0,collectionId:null,startsAt:null,endsAt:null},{id:'code',name:'Save 25%',code:'SAVE25',enabled:true,type:'percent',value:25,minSubtotalCents:0,collectionId:null,startsAt:'2026-10-01T00:00:00Z',endsAt:'2026-11-01T00:00:00Z'}],shipping:{rates:[{id:'parcel',name:'Standard',states:['NSW'],amountCents:1000,freeAboveCents:5000,minDays:2,maxDays:7,enabled:true}]}};
+ const input={items:[{id:'planter',colourId:'blue',quantity:2},{id:'file',quantity:1}],code:'save25',state:'NSW'};
+ let q=storeQuote(base,input,Date.parse('2026-10-29T00:00:00Z'));assert.equal(q.subtotalCents,6000);assert.equal(q.discountCents,1500);assert.equal(q.shipping[0].amountCents,1000);assert.equal(q.dispatchMaxDays,5);assert.equal(q.codeAccepted,true);assert.equal(q.checkoutEnabled,false);
+ q=storeQuote(base,{...input,code:''});assert.equal(q.discountCents,600);assert.equal(q.shipping[0].amountCents,0);
+ q=storeQuote(base,input,Date.parse('2026-11-01T00:00:00Z'));assert.equal(q.discountCents,600);assert.equal(q.codeAccepted,false);
+ q=storeQuote(base,{...input,state:'WA'});assert.equal(q.shipping.length,0);
+ q=storeQuote(base,{items:[{id:'file',quantity:1}],code:'',state:null});assert.equal(q.shippingRequired,false);assert.equal(q.shipping[0].amountCents,0);
+ for(const bad of [{...input,items:[{id:'planter',quantity:101}]},{...input,state:'NZ'},{...input,items:[input.items[0],input.items[0]]},{...input,subtotalCents:1}])assert.throws(()=>storeQuote(base,bad),e=>e.status===400);
+ assert.equal(productAvailability(physical,1,'blue').maxDays,2);assert.equal(productAvailability(physical,2,'blue').maxDays,5);
+});
