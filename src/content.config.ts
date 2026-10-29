@@ -33,6 +33,18 @@ const cyber = defineCollection({
   }),
 });
 
+const osint = defineCollection({
+  loader: glob({ pattern: '*.mdoc', base: './src/content/osint' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    tags,
+    region: z.string().optional().default('Australia – Japan – Asia'),
+    summary: z.string().optional().default(''),
+    draft,
+  }),
+});
+
 const journal = defineCollection({
   loader: glob({ pattern: '*.mdoc', base: './src/content/journal' }),
   schema: z.object({
@@ -73,4 +85,4 @@ const pages = defineCollection({
   }),
 });
 
-export const collections = { essays, cyber, journal, photography, pages };
+export const collections = { essays, cyber, osint, journal, photography, pages };

@@ -2,6 +2,8 @@
 
 Prepared 29 October 2026 (Sydney). Use this as the single release sign-off index; linked procedures retain the detailed steps. A local test pass is not a real-provider or physical-device pass. Record candidate checksum, website commit, Netlify deploy ID, tester, date, devices and evidence beside each completed item.
 
+Current decision: stabilise the existing Netlify deployment before a European hosting trial. Keep app origins, storage connections and encryption keys unchanged. Claudia confirmed that live sign-in and **Settings → Desktop installers** now work without looping; this is a partial live account check, not acceptance of every expiry, recovery and permission case. See [29 October stability review](site/NETLIFY-STABILITY-2026-10-29.md) for current local checks and remaining release gates.
+
 ## Website and accounts
 
 - [ ] Confirm apex and www serve the intended Netlify project, one canonical host redirects correctly, and HTTPS works on both. Confirm the renewal warning is gone: [domain checks](site/DOMAIN-RENEWAL-CHECK.md).
@@ -10,6 +12,7 @@ Prepared 29 October 2026 (Sydney). Use this as the single release sign-off index
 - [ ] Verify Google Drive OAuth callback and reconnect after the domain move. Retain the old callback for rollback until migration acceptance.
 - [ ] Verify phone/tablet portrait and landscape: navigation, login, settings, activity selection, file picker, map/layers, elevation profile, long errors and keyboard focus. Include a real Android device and Safari/iPad where supported; automated Chromium checks do not cover those devices.
 - [ ] Check public Apps and 3D printing pages, honest availability labels and real links. macOS stays visible as Planned. Do not advertise unpublished GitHub drafts or unapproved Microsoft Store listings as available.
+- [ ] Verify live writing categories: create/rename a category in Studio, choose it on a draft, publish deliberately, and check the public filter. Confirm draft-only category changes remain private. Existing article URLs must remain unchanged.
 - [ ] Migrate remaining Squarespace-hosted assets and check saved content before cancelling the old website: [cutover](site/CUSTOM-DOMAIN-CUTOVER.md), [asset inventory](site/SQUARESPACE-ASSET-INVENTORY.json).
 
 ## Fitness and maps (independent release gate)

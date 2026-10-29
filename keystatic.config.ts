@@ -125,6 +125,37 @@ export default config({
         content: body('Report'),
       },
     }),
+    osint: collection({
+      label: 'Weekly OSINT Briefs',
+      slugField: 'title',
+      path: 'src/content/osint/*',
+      format: { contentField: 'content' },
+      entryLayout: 'content',
+      columns: ['title', 'date'],
+      schema: {
+        title: fields.slug({
+          name: {
+            label: 'Title',
+            defaultValue: 'Weekly OSINT Brief | ',
+          },
+          slug: { label: 'Web address' },
+        }),
+        date: fields.date({
+          label: 'Report date',
+          defaultValue: { kind: 'today' },
+          validation: { isRequired: true },
+        }),
+        tags: tags(),
+        region: fields.text({ label: 'Region', defaultValue: 'Australia – Japan – Asia' }),
+        summary: fields.text({
+          label: 'Summary',
+          description: 'One or two sentences from the executive summary.',
+          multiline: true,
+        }),
+        draft,
+        content: body('Report'),
+      },
+    }),
     journal: collection({
       label: 'Journal',
       slugField: 'title',

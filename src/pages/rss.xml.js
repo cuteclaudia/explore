@@ -1,12 +1,13 @@
 export const prerender=false;
 import rss from '@astrojs/rss';
-import { getEssays, getReports, getJournal } from '../lib/site';
+import { getEssays, getReports, getOsintBriefs, getJournal } from '../lib/site';
 
 export async function GET(context) {
-  const [essays, reports, journal] = await Promise.all([getEssays(), getReports(), getJournal()]);
+  const [essays, reports, osint, journal] = await Promise.all([getEssays(), getReports(), getOsintBriefs(), getJournal()]);
   const items = [
     ...essays.map((e) => ({ title: e.data.title, pubDate: e.data.date, description: e.data.summary, link: `/chinaseries/${e.id}/` })),
     ...reports.map((r) => ({ title: r.data.title, pubDate: r.data.date, description: r.data.summary, link: `/dailycyberreport/${r.id}/` })),
+    ...osint.map((r) => ({ title: r.data.title, pubDate: r.data.date, description: r.data.summary, link: `/osint-brief/${r.id}/` })),
     ...journal.map((j) => ({ title: j.data.title, pubDate: j.data.date, description: j.data.summary, link: `/journal/${j.id}/` })),
   ].sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf());
   return rss({

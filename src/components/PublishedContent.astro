@@ -1,11 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
+import {getStore} from '@netlify/blobs';
+import {writingCategories,writingCategoryFor} from '../../server/writing-categories.mjs';
 import Tags from './Tags.astro';
 import {formatDate,shownLocation,readingTime} from '../lib/site';
 const {entry,preview=false}=Astro.props;
 const d=entry.data;
-const labels={journal:'Journal',essays:'China Series',cyber:'Cyber reports',photography:'Photography'};
-const section={journal:'journal',essays:'chinaseries',cyber:'dailycyberreport',photography:'photography'}[d.collection];
+const labels={journal:'Journal',essays:'China Series',cyber:'Cyber reports',osint:'OSINT Brief',photography:'Photography'};
+const section={journal:'journal',essays:'chinaseries',cyber:'dailycyberreport',osint:'osint-brief',photography:'photography'}[d.collection];
+const category=writingCategoryFor(d);
+const categoryName=category?(await writingCategories(getStore({name:'studio-writing-categories',consistency:'strong'})).read()).categories.find(c=>c.id===category)?.name:null;
 const where=shownLocation(d.location,d.locationPrecision);
 function imageURL(url){return preview&&url.startsWith('/api/content/media/')?url+'&draft=1':url;}
 const html=preview?entry.studioHTML.replace(/(\/api\/content\/media\/[^"\s<>]+)/g,'$1&draft=1'):entry.studioHTML;
@@ -14,7 +18,7 @@ const html=preview?entry.studioHTML.replace(/(\/api\/content\/media\/[^"\s<>]+)/
  <article class="wrap published-content">
   {preview&&<aside class="empty"><strong>Private draft preview</strong><p>This is not the published version.</p><a href={'/studio/content/edit?entry='+encodeURIComponent(d.collection+'/'+entry.id)}>← Return to editor</a></aside>}
   {!preview&&<p class="edit-content-link" data-content-actions={d.collection+'/'+entry.id} hidden><a href={'/studio/content/edit?entry='+encodeURIComponent(d.collection+'/'+entry.id)}>Edit this {d.collection==='photography'?'gallery':'article'} in Studio →</a> · <button type="button" class="btn ghost" data-content-action="copy">Make a copy</button> <button type="button" class="btn ghost" data-content-action="delete">Delete</button><span role="status"></span></p>}
-  <header class="page-head"><a class="eyebrow" href={'/'+section}>{labels[d.collection]}</a><h1>{d.title}</h1><div class="meta"><time datetime={d.date.toISOString()}>{formatDate(d.date)}</time>{where&&<span>{where}{d.locationPrecision==='approximate'?' (approximate)':''}</span>}{d.collection!=='photography'&&<span>{readingTime(entry.body)}</span>}</div><Tags tags={d.tags}/></header>
+  <header class="page-head"><a class="eyebrow" href={category?'/#writing':'/'+section}>{categoryName||labels[d.collection]}</a><h1>{d.title}</h1><div class="meta"><time datetime={d.date.toISOString()}>{formatDate(d.date)}</time>{where&&<span>{where}{d.locationPrecision==='approximate'?' (approximate)':''}</span>}{d.collection!=='photography'&&<span>{readingTime(entry.body)}</span>}</div><Tags tags={d.tags}/></header>
   {d.cover&&<figure class="article-hero"><img src={imageURL(d.cover)} alt={d.coverAlt}/></figure>}
   <div class="prose" set:html={html}></div>
   {d.collection==='photography'&&<div class="grid-3">{d.photos.map((p,i)=><figure id={'photo-'+(i+1)} style="margin:0"><a href={preview?imageURL(p.image):'/photography/'+entry.id+'/'+encodeURIComponent(p.id)}><img src={imageURL(p.image)} alt={p.alt} loading="lazy" style="width:100%;border-radius:14px"/></a><figcaption>{p.caption}</figcaption><Tags tags={p.tags}/>{!preview&&<a class="photo-owner-edit" href={'/studio/content/edit?entry='+encodeURIComponent(d.collection+'/'+entry.id)+'#photo-'+p.id} hidden>Edit this photograph →</a>}</figure>)}</div>}

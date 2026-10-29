@@ -29,6 +29,7 @@ export async function getHome() {
 
 export const getEssays = async () => liveCollection('essays');
 export const getReports = async () => liveCollection('cyber');
+export const getOsintBriefs = async () => liveCollection('osint');
 export const getJournal = async () => liveCollection('journal');
 export const getGalleries = async () => liveCollection('photography');
 

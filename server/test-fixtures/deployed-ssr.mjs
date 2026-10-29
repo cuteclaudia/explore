@@ -2,17 +2,20 @@
 import assert from 'node:assert/strict';
 import handler from './ssr.mjs';
 const response=path=>handler(new Request('https://explorebyclaudia.netlify.app'+path),{ip:'127.0.0.1'});
-for(const path of ['/about','/journal','/journal/deployment-check','/chinaseries','/dailycyberreport','/photography','/rss.xml','/prototype-content.json']){
- const r=await response(path);assert.equal(r.status,200,path+' should render');const body=await r.text();assert(!body.includes('PRIVATE DRAFT MUST NOT LEAK'),path+' leaked a draft');
+for(const path of ['/about','/journal','/journal/deployment-check','/chinaseries','/dailycyberreport','/osint-brief','/osint-brief/deployment-brief','/api/writing-categories','/photography','/rss.xml','/prototype-content.json']){
+ const r=await response(path);assert.equal(r.status,200,path+' should render');const body=await r.text();assert(!body.includes('PRIVATE DRAFT MUST NOT LEAK')&&!body.includes('PRIVATE OSINT DRAFT MUST NOT LEAK'),path+' leaked a draft');
+ if(path==='/osint-brief/deployment-brief')assert(body.includes('Published OSINT build-check brief'));
+ if(path==='/api/writing-categories')assert.deepEqual(JSON.parse(body).categories.map(c=>c.name),['China Series','Cyber Briefs','OSINT Brief']);
  if(path==='/journal/deployment-check')assert(body.includes('Published build-check body'));
  if(path==='/rss.xml')assert(body.includes('Published build-check journal'));
- if(path==='/prototype-content.json'){const content=JSON.parse(body);assert(content.essays.length>0);assert(!content.essays.some(x=>x.href==='/chinaseries/puertochancay'));}
+ if(path==='/prototype-content.json'){const content=JSON.parse(body);assert(content.essays.length>0);assert.equal(content.osint[0].category,'osint');assert.equal(content.categories.length,3);assert(!content.essays.some(x=>x.href==='/chinaseries/puertochancay'));}
  console.log('PASS packaged SSR',path);
 }
 const oldExplore=await response('/explore?place=3');assert.equal(oldExplore.status,301);assert.equal(oldExplore.headers.get('location'),'/places?place=3');
 assert.equal((await response('/chinaseries/puertochancay')).status,404,'Unpublished legacy page must remain hidden');
 for(const path of ['/studio/about','/studio','/studio/content','/apps','/studio/kobo-test','/studio/irodori-test','/apps/irodori','/apps/irodori-legacy']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
 assert.equal((await response('/api/content/list')).status,401);
+assert.equal((await handler(new Request('https://explorebyclaudia.netlify.app/api/writing-categories',{method:'PUT',headers:{Origin:'https://explorebyclaudia.netlify.app','Content-Type':'application/json'},body:'{}'}),{ip:'127.0.0.1'})).status,401,'Category editing requires sign-in');
 assert.equal((await response('/api/apps/irodori-preview')).status,401);
 assert.equal((await response('/api/apps/irodori-session')).status,401);
 // A custom-domain request can have a valid browser/session API login while the

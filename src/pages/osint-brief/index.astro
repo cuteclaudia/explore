@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import Tags from '../../components/Tags.astro';
+import {getOsintBriefs,formatDate} from '../../lib/site';
+export const prerender=false;
+Astro.response.headers.set('Cache-Control','no-store');
+const briefs=await getOsintBriefs();
+---
+<Base title="OSINT Brief" description="Claudia Gilbert’s weekly open-source intelligence briefs.">
+  <section class="wrap">
+    <header class="page-head"><a class="eyebrow" href="/#writing">Research &amp; analysis</a><h1>OSINT Brief</h1><p>Weekly open-source intelligence briefs by Claudia Gilbert.</p></header>
+    {briefs.length ? <div class="grid-3">{briefs.map(brief=><article class="card"><div class="body"><time class="meta" datetime={brief.data.date.toISOString()}>{formatDate(brief.data.date)}</time><h2><a href={'/osint-brief/'+brief.id}>{brief.data.title}</a></h2><Tags tags={brief.data.tags}/>{brief.data.summary&&<p>{brief.data.summary}</p>}<a href={'/osint-brief/'+brief.id}>Read brief →</a></div></article>)}</div> : <p>No OSINT briefs published yet. <a href="/#writing">Browse all writing →</a></p>}
+  </section>
+</Base>
+<style>h2{font-size:1.4rem;overflow-wrap:anywhere}</style>

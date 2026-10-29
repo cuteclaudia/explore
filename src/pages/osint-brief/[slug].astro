@@ -1,0 +1,9 @@
+---
+import PublishedContent from '../../components/PublishedContent.astro';
+import {liveCollection} from '../../lib/studio-content';
+export const prerender=false;
+Astro.response.headers.set('Cache-Control','no-store');
+const entry=(await liveCollection('osint')).find(x=>x.id===Astro.params.slug);
+if(!entry)return new Response('This page is not published.',{status:404,headers:{'Cache-Control':'no-store'}});
+---
+<PublishedContent entry={entry} />

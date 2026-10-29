@@ -1,10 +1,11 @@
+import {DEFAULT_WRITING_CATEGORIES} from './writing-categories.mjs';
 import sanitize from 'sanitize-html';
 import {randomUUID} from 'node:crypto';
 import {AccessError,requireCapability} from './access.mjs';
 const entryLocks=new Map();
 async function locked(key,action){const result=(entryLocks.get(key)||Promise.resolve()).catch(()=>{}).then(action);entryLocks.set(key,result);try{return await result;}finally{if(entryLocks.get(key)===result)entryLocks.delete(key);}}
-export const COLLECTIONS=['journal','essays','cyber','photography','pages'];
-export const PREFIXES={journal:'journal',essays:'chinaseries',cyber:'dailycyberreport',photography:'photography'};
+export const COLLECTIONS=['journal','essays','cyber','osint','photography','pages'];
+export const PREFIXES={journal:'journal',essays:'chinaseries',cyber:'dailycyberreport',osint:'osint-brief',photography:'photography'};
 export const keyFor=(collection,slug)=>{
  if(!COLLECTIONS.includes(collection)||collection==='pages'&&slug!=='about'||typeof slug!=='string'||!/^[a-z0-9][a-z0-9-]{0,199}$/.test(slug))throw new AccessError(400,'Choose a supported section and a URL name using lowercase letters, numbers and hyphens.');
  return collection+'/'+slug;
@@ -33,7 +34,9 @@ export function cleanDraft(input,key){
  if(input.photos?.length>100)throw new AccessError(400,'Keep each gallery to 100 photographs or fewer.');
  const photos=(input.photos||[]).map(p=>{const image=safeImage(p.image,key);if(!image)throw new AccessError(400,'A photograph has an unsupported image address.');return {id:text(p.id,80)||randomUUID(),image,alt:text(p.alt),caption:text(p.caption,2000),tags:tags(p.tags)};});
  const blocks=key==='pages/about'?cleanBlocks(input.blocks||[],key):undefined;
- return {title,date,summary:text(input.summary,3000),tags:tags(input.tags),location:text(input.location,250),locationPrecision:['hidden','exact','approximate'].includes(input.locationPrecision)?input.locationPrecision:'hidden',cover,coverAlt:text(input.coverAlt),html:cleanHTML(input.html||'',key),photos,...(blocks?{blocks}:{})};
+ const writingCategory=['essays','cyber','osint'].includes(key.split('/')[0])?input.writingCategory:undefined;
+ if(writingCategory!==undefined&&(typeof writingCategory!=='string'||!(/^(essays|reports|osint|[0-9a-f-]{36})$/.test(writingCategory))))throw new AccessError(400,'Choose a valid writing category.');
+ return {...(writingCategory?{writingCategory}:{}),title,date,summary:text(input.summary,3000),tags:tags(input.tags),location:text(input.location,250),locationPrecision:['hidden','exact','approximate'].includes(input.locationPrecision)?input.locationPrecision:'hidden',cover,coverAlt:text(input.coverAlt),html:cleanHTML(input.html||'',key),photos,...(blocks?{blocks}:{})};
 }
 export function cleanBlocks(value,key){if(!Array.isArray(value)||value.length>30)throw new AccessError(400,'Use at most 30 About sections.');const ids=new Set();return value.map(b=>{if(!b||!['text','image','split'].includes(b.type))throw new AccessError(400,'Choose a text, image or text-and-image section.');const id=text(b.id,80)||randomUUID();if(!/^[a-zA-Z0-9-]+$/.test(id)||ids.has(id))throw new AccessError(400,'Each section needs a unique identifier.');ids.add(id);const image=safeImage(b.image||'',key);if(b.image&&!image)throw new AccessError(400,'Choose a supported section image.');return {id,type:b.type,title:text(b.title,200),html:cleanHTML(b.html||'',key),image,alt:text(b.alt),caption:text(b.caption,2000),imageSide:b.imageSide==='right'?'right':'left',width:b.width==='wide'?'wide':'reading'};});}
 export function mayEdit(actor,record){
@@ -44,7 +47,7 @@ export function mayEdit(actor,record){
  if(record.ownerId!==actor.user.id)requireCapability(actor,'articles.edit_any');
 }
 function mayPublish(actor,record){if(actor.isOwner)return;requireCapability(actor,record.ownerId===actor.user.id?'journal.publish_own':'articles.publish_any');}
-export function contentService(store,legacy=async()=>[]){
+export function contentService(store,legacy=async()=>[],categories=async()=>DEFAULT_WRITING_CATEGORIES){
  async function source(key){return (await legacy()).find(x=>x.key===key);}
  async function stored(key){
   const path='entries/'+key;const result=await store.getWithMetadata(path,{type:'json'});
@@ -70,6 +73,7 @@ export function contentService(store,legacy=async()=>[]){
   if(!['draft','publish','unpublish'].includes(body.action))throw new AccessError(400,'Choose Save draft, Publish or Unpublish.');
   if(body.action!=='draft')mayPublish(actor,record);
   const draft=cleanDraft(body.draft,key);
+  if(draft.writingCategory&&!(await categories()).some(c=>c.id===draft.writingCategory))throw new AccessError(400,'Writing category no longer exists. Reload the editor before saving.');
   if(body.action==='publish'&&collection==='photography'&&!draft.photos.length)throw new AccessError(400,'Add at least one photograph before publishing a gallery.');
   const result={...record,draft,version:record.version+1,writeId:randomUUID(),updatedAt:new Date().toISOString(),published:body.action==='publish'?structuredClone(draft):body.action==='unpublish'?null:record.published};
   if(existing&&!existing.etag)throw new AccessError(503,'The storage revision could not be verified. Please retry.');

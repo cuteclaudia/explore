@@ -1,3 +1,4 @@
+import {writingCategories} from '../../server/writing-categories.mjs';
 import {getCollection,getEntry} from 'astro:content';
 import Markdoc from '@markdoc/markdoc';
 import {getStore} from '@netlify/blobs';
@@ -5,7 +6,7 @@ import {contentService,cleanDraft} from '../../server/content.mjs';
 let legacyPromise;
 export function legacyContent(){return legacyPromise||=(async()=>{
  const records=[];
- for(const collection of ['journal','essays','cyber','photography'] as const){
+ for(const collection of ['journal','essays','cyber','osint','photography'] as const){
   for(const item of await getCollection(collection)){
    const d:any=item.data,key=collection+'/'+item.id;
    const html=Markdoc.renderers.html(Markdoc.transform(Markdoc.parse(item.body||'')));
@@ -25,6 +26,6 @@ export function legacyContent(){return legacyPromise||=(async()=>{
  if(!records.some(r=>r.key===key))records.push({key,collection:'photography',slug:'landscape-inspiration',ownerId:'legacy',version:0,updatedAt:'2026-04-01T00:00:00Z',draft,published:structuredClone(draft)});
  return records;
 })();}
-export function siteContent(){return contentService(getStore({name:'studio-content',consistency:'strong'}),legacyContent);}
-export const contentHref=(collection,slug)=>collection==='pages'?'/about':'/' + ({journal:'journal',essays:'chinaseries',cyber:'dailycyberreport',photography:'photography'}[collection])+'/'+slug;
+export function siteContent(){return contentService(getStore({name:'studio-content',consistency:'strong'}),legacyContent,async()=>(await writingCategories(getStore({name:'studio-writing-categories',consistency:'strong'})).read()).categories);}
+export const contentHref=(collection,slug)=>collection==='pages'?'/about':'/' + ({journal:'journal',essays:'chinaseries',cyber:'dailycyberreport',osint:'osint-brief',photography:'photography'}[collection])+'/'+slug;
 export async function liveCollection(collection){return (await siteContent().publicList(collection)).map(item=>({id:item.slug,body:item.html,studioHTML:item.html,data:{...item,date:new Date(item.date+'T00:00:00Z'),draft:false,heroImage:item.cover,heroAlt:item.coverAlt,region:item.location||'Australia – Japan – Asia'}}));}

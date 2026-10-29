@@ -19,3 +19,18 @@ test('HTML sanitisation strips scripts, handlers, unsafe URLs, frames and images
 test('supported typography survives sanitizing while arbitrary CSS and executable styles are removed',()=>{const result=cleanHTML('<p style="text-align:center;line-height:1.5;position:fixed;background:url(https://evil.test)"><span style="font-size:24px;font-family:Georgia, serif;color:#123abc">Sized text</span></p><p style="font-size:999px;line-height:99;color:expression(bad())">Safe</p>','essays/test');assert.match(result,/text-align:center/);assert.match(result,/line-height:1.5/);assert.match(result,/font-size:24px/);assert.match(result,/font-family:Georgia, serif/);assert(!/position|background|999|expression|evil/.test(result));});
 test('About sections retain draft isolation, section ordering and private photograph permissions',()=>fixture(async api=>{const key='pages/about';const blocks=[{id:'intro',type:'text',html:'<p>Biography</p>'},{id:'photo',type:'image'}];let r=await api.save(owner,key,{version:0,action:'publish',draft:draft({blocks})});const image=await api.upload(owner,key,new Uint8Array([255,216,255,0]).buffer,'image/jpeg');const revised=[{...blocks[1],image:image.url}, {...blocks[0],html:'<p>Private revision</p>'}];r=await api.save(owner,key,{version:r.version,action:'draft',draft:draft({blocks:revised})});assert.equal((await api.publicEntry(key)).blocks[0].id,'intro');await assert.rejects(api.media(image.id,key),e=>e.status===404);await assert.rejects(api.save(stranger,key,{version:r.version,action:'publish',draft:r.draft}),e=>e.status===403);await assert.rejects(api.manage(owner,key,{version:r.version,action:'delete'}),e=>e.status===400);await api.save(owner,key,{version:r.version,action:'publish',draft:r.draft});assert.equal((await api.publicEntry(key)).blocks[0].id,'photo');assert.equal((await api.media(image.id,key)).data.byteLength,4);}));
 test('About sections reject duplicate identifiers, unsupported addresses and foreign private images',()=>{const key='pages/about';for(const blocks of [[{id:'x',type:'text'},{id:'x',type:'image'}],[{id:'x',type:'iframe'}],[{id:'x',type:'image',image:mediaURL('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa','journal/other')}]])assert.throws(()=>cleanDraft(draft({blocks}),key),e=>e.status===400);});
+
+test('OSINT briefs retain independent draft, publication and removal without changing cyber reports',()=>fixture(async api=>{
+ const cyber=await api.save(owner,'cyber/weekly',{version:0,action:'publish',draft:draft({title:'Cyber briefing'})});
+ let brief=await api.save(owner,'osint/weekly',{version:0,action:'draft',draft:draft({title:'Weekly OSINT Brief'})});
+ assert.deepEqual(await api.publicList('osint'),[]);
+ await assert.rejects(api.publicEntry(brief.key),e=>e.status===404);
+ await assert.rejects(api.save(stranger,'osint/unauthorised',{version:0,action:'publish',draft:draft()}),e=>e.status===403);
+ brief=await api.save(owner,brief.key,{version:brief.version,action:'publish',draft:brief.draft});
+ assert.equal((await api.publicList('osint'))[0].title,'Weekly OSINT Brief');
+ brief=await api.save(owner,brief.key,{version:brief.version,action:'draft',draft:draft({title:'Private next revision'})});
+ assert.equal((await api.publicEntry(brief.key)).title,'Weekly OSINT Brief');
+ await api.save(owner,brief.key,{version:brief.version,action:'unpublish',draft:brief.draft});
+ assert.deepEqual(await api.publicList('osint'),[]);
+ assert.equal((await api.publicEntry(cyber.key)).title,'Cyber briefing');
+}));

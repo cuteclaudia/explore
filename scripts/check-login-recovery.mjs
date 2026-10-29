@@ -23,5 +23,7 @@ try{
  await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/places?stravaActivity=101'));await page.waitForURL('**/places?stravaActivity=101');
  await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/apps/files'));await page.waitForURL('**/apps/files');
  await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/apps/irodori-legacy?file=11111111-1111-4111-8111-111111111111'));await page.waitForURL('**/apps/irodori-legacy?file=11111111-1111-4111-8111-111111111111');
+ await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/studio/content/edit?collection=osint'));await page.waitForURL('**/studio/content/edit?collection=osint');
+ await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/studio/content/edit?entry=osint/weekly-brief'));await page.waitForURL('**/studio/content/edit?entry=osint%2Fweekly-brief');
  console.log('PASS real login controller: awaited cookie refresh, exact Desktop installers destination, repeated-redirect recovery, explicit retry, service failure stability and successful password submission');
 }finally{await browser.close();await rm(directory,{recursive:true,force:true});}

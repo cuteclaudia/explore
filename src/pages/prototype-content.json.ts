@@ -1,8 +1,11 @@
+import {getStore} from '@netlify/blobs';
+import {writingCategories,writingCategoryFor} from '../../server/writing-categories.mjs';
 import {normalizeTags} from '../lib/tags';
-import { getEssays, getReports, getGalleries } from '../lib/site';
+import { getEssays, getReports, getOsintBriefs, getGalleries } from '../lib/site';
 export const prerender = false;
 export async function GET() {
   const entry = (item: Awaited<ReturnType<typeof getEssays>>[number], prefix: string) => ({
+    category: writingCategoryFor(item.data),
     title: item.data.title,
     summary: item.data.summary,
     tags: normalizeTags(item.data.tags),
@@ -10,8 +13,10 @@ export async function GET() {
     href: `/${prefix}/${item.id}`,
   });
   return new Response(JSON.stringify({
+    categories: (await writingCategories(getStore({name:'studio-writing-categories',consistency:'strong'})).read()).categories,
     galleries: (await getGalleries()).map(x=>({title:x.data.title,href:'/photography/'+x.id,photos:x.data.photos})),
     essays: (await getEssays()).map(item => entry(item, 'chinaseries')),
-    reports: (await getReports()).map(item => ({title:item.data.title, summary:item.data.summary, tags:normalizeTags(item.data.tags), date:item.data.date.toISOString(), href:`/dailycyberreport/${item.id}`})),
+    osint: (await getOsintBriefs()).map(item => entry(item, 'osint-brief')),
+    reports: (await getReports()).map(item => entry(item, 'dailycyberreport')),
   }), {headers: {'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'}});
 }
