@@ -2,6 +2,8 @@
 
 29 October 2026 (Sydney). Design only: manual grants work today; no subscription checkout, automatic entitlement mode, Store purchase verification or native licence enforcement is delivered by this change.
 
+The concrete next-stage proposal is now in [Subscription specification](subscriptions/SUBSCRIPTION-SPECIFICATION.md), with a [Claude licensing handoff](subscriptions/CLAUDE-LICENSING-HANDOFF.md) and official-source evidence. Its versioned catalogue and policy prototype are isolated from production access controls. Commercial values remain proposed; existing manual permissions and registration are unchanged.
+
 ## Separate the choices
 
 Use bundles to choose **which apps**, and a platform tier to choose **desktop** or **web plus desktop**. A web tier grants desktop for the same app; desktop does not imply web. Available products, published binaries and permissions are separate facts. Tayori and Goban can have desktop grants but must never acquire a fictitious web route. macOS remains Planned until a real build is accepted.
