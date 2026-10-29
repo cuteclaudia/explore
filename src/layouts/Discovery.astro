@@ -1,0 +1,12 @@
+---
+import Base from './Base.astro';
+import PageSpotlight from '../components/PageSpotlight.astro';
+import {featureSlotForPath} from '../../server/content-features.mjs';
+const links=[['/#writing','Writing & analysis'],['/journal','Journal'],['/photography','Photography'],['/places','Places & map'],['/kobo','SoraSpace apps'],['/library','Published library']];
+---
+<Base {...Astro.props} skipPageFeature>
+ <div class="discovery-shell"><div class="discovery-content"><slot/></div><aside class="discovery-aside"><PageSpotlight page={featureSlotForPath(Astro.url.pathname)} compact/><h2>Explore more</h2><nav aria-label="More from Explore">{links.map(([href,label])=><a href={href}>{label}<span aria-hidden="true">→</span></a>)}</nav></aside></div>
+</Base>
+<style>
+.discovery-shell{max-width:1440px;margin:auto;padding:20px 24px 30px;display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:28px;align-items:start}.discovery-content{min-width:0}.discovery-content :global(>.wrap){padding:0;max-width:100%}.discovery-content :global(.page-head){padding-top:0}.discovery-content :global(.grid-3){grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.discovery-content :global(.card h3){font-size:23px}.discovery-content :global(.card .body){padding:14px}.discovery-content :global(.card .body p){font-size:14px;line-height:1.55}.discovery-aside{position:sticky;top:20px;padding:16px;border:1px solid var(--border);border-radius:8px;background:var(--surface)}.discovery-aside h2{font:450 23px var(--serif);margin:0 0 8px}.discovery-aside nav{display:grid;gap:3px}.discovery-aside a{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:40px;font-size:13px;text-decoration:none;color:inherit;border-bottom:1px solid var(--border)}@media(min-width:1800px){.discovery-content :global(.grid-3){grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:1000px){.discovery-shell{grid-template-columns:minmax(0,1fr);gap:18px}.discovery-aside{position:static;padding:12px}.discovery-aside nav{display:flex;gap:14px;overflow-x:auto}.discovery-aside a{white-space:nowrap;flex-shrink:0}.discovery-aside h2{font-size:20px}}@media(max-width:600px){.discovery-shell{padding:18px 16px}.discovery-content :global(.grid-3){grid-template-columns:minmax(0,1fr)}.discovery-aside a{min-height:44px}}@media(pointer:coarse){.discovery-aside a{min-height:44px}}
+</style>

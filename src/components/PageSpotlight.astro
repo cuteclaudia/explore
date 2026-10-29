@@ -1,0 +1,16 @@
+---
+import {getStore} from '@netlify/blobs';
+import {contentFeatures} from '../../server/content-features.mjs';
+import {featureContent} from '../lib/feature-content';
+import {contentHref} from '../lib/studio-content';
+const {page,compact=false}=Astro.props;
+const entry=page&&!Astro.isPrerendered?await contentFeatures(getStore({name:'studio-content-features',consistency:'strong'}),()=>featureContent()).forPage(page):null;
+const href=entry?(entry.collection==='library'?'/library/'+entry.slug:contentHref(entry.collection,entry.slug)):'';
+---
+{page&&<aside class:list={['page-spotlight',{compact}]} hidden={!entry} data-feature-page={page} data-feature-hydrate={Astro.isPrerendered?'true':undefined} aria-label="Featured on this page"><span class="eyebrow">Featured on this page</span><h2><a data-feature-title href={href}>{entry?.title||''}</a></h2><p data-feature-summary hidden={!entry?.summary}>{entry?.summary?.slice(0,180)}{entry?.summary?.length>180?'…':''}</p><a class="spotlight-read" href={href}>Read feature →</a></aside>}
+<script>
+const slots=Array.from(document.querySelectorAll<HTMLElement>('[data-feature-hydrate="true"]'));
+if(slots.length)fetch('/prototype-content.json',{cache:'no-store',signal:AbortSignal.timeout(15000)}).then(async response=>{if(!response.ok)return;const data=await response.json();for(const root of slots){const item=data.features?.[root.dataset.featurePage!];if(!item)continue;const target=new URL(item.href,location.origin);if(target.origin!==location.origin||!target.pathname.startsWith('/'))continue;const title=root.querySelector<HTMLAnchorElement>('[data-feature-title]')!,summary=root.querySelector<HTMLElement>('[data-feature-summary]')!,link=root.querySelector<HTMLAnchorElement>('.spotlight-read')!;title.textContent=item.title;title.href=link.href=target.pathname+target.search;summary.textContent=(item.summary||'').slice(0,180)+((item.summary||'').length>180?'…':'');summary.hidden=!item.summary;root.hidden=false;}}).catch(()=>{});
+</script>
+
+<style>.page-spotlight[hidden]{display:none!important}.page-spotlight{max-width:1320px;margin:18px auto 0;padding:14px 20px;border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:7px;background:var(--surface)}.page-spotlight h2{font:450 24px/1.25 var(--serif);margin:5px 0;overflow-wrap:anywhere}.page-spotlight h2 a{color:inherit;text-decoration:none}.page-spotlight p{font-size:13px;line-height:1.5;max-width:70ch;margin:6px 0}.spotlight-read{display:inline-flex;align-items:center;min-height:36px;font-size:12px}.compact{margin:0 0 18px;padding:0 0 14px;border:0;border-bottom:1px solid var(--border);border-radius:0}.compact h2{font-size:22px}@media(max-width:600px){.page-spotlight:not(.compact){margin-inline:16px}}@media(pointer:coarse){.spotlight-read{min-height:44px}}</style>

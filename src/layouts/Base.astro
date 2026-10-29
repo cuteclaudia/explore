@@ -3,6 +3,8 @@ import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { getHome } from '../lib/site';
+import PageSpotlight from '../components/PageSpotlight.astro';
+import {featureSlotForPath} from '../../server/content-features.mjs';
 
 interface Props {
   title?: string;
@@ -10,9 +12,10 @@ interface Props {
   overlayHeader?: boolean;
   image?: string;
   noindex?: boolean;
+  skipPageFeature?: boolean;
 }
 
-const { title, description, image, noindex = false } = Astro.props;
+const { title, description, image, noindex = false,skipPageFeature=false } = Astro.props;
 const home = await getHome();
 const fullTitle = title ? `${title} | Explore by Claudia` : 'Explore by Claudia | Strategy, Security & Exploration';
 const desc = description || home.intro;
@@ -48,6 +51,7 @@ const ogImage = new URL(image && image.startsWith('/') ? image : '/images/hero.j
     <SiteHeader />
 
     <main id="main">
+      {!skipPageFeature&&<PageSpotlight page={featureSlotForPath(Astro.url.pathname)}/>}
       <slot />
     </main>
 

@@ -16,3 +16,5 @@ document.getElementById('workspace-files-refresh')?.addEventListener('click',()=
 onAuthChange((event,user)=>{if(event==='logout'||event==='login'&&user?.id!==owner)block('Your account changed.');});
 window.addEventListener('pagehide',()=>clear());window.addEventListener('pageshow',event=>{if(event.persisted){root.hidden=true;location.reload();}});document.addEventListener('visibilitychange',()=>{if(document.hidden)clear();else if(active)void refresh();});window.addEventListener('focus',()=>{if(active)void refresh();});
 void refresh();
+
+const selectedDesktop=new URLSearchParams(location.search).get('desktop');if(selectedDesktop&&['tayori','goban'].includes(selectedDesktop)){const tile=document.getElementById('workspace-app-'+selectedDesktop);tile?.scrollIntoView({block:'center'});tile?.focus({preventScroll:true});}

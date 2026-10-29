@@ -1,4 +1,6 @@
 // Real login controller; simulated Identity/provider replies, no real credentials.
+// Guard navigation uses a controlled document redirect: Chromium can follow a mocked
+// HTTP redirect outside request interception. Actual HTTP guards have packaged SSR tests.
 import assert from 'node:assert/strict';
 import {readFile,mkdtemp,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
@@ -13,7 +15,7 @@ const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||u
 try{
  const context=await browser.newContext();let denyPage=false,sessionCode=200,visits=0;
  await context.addInitScript(()=>{window.signedIn=true;});
- await context.route('https://www.claudiagilbert.com/**',async route=>{const url=new URL(route.request().url());if(url.pathname==='/api/studio/session'){if(!await route.request().frame().evaluate(()=>window.refreshReady))return route.fulfill({status:401,json:{error:'Expired cookie pending refresh'}});return route.fulfill({status:sessionCode,json:sessionCode===200?{setupRequired:false,id:'user'}:{error:'Sign-in temporarily unavailable.'}});}if(url.pathname==='/api/storage/preferences')return route.fulfill({json:{landingPage:'studio'}});if(!url.pathname.startsWith('/studio/login')){visits++;return route.fulfill(denyPage?{status:302,headers:{Location:'/studio/login?reason=session&next='+encodeURIComponent(url.pathname)}}:{contentType:'text/html',body:'<h1>Protected account page</h1>'});}return route.fulfill({contentType:'text/html',body:'<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1"><style>[hidden]{display:none!important}</style><main>'+html+'</main><script>'+script+'</script>'});});
+ await context.route('https://www.claudiagilbert.com/**',async route=>{const url=new URL(route.request().url());if(url.pathname==='/api/studio/session'){if(!await route.request().frame().evaluate(()=>window.refreshReady))return route.fulfill({status:401,json:{error:'Expired cookie pending refresh'}});return route.fulfill({status:sessionCode,json:sessionCode===200?{setupRequired:false,id:'user'}:{error:'Sign-in temporarily unavailable.'}});}if(url.pathname==='/api/storage/preferences')return route.fulfill({json:{landingPage:'studio'}});if(!url.pathname.startsWith('/studio/login')){visits++;return route.fulfill(denyPage?{contentType:'text/html',body:'<script>location.replace('+JSON.stringify('/studio/login?reason=session&next='+encodeURIComponent(url.pathname))+')</script>'}:{contentType:'text/html',body:'<h1>Protected account page</h1>'});}return route.fulfill({contentType:'text/html',body:'<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1"><style>[hidden]{display:none!important}</style><main>'+html+'</main><script>'+script+'</script>'});});
  const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('https://www.claudiagilbert.com/studio/login?next=%2Fstudio%2Fdownloads');await page.waitForURL('**/studio/downloads');assert.equal(visits,1);
  denyPage=true;visits=0;await page.goto('https://www.claudiagilbert.com/studio/login?next=%2Fstudio');await page.locator('#continue-session').waitFor({state:'visible'});await page.waitForTimeout(500);assert.equal(visits,1,'A protected-page/session mismatch must not bounce forever');assert((await page.locator('#auth-status').textContent()).includes('could not confirm'));assert(await page.locator('#login-form').isHidden());
@@ -25,5 +27,7 @@ try{
  await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/apps/irodori-legacy?file=11111111-1111-4111-8111-111111111111'));await page.waitForURL('**/apps/irodori-legacy?file=11111111-1111-4111-8111-111111111111');
  await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/studio/content/edit?collection=osint'));await page.waitForURL('**/studio/content/edit?collection=osint');
  await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/studio/content/edit?entry=osint/weekly-brief'));await page.waitForURL('**/studio/content/edit?entry=osint%2Fweekly-brief');
+ await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/apps/fumi'));await page.waitForURL('**/apps/fumi');
+ await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/apps?desktop=tayori'));await page.waitForURL('**/apps?desktop=tayori');
  console.log('PASS real login controller: awaited cookie refresh, exact Desktop installers destination, repeated-redirect recovery, explicit retry, service failure stability and successful password submission');
 }finally{await browser.close();await rm(directory,{recursive:true,force:true});}
