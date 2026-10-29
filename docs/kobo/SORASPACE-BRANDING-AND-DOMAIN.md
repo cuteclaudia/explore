@@ -4,7 +4,7 @@
 
 ## Display rename
 
-Updated the Explore app showcase/product pages, workspace header/launcher, Studio app links, app wrappers, storage settings/instructions, appearance label, SVG icon titles and selected server error text. The full Japanese name appears on the public showcase; the workspace uses a compact sky character as decoration. App names Hikari, Irodori, Fumi, Tsuzuri, Tayori and Goban are retained. The subscription proposal and Claude handoff now use SoraSpace.
+Updated the Explore app showcase/product pages, workspace header/launcher, Studio app links, app wrappers, storage settings/instructions, appearance label, SVG icon titles and selected server error text. The full Japanese name appears on the public showcase; the workspace uses a compact sky character as decoration. The workspace subsequently adopted SoraSpace Photos, Image Editor, Docs, PDF, Mail and Sheets as display names; native names remain smaller references. See [welcome dashboard](SORASPACE-WELCOME-DASHBOARD.md). The subscription proposal and Claude handoff now use SoraSpace.
 
 This is a website presentation change, not a rebuild of Claude’s apps. Native/app-internal branding may retain the earlier name until separately accepted builds arrive.
 

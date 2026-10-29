@@ -2,10 +2,11 @@
 import {CRAFT_TOOLS} from '../../server/craft-tools.mjs';
 import Icon from './Icon.astro';
 import KoboIcon from './KoboIcon.astro';
+import {APP_PRESENTATION} from '../lib/app-presentation.mjs';
 const {actor,current=''}=Astro.props;
 const tools=Object.values(CRAFT_TOOLS).filter(tool=>actor.permissions[tool.capability]===true);
 ---
-<details class="kobo-launcher"><summary aria-label="Switch SoraSpace app" title="Switch app"><Icon name="grid" size={19}/><span class="launcher-copy">Apps</span></summary><nav aria-label="SoraSpace app launcher"><a class="launcher-home" href="/apps">SoraSpace workspace</a>{tools.map(tool=><a href={'/apps/'+tool.slug} aria-current={tool.slug===current?'page':undefined}><KoboIcon name={tool.slug} size={28}/><span>{tool.name}</span></a>)}<a class="launcher-home" href="/apps/files">Saved site files</a><a class="launcher-home" href="/settings" target="_blank" rel="noopener">Settings <Icon name="external" size={13}/><span class="launcher-sr"> (new tab)</span></a></nav></details>
+<details class="kobo-launcher"><summary aria-label="Switch SoraSpace app" title="Switch app"><Icon name="grid" size={19}/><span class="launcher-copy">Apps</span></summary><nav aria-label="SoraSpace app launcher"><a class="launcher-home" href="/apps">SoraSpace workspace</a>{tools.map(tool=><a href={'/apps/'+tool.slug} aria-current={tool.slug===current?'page':undefined}><KoboIcon name={tool.slug} size={28}/><span>{APP_PRESENTATION[tool.slug]?.shortName||tool.name}</span></a>)}<a class="launcher-home" href="/apps/files">Saved site files</a><a class="launcher-home" href="/settings" target="_blank" rel="noopener">Settings <Icon name="external" size={13}/><span class="launcher-sr"> (new tab)</span></a></nav></details>
 <script>
 for(const menu of document.querySelectorAll<HTMLDetailsElement>('.kobo-launcher')){document.addEventListener('click',event=>{if(!menu.contains(event.target as Node))menu.open=false;});document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menu.open){menu.open=false;menu.querySelector('summary')?.focus();}});}
 </script>

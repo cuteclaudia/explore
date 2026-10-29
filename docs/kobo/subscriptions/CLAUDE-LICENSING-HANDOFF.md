@@ -21,3 +21,5 @@ Required app behaviours:
 7. Add app-specific tests for invalid/expired/wrong-audience tickets, trial and paid-period boundaries, five-device races, revoked/rotated tokens, key rotation, offline transitions and unsaved-document recovery. Return candidate/source/checksum and real Windows results.
 
 Existing installers do not become subscription-enforced through the website’s download gates. Please continue reporting that distinction until the shared licensing component and each accepted binary have passed the agreed tests. App sync/recovery acceptance still comes before paid launch.
+
+Display-name update: Claudia accepted SoraSpace Mail (Tayori), Docs (Fumi), Sheets (Goban), PDF (Tsuzuri), Photos (Hikari) and Image Editor (Irodori). The website uses these names while preserving every app ID, route, permission and storage namespace. Native/Store renaming requires separate accepted builds. The welcome page now reserves Mail/Calendar preview panels; it does not introduce a web mail engine or reuse desktop mail credentials.

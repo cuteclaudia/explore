@@ -18,7 +18,7 @@ try{
   const compiled=await build({stdin:{contents:script,loader:'ts',resolveDir:dirname(resolve(file))},bundle:true,write:false,format:'iife'});
   await context.route('https://wrapper.test/**',route=>route.request().url().includes('/api/kobo/launch')?route.fulfill({json:{storageStatus:{available:true}}}):route.fulfill({contentType:'text/html',body:`<!doctype html><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0}*{box-sizing:border-box}${css}</style>${markup}<script>${compiled.outputFiles[0].text}</script>`}));
   const page=await context.newPage();await page.goto('https://wrapper.test/');
-  if(kind==='test'){await page.locator('#kobo-start').click();assert.match(await page.locator('#kobo-state').textContent(),/Opening Hikari — photo development and editing/);assert.equal(await page.locator('iframe').getAttribute('title'),'Hikari — photo development and editing');}
+  if(kind==='test'){await page.locator('#kobo-start').click();assert.match(await page.locator('#kobo-state').textContent(),/Opening SoraSpace Photos — photo development and editing/);assert.equal(await page.locator('iframe').getAttribute('title'),'SoraSpace Photos — photo development and editing');}
   const bar=page.locator(kind==='test'?'.test-bar':'.app-bar');assert.equal((await bar.boundingBox()).height,44);
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'No horizontal overflow');
   const box=await page.locator('iframe').boundingBox();assert(box.width<=390&&box.height>700,'Phone frame gets the remaining viewport');
