@@ -15,7 +15,8 @@ try{
  const store=getStore({...context,name:'studio-content',consistency:'strong'});
  const draft={title:'Published build-check journal',date:'2026-10-26',summary:'Built package smoke check',tags:['Build check'],location:'',locationPrecision:'hidden',cover:'',coverAlt:'',html:'<p>Published build-check body</p>',photos:[]};
  await store.setJSON('entries/journal/deployment-check',{key:'journal/deployment-check',collection:'journal',slug:'deployment-check',ownerId:'local-owner',version:1,draft:{...draft,title:'PRIVATE DRAFT MUST NOT LEAK'},published:draft});
- await store.setJSON('entries/osint/deployment-brief',{key:'osint/deployment-brief',collection:'osint',slug:'deployment-brief',ownerId:'local-owner',version:1,draft:{...draft,title:'PRIVATE OSINT DRAFT MUST NOT LEAK'},published:{...draft,title:'Published OSINT build-check brief',writingCategory:'osint'}});
+ await getStore({...context,name:'studio-writing-categories',consistency:'strong'}).setJSON('registry',{categories:[{id:'essays',name:'China Series'},{id:'reports',name:'Cyber Briefs'},{id:'osint',name:'OSINT Brief'}],aliases:{'44444444-4444-4444-8444-444444444444':'osint'}});
+ await store.setJSON('entries/osint/deployment-brief',{key:'osint/deployment-brief',collection:'osint',slug:'deployment-brief',ownerId:'local-owner',version:1,draft:{...draft,title:'PRIVATE OSINT DRAFT MUST NOT LEAK'},published:{...draft,title:'Published OSINT build-check brief',writingCategory:'44444444-4444-4444-8444-444444444444'}});
  // An override must prevent a repository original from reappearing after unpublish.
  await store.setJSON('entries/essays/puertochancay',{key:'essays/puertochancay',collection:'essays',slug:'puertochancay',ownerId:'local-owner',version:1,draft:{...draft,title:'Unpublished legacy article'},published:null});
  const check=await readFile(new URL('../server/test-fixtures/deployed-ssr.mjs',import.meta.url),'utf8');await writeFile(join(isolated,'check.mjs'),check);

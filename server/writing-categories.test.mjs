@@ -46,3 +46,32 @@ test('concurrent category writes have one winner and stale edits preserve the re
  await assert.rejects(service.save(owner,create(null,'Stale')),e=>e.status===409);
  assert.deepEqual(await service.read(),current);
 }));
+test('deleting categories preserves articles and redirects retired IDs through later deletions',()=>fixture(async(service,store)=>{
+ let registry=await service.save(owner,create(null,'Temporary category'));
+ const custom=registry.categories.at(-1).id;
+ const api=contentService(store,async()=>[],async()=>(await service.read()).categories);
+ const draft={title:'Keep this brief',date:'2026-10-29',html:'<p>Keep these words.</p>',writingCategory:custom};
+ const article=await api.save(owner,'osint/keep',{version:0,action:'publish',draft});
+ registry=await service.save(owner,{expectedAccount:'owner',etag:registry.etag,action:'delete',id:custom,replacement:'osint'});
+ assert(!registry.categories.some(c=>c.id===custom));
+ assert.equal(writingCategoryFor(await api.publicEntry(article.key),registry),'osint');
+ assert.deepEqual(await api.get(article.key),article,'deletion must not rewrite article snapshots or versions');
+ registry=await service.save(owner,{expectedAccount:'owner',etag:registry.etag,action:'delete',id:'osint',replacement:'reports'});
+ assert.equal(registry.aliases[custom],'reports');
+ assert.equal(writingCategoryFor(article.published,registry),'reports');
+ assert.equal(writingCategoryFor({collection:'osint'},registry),'reports','legacy assignments follow deletion too');
+ await assert.rejects(api.save(owner,article.key,{version:article.version,action:'draft',draft}),e=>e.status===400,'an old editor must not reintroduce a deleted category');
+ registry=await service.save(owner,{expectedAccount:'owner',etag:registry.etag,action:'delete',id:'essays',replacement:'reports'});
+ await assert.rejects(service.save(owner,{expectedAccount:'owner',etag:registry.etag,action:'delete',id:'reports',replacement:'reports'}),e=>e.status===400);
+ assert.equal((await service.read()).categories.length,1);
+}));
+test('category deletion refuses invalid destinations, non-owners and stale concurrent requests',()=>fixture(async service=>{
+ const change={expectedAccount:'owner',etag:null,action:'delete',id:'osint',replacement:'reports'};
+ await assert.rejects(service.save({user:{id:'owner'},isOwner:false},change),e=>e.status===403);
+ await assert.rejects(service.save(owner,{...change,expectedAccount:'other'}),e=>e.status===409);
+ for(const replacement of ['osint','missing',undefined])await assert.rejects(service.save(owner,{...change,replacement}),e=>e.status===400);
+ const results=await Promise.allSettled([service.save(owner,change),service.save(owner,{...change,id:'essays'})]);
+ assert.equal(results.filter(r=>r.status==='fulfilled').length,1);
+ assert.equal(results.filter(r=>r.status==='rejected'&&r.reason.status===409).length,1);
+ assert.equal((await service.read()).categories.length,2);
+}));

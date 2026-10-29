@@ -8,8 +8,9 @@ const {entry,preview=false}=Astro.props;
 const d=entry.data;
 const labels={journal:'Journal',essays:'China Series',cyber:'Cyber reports',osint:'OSINT Brief',photography:'Photography'};
 const section={journal:'journal',essays:'chinaseries',cyber:'dailycyberreport',osint:'osint-brief',photography:'photography'}[d.collection];
-const category=writingCategoryFor(d);
-const categoryName=category?(await writingCategories(getStore({name:'studio-writing-categories',consistency:'strong'})).read()).categories.find(c=>c.id===category)?.name:null;
+const registry=writingCategoryFor(d)?await writingCategories(getStore({name:'studio-writing-categories',consistency:'strong'})).read():null;
+const category=writingCategoryFor(d,registry||{});
+const categoryName=registry?.categories.find(c=>c.id===category)?.name;
 const where=shownLocation(d.location,d.locationPrecision);
 function imageURL(url){return preview&&url.startsWith('/api/content/media/')?url+'&draft=1':url;}
 const html=preview?entry.studioHTML.replace(/(\/api\/content\/media\/[^"\s<>]+)/g,'$1&draft=1'):entry.studioHTML;

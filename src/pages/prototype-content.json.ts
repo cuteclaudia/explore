@@ -4,8 +4,9 @@ import {normalizeTags} from '../lib/tags';
 import { getEssays, getReports, getOsintBriefs, getGalleries } from '../lib/site';
 export const prerender = false;
 export async function GET() {
+  const registry=await writingCategories(getStore({name:'studio-writing-categories',consistency:'strong'})).read();
   const entry = (item: Awaited<ReturnType<typeof getEssays>>[number], prefix: string) => ({
-    category: writingCategoryFor(item.data),
+    category: writingCategoryFor(item.data,registry),
     title: item.data.title,
     summary: item.data.summary,
     tags: normalizeTags(item.data.tags),
@@ -13,7 +14,7 @@ export async function GET() {
     href: `/${prefix}/${item.id}`,
   });
   return new Response(JSON.stringify({
-    categories: (await writingCategories(getStore({name:'studio-writing-categories',consistency:'strong'})).read()).categories,
+    categories: registry.categories,
     galleries: (await getGalleries()).map(x=>({title:x.data.title,href:'/photography/'+x.id,photos:x.data.photos})),
     essays: (await getEssays()).map(item => entry(item, 'chinaseries')),
     osint: (await getOsintBriefs()).map(item => entry(item, 'osint-brief')),
