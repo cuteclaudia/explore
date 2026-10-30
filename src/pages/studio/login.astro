@@ -3,23 +3,23 @@ import Base from '../../layouts/Base.astro';
 ---
 <Base title="Owner sign in" description="Sign in to your Explore by Claudia studio." noindex>
   <section class="wrap login-wrap">
-    <span class="eyebrow">Your creative space</span><h1 class="serif">Welcome to Explore.</h1>
+    <span class="eyebrow"><span data-i18n="Your creative space">Your creative space</span></span><h1 class="serif">Welcome to Explore.</h1>
     <p>Sign in to open your apps or your private owner Studio. App access requires approval.</p>
     <p id="auth-status" role="status">Sign in with your invited email address and password.</p>
     <form id="login-form" class="form" method="post" action="/api/studio/login">
-      <label>Email address<input id="login-email" name="email" type="email" autocomplete="username" required /></label>
-      <label>Password<input id="login-password" name="password" type="password" autocomplete="current-password" required /></label>
-      <button class="btn" type="submit">Sign in</button>
-      <button class="btn ghost" id="recover-password" type="button">Forgot password?</button>
+      <label><span data-i18n="Email address">Email address</span><input id="login-email" name="email" type="email" autocomplete="username" required /></label>
+      <label><span data-i18n="Password">Password</span><input id="login-password" name="password" type="password" autocomplete="current-password" required /></label>
+      <button class="btn" type="submit"><span data-i18n="Sign in">Sign in</span></button>
+      <button class="btn ghost" id="recover-password" type="button"><span data-i18n="Forgot password?">Forgot password?</span></button>
     </form>
     <form id="password-form" class="form" hidden>
-      <label>New password<input id="new-password" type="password" autocomplete="new-password" minlength="12" required /></label>
-      <label>Confirm password<input id="confirm-password" type="password" autocomplete="new-password" minlength="12" required /></label>
-      <button class="btn" type="submit">Set password</button>
+      <label><span data-i18n="New password">New password</span><input id="new-password" type="password" autocomplete="new-password" minlength="12" required /></label>
+      <label><span data-i18n="Confirm password">Confirm password</span><input id="confirm-password" type="password" autocomplete="new-password" minlength="12" required /></label>
+      <button class="btn" type="submit"><span data-i18n="Set password">Set password</span></button>
     </form>
     <button class="btn ghost" id="google-login" type="button" hidden>Continue with Google</button>
     <div id="owner-setup" hidden><h2 class="serif">Finish connecting your owner account</h2><p>Your email is verified. Copy your Identity user ID below into the Netlify environment variable <code id="owner-variable">OWNER_IDENTITY_ID</code>, then redeploy. Your ID alone cannot sign anyone in.</p><p><code id="owner-id"></code></p></div>
-    <button class="btn ghost" id="logout" type="button" hidden>Sign out</button>
+    <button class="btn ghost" id="logout" type="button" hidden><span data-i18n="Sign out">Sign out</span></button>
     <button class="btn" id="continue-session" type="button" hidden>Continue to your account</button>
     <p><a href="/studio/signup">Create a SoraSpace trial account →</a></p><p><a href="/studio/welcome">Check approval or manage requested services →</a></p><p><a href="/">← Return to Explore</a></p>
   </section>

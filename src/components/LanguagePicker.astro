@@ -1,0 +1,8 @@
+---
+import {LANGUAGES,languageCode} from '../lib/locales/languages.mjs';
+import {translate} from '../lib/locales/public-copy.mjs';
+const selected=languageCode(Astro.url.searchParams.get('lang'));
+---
+<label class="ui-language"><span data-i18n="Language">{translate('Language',selected)}</span><select aria-label="Language" data-ui-language>{Object.entries(LANGUAGES).map(([code,language])=><option value={code} selected={selected===code} lang={language.tag}>{language.label}</option>)}</select></label>
+<script>import '../scripts/interface-language.mjs';</script>
+<style>.ui-language{display:flex;gap:5px;align-items:center;font:11px/1.4 system-ui;min-width:0;max-width:100%;color:inherit}.ui-language>span{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}.ui-language select{font:inherit;color:inherit;background:var(--surface,Canvas);border:1px solid var(--border,GrayText);border-radius:4px;min-height:44px;max-width:150px;padding:4px 6px;cursor:pointer}.ui-language option{background:Canvas;color:CanvasText}@media(max-width:450px){.ui-language select{max-width:112px;font-size:10px}}</style>

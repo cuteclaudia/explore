@@ -1,3 +1,4 @@
+import {LANGUAGES} from '../src/lib/locales/languages.mjs';
 import {AsyncLocalStorage} from 'node:async_hooks';
 import {AccessError,CAPABILITIES,isOwnerIdentity} from './access.mjs';
 
@@ -6,6 +7,7 @@ import {AccessError,CAPABILITIES,isOwnerIdentity} from './access.mjs';
 // A request-local promise avoids duplicate checks without caching across users.
 const scope=new AsyncLocalStorage();
 export const withActorRequest=(request,next)=>scope.run({request,promise:null},next);
+export function scopedLanguage(){const request=scope.getStore()?.request;if(!request)return '';const value=new URL(request.url).searchParams.get('lang');return typeof value==='string'&&Object.hasOwn(LANGUAGES,value)?value:'';}
 export function scopedActor(options){const state=scope.getStore();if(!state)return null;return state.promise??=requestActor(state.request,options);}
 
 export async function requestActor(request,{ownerIds=[],fetcher=fetch,siteURL=process.env.URL,timeoutMs=10000}={}){

@@ -1,5 +1,8 @@
 // Independent public-site build and responsive/CSP smoke checks. No live service.
 import assert from 'node:assert/strict';
+import {LANGUAGES} from '../src/lib/locales/languages.mjs';
+import {translate} from '../src/lib/locales/public-copy.mjs';
+import {localePath} from '../src/lib/locales/static-page.mjs';
 import {execFileSync} from 'node:child_process';
 import {readFile,readdir,mkdir} from 'node:fs/promises';
 import {createServer} from 'node:http';
@@ -11,7 +14,7 @@ const resolved=await resolveConfig({cwd:repo,repositoryRoot:repo,base:'sites/sor
 assert.equal(resolved.configPath,site+'netlify.toml');
 assert.equal(resolved.config.build.publish,site+'dist');
 assert.equal(resolved.config.build.command,'npm run build');
-const expected=['404.html','_headers','favicon.svg','index.html','robots.txt','sitemap.xml','styles.css'];
+const expected=['404.html','_headers','favicon.svg','index.html','robots.txt','sitemap.xml','styles.css',...Object.keys(LANGUAGES).filter(code=>code!=='en')];
 assert.deepEqual((await readdir(site+'dist')).sort(),expected.sort());
 const headers=await readFile(site+'dist/_headers','utf8'),csp=headers.match(/Content-Security-Policy: (.+)/)[1];
 assert(csp.includes("script-src 'none'"));assert(csp.includes("connect-src 'none'"));
@@ -19,8 +22,8 @@ const html=await readFile(site+'dist/index.html','utf8');
 assert(!/<script\b|<form\b|<iframe\b/i.test(html));assert.equal((html.match(/class="template-card"/g)||[]).length,5);
 assert(!html.includes('app.soraspace.studio'));for(const path of ['/apps/files','/studio/soraspace-setup','/studio/soraspace-editor','/studio/soraspace-admin'])assert(html.includes('https://www.claudiagilbert.com'+path));assert(html.includes('Email verification and approval required'));
 const server=createServer(async(req,res)=>{
- const path=new URL(req.url,'http://localhost').pathname;const filename=path==='/'?'index.html':path.slice(1);
- if(!expected.includes(filename)||filename==='_headers'){res.writeHead(404,{'Content-Type':'text/plain'});res.end('Not found');return;}
+ const path=new URL(req.url,'http://localhost').pathname;const filename=Object.keys(LANGUAGES).some(code=>localePath(code)===path)?(path==='/'?'index.html':path.slice(1)+'index.html'):path.slice(1);
+ if(!expected.includes(filename)&&!Object.keys(LANGUAGES).filter(code=>code!=='en').some(code=>filename===code+'/index.html')||filename==='_headers'){res.writeHead(404,{'Content-Type':'text/plain'});res.end('Not found');return;}
  res.writeHead(200,{'Content-Type':filename.endsWith('.css')?'text/css':filename.endsWith('.svg')?'image/svg+xml':filename.endsWith('.xml')?'application/xml':'text/html','Content-Security-Policy':csp});res.end(await readFile(site+'dist/'+filename));
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
@@ -39,6 +42,24 @@ try{
   await page.getByRole('link',{name:'Templates',exact:true}).click();assert.equal(new URL(page.url()).hash,'#templates');assert(await page.locator('#templates').isVisible());
   if([390,768,1366].includes(width))await page.screenshot({path:`/workspace/reviews/soraspace-landing/${width}.png`,fullPage:true});
  }
+ // Every locale is an independent indexable page with reciprocal links, no JS.
+ for(const [code,language] of Object.entries(LANGUAGES)){
+  for(const width of [320,768,1366]){
+   await page.setViewportSize({width,height:900});await page.goto(base+localePath(code));
+   assert.equal(await page.locator('html').getAttribute('lang'),language.tag);
+   assert.equal(await page.locator('h1').textContent(),translate('Space for everything you create.',code));
+   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Locale fits '+code+' at '+width);
+   await page.locator('.language-picker summary').click();
+   assert.equal(await page.locator('.language-picker a').count(),8);
+   assert.equal(await page.locator('.language-picker a[hreflang="en-AU"]').getAttribute('href'),'/');
+   assert.equal(await page.locator('.language-picker a[aria-current]').getAttribute('hreflang'),language.tag);
+   assert.equal(await page.locator('link[rel=alternate]').count(),9);
+   assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),'https://www.soraspace.studio'+localePath(code));
+   const login=new URL(await page.locator('.sign-in').getAttribute('href'));
+   assert.equal(login.searchParams.get('next'),'/studio/welcome');if(code!=='en')assert.equal(login.searchParams.get('lang'),code);
+  }
+ }
+ await page.goto(base);
  // Theme reacts to the system preference without cookies, storage or script.
  const luminance=colour=>{const divisor=colour.startsWith('color(srgb ')?1:255;const c=colour.match(/[\d.]+/g).slice(0,3).map(Number).map(n=>n/divisor).map(n=>n<=.04045?n/12.92:((n+.055)/1.055)**2.4);return c[0]*.2126+c[1]*.7152+c[2]*.0722;};
  const contrast=(a,b)=>{const l=[luminance(a),luminance(b)].sort((x,y)=>y-x);return (l[0]+.05)/(l[1]+.05);};

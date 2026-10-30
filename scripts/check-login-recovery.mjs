@@ -29,5 +29,7 @@ try{
  await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/studio/content/edit?entry=osint/weekly-brief'));await page.waitForURL('**/studio/content/edit?entry=osint%2Fweekly-brief');
  await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/apps/fumi'));await page.waitForURL('**/apps/fumi');
  await page.goto('https://www.claudiagilbert.com/studio/login?next='+encodeURIComponent('/apps?desktop=tayori'));await page.waitForURL('**/apps?desktop=tayori');
+ for(const code of ['ja','zh-Hant','pt-PT']){await page.goto('https://www.claudiagilbert.com/studio/login?lang='+code+'&next='+encodeURIComponent('/apps/fumi?file=11111111-1111-4111-8111-111111111111'));await page.waitForURL(url=>url.pathname==='/apps/fumi');const destination=new URL(page.url());assert.equal(destination.searchParams.get('lang'),code);assert.equal(destination.searchParams.get('file'),'11111111-1111-4111-8111-111111111111');}
+ await page.goto('https://www.claudiagilbert.com/studio/login?lang=__proto__&next='+encodeURIComponent('/apps/fumi'));await page.waitForURL('**/apps/fumi');assert.equal(new URL(page.url()).searchParams.has('lang'),false);
  console.log('PASS real login controller: awaited cookie refresh, exact Desktop installers destination, repeated-redirect recovery, explicit retry, service failure stability and successful password submission');
 }finally{await browser.close();await rm(directory,{recursive:true,force:true});}

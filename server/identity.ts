@@ -1,6 +1,6 @@
 import { getUser, admin, AuthError } from '@netlify/identity';
 import { AccessError, resolveActor, requireCapability } from './access.mjs';
-import { scopedActor } from './request-actor.mjs';
+import { scopedActor, scopedLanguage } from './request-actor.mjs';
 export const ownerId = () => process.env.OWNER_IDENTITY_ID?.trim().toLowerCase() || '';
 export const ownerIds = () => [ownerId(), process.env.OWNER_GOOGLE_IDENTITY_ID?.trim().toLowerCase() || ''].filter(Boolean);
 export const setupVariableFor = (email: string) => email.toLowerCase() === 'claudiaegilbert@gmail.com' ? 'OWNER_GOOGLE_IDENTITY_ID' : email.toLowerCase() === ownerEmail() ? 'OWNER_IDENTITY_ID' : null;
@@ -19,7 +19,7 @@ export function errorResponse(error: unknown) {
 export async function protectPage(path: string, capability?: string) {
   try { return await currentActor(capability); }
   catch (error) {
-    if (error instanceof AccessError && error.status===401) return new Response(null,{status:302,headers:{Location:'/studio/login?reason=session&next='+encodeURIComponent(path),'Cache-Control':'private, no-store'}});
+    if (error instanceof AccessError && error.status===401) {const language=scopedLanguage();return new Response(null,{status:302,headers:{Location:'/studio/login?reason=session&next='+encodeURIComponent(path)+(language?'&lang='+encodeURIComponent(language):''),'Cache-Control':'private, no-store'}});}
     return errorResponse(error);
   }
 }
