@@ -11,11 +11,11 @@ The four steps are:
 1. **Purpose:** study/projects, academic work, writing/blogging, creative portfolio, business/practice or a personal space. Each suggests pages and a template; there is no invented biography, article list, research credential or product catalogue.
 2. **Pages and template:** Home, About, Blog, Articles, Journal, Galleries and Contact. Choose Folio, Editorial, Horizon, Practice or Canvas. Business setups recommend Practice; personal setups recommend Canvas. Home is required in this first version. Purpose changes update untouched recommendations but preserve pages/templates already manually customised.
 3. **Style and identity:** site name, optional tagline/introduction, System (default), Moss, Ink or Clay palette and compact/comfortable density. These are site branding choices, separate from workspace/system appearance.
-4. **Review:** an in-tab rendered layout with empty sections; Back edits the previous answers. Download a JSON draft to keep the answers and generated configuration. No answer is sent to a service, browser storage or another domain. Answers are not automatically saved across sessions, and there is no import UI yet.
+4. **Review:** an in-tab rendered layout with empty sections; Back edits the previous answers. Download a JSON draft to keep the answers and generated configuration. No answer is sent to a service, browser storage or another domain. Answers are not automatically saved across sessions. The optional Save & open editor action now creates a private owner trial draft; the editor supports JSON import/export. See [private editor](PRIVATE-SITE-EDITOR.md).
 
 Client rendering uses text nodes for all user-entered values; no raw HTML/iframe/CSS input is accepted. The shared deterministic generator lives at `src/lib/soraspace-site-setup.mjs` and validates field bounds, fixed template/palette/page IDs, duplicate/unknown pages and unknown top-level fields. Exported JSON is private user data, not executable site code or proof of authorization.
 
-Every generated site and page is a draft, the overall visibility is private, and the navigation contains only selected pages. Enabling Journal creates an empty draft section and never reads or publishes existing private entries. There is no public-site route, file copy, domain setup, database mutation, shop, email delivery, contact form or publication action in the preview. SoraShop remains a future optional module and cannot be enabled through forged setup fields.
+Every generated site and page is a draft, the overall visibility is private, and the navigation contains only selected pages. Enabling Journal creates an empty draft section and never reads or publishes existing private entries. There is no public-site route, file copy, domain setup, tenant database mutation, shop, email delivery, contact form or publication action in the preview. Explicit Save & open editor uses a separate account-bound owner-only trial store. SoraShop remains a future optional module and cannot be enabled through forged setup fields.
 
 ## Later customer workflow
 
@@ -37,4 +37,4 @@ Screenshots in `/workspace/reviews/soraspace-setup` are local synthetic test dat
 
 ## Next increment
 
-Connect a qualified trial database/identity adapter, idempotent draft creation and owner-only trial site editing. Then extend page editing and authenticated preview before adding public subdomain publication. Customer signup, custom domains, commerce and paid subscriptions stay off until their own acceptance checks pass.
+Owner-only trial site editing and bounded idempotent saves now exist separately; connect a qualified tenant database/identity adapter and provisioning before customer activation. Then extend page editing and authenticated preview before adding public subdomain publication. Customer signup, custom domains, commerce and paid subscriptions stay off until their own acceptance checks pass.

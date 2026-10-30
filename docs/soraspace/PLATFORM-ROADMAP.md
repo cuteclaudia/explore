@@ -25,6 +25,8 @@ An owner-only four-step questionnaire and downloadable private template draft ar
 
 Switching a page off hides its navigation and public route, including direct links, search, sitemap and feeds. It preserves content privately; it does not delete documents. Restoring a page does not publish new drafts. Previously downloaded public content cannot be recalled. Preview requires scoped authorization, noindex/no-store and safe handling of private images.
 
+Owner-only implementation update: [private site editor](PRIVATE-SITE-EDITOR.md) now supports saved trial drafts and editable page/navigation/appearance controls. [Super-administrator assessment](SUPER-ADMINISTRATOR-ASSESSMENT.md) defines the separate platform control plane; its owner overview is read-only. Neither activates customer provisioning or publishing.
+
 ## First technical prerequisite: explicit tenant boundaries
 
 Implementation update: an isolated PostgreSQL schema, tenant service and real-database adversarial tests are now built; see [tenant foundation](TENANT-FOUNDATION.md). They are not connected to live routes or a managed database. The full isolation release gate below remains open.

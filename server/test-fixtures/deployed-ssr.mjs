@@ -15,8 +15,8 @@ for(const path of ['/about','/journal','/journal/deployment-check','/chinaseries
 const oldExplore=await response('/explore?place=3');assert.equal(oldExplore.status,301);assert.equal(oldExplore.headers.get('location'),'/places?place=3');
 assert.equal((await response('/osint-brief/trashed-brief')).status,404,'Category-binned article must not be public');
 assert.equal((await response('/chinaseries/puertochancay')).status,404,'Unpublished legacy page must remain hidden');
-for(const path of ['/studio/soraspace-setup','/studio/hobbynest','/studio/hobbynest/products/new','/studio/about','/studio','/studio/content','/apps','/studio/kobo-test','/studio/irodori-test','/apps/irodori','/apps/irodori-legacy']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
-assert.equal((await response('/api/content/list')).status,401);
+for(const path of ['/studio/soraspace-admin','/studio/soraspace-editor','/studio/soraspace-setup','/studio/hobbynest','/studio/hobbynest/products/new','/studio/about','/studio','/studio/content','/apps','/studio/kobo-test','/studio/irodori-test','/apps/irodori','/apps/irodori-legacy']){const r=await response(path);assert.equal(r.status,302,path+' requires sign-in');assert(r.headers.get('location').startsWith('/studio/login'));console.log('PASS packaged auth guard',path);}
+assert.equal((await response('/api/content/list')).status,401);assert.equal((await response('/api/soraspace/editor-draft')).status,401);
 assert.equal((await response('/api/hobbynest/images/fixture/11111111-1111-4111-8111-111111111111?draft=1')).status,401,'Draft photos require sign-in');
 assert.equal((await handler(new Request('https://explorebyclaudia.netlify.app/api/hobbynest/images',{method:'POST',body:'not-an-image'}),{ip:'127.0.0.1'})).status,401,'Product photo upload requires authentication');
 assert.equal((await handler(new Request('https://explorebyclaudia.netlify.app/api/hobbynest/carrier-check',{method:'POST',headers:{Origin:'https://explorebyclaudia.netlify.app','Content-Type':'application/json'},body:'{}'}),{ip:'127.0.0.1'})).status,401,'Carrier checks require owner authentication');
@@ -42,11 +42,18 @@ globalThis.fetch=async(input,options)=>{
  return originalFetch(input,options);
 };
 try{
- for(const origin of ['https://www.claudiagilbert.com','https://claudiagilbert.com'])for(const path of ['/studio/soraspace-setup','/studio','/studio/hobbynest','/studio/downloads','/studio/account','/studio/users','/apps']){
+ for(const origin of ['https://www.claudiagilbert.com','https://claudiagilbert.com'])for(const path of ['/studio/soraspace-admin','/studio/soraspace-editor','/studio/soraspace-setup','/studio','/studio/hobbynest','/studio/downloads','/studio/account','/studio/users','/apps']){
   const r=await handler(new Request(origin+path,{headers:{Cookie:'nf_jwt=verified-by-session-service'}}),{ip:'127.0.0.1'});
   assert.equal(r.status,200,origin+path+' must recognize the verified browser session');assert.equal(r.headers.get('Cache-Control'),'private, no-store');console.log('PASS packaged custom-domain account session',origin+path);
  }
  const origin='https://www.claudiagilbert.com',ownerRequest=(path,options={})=>handler(new Request(origin+path,{...options,headers:{Cookie:'nf_jwt=verified-by-session-service',Origin:origin,...options.headers}}),{ip:'127.0.0.1'});
+ const editorModel={schemaVersion:2,status:'draft',visibility:'private',siteName:'Package draft',tagline:'',brandMark:'S',footer:'',theme:{template:'folio',palette:'system',density:'compact'},homePage:'home',featuredPage:null,pages:['home','about','blog','articles','journal','galleries','contact'].map(id=>({id,title:id,enabled:id==='home',heading:id,summary:'',body:'Private packaged draft'}))};
+ const editorPayload={expectedAccount:owner,etag:null,mutationId:'22222222-2222-4222-8222-222222222222',draft:editorModel};
+ assert.equal((await ownerRequest('/api/soraspace/editor-draft',{method:'PUT',headers:{Origin:'https://untrusted.invalid','Content-Type':'application/json'},body:JSON.stringify(editorPayload)})).status,403);
+ const editorSave=await ownerRequest('/api/soraspace/editor-draft',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(editorPayload)});assert.equal(editorSave.status,200);const editorSaved=await editorSave.json();assert.equal(editorSaved.draft.visibility,'private');assert(editorSaved.etag);assert.equal(editorSaved.publishingEnabled,false);
+ assert.equal((await ownerRequest('/api/soraspace/editor-draft',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({...editorPayload,mutationId:'33333333-3333-4333-8333-333333333333'})})).status,409);
+ assert.equal((await ownerRequest('/api/soraspace/editor-draft',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({...editorPayload,mutationId:'44444444-4444-4444-8444-444444444444',etag:editorSaved.etag,draft:{...editorModel,status:'published'}})})).status,400);
+ console.log('PASS packaged owner site draft authentication, CSRF, private save, stale-version and publication refusal');
  let nest=await (await ownerRequest('/api/hobbynest/settings')).json();
  const product={id:'fixture-print',name:'Packaged photo fixture',sku:'PACKAGE-1',kind:'physical',priceCents:2000,description:'Isolated package test only',collectionIds:[],licence:'',allowBackorder:true,printMinDays:3,printMaxDays:5,dispatchMinDays:1,dispatchMaxDays:2,weightGrams:0,lengthMm:0,widthMm:0,heightMm:0};
  let saved=await ownerRequest('/api/hobbynest/settings',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({expectedAccount:owner,etag:nest.etag,operation:'product.save',value:product})});assert.equal(saved.status,200);nest=await saved.json();
