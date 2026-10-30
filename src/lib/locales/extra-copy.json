@@ -2268,5 +2268,195 @@
     "it": "Usa la lingua del dispositivo o scegli tu. Le modifiche sono salvate subito in questo browser.",
     "id": "Gunakan bahasa perangkat atau pilih sendiri. Perubahan langsung disimpan di browser ini.",
     "th": "ใช้ภาษาของอุปกรณ์หรือเลือกเอง การเปลี่ยนแปลงจะบันทึกทันทีในเบราว์เซอร์นี้"
+  },
+  "Public app preview": {
+    "uk": "Публічний огляд застосунку",
+    "nl": "Openbaar appvoorbeeld",
+    "sv": "Offentlig appförhandsvisning",
+    "fi": "Julkinen sovellusesittely",
+    "nb": "Offentlig appforhåndsvisning",
+    "it": "Anteprima pubblica dell’app",
+    "id": "Pratinjau aplikasi publik",
+    "th": "ตัวอย่างแอปสาธารณะ"
+  },
+  "View app preview": {
+    "uk": "Переглянути огляд",
+    "nl": "Appvoorbeeld bekijken",
+    "sv": "Visa appförhandsvisning",
+    "fi": "Katso sovellusesittely",
+    "nb": "Se appforhåndsvisning",
+    "it": "Vedi l’anteprima",
+    "id": "Lihat pratinjau aplikasi",
+    "th": "ดูตัวอย่างแอป"
+  },
+  "Explore the mock-ups and features before creating your account.": {
+    "uk": "Перегляньте макети й функції перед реєстрацією.",
+    "nl": "Bekijk ontwerpen en functies voordat je een account maakt.",
+    "sv": "Se skisser och funktioner innan du skapar konto.",
+    "fi": "Tutustu malleihin ja ominaisuuksiin ennen tilin luomista.",
+    "nb": "Se skisser og funksjoner før du oppretter konto.",
+    "it": "Esplora esempi e funzioni prima di creare un account.",
+    "id": "Jelajahi contoh tampilan dan fitur sebelum membuat akun.",
+    "th": "สำรวจภาพจำลองและฟีเจอร์ก่อนสร้างบัญชี"
+  },
+  "Explore the tools": {
+    "uk": "Переглянути інструменти",
+    "nl": "Tools ontdekken",
+    "sv": "Utforska verktygen",
+    "fi": "Tutustu työkaluihin",
+    "nb": "Utforsk verktøyene",
+    "it": "Esplora gli strumenti",
+    "id": "Jelajahi alat",
+    "th": "สำรวจเครื่องมือ"
+  },
+  "Desktop downloads depend on release availability.": {
+    "uk": "Завантаження настільних версій залежать від випусків.",
+    "nl": "Desktopdownloads hangen af van beschikbare versies.",
+    "sv": "Datornedladdningar beror på tillgängliga versioner.",
+    "fi": "Työpöytälataukset riippuvat julkaisuista.",
+    "nb": "Skrivebordsnedlastinger avhenger av utgivelser.",
+    "it": "I download dipendono dalle versioni disponibili.",
+    "id": "Unduhan desktop bergantung pada rilis yang tersedia.",
+    "th": "การดาวน์โหลดเดสก์ท็อปขึ้นอยู่กับรุ่นที่พร้อม"
+  },
+  "Create an account and request the services you want to try. App access follows email verification and approval.": {
+    "uk": "Створіть обліковий запис і виберіть послуги. Доступ — після підтвердження пошти й схвалення.",
+    "nl": "Maak een account en vraag diensten aan. Toegang volgt na e-mailbevestiging en goedkeuring.",
+    "sv": "Skapa konto och begär tjänster. Appåtkomst följer efter e-postbekräftelse och godkännande.",
+    "fi": "Luo tili ja pyydä palveluja. Pääsy seuraa sähköpostivahvistusta ja hyväksyntää.",
+    "nb": "Opprett konto og be om tjenester. Tilgang følger etter e-postbekreftelse og godkjenning.",
+    "it": "Crea un account e richiedi i servizi. Accesso dopo verifica email e approvazione.",
+    "id": "Buat akun dan ajukan layanan. Akses diberikan setelah verifikasi email dan persetujuan.",
+    "th": "สร้างบัญชีและขอบริการที่ต้องการทดลอง ใช้แอปได้หลังยืนยันอีเมลและได้รับอนุมัติ"
+  },
+  "PDF export": {
+    "uk": "Експорт PDF",
+    "nl": "PDF-export",
+    "sv": "PDF-export",
+    "fi": "PDF-vienti",
+    "nb": "PDF-eksport",
+    "it": "Esportazione PDF",
+    "id": "Ekspor PDF",
+    "th": "ส่งออก PDF"
+  },
+  "PDF reading": {
+    "uk": "Читання PDF",
+    "nl": "PDF's lezen",
+    "sv": "Läsa PDF",
+    "fi": "PDF-luku",
+    "nb": "Lese PDF",
+    "it": "Lettura PDF",
+    "id": "Membaca PDF",
+    "th": "อ่าน PDF"
+  },
+  "Page organisation": {
+    "uk": "Упорядкування сторінок",
+    "nl": "Pagina's ordenen",
+    "sv": "Ordna sidor",
+    "fi": "Sivujen järjestäminen",
+    "nb": "Organisere sider",
+    "it": "Organizzazione pagine",
+    "id": "Pengaturan halaman",
+    "th": "จัดระเบียบหน้า"
+  },
+  "Annotations & forms": {
+    "uk": "Анотації та форми",
+    "nl": "Annotaties en formulieren",
+    "sv": "Anteckningar och formulär",
+    "fi": "Merkinnät ja lomakkeet",
+    "nb": "Merknader og skjemaer",
+    "it": "Annotazioni e moduli",
+    "id": "Anotasi dan formulir",
+    "th": "คำอธิบายประกอบและแบบฟอร์ม"
+  },
+  "Exposure & colour": {
+    "uk": "Експозиція та колір",
+    "nl": "Belichting en kleur",
+    "sv": "Exponering och färg",
+    "fi": "Valotus ja väri",
+    "nb": "Eksponering og farge",
+    "it": "Esposizione e colore",
+    "id": "Pencahayaan dan warna",
+    "th": "แสงและสี"
+  },
+  "Photo library": {
+    "uk": "Фотобібліотека",
+    "nl": "Fotobibliotheek",
+    "sv": "Fotobibliotek",
+    "fi": "Kuvakirjasto",
+    "nb": "Bildebibliotek",
+    "it": "Libreria fotografica",
+    "id": "Pustaka foto",
+    "th": "คลังภาพถ่าย"
+  },
+  "Layers & masks": {
+    "uk": "Шари та маски",
+    "nl": "Lagen en maskers",
+    "sv": "Lager och masker",
+    "fi": "Tasot ja maskit",
+    "nb": "Lag og masker",
+    "it": "Livelli e maschere",
+    "id": "Lapisan dan masker",
+    "th": "เลเยอร์และมาสก์"
+  },
+  "Selections & adjustments": {
+    "uk": "Виділення й корекція",
+    "nl": "Selecties en aanpassingen",
+    "sv": "Markeringar och justeringar",
+    "fi": "Valinnat ja säädöt",
+    "nb": "Markeringer og justeringer",
+    "it": "Selezioni e regolazioni",
+    "id": "Seleksi dan penyesuaian",
+    "th": "การเลือกและการปรับแต่ง"
+  },
+  "Image composition": {
+    "uk": "Композиція зображень",
+    "nl": "Beeldcompositie",
+    "sv": "Bildkomposition",
+    "fi": "Kuvan sommittelu",
+    "nb": "Bildekomposisjon",
+    "it": "Composizione immagini",
+    "id": "Komposisi gambar",
+    "th": "การจัดองค์ประกอบภาพ"
+  },
+  "Contacts & tasks": {
+    "uk": "Контакти й завдання",
+    "nl": "Contacten en taken",
+    "sv": "Kontakter och uppgifter",
+    "fi": "Yhteystiedot ja tehtävät",
+    "nb": "Kontakter og oppgaver",
+    "it": "Contatti e attività",
+    "id": "Kontak dan tugas",
+    "th": "รายชื่อติดต่อและงาน"
+  },
+  "Formulas & charts": {
+    "uk": "Формули й діаграми",
+    "nl": "Formules en grafieken",
+    "sv": "Formler och diagram",
+    "fi": "Kaavat ja kaaviot",
+    "nb": "Formler og diagrammer",
+    "it": "Formule e grafici",
+    "id": "Rumus dan grafik",
+    "th": "สูตรและแผนภูมิ"
+  },
+  "CSV & workbooks": {
+    "uk": "CSV і книги",
+    "nl": "CSV en werkmappen",
+    "sv": "CSV och arbetsböcker",
+    "fi": "CSV ja työkirjat",
+    "nb": "CSV og arbeidsbøker",
+    "it": "CSV e cartelle di lavoro",
+    "id": "CSV dan buku kerja",
+    "th": "CSV และสมุดงาน"
+  },
+  "Calendar": {
+    "uk": "Календар",
+    "nl": "Agenda",
+    "sv": "Kalender",
+    "fi": "Kalenteri",
+    "nb": "Kalender",
+    "it": "Calendario",
+    "id": "Kalender",
+    "th": "ปฏิทิน"
   }
 }

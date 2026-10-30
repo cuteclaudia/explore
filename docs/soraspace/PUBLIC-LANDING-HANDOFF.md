@@ -43,3 +43,9 @@ See TRIAL-SIGNUP-AND-SERVICES.md before enabling a new-email test. Registration 
 Current source packaging defaults to a separate v3 artifact directory, preserving original/v2 ZIPs. Git continuous deployment is the preferred update path. New static links depend on the matching Explore backend deploy; check both projects before enabling registration. Validation: 262 server tests, signup/pending/service-choice browser tests with mocked Identity/mail, existing login/permissions/editor regressions, system/responsive public checks and production packaged owner/trial isolation checks passed.
 
 Current device-language matching and preference scope are documented in [App names and languages](APP-NAMES-AND-LANGUAGES.md). Deploy the generated HTML, language.js and _headers as one matching build.
+
+## Public product preview funnel — current update
+
+The splash's app tiles and web-preview links now open same-origin `/tools/<app>/` information pages, with corresponding paths in all sixteen locales. These show illustrative mock-ups, feature highlights, availability and signup; they contain no engine, iframe or protected session. The main splash action explores tools. Returning users retain Sign In and workspace shortcuts. The static bundle includes all six product pages per locale, and language matching preserves the product path.
+
+Signup from a web preview carries an allowlisted app selection, preselecting an editable service request. It does not grant access before verification/approval. A 30-day no-card trial is recommended but not enabled or advertised as active; see [public previews and trial policy](PUBLIC-PREVIEWS-AND-30-DAY-TRIAL.md).

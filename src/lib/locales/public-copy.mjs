@@ -230,6 +230,25 @@ Planned SoraSpace Projects connects jobs and sub-jobs, time tracking, alteration
 Publishing and planned services | 公開機能と計画中のサービス | 發佈功能與規劃中的服務 | 发布功能与规划中的服务 | 게시 및 예정된 서비스 | Publication et services prévus | Veröffentlichung und geplante Dienste | Publicação e serviços previstos
 Device language | 端末の言語 | 裝置語言 | 设备语言 | 기기 언어 | Langue de l’appareil | Gerätesprache | Idioma do dispositivo
 Use your device language or choose your own. Language changes are saved immediately on this browser. | 端末の言語を使うか、言語を選べます。変更はこのブラウザーにすぐ保存されます。 | 使用裝置語言或自行選擇。變更會立即儲存在此瀏覽器。 | 使用设备语言或自行选择。更改会立即保存在此浏览器。 | 기기 언어를 사용하거나 직접 선택하세요. 변경 사항은 이 브라우저에 즉시 저장됩니다. | Utilisez la langue de l’appareil ou choisissez-en une. Les changements sont enregistrés immédiatement dans ce navigateur. | Verwenden Sie die Gerätesprache oder wählen Sie selbst. Änderungen werden sofort in diesem Browser gespeichert. | Utilize o idioma do dispositivo ou escolha outro. As alterações são guardadas de imediato neste navegador.
+Public app preview | アプリの公開プレビュー | 公開應用程式預覽 | 公开应用预览 | 공개 앱 미리 보기 | Aperçu public de l’application | Öffentliche App-Vorschau | Pré-visualização pública
+View app preview | プレビューを見る | 查看應用程式預覽 | 查看应用预览 | 앱 미리 보기 | Voir l’aperçu | App-Vorschau ansehen | Ver pré-visualização
+Explore the mock-ups and features before creating your account. | アカウント作成前に、イメージ画面と機能をご覧ください。 | 建立帳戶前先探索示意畫面與功能。 | 创建账户前先探索示意画面与功能。 | 계정을 만들기 전에 예시 화면과 기능을 살펴보세요. | Découvrez les maquettes et fonctions avant de créer votre compte. | Entdecken Sie Entwürfe und Funktionen vor der Registrierung. | Explore os exemplos e funcionalidades antes de criar conta.
+Explore the tools | ツールを見る | 探索工具 | 探索工具 | 도구 살펴보기 | Découvrir les outils | Werkzeuge entdecken | Explorar ferramentas
+Desktop downloads depend on release availability. | デスクトップ版のダウンロードはリリース状況によります。 | 桌面版下載視發佈情況而定。 | 桌面版下载取决于发布情况。 | 데스크톱 다운로드는 출시 여부에 따라 제공됩니다. | Les téléchargements dépendent des versions disponibles. | Desktop-Downloads hängen von verfügbaren Versionen ab. | As transferências dependem das versões disponíveis.
+Create an account and request the services you want to try. App access follows email verification and approval. | アカウントを作成し、試したいサービスを選びます。アプリの利用にはメール確認と承認が必要です。 | 建立帳戶並申請想試用的服務。驗證電郵並獲核准後即可使用應用程式。 | 创建账户并申请想试用的服务。验证邮箱并获批准后即可使用应用。 | 계정을 만들고 체험할 서비스를 요청하세요. 이메일 인증과 승인 후 앱을 이용할 수 있습니다. | Créez un compte et demandez les services à essayer. L’accès suit la vérification de l’e-mail et l’approbation. | Erstellen Sie ein Konto und wählen Sie Testdienste. App-Zugang folgt nach E-Mail-Bestätigung und Freigabe. | Crie conta e solicite os serviços a experimentar. O acesso depende da confirmação do e-mail e aprovação.
+PDF export | PDF書き出し | PDF 匯出 | PDF 导出 | PDF 내보내기 | Export PDF | PDF-Export | Exportação PDF
+PDF reading | PDF閲覧 | 閱讀 PDF | 阅读 PDF | PDF 읽기 | Lecture PDF | PDFs lesen | Leitura PDF
+Page organisation | ページの整理 | 頁面整理 | 页面整理 | 페이지 정리 | Organisation des pages | Seiten organisieren | Organização de páginas
+Annotations & forms | 注釈とフォーム | 註解與表單 | 批注与表单 | 주석 및 양식 | Annotations et formulaires | Anmerkungen und Formulare | Anotações e formulários
+Exposure & colour | 露出と色 | 曝光與色彩 | 曝光与色彩 | 노출 및 색상 | Exposition et couleur | Belichtung und Farbe | Exposição e cor
+Photo library | 写真ライブラリ | 相片資料庫 | 照片图库 | 사진 라이브러리 | Photothèque | Fotobibliothek | Biblioteca de fotografias
+Layers & masks | レイヤーとマスク | 圖層與遮色片 | 图层与蒙版 | 레이어 및 마스크 | Calques et masques | Ebenen und Masken | Camadas e máscaras
+Selections & adjustments | 選択と調整 | 選取與調整 | 选择与调整 | 선택 및 조정 | Sélections et réglages | Auswahl und Anpassungen | Seleções e ajustes
+Image composition | 画像の合成 | 影像合成 | 图像合成 | 이미지 구성 | Composition d’image | Bildkomposition | Composição de imagens
+Contacts & tasks | 連絡先とタスク | 聯絡人與工作 | 联系人与任务 | 연락처 및 작업 | Contacts et tâches | Kontakte und Aufgaben | Contactos e tarefas
+Formulas & charts | 数式とグラフ | 公式與圖表 | 公式与图表 | 수식 및 차트 | Formules et graphiques | Formeln und Diagramme | Fórmulas e gráficos
+CSV & workbooks | CSVとブック | CSV 與活頁簿 | CSV 与工作簿 | CSV 및 통합 문서 | CSV et classeurs | CSV und Arbeitsmappen | CSV e livros de cálculo
+Calendar | カレンダー | 行事曆 | 日历 | 일정 | Calendrier | Kalender | Calendário
 `;
 const original=Object.fromEntries(rows.trim().split('\n').map(row=>{const cells=row.split(' | ');if(cells.length!==8)throw Error('Invalid language row: '+cells[0]);if(cells.some(cell=>!cell.trim()))throw Error('Empty language copy: '+cells[0]);return [cells[0],Object.freeze(Object.fromEntries(['en','ja','zh-Hant','zh-Hans','ko','fr','de','pt-PT'].map((code,i)=>[code,cells[i]])))];}));
 export const PUBLIC_COPY=Object.freeze(Object.fromEntries(Object.entries(original).map(([key,copy])=>{const added=extra[key];if(!added)throw Error('Missing additional locales: '+key);return [key,Object.freeze(Object.fromEntries(Object.keys(LANGUAGES).map(code=>{const value=copy[code]||added[code];if(typeof value!=='string'||!value.trim())throw Error('Missing translation: '+code+' '+key);return [code,value];})))];})));

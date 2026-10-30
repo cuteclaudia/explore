@@ -57,7 +57,7 @@ AI must be optional per account/workspace, with explicit action-level consent fo
 
 Website/platform work: previews, service catalogue/request flow, scoped source/project APIs, storage/permission model, import/export planning, privacy/status UI and backend authorization. Claude: native/web engine citation hooks, parser/format compatibility and app integration/build acceptance. The existing app bridge/IDs/storage folders stay unchanged until a specific extension is reviewed.
 
-Public splash now has four compact **illustrative interface previews**, not screenshots or proof of app-specific support, with real gated app links and a research direction section. Later replace illustrations with reviewed screenshots of accepted builds and consented/synthetic content. Research Library, Projects and AI remain labelled planned. No Zotero account/token, library import, native code, localhost service, AI API or paid provider was added.
+Public splash now has four compact **illustrative interface previews**, not screenshots or proof of app-specific support, with public product-preview/signup links and a research direction section; actual app access remains gated. Later replace illustrations with reviewed screenshots of accepted builds and consented/synthetic content. Research Library, Projects and AI remain labelled planned. No Zotero account/token, library import, native code, localhost service, AI API or paid provider was added.
 
 ## Jobs, time, alterations and client billing — confirmed product direction
 

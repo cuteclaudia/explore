@@ -20,7 +20,7 @@ test('localized public pages retain auth return destinations and never translate
   assert(page.includes(`<html lang="${LANGUAGES[code].tag}"`));
   assert(page.includes(escapeHTML(translate('Space for everything you create.',code))));
   assert(page.includes('href="/?lang=en" data-language-choice="en" hreflang="en-AU"'));assert(page.includes('https://www.soraspace.studio'+localePath(code)));
-  assert(page.includes('/apps/fumi'));assert(page.includes('Fumi · 文'));assert(!/<script\b|<iframe\b|<form\b/i.test(page));
+  assert(page.includes('/tools/fumi/'));assert(page.includes('Fumi · 文'));assert(!/<script\b|<iframe\b|<form\b/i.test(page));
   const href=page.match(/class="sign-in" href="([^"]+)"/)[1].replaceAll('&amp;','&');const link=new URL(href);
   assert.equal(link.origin,'https://www.claudiagilbert.com');assert.equal(link.searchParams.get('next'),'/studio/welcome');if(code!=='en')assert.equal(link.searchParams.get('lang'),code);
  }
@@ -35,4 +35,21 @@ test('SSR preserves only an allowed request language during protected-page login
  const {withActorRequest,scopedLanguage}=await import('./request-actor.mjs');
  assert.equal(scopedLanguage(),'');
  for(const value of ['ja','pt-PT','__proto__','https://evil.test'])assert.equal(await withActorRequest(new Request('https://www.claudiagilbert.com/apps?lang='+encodeURIComponent(value)),async()=>scopedLanguage()),Object.hasOwn(LANGUAGES,value)?value:'');
+});
+
+test('public app preview pages keep canonical, language and signup links on the requested product',async()=>{
+ const {TOOL_PREVIEWS,renderToolPreview}=await import('../sites/soraspace/previews.mjs');
+ for(const tool of TOOL_PREVIEWS){
+  const app=APP_PRESENTATION[tool.id];
+  for(const code of Object.keys(LANGUAGES)){
+   const main=renderToolPreview(tool,app,escapeHTML);
+   const page=localizeLanding(source.replace(/<main id="main">[\s\S]*?<\/main>/,main),code,{path:'/tools/'+tool.id+'/',name:app.name,purpose:tool.purpose});
+   assert(page.includes('https://www.soraspace.studio'+localePath(code)+'tools/'+tool.id+'/'));
+   assert(page.includes('href="/fr/tools/'+tool.id+'/"'));
+   assert(!/iframe|data-app-launch/.test(main));assert(!main.includes('/apps/'+tool.id));
+   assert(main.includes('/studio/signup?package=workspace'));
+   if(!tool.desktop)assert(main.includes('&amp;app='+tool.id));
+  }
+ }
+ assert.throws(()=>localizeLanding(source,'en',{path:'//evil.example/'}),/Unsupported public page/);
 });

@@ -1,5 +1,6 @@
 // Independent public-site build and responsive/CSP smoke checks. No live service.
 import assert from 'node:assert/strict';
+import {TOOL_PREVIEWS,previewPath} from '../sites/soraspace/previews.mjs';
 import {LANGUAGES} from '../src/lib/locales/languages.mjs';
 import {translate} from '../src/lib/locales/public-copy.mjs';
 import {localePath} from '../src/lib/locales/static-page.mjs';
@@ -14,7 +15,7 @@ const resolved=await resolveConfig({cwd:repo,repositoryRoot:repo,base:'sites/sor
 assert.equal(resolved.configPath,site+'netlify.toml');
 assert.equal(resolved.config.build.publish,site+'dist');
 assert.equal(resolved.config.build.command,'npm run build');
-const expected=['404.html','_headers','favicon.svg','index.html','robots.txt','sitemap.xml','styles.css','language.js','icons',...Object.keys(LANGUAGES).filter(code=>code!=='en')];
+const expected=['404.html','_headers','favicon.svg','index.html','robots.txt','sitemap.xml','styles.css','language.js','icons','tools',...Object.keys(LANGUAGES).filter(code=>code!=='en')];
 assert.deepEqual((await readdir(site+'dist')).sort(),expected.sort());
 const iconFiles=['fumi','tsuzuri','hikari','irodori','tayori','goban'].map(id=>id+'.svg');
 assert.deepEqual((await readdir(site+'dist/icons')).sort(),iconFiles.slice().sort());
@@ -23,9 +24,10 @@ assert.match(csp,/script-src 'sha256-[A-Za-z0-9+/=]+'/);assert(csp.includes("con
 const html=await readFile(site+'dist/index.html','utf8');
 assert(!/<form\b|<iframe\b/i.test(html));assert.equal((html.match(/<script\b/g)||[]).length,1);assert(html.includes('src="/language.js" integrity="sha256-'));assert.equal((html.match(/class="template-card"/g)||[]).length,5);
 assert(!html.includes('app.soraspace.studio'));for(const path of ['/apps/files','/studio/soraspace-setup','/studio/soraspace-editor','/studio/soraspace-admin'])assert(html.includes('https://www.claudiagilbert.com'+path));assert(html.includes('Email verification and approval required'));
+const previewFiles=new Set(Object.keys(LANGUAGES).flatMap(code=>TOOL_PREVIEWS.map(tool=>(code==='en'?'':code+'/')+'tools/'+tool.id+'/index.html')));
 const server=createServer(async(req,res)=>{
- const path=new URL(req.url,'http://localhost').pathname;const filename=Object.keys(LANGUAGES).some(code=>localePath(code)===path)?(path==='/'?'index.html':path.slice(1)+'index.html'):path.slice(1);
- if(!expected.filter(file=>file!=='icons').includes(filename)&&!iconFiles.some(file=>filename==='icons/'+file)&&!Object.keys(LANGUAGES).filter(code=>code!=='en').some(code=>filename===code+'/index.html')||filename==='_headers'){res.writeHead(404,{'Content-Type':'text/plain'});res.end('Not found');return;}
+ const path=new URL(req.url,'http://localhost').pathname;const filename=(Object.keys(LANGUAGES).some(code=>localePath(code)===path)||previewFiles.has(path.slice(1)+'index.html'))?(path==='/'?'index.html':path.slice(1)+'index.html'):path.slice(1);
+ if(!expected.filter(file=>file!=='icons'&&file!=='tools').includes(filename)&&!previewFiles.has(filename)&&!iconFiles.some(file=>filename==='icons/'+file)&&!Object.keys(LANGUAGES).filter(code=>code!=='en').some(code=>filename===code+'/index.html')||filename==='_headers'){res.writeHead(404,{'Content-Type':'text/plain'});res.end('Not found');return;}
  res.writeHead(200,{'Content-Type':filename.endsWith('.js')?'text/javascript':filename.endsWith('.css')?'text/css':filename.endsWith('.svg')?'image/svg+xml':filename.endsWith('.xml')?'application/xml':'text/html','Content-Security-Policy':csp});res.end(await readFile(site+'dist/'+filename));
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
@@ -61,7 +63,7 @@ try{
    assert.equal(await page.locator('.language-picker a[aria-current]').getAttribute('hreflang'),language.tag);
    assert.equal(await page.locator('link[rel=alternate]').count(),Object.keys(LANGUAGES).length+1);
    assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),'https://www.soraspace.studio'+localePath(code));
-   for(const link of await page.locator('.tool-link').all()){const target=new URL(await link.getAttribute('href'));assert.equal(target.origin,'https://www.claudiagilbert.com');if(code!=='en')assert.equal(target.searchParams.get('lang'),code);if(target.searchParams.has('desktop'))assert.equal(target.hash,'#workspace-app-'+target.searchParams.get('desktop'));}
+   for(const link of await page.locator('.tool-link').all()){const target=new URL(await link.getAttribute('href'),base);assert.equal(target.origin,base);assert(TOOL_PREVIEWS.some(tool=>target.pathname===localePath(code)+previewPath(tool.id).slice(1)));assert.equal(await link.getAttribute('target'),null);}
    for(const [i,packageId] of ['workspace','workspace-website'].entries()){const signup=new URL(await page.locator('#pricing .pricing-grid article>a').nth(i).getAttribute('href'));assert.equal(signup.pathname,'/studio/signup');assert.equal(signup.searchParams.get('package'),packageId);if(code!=='en')assert.equal(signup.searchParams.get('lang'),code);}
    const login=new URL(await page.locator('.sign-in').getAttribute('href'));
    assert.equal(login.searchParams.get('next'),'/studio/welcome');if(code!=='en')assert.equal(login.searchParams.get('lang'),code);
@@ -87,12 +89,25 @@ try{
  await page.emulateMedia({colorScheme:'dark'});await page.setViewportSize({width:390,height:844});assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:'/workspace/reviews/soraspace-landing/system-dark-390.png',fullPage:true});
  await page.emulateMedia({forcedColors:'active'});assert(await page.evaluate(()=>matchMedia('(forced-colors: active)').matches));assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:'/workspace/reviews/soraspace-landing/system-contrast-390.png',fullPage:true});
  await page.emulateMedia({forcedColors:'none',colorScheme:'light'});
- await page.goto(base);await context.route('https://www.claudiagilbert.com/apps',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><title>Protected workspace destination fixture</title>'}));
- const popupPromise=page.waitForEvent('popup');await page.locator('.actions a.button').click();const popup=await popupPromise;await popup.waitForLoadState();assert.equal(popup.url(),'https://www.claudiagilbert.com/apps');assert.equal(await popup.evaluate(()=>window.opener),null);assert.equal(new URL(page.url()).origin,base);await popup.close();
- await page.goto(base);await context.route('https://www.claudiagilbert.com/apps/fumi',route=>route.fulfill({contentType:'text/html',body:'<title>Protected SoraDocs fixture</title>'}));const docsPopup=page.waitForEvent('popup');await page.locator('.tool-web[href$="/fumi"]').click();const docs=await docsPopup;await docs.waitForLoadState();assert.equal(docs.url(),'https://www.claudiagilbert.com/apps/fumi');assert.equal(await docs.evaluate(()=>window.opener),null);await docs.close();
+ // Every app showcase opens public information, never an app engine/session.
+ for(const tool of TOOL_PREVIEWS){
+  for(const width of [320,768,1366]){
+   await page.setViewportSize({width,height:900});await page.goto(base+previewPath(tool.id));
+   assert.equal(await page.locator('.preview-name h1').textContent(),{fumi:'SoraDocs',tsuzuri:'SoraPDF',hikari:'SoraPhotos',irodori:'SoraImage',tayori:'SoraMail',goban:'SoraSheets'}[tool.id]);
+   assert.equal(await page.locator('iframe,form,canvas').count(),0);assert.equal(await page.locator('[data-app-launch]').count(),0);assert.equal(await page.locator('.preview-features article').count(),3);
+   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),tool.id+' preview fits '+width);
+   const signup=new URL(await page.locator('.preview-hero .button').getAttribute('href'));assert.equal(signup.pathname,'/studio/signup');assert.equal(signup.searchParams.get('app'),tool.desktop?null:tool.id);
+   assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),'https://www.soraspace.studio'+previewPath(tool.id));
+   if(width===1366&&tool.id==='fumi')await page.screenshot({path:'/workspace/reviews/soraspace-landing/soradocs-preview-1366.png',fullPage:true});
+  }
+ }
+ for(const code of ['ja','fi','th','de']){await page.setViewportSize({width:320,height:900});await page.goto(base+localePath(code)+'tools/fumi/');assert.equal(await page.locator('html').getAttribute('lang'),LANGUAGES[code].tag);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));assert.equal(await page.locator('.language-picker a[hreflang="fr"]').getAttribute('href'),'/fr/tools/fumi/');}
+ await page.goto(base);await page.locator('.tool-web[href="/tools/fumi/"]').click();await page.waitForURL('**/tools/fumi/');assert.equal(await page.locator('.preview-name h1').textContent(),'SoraDocs');
+ await context.route('https://www.claudiagilbert.com/studio/signup?*',route=>route.fulfill({contentType:'text/html',body:'<title>Signup fixture</title>'}));const signupPopup=page.waitForEvent('popup');await page.locator('.preview-hero .button').click();const signupPage=await signupPopup;await signupPage.waitForLoadState();assert.equal(new URL(signupPage.url()).pathname,'/studio/signup');assert.equal(new URL(signupPage.url()).searchParams.get('app'),'fumi');assert.equal(await signupPage.evaluate(()=>window.opener),null);await signupPage.close();
  // Actual hash-authorized bootstrap: device default, remembered override and reset.
  const jaContext=await browser.newContext({locale:'ja-JP'});await jaContext.route('**/*',route=>new URL(route.request().url()).origin===base?route.continue():route.abort());const jaPage=await jaContext.newPage();
  await jaPage.goto(base+'/?next=%2Fstudio#pricing');await jaPage.waitForURL(url=>url.pathname==='/ja/');assert.equal(new URL(jaPage.url()).hash,'#pricing');assert.equal(new URL(jaPage.url()).searchParams.get('next'),'/studio');assert.equal(await jaPage.evaluate(()=>localStorage.getItem('soraspace.language')),null,'Detection must not freeze a preference');
+ await jaPage.goto(base+'/tools/fumi/');await jaPage.waitForURL(url=>url.pathname==='/ja/tools/fumi/');await jaPage.locator('.language-picker summary').click();await jaPage.locator('[data-language-choice=de]').click();await jaPage.waitForURL(url=>url.pathname==='/de/tools/fumi/');
  await jaPage.evaluate(()=>localStorage.setItem('soraspace.language','fr'));await jaPage.goto(base);await jaPage.waitForURL(url=>url.pathname==='/fr/');
  await jaPage.locator('.language-picker summary').click();await jaPage.locator('[data-language-choice=system]').click();await jaPage.waitForURL(url=>url.pathname==='/ja/');assert.equal(await jaPage.evaluate(()=>localStorage.getItem('soraspace.language')),'system');
  await jaPage.locator('.language-picker summary').click();await jaPage.locator('[data-language-choice=en]').click();await jaPage.waitForURL(url=>url.pathname==='/'&&url.searchParams.get('lang')==='en');assert.equal(await jaPage.evaluate(()=>localStorage.getItem('soraspace.language')),'en');await jaPage.goto(base);assert.equal(new URL(jaPage.url()).pathname,'/');await jaContext.close();

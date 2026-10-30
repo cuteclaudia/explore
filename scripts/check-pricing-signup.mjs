@@ -16,6 +16,7 @@ try{
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   }
  }
+ for(const [app,service] of [['fumi','docs'],['tsuzuri','pdf'],['hikari','photos'],['irodori','image']]){await page.goto(base+'/studio/signup?package=workspace&app='+app);assert(await page.locator('[name=services][value='+service+']').isChecked());assert.equal(await page.locator('[name=services]:checked').count(),1);await page.locator('[name=services][value='+service+']').uncheck();assert.equal(await page.locator('[name=services]:checked').count(),0);}
  await page.goto(base+'/studio/signup?package='+encodeURIComponent('<script>window.packageXss=true</script>'));assert.equal(await page.locator('.signup-package').count(),0);assert.equal(await page.evaluate(()=>window.packageXss),undefined);assert(await page.locator('[name=services][value=website]').isChecked());
  console.log('PASS pricing signup starting packages at 320/768/1366px, editable services, ignored invalid selection, no client billing/grant fields.');
 }finally{await browser.close();}
