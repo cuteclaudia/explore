@@ -14,8 +14,10 @@ const resolved=await resolveConfig({cwd:repo,repositoryRoot:repo,base:'sites/sor
 assert.equal(resolved.configPath,site+'netlify.toml');
 assert.equal(resolved.config.build.publish,site+'dist');
 assert.equal(resolved.config.build.command,'npm run build');
-const expected=['404.html','_headers','favicon.svg','index.html','robots.txt','sitemap.xml','styles.css',...Object.keys(LANGUAGES).filter(code=>code!=='en')];
+const expected=['404.html','_headers','favicon.svg','index.html','robots.txt','sitemap.xml','styles.css','icons',...Object.keys(LANGUAGES).filter(code=>code!=='en')];
 assert.deepEqual((await readdir(site+'dist')).sort(),expected.sort());
+const iconFiles=['fumi','tsuzuri','hikari','irodori','tayori','goban'].map(id=>id+'.svg');
+assert.deepEqual((await readdir(site+'dist/icons')).sort(),iconFiles.slice().sort());
 const headers=await readFile(site+'dist/_headers','utf8'),csp=headers.match(/Content-Security-Policy: (.+)/)[1];
 assert(csp.includes("script-src 'none'"));assert(csp.includes("connect-src 'none'"));
 const html=await readFile(site+'dist/index.html','utf8');
@@ -23,7 +25,7 @@ assert(!/<script\b|<form\b|<iframe\b/i.test(html));assert.equal((html.match(/cla
 assert(!html.includes('app.soraspace.studio'));for(const path of ['/apps/files','/studio/soraspace-setup','/studio/soraspace-editor','/studio/soraspace-admin'])assert(html.includes('https://www.claudiagilbert.com'+path));assert(html.includes('Email verification and approval required'));
 const server=createServer(async(req,res)=>{
  const path=new URL(req.url,'http://localhost').pathname;const filename=Object.keys(LANGUAGES).some(code=>localePath(code)===path)?(path==='/'?'index.html':path.slice(1)+'index.html'):path.slice(1);
- if(!expected.includes(filename)&&!Object.keys(LANGUAGES).filter(code=>code!=='en').some(code=>filename===code+'/index.html')||filename==='_headers'){res.writeHead(404,{'Content-Type':'text/plain'});res.end('Not found');return;}
+ if(!expected.filter(file=>file!=='icons').includes(filename)&&!iconFiles.some(file=>filename==='icons/'+file)&&!Object.keys(LANGUAGES).filter(code=>code!=='en').some(code=>filename===code+'/index.html')||filename==='_headers'){res.writeHead(404,{'Content-Type':'text/plain'});res.end('Not found');return;}
  res.writeHead(200,{'Content-Type':filename.endsWith('.css')?'text/css':filename.endsWith('.svg')?'image/svg+xml':filename.endsWith('.xml')?'application/xml':'text/html','Content-Security-Policy':csp});res.end(await readFile(site+'dist/'+filename));
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
@@ -36,6 +38,9 @@ try{
  await page.emulateMedia({colorScheme:'light'});
  for(const [width,height] of [[320,844],[390,844],[768,1024],[1024,768],[1280,720],[1366,768],[1920,1080]]){
   await page.setViewportSize({width,height});await page.goto(base);assert.equal(await page.title(),'SoraSpace — Space for everything you create');
+  assert.equal(await page.locator('.tool-link').count(),6);assert.equal(await page.locator('.tool-web').count(),4);assert.equal(await page.locator('.tool-desktop').count(),2);assert.equal(await page.locator('.tool-title small[lang=ja]').count(),6);assert.equal(await page.locator('main>section:nth-child(2)').getAttribute('id'),'app-previews');
+  assert(await page.locator('.tool-link>img').evaluateAll(images=>images.every(image=>image.complete&&image.naturalWidth>0)),'Tool icons load');
+  if(width>=1280)assert((await page.locator('.tool-showcase').boundingBox()).y+(await page.locator('.tool-showcase').boundingBox()).height<height,'All six tool links visible before scrolling at '+width);
   assert.equal(await page.locator('.template-card').count(),5);assert.equal(await page.locator('.app-preview-card').count(),4);assert.equal(await page.locator('#pricing .pricing-grid article').count(),2);assert((await page.locator('#pricing').innerText()).includes('no card required'));assert.equal((await page.locator('.site-header .sign-in').innerText()).trim(),'Sign In');assert.equal(await page.locator('.site-header .sign-up').innerText(),'Sign Up');assert.equal(await page.locator('.app-mini[role=img]').count(),4);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Fits '+width);
   assert.equal(await page.locator('form,script,iframe').count(),0);assert.equal(await page.locator('.workspace-shortcuts article').count(),4);assert.equal(await page.locator('.workspace-shortcuts .shortcut-label').filter({hasText:'Approved trial'}).count(),2);for(const a of await page.locator('.workspace-shortcuts a').all())assert((await a.boundingBox()).height>=44);
   for(const link of await page.locator('a[target="_blank"]').all()){assert.equal(await link.getAttribute('rel'),'noopener');assert((await link.getAttribute('href')).startsWith('https://www.claudiagilbert.com/'));}
@@ -55,6 +60,7 @@ try{
    assert.equal(await page.locator('.language-picker a[aria-current]').getAttribute('hreflang'),language.tag);
    assert.equal(await page.locator('link[rel=alternate]').count(),9);
    assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),'https://www.soraspace.studio'+localePath(code));
+   for(const link of await page.locator('.tool-link').all()){const target=new URL(await link.getAttribute('href'));assert.equal(target.origin,'https://www.claudiagilbert.com');if(code!=='en')assert.equal(target.searchParams.get('lang'),code);if(target.searchParams.has('desktop'))assert.equal(target.hash,'#workspace-app-'+target.searchParams.get('desktop'));}
    const login=new URL(await page.locator('.sign-in').getAttribute('href'));
    assert.equal(login.searchParams.get('next'),'/studio/welcome');if(code!=='en')assert.equal(login.searchParams.get('lang'),code);
   }
@@ -81,6 +87,7 @@ try{
  await page.emulateMedia({forcedColors:'none',colorScheme:'light'});
  await page.goto(base);await context.route('https://www.claudiagilbert.com/apps',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><title>Protected workspace destination fixture</title>'}));
  const popupPromise=page.waitForEvent('popup');await page.locator('.actions a.button').click();const popup=await popupPromise;await popup.waitForLoadState();assert.equal(popup.url(),'https://www.claudiagilbert.com/apps');assert.equal(await popup.evaluate(()=>window.opener),null);assert.equal(new URL(page.url()).origin,base);await popup.close();
+ await page.goto(base);await context.route('https://www.claudiagilbert.com/apps/fumi',route=>route.fulfill({contentType:'text/html',body:'<title>Protected SoraDocs fixture</title>'}));const docsPopup=page.waitForEvent('popup');await page.locator('.tool-web[href$="/fumi"]').click();const docs=await docsPopup;await docs.waitForLoadState();assert.equal(docs.url(),'https://www.claudiagilbert.com/apps/fumi');assert.equal(await docs.evaluate(()=>window.opener),null);await docs.close();
  await page.goto(base);await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.textContent),'Skip to content');
  await page.evaluate(()=>{const script=document.createElement('script');script.textContent='window.unwantedScript=true';document.body.append(script);});assert.equal(await page.evaluate(()=>window.unwantedScript),undefined);
  assert.deepEqual(errors,[]);console.log('PASS isolated landing build/config/output, five templates, no forms/private endpoints, responsive 320–1920px, keyboard, safe sign-in links system light/dark/live changes/forced-colors, text contrast, compact desktop layout and enforced no-script CSP');
