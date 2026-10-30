@@ -1,12 +1,12 @@
 // Build embeds the registry and pure matching helpers above this function.
 export function publicLanguageBootstrap(){
- const key='soraspace.language',url=new URL(location.href),parts=url.pathname.split('/').filter(Boolean),prefix=parts[0]!=='en'&&Object.hasOwn(LANGUAGES,parts[0]||'')?parts[0]:null,current=prefix||'en',pagePath='/'+(prefix?parts.slice(1):parts).join('/')+(parts.length>(prefix?1:0)?'/':'');
+ const key='soraspace.language',url=new URL(location.href),route=publicLocaleRoute(url.pathname),current=route.language,pagePath=route.pagePath;
  let saved=null;try{saved=localStorage.getItem(key);}catch{}
  if(url.searchParams.get('language')==='system'){saved='system';url.searchParams.delete('language');url.searchParams.delete('lang');history.replaceState(history.state,'',url);}
- if(saved!=='system'&&!Object.hasOwn(LANGUAGES,saved||''))saved=null;
+ if(saved!=='system')saved=canonicalLanguageCode(saved);
  const requested=url.searchParams.get('lang')||(current!=='en'?current:null);
  const selected=resolveLanguagePreference(saved,requested,navigator.languages||[navigator.language]);
- if(selected!==current){url.pathname=selected==='en'?pagePath:`/${selected}${pagePath}`;location.replace(url.href);return;}
+ if(selected!==current||route.needsRecovery){url.pathname=selected==='en'?pagePath:`/${selected}${pagePath}`;location.replace(url.href);return;}
  const picker=document.querySelector('.language-picker');
  if(picker){
   picker.addEventListener('click',event=>{const link=event.target.closest('a[data-language-choice]');if(!link)return;const value=link.dataset.languageChoice;if(value!=='system'&&!Object.hasOwn(LANGUAGES,value))return;try{localStorage.setItem(key,value);}catch{}});

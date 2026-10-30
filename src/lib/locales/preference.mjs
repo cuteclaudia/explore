@@ -1,4 +1,4 @@
-import {LANGUAGES} from './languages.mjs';
+import {LANGUAGES,canonicalLanguageCode} from './languages.mjs';
 // Pure helpers are also embedded into the tiny standalone public-site bootstrap.
 export function matchBrowserLanguage(values){
  for(const value of Array.isArray(values)?values:[]){
@@ -13,7 +13,16 @@ export function matchBrowserLanguage(values){
  return 'en';
 }
 export function resolveLanguagePreference(saved,requested,browserLanguages){
- if(typeof saved==='string'&&Object.hasOwn(LANGUAGES,saved))return saved;
- if(saved!=='system'&&typeof requested==='string'&&Object.hasOwn(LANGUAGES,requested))return requested;
+ const stored=canonicalLanguageCode(saved),hint=canonicalLanguageCode(requested);
+ if(stored)return stored;
+ if(saved!=='system'&&hint)return hint;
  return matchBrowserLanguage(browserLanguages);
+}
+
+// Hosting may lowercase a locale segment. Consume legacy duplicate prefixes too.
+export function publicLocaleRoute(pathname){
+ const parts=pathname.split('/').filter(Boolean);let prefixCount=0,language=null;
+ while(prefixCount<parts.length){const code=canonicalLanguageCode(parts[prefixCount]);if(!code)break;if(language===null)language=code;prefixCount++;}
+ const rest=parts.slice(prefixCount);
+ return {language:language||'en',pagePath:'/'+rest.join('/')+(rest.length?'/':''),needsRecovery:prefixCount>1||parts[0]?.toLowerCase()==='en'};
 }

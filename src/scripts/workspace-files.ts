@@ -1,3 +1,4 @@
+import {currentAppLanguage,watchAppLanguage} from './app-language.mjs';
 import {onAuthChange} from '@netlify/identity';
 const area=document.querySelector<HTMLElement>('[data-cloud-tool]')!,tool=area.dataset.cloudTool!;
 const frame=document.querySelector<HTMLIFrameElement>('#craft-frame')!;
@@ -12,8 +13,8 @@ onAuthChange((event,user)=>{if(event==='logout'||event==='login'&&area.dataset.o
 
 function openFile(file,buffer:ArrayBuffer){if(!fileAccessActive)return;status.textContent='Saved bytes verified. Waiting for the editor to receive them…';queuedOpen={type:'explore.open',channel,name:file.name,mime:file.type,bytes:buffer};flushOpen();}
 function flushOpen(){if(bridgeReady&&queuedOpen){const message=queuedOpen;queuedOpen=null;frame.contentWindow!.postMessage(message,'*',[message.bytes]);status.textContent='Saved bytes verified. The file will open when the editor has started; library backups use Restore Library.';}}
-function configure(){frame.contentWindow?.postMessage({type:'explore.configure',channel,managedSaves},'*');}
-frame.addEventListener('load',configure);configure();
+function configure(){frame.contentWindow?.postMessage({type:'explore.configure',channel,managedSaves,language:currentAppLanguage(),fallbackLanguage:'en'},'*');}
+frame.addEventListener('load',configure);watchAppLanguage(()=>{if(fileAccessActive)configure();});configure();
 async function request(path:string,options:RequestInit={}){if(!fileAccessActive)throw Error('Reopen this workspace after signing in.');const response=await fetch('/api/files/'+path,{...options,cache:'no-store',signal:restoreAbort.signal});const data=await response.json();if(!response.ok)throw Error(data.error||'File operation failed.');return data;}
 const post=(path:string,data={})=>request(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
 function button(label:string,action:()=>Promise<void>){const b=document.createElement('button');b.className='btn ghost';b.type='button';b.textContent=label;b.style.margin='6px';b.onclick=async()=>{if(busy)return;busy=true;b.disabled=true;try{await action();}catch(error){status.textContent=error instanceof Error?error.message:'File operation failed.';}finally{busy=false;b.disabled=false;}};return b;}

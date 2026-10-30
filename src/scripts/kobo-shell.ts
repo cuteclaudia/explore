@@ -1,3 +1,4 @@
+import {currentAppLanguage,watchAppLanguage} from './app-language.mjs';
 import {onAuthChange} from '@netlify/identity';
 import {KOBO_BYTES,KoboError,koboApp,koboPath,koboConditions,koboFailure} from '../lib/kobo-contract.mjs';
 
@@ -9,7 +10,7 @@ export function mountKoboShell({frame,launch,onStatus,onClosed,onOperationError,
   function close(message='Your app session ended. Reopen the app to continue.'){
     if(closed)return;post({type:'close',reason:'signed-out'});
     for(const [id,abort] of pending){post({id,ok:false,error:koboFailure(new KoboError('unauthorized',message))});abort.abort();}pending.clear();
-    closed=true;port?.close();clearInterval(timer);offAuth();window.removeEventListener('message',hello);window.removeEventListener('focus',refresh);window.removeEventListener('pagehide',pagehide);
+    closed=true;port?.close();clearInterval(timer);offAuth();offLanguage();window.removeEventListener('message',hello);window.removeEventListener('focus',refresh);window.removeEventListener('pagehide',pagehide);
     // Destroy the old app's browsing context rather than leave its library on screen.
     frame.src='about:blank';onClosed?.(message);
   }
@@ -78,12 +79,13 @@ export function mountKoboShell({frame,launch,onStatus,onClosed,onOperationError,
     const msg=event.data;
     if(closed||used||event.source!==frame.contentWindow||event.origin!==launch.origin||msg?.type!=='kobo-hello'||msg.launchId!==launch.launchId||msg.app!==app||msg.bridgeVersion!==1)return;
     used=true;const channel=new MessageChannel();port=channel.port1;port.onmessage=receive;port.start();
-    frame.contentWindow!.postMessage({type:'kobo-welcome',launchId:launch.launchId,app,bridgeVersion:1},launch.origin,[channel.port2]);refresh();
+    frame.contentWindow!.postMessage({type:'kobo-welcome',launchId:launch.launchId,app,bridgeVersion:1,uiLanguage:currentAppLanguage(),fallbackLanguage:'en'},launch.origin,[channel.port2]);refresh();
   }
   const offAuth=onAuthChange((event,user)=>{if(event==='logout')close();else if(event==='login'&&user?.id&&user.id!==(status||launch.storageStatus)?.userKey)restart('account-changed');else refresh();});
   const timer=setInterval(refresh,15000),pagehide=()=>close();
   window.addEventListener('message',hello);window.addEventListener('focus',refresh);window.addEventListener('pagehide',pagehide,{once:true});
-  const url=new URL(launch.origin);url.hash='kobo-launch='+encodeURIComponent(launch.launchId);frame.src=url.href;
+  const offLanguage=watchAppLanguage(language=>{if(!closed)frame.contentWindow?.postMessage({type:'soraspace:language',language,fallbackLanguage:'en'},launch.origin);});
+  const url=new URL(launch.origin);url.searchParams.set('lang',currentAppLanguage());url.hash='kobo-launch='+encodeURIComponent(launch.launchId);frame.src=url.href;
   return {close};
 }
 

@@ -37,3 +37,8 @@ Provide a versioned contact adapter with provider account/contact IDs, display n
 ## Delivery
 
 Send versioned release artifacts, hashes, build configuration, supported feature matrix and regression steps. Keep stable IDs compatible with existing saves. Mac support remains a visible future project. Website paid checkout, multi-store provisioning, workgroups and autosave must not be advertised as live until their actual integration and isolation checks pass.
+
+
+## Language contract update
+
+See [Language propagation and routing](LANGUAGE-PROPAGATION-AND-ROUTING.md). The host now passes the chosen locale to app URLs/iframes and provides live UI-language notifications without reloading open documents. Implement supported-native-locale negotiation and English fallback; metadata and a query parameter alone do not translate native UI. The website-side SoraImage opening panel is now a compact top notice, with Retry shown only after an actionable failure. The separately hosted app’s internal timer copy remains a distinct app-side item.

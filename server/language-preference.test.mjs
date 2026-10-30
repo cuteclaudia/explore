@@ -12,3 +12,12 @@ test('manual saved choice wins; explicit device mode ignores URL hints; detectio
  assert.equal(resolveLanguagePreference(null,'ja',['de-DE']),'ja');assert.equal(resolveLanguagePreference(null,null,['de-DE']),'de');
  assert.equal(resolveLanguagePreference('__proto__','constructor',['ko-KR']),'ko');assert.equal(resolveLanguagePreference(null,'__proto__',[]),'en');
 });
+
+test('case-normalised language prefixes cannot be duplicated by public routing',async()=>{
+ const {publicLocaleRoute}=await import('../src/lib/locales/preference.mjs');
+ assert.deepEqual(publicLocaleRoute('/pt-pt/'),{language:'pt-PT',pagePath:'/',needsRecovery:false});
+ assert.deepEqual(publicLocaleRoute('/pt-PT/pt-pt/'),{language:'pt-PT',pagePath:'/',needsRecovery:true});
+ assert.deepEqual(publicLocaleRoute('/zh-hant/tools/fumi/'),{language:'zh-Hant',pagePath:'/tools/fumi/',needsRecovery:false});
+ assert.deepEqual(publicLocaleRoute('/ZH-HANS/zh-hans/tools/fumi/'),{language:'zh-Hans',pagePath:'/tools/fumi/',needsRecovery:true});
+ assert.equal(resolveLanguagePreference('pt-pt',null,[]),'pt-PT');assert.equal(resolveLanguagePreference(null,'ZH-HANT',[]),'zh-Hant');
+});

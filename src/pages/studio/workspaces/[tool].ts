@@ -1,3 +1,4 @@
+import {languageCode} from '../../../lib/locales/languages.mjs';
 import {CRAFT_TOOLS,resolveToolId} from '../../../../server/craft-tools.mjs';
 import {protectPage} from '../../../../server/identity';
 export const prerender=false;
@@ -10,5 +11,5 @@ export async function GET({params,url}){
  if(access instanceof Response)return access;
  const html=pages[`../../../generated/craft/${id}.html`];
  if(typeof html!=='string')return new Response('Workspace build unavailable',{status:503});
- return new Response(html,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Content-Security-Policy':`sandbox allow-scripts allow-downloads allow-modals; default-src 'none'; script-src 'unsafe-inline' 'wasm-unsafe-eval' ${url.origin} blob:; style-src 'unsafe-inline' ${url.origin}; connect-src ${url.origin} blob: data:; img-src ${url.origin} blob: data:; font-src ${url.origin} data:; worker-src ${url.origin} blob:; frame-ancestors 'self'; form-action 'none'`}});
+ return new Response(html.replace(/(<html[^>]*\blang=")[^"]*/,(_,start)=>start+languageCode(url.searchParams.get('lang'))),{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Content-Security-Policy':`sandbox allow-scripts allow-downloads allow-modals; default-src 'none'; script-src 'unsafe-inline' 'wasm-unsafe-eval' ${url.origin} blob:; style-src 'unsafe-inline' ${url.origin}; connect-src ${url.origin} blob: data:; img-src ${url.origin} blob: data:; font-src ${url.origin} data:; worker-src ${url.origin} blob:; frame-ancestors 'self'; form-action 'none'`}});
 }

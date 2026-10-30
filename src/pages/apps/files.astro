@@ -9,15 +9,15 @@ Astro.response.headers.set('Cache-Control','private, no-store');
 const tools=Object.fromEntries(Object.entries(CRAFT_TOOLS).filter(([id,t])=>actor.permissions[t.capability]).map(([id,t])=>[id,{name:APP_PRESENTATION[t.slug]?.shortName||t.name,slug:t.slug}]));
 ---
 <KoboWorkspace actor={actor} title="Saved site files" section="files">
- <header class="workspace-heading"><h1>Saved site files</h1><p>Private revisions saved to this website. Search by filename or app using the search bar above.</p></header>
- <nav class="file-locations" aria-label="File locations"><span aria-current="page">Site revisions</span><a href="/studio/storage" target="_blank" rel="noopener">Connected storage ↗</a><a href="/apps">App libraries →</a></nav>
- <p class="workspace-note">Connected-drive files, photo libraries and files on your device stay in their respective apps. They are not listed here.</p>
+ <header class="workspace-heading"><h1><span data-i18n="Saved site files">Saved site files</span></h1><p><span data-i18n="Private revisions saved to this website. Search by filename or app using the search bar above.">Private revisions saved to this website. Search by filename or app using the search bar above.</span></p></header>
+ <nav class="file-locations" aria-label="File locations"><span aria-current="page"><span data-i18n="Site revisions">Site revisions</span></span><a href="/studio/storage" target="_blank" rel="noopener"><span data-i18n="Connected storage ↗">Connected storage ↗</span></a><a href="/apps"><span data-i18n="App libraries →">App libraries →</span></a></nav>
+ <p class="workspace-note"><span data-i18n="Connected-drive files, photo libraries and files on your device stay in their respective apps. They are not listed here.">Connected-drive files, photo libraries and files on your device stay in their respective apps. They are not listed here.</span></p>
  <section class="workspace-section" aria-label="Browse saved revisions">
-  <div class="file-toolbar"><label>App <select id="workspace-file-filter"><option value="">All apps</option>{Object.entries(tools).map(([id,tool])=><option value={id}>{tool.name}</option>)}</select></label><label>Sort <select id="workspace-file-sort"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="name">Filename A–Z</option><option value="app">App A–Z</option></select></label><button type="button" class="btn ghost" id="workspace-files-refresh">Refresh files</button></div>
-  <p id="workspace-files-status" role="status">Loading saved site revisions…</p>
+  <div class="file-toolbar"><label><span data-i18n="App">App</span> <select id="workspace-file-filter"><option value="" data-i18n="All apps">All apps</option>{Object.entries(tools).map(([id,tool])=><option value={id}>{tool.name}</option>)}</select></label><label><span data-i18n="Sort">Sort</span> <select id="workspace-file-sort"><option value="newest" data-i18n="Newest first">Newest first</option><option value="oldest" data-i18n="Oldest first">Oldest first</option><option value="name" data-i18n="Filename A–Z">Filename A–Z</option><option value="app" data-i18n="App A–Z">App A–Z</option></select></label><button type="button" class="btn ghost" id="workspace-files-refresh"><span data-i18n="Refresh files">Refresh files</span></button></div>
+  <p id="workspace-files-status" role="status"><span data-i18n="Loading saved site revisions…">Loading saved site revisions…</span></p>
   <div id="workspace-files-list" class="workspace-file-list" data-tools={JSON.stringify(tools)} data-limit="30"></div>
-  <button type="button" class="btn ghost" id="workspace-files-more" hidden>Show more files</button>
-  <p class="workspace-note">Revisions may include earlier saves of the same document. Click a filename to open it in its app. This does not copy, move or publish your work.</p>
+  <button type="button" class="btn ghost" id="workspace-files-more" hidden><span data-i18n="Show more files">Show more files</span></button>
+  <p class="workspace-note"><span data-i18n="Revisions may include earlier saves of the same document. Click a filename to open it in its app. This does not copy, move or publish your work.">Revisions may include earlier saves of the same document. Click a filename to open it in its app. This does not copy, move or publish your work.</span></p>
  </section>
 </KoboWorkspace>
 

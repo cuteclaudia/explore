@@ -18,5 +18,6 @@ export const LANGUAGES=Object.freeze({
  fi:{label:'Suomi',tag:'fi'},
  nb:{label:'Norsk (bokmål)',tag:'nb'},
 });
-export const languageCode=value=>typeof value==='string'&&Object.hasOwn(LANGUAGES,value)?value:'en';
+export const canonicalLanguageCode=value=>typeof value==='string'?Object.keys(LANGUAGES).find(code=>code.toLowerCase()===value.toLowerCase())||null:null;
+export const languageCode=value=>canonicalLanguageCode(value)||'en';
 export const escapeHTML=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

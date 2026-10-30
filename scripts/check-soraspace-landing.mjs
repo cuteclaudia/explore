@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict';
 import {TOOL_PREVIEWS,previewPath} from '../sites/soraspace/previews.mjs';
 import {LANGUAGES} from '../src/lib/locales/languages.mjs';
+import {publicLocaleRoute} from '../src/lib/locales/preference.mjs';
 import {translate} from '../src/lib/locales/public-copy.mjs';
 import {localePath} from '../src/lib/locales/static-page.mjs';
 import {execFileSync} from 'node:child_process';
@@ -26,8 +27,8 @@ assert(!/<form\b|<iframe\b/i.test(html));assert.equal((html.match(/<script\b/g)|
 assert(!html.includes('app.soraspace.studio'));for(const path of ['/apps/files','/studio/soraspace-setup','/studio/soraspace-editor','/studio/soraspace-admin'])assert(html.includes('https://www.claudiagilbert.com'+path));assert(html.includes('Email verification and approval required'));
 const previewFiles=new Set(Object.keys(LANGUAGES).flatMap(code=>TOOL_PREVIEWS.map(tool=>(code==='en'?'':code+'/')+'tools/'+tool.id+'/index.html')));
 const server=createServer(async(req,res)=>{
- const path=new URL(req.url,'http://localhost').pathname;const filename=(Object.keys(LANGUAGES).some(code=>localePath(code)===path)||previewFiles.has(path.slice(1)+'index.html'))?(path==='/'?'index.html':path.slice(1)+'index.html'):path.slice(1);
- if(!expected.filter(file=>file!=='icons'&&file!=='tools').includes(filename)&&!previewFiles.has(filename)&&!iconFiles.some(file=>filename==='icons/'+file)&&!Object.keys(LANGUAGES).filter(code=>code!=='en').some(code=>filename===code+'/index.html')||filename==='_headers'){res.writeHead(404,{'Content-Type':'text/plain'});res.end('Not found');return;}
+ const rawPath=new URL(req.url,'http://localhost').pathname,route=publicLocaleRoute(rawPath);const path=!route.needsRecovery&&route.language!=='en'?localePath(route.language)+route.pagePath.slice(1):rawPath;const filename=(Object.keys(LANGUAGES).some(code=>localePath(code)===path)||previewFiles.has(path.slice(1)+'index.html'))?(path==='/'?'index.html':path.slice(1)+'index.html'):path.slice(1);
+ if(!expected.filter(file=>file!=='icons'&&file!=='tools').includes(filename)&&!previewFiles.has(filename)&&!iconFiles.some(file=>filename==='icons/'+file)&&!Object.keys(LANGUAGES).filter(code=>code!=='en').some(code=>filename===code+'/index.html')||filename==='_headers'){res.writeHead(404,{'Content-Type':'text/html','Content-Security-Policy':csp});res.end(await readFile(site+'dist/404.html'));return;}
  res.writeHead(200,{'Content-Type':filename.endsWith('.js')?'text/javascript':filename.endsWith('.css')?'text/css':filename.endsWith('.svg')?'image/svg+xml':filename.endsWith('.xml')?'application/xml':'text/html','Content-Security-Policy':csp});res.end(await readFile(site+'dist/'+filename));
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
@@ -68,6 +69,14 @@ try{
    const login=new URL(await page.locator('.sign-in').getAttribute('href'));
    assert.equal(login.searchParams.get('next'),'/studio/welcome');if(code!=='en')assert.equal(login.searchParams.get('lang'),code);
   }
+ }
+ // Hosting-normalised casing and old broken URLs: one prefix, no redirect loop.
+ for(const code of ['pt-PT','zh-Hans','zh-Hant']){
+  await page.evaluate(()=>localStorage.clear());await page.goto(base+'/'+code.toLowerCase()+'/');
+  assert.equal(await page.locator('html').getAttribute('lang'),LANGUAGES[code].tag);assert.equal(new URL(page.url()).pathname,'/'+code.toLowerCase()+'/');
+  await page.goto(base+'/'+code+'/'+code.toLowerCase()+'/?next=%2Fstudio#pricing');
+  await page.waitForURL(url=>url.pathname===localePath(code));assert.equal(new URL(page.url()).hash,'#pricing');assert.equal(new URL(page.url()).searchParams.get('next'),'/studio');
+  await page.goto(base+'/'+code+'/'+code.toLowerCase()+'/tools/fumi/');await page.waitForURL(url=>url.pathname===localePath(code)+'tools/fumi/');assert.equal(await page.locator('.preview-name h1').textContent(),'SoraDocs');
  }
  await page.goto(base);
  // Theme reacts to the system preference without cookies, storage or script.

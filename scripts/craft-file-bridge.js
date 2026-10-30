@@ -9,6 +9,13 @@
     if(managedSaves&&channel&&blob&&name&&blob.size<=50*1024*1024)return;
     return originalClick.call(this);
   };
+  function setLanguage(value){
+    let language='en';try{language=Intl.getCanonicalLocales(value||'en')[0]||'en';}catch{}
+    globalThis.SoraSpaceUI=Object.freeze({version:1,language,fallbackLanguage:'en'});
+    document.documentElement.lang=language;
+    dispatchEvent(new CustomEvent('soraspace:languagechange',{detail:globalThis.SoraSpaceUI}));
+  }
+  setLanguage(new URL(location.href).searchParams.get('lang'));
   let initialized=false,editorReady=false,lastPhase='',pendingOpen=null,openTimer;
   const startedAt=performance.now();
   function progress(phase){lastPhase=phase;if(channel)parent.postMessage({type:'explore.startup',channel,phase,elapsedMs:Math.round(performance.now()-startedAt)},origin);}
@@ -36,7 +43,7 @@
   addEventListener('message',event=>{
     if(event.source!==parent||event.origin!==origin||!event.data||typeof event.data!=='object')return;
     const data=event.data;
-    if(data.type==='explore.configure'&&typeof data.channel==='string'&&data.channel.length===36){if(channel&&channel!==data.channel){pendingOpen=null;clearTimeout(openTimer);}channel=data.channel;managedSaves=data.managedSaves===true;parent.postMessage({type:'explore.bridgeReady',channel},origin);progress(editorReady?'ready':lastPhase||'loading');return;}
+    if(data.type==='explore.configure'&&typeof data.channel==='string'&&data.channel.length===36){if(channel&&channel!==data.channel){pendingOpen=null;clearTimeout(openTimer);}channel=data.channel;managedSaves=data.managedSaves===true;setLanguage(data.language);parent.postMessage({type:'explore.bridgeReady',channel},origin);progress(editorReady?'ready':lastPhase||'loading');return;}
     if(data.type!=='explore.open'||data.channel!==channel||!(data.bytes instanceof ArrayBuffer)||data.bytes.byteLength>50*1024*1024)return;
     pendingOpen=data;clearTimeout(openTimer);deliver();
     if(pendingOpen)openTimer=setTimeout(()=>{pendingOpen=null;parent.postMessage({type:'explore.openFailed',channel},origin);},180000);
