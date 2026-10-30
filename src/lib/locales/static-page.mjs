@@ -1,4 +1,4 @@
-// Only for the trusted, script-free marketing template; never pass customer HTML.
+// Only for the trusted, marketing template; never pass customer HTML.
 import {LANGUAGES,escapeHTML} from './languages.mjs';
 import {translate} from './public-copy.mjs';
 export const localePath=code=>code==='en'?'/':`/${code}/`;
@@ -13,7 +13,7 @@ export function localizeLanding(html,code){
  const url='https://www.soraspace.studio'+localePath(code);
  page=page.replace('lang="en-AU"',`lang="${LANGUAGES[code].tag}"`).replace(/(<link rel="canonical" href=")[^"]*/,`$1${url}`).replace(/(<meta property="og:url" content=")[^"]*/,`$1${url}`);
  page=page.replace('</head>',Object.entries(LANGUAGES).map(([key,lang])=>`<link rel="alternate" hreflang="${lang.tag}" href="https://www.soraspace.studio${localePath(key)}">`).join('')+'<link rel="alternate" hreflang="x-default" href="https://www.soraspace.studio/">\n</head>');
- const picker=`<details class="language-picker"><summary>${escapeHTML(translate('Language',code))}: <span lang="${LANGUAGES[code].tag}">${LANGUAGES[code].label}</span></summary><nav aria-label="${escapeHTML(translate('Language',code))}">${Object.entries(LANGUAGES).map(([key,lang])=>`<a href="${localePath(key)}" hreflang="${lang.tag}" lang="${lang.tag}"${key===code?' aria-current="true"':''}>${lang.label}</a>`).join('')}</nav></details>`;
+ const picker=`<details class="language-picker"><summary>${escapeHTML(translate('Language',code))}: <span lang="${LANGUAGES[code].tag}">${LANGUAGES[code].label}</span></summary><nav aria-label="${escapeHTML(translate('Language',code))}">${Object.entries(LANGUAGES).map(([key,lang])=>`<a href="${key==='en'?'/?lang=en':localePath(key)}" data-language-choice="${key}" hreflang="${lang.tag}" lang="${lang.tag}"${key===code?' aria-current="true"':''}>${lang.label}</a>`).join('')}<a href="/?language=system" data-language-choice="system">${escapeHTML(translate('Device language',code))}</a></nav></details>`;
  page=page.replace(/href="\/"/g,`href="${localePath(code)}"`);
  page=page.replace('<nav aria-label=',picker+'<nav aria-label=');
  if(code!=='en')page=page.replace(/href="(https:\/\/www\.claudiagilbert\.com[^\"]*)"/g,(_,href)=>{const link=new URL(decode(href));link.searchParams.set('lang',code);return `href="${escapeHTML(link.href)}"`;});

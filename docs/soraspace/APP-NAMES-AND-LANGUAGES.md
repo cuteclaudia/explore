@@ -19,7 +19,7 @@ This is website presentation. App IDs, capability keys, bridge messages, cloud f
 
 English plus Japanese (`ja`), Traditional Chinese (`zh-Hant`), Simplified Chinese (`zh-Hans`), Korean (`ko`), French (`fr`), German (`de`) and European Portuguese (`pt-PT`), plus Ukrainian (`uk`), Dutch (`nl`), Swedish (`sv`), Finnish (`fi`), Norwegian Bokmål (`nb`), Italian (`it`), Indonesian (`id`) and Thai (`th`). Chinese scripts and Portuguese region are separate explicit choices.
 
-- **SoraSpace public landing:** translated visible marketing copy, templates/descriptions, pricing/availability explanations, metadata, native HTML language picker, canonical URLs, reciprocal language links and sitemap entries. English remains `/`; the fifteen translations have their own paths, e.g. `/ja/` and `/pt-PT/`. No JavaScript, translation API or additional hosting project is required.
+- **SoraSpace public landing:** translated visible marketing copy, templates/descriptions, pricing/availability explanations, metadata, native HTML language picker, canonical URLs, reciprocal language links and sitemap entries. English remains `/`; the fifteen translations have their own paths, e.g. `/ja/` and `/pt-PT/`. Manual language links work without JavaScript. A small hash-authorized local bootstrap selects the device/saved language; no translation API or additional hosting project is required.
 - **Explore shared interface:** language selector, main navigation, marked account-menu/footer labels and selected signup/login controls. This is partial interface coverage; page bodies, detailed settings and admin tools are not fully translated yet.
 - **SoraSpace workspace:** common sidebar labels, search placeholder, selected dashboard controls and a persisted language choice. Detailed dashboard paragraphs, errors and editor controls still include English.
 - **HobbyNest:** shared language choice and marked navigation/preview labels. Product descriptions, checkout/fulfilment language and most shop/admin copy remain a further pass.
@@ -44,7 +44,7 @@ Authored articles, private documents, filenames, research sources and customer p
 
 ## Validation
 
-`server/interface-locales.test.mjs`, `scripts/check-interface-languages.mjs` and expanded `scripts/check-soraspace-landing.mjs` check language allowlists, locale routes/metadata, sixteen choices, branding/kanji, no-script public pages, 320/768/1366px layouts, preserved auth destinations and private-content exclusion. Login recovery and production SSR packaging checks remain required when redirect handling changes.
+`server/interface-locales.test.mjs`, `scripts/check-interface-languages.mjs` and expanded `scripts/check-soraspace-landing.mjs` check language allowlists, locale routes/metadata, sixteen choices, branding/kanji, hash-authorized local bootstrap and blocked unapproved scripts, 320/768/1366px layouts, preserved auth destinations and private-content exclusion. Login recovery and production SSR packaging checks remain required when redirect handling changes.
 
 Deploy through the existing `cuteclaudia/explore` main branch. Public Netlify base stays `sites/soraspace`; Explore stays at the repository root. No environment variables or DNS changes are required for names or languages. Signup's existing separate enablement and identity settings are unchanged.
 
@@ -60,4 +60,14 @@ All selectors use the same approximate total-speaker order (first and second lan
 
 Public reference points for a later reviewed demographic update: Ethnologue (https://www.ethnologue.com/) and https://en.wikipedia.org/wiki/List_of_languages_by_total_number_of_speakers . Live sources could not be retrieved from this workspace; no exact speaker counts are presented to users. Norwegian currently means Bokmål, explicitly labelled; Nynorsk is not silently included.
 
-All 225 existing catalogue entries have a first-pass translation in each additional language. The public landing builds sixteen separate locales. Existing partial translation coverage on Explore, HobbyNest, admin and native app internals remains as described above. Native-speaker review is still required before promising fully localized paid service. Interface language selection does not enable automatic article translation.
+All existing catalogue entries have a first-pass translation in each additional language. The public landing builds sixteen separate locales. Existing partial translation coverage on Explore, HobbyNest, admin and native app internals remains as described above. Native-speaker review is still required before promising fully localized paid service. Interface language selection does not enable automatic article translation.
+
+## Device default and manual language preferences
+
+New visits with no saved preference use the first supported `navigator.languages` entry, normally reflecting the device/browser language; English is the fallback. The header selector and Settings → Language both offer **Device language** and the sixteen explicit choices. Manual choices save immediately to `soraspace.language` in this browser. Choosing Device language stores the automatic mode instead of freezing today's detected language; a later browser language change updates the interface. Detection itself does not save a manual preference. Existing stored choices are retained; select Device language to return to automatic matching.
+
+Saved manual choices take priority over URL language hints. Without a saved choice, an explicit supported locale URL/hint is respected; opening the public root otherwise detects the browser preference. Regional browser tags match supported interface variants: `ja-JP` → Japanese, `zh-TW`/`zh-HK` → Traditional Chinese, `zh-CN`/`zh-SG` → Simplified Chinese, Portuguese variants → the offered European Portuguese, `no`/`nb` → Bokmål. Nynorsk is not silently treated as Bokmål; the next supported browser preference is used.
+
+Preferences are per browser and website origin, not yet an account-wide or cross-device setting. URL hints help carry a language when opening the existing workspace domain; the domains do not share localStorage. Clearing storage/private browsing affects persistence. If storage is blocked, detection and explicit public language links still work, but preferences cannot be remembered reliably. No GeoIP, analytics, third-party translator or private-content translation is involved.
+
+The static landing now includes one generated `/language.js` with SRI and an exact CSP SHA-256 authorization. Inline/unapproved scripts, forms, frames and runtime API connections remain blocked. Deploy HTML, bootstrap and generated `_headers` together, so the integrity hash matches. Source `_headers` remains fail-closed until build generates the allowed hash.

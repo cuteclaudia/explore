@@ -2248,5 +2248,25 @@
     "it": "Pubblicazione e servizi previsti",
     "id": "Penerbitan dan layanan yang direncanakan",
     "th": "การเผยแพร่และบริการที่วางแผนไว้"
+  },
+  "Device language": {
+    "uk": "Мова пристрою",
+    "nl": "Apparaattaal",
+    "sv": "Enhetens språk",
+    "fi": "Laitteen kieli",
+    "nb": "Enhetsspråk",
+    "it": "Lingua del dispositivo",
+    "id": "Bahasa perangkat",
+    "th": "ภาษาของอุปกรณ์"
+  },
+  "Use your device language or choose your own. Language changes are saved immediately on this browser.": {
+    "uk": "Використовуйте мову пристрою або виберіть власну. Зміни одразу зберігаються в цьому браузері.",
+    "nl": "Gebruik de apparaattaal of kies zelf. Wijzigingen worden direct in deze browser opgeslagen.",
+    "sv": "Använd enhetens språk eller välj själv. Ändringar sparas direkt i den här webbläsaren.",
+    "fi": "Käytä laitteen kieltä tai valitse itse. Muutokset tallennetaan heti tähän selaimeen.",
+    "nb": "Bruk enhetens språk eller velg selv. Endringer lagres med en gang i denne nettleseren.",
+    "it": "Usa la lingua del dispositivo o scegli tu. Le modifiche sono salvate subito in questo browser.",
+    "id": "Gunakan bahasa perangkat atau pilih sendiri. Perubahan langsung disimpan di browser ini.",
+    "th": "ใช้ภาษาของอุปกรณ์หรือเลือกเอง การเปลี่ยนแปลงจะบันทึกทันทีในเบราว์เซอร์นี้"
   }
 }

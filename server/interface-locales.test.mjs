@@ -19,7 +19,7 @@ test('localized public pages retain auth return destinations and never translate
   const page=localizeLanding(source,code);
   assert(page.includes(`<html lang="${LANGUAGES[code].tag}"`));
   assert(page.includes(escapeHTML(translate('Space for everything you create.',code))));
-  assert(page.includes('href="/" hreflang="en-AU"'));assert(page.includes('https://www.soraspace.studio'+localePath(code)));
+  assert(page.includes('href="/?lang=en" data-language-choice="en" hreflang="en-AU"'));assert(page.includes('https://www.soraspace.studio'+localePath(code)));
   assert(page.includes('/apps/fumi'));assert(page.includes('Fumi · 文'));assert(!/<script\b|<iframe\b|<form\b/i.test(page));
   const href=page.match(/class="sign-in" href="([^"]+)"/)[1].replaceAll('&amp;','&');const link=new URL(href);
   assert.equal(link.origin,'https://www.claudiagilbert.com');assert.equal(link.searchParams.get('next'),'/studio/welcome');if(code!=='en')assert.equal(link.searchParams.get('lang'),code);
