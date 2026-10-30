@@ -1,6 +1,6 @@
 # Full Claude handoff · SoraSpace / creative applications
 
-Prepared 30 October 2026 for Claudia's next Claude session on **2 November 2026, 5:00 pm Australia/Sydney (AEDT, UTC+11)**. Website baseline: `05688d0eacad05900c7533fefbb1b1ea227cda6d` on `cuteclaudia/explore`, main. This is a prepared snapshot, not a scheduled job. No email has been sent and no future autonomous refresh is configured. Check for later commits before implementation.
+Prepared 30 October 2026 for Claudia's next Claude session on **2 November 2026, 5:00 pm Australia/Sydney (AEDT, UTC+11)**. Website baseline: `b869110` on `cuteclaudia/explore`, main. This is a prepared snapshot, not a scheduled job. No email has been sent and no future autonomous refresh is configured. Check for later commits before implementation.
 
 ## Read first: scope and precedence
 
@@ -58,3 +58,12 @@ Provide exact artifact version, source revision, SHA-256, app/host feature matri
 - `docs/hobbynest/`, `docs/fitness/`: host-side context, not a request to take over website implementation.
 - `host-source/`: relevant app metadata, startup/restore bridge/controller and wrapper source at the stated website commit.
 - `verification/`: prepared SoraImage loading-copy record. The separate 13 MB native ZIP is not duplicated here; its source package and preparation command are identified in the startup notes.
+
+
+## Latest update: languages and repository separation
+
+Website commit `b869110` fixes case-variant/duplicated language URL prefixes, adds full workspace home/saved-file UI coverage in all 16 locales, and passes the effective UI language to local and separately hosted app frames. The language-only change does not reload open documents. Native apps still need to consume the preference and negotiate their available translations/English fallback; see `LANGUAGE-PROPAGATION-AND-ROUTING.md`. User document text and filenames are never auto-translated. The server suite now passes 284 tests; additional browser checks cover the actual workspace UI, app preference propagation, document preservation, public broken-link recovery and the real Image engine.
+
+The website-side SoraImage opening panel is now a compact top notice. Retry and the previous-editor shortcut are hidden during normal startup and appear only after an actionable failure. The separate native app's internal 20-second loading warning remains a distinct handoff item.
+
+`cuteclaudia/soraspace-platform` is now initialised at `d3a3e31` with a buildable public marketing copy and migration gates. It has no authenticated workspace runtime or migrated accounts/private files. Existing production deployments still use Explore; no authentication, DNS, OAuth, encryption key or storage cutover occurred. A new static Netlify staging project can build from repository root with `npm run build`, publish `sites/soraspace/dist`, no environment variables, and its default Netlify address. Keep its staging noindex header until the deliberate production marketing cutover. Claude's app repositories remain separate.
