@@ -6,6 +6,9 @@ const passwordForm=document.querySelector<HTMLFormElement>('#password-form')!;
 const google=document.querySelector<HTMLButtonElement>('#google-login')!;
 const signout=document.querySelector<HTMLButtonElement>('#logout')!;
 const resume=document.querySelector<HTMLButtonElement>('#continue-session')!;
+const emailSignin=document.querySelector<HTMLButtonElement>('#email-signin')!;
+function showEmailSignin(){form.hidden=false;passwordForm.hidden=true;emailSignin.hidden=true;resume.hidden=true;google.hidden=true;}
+emailSignin.addEventListener('click',()=>{if(busy)return;inviteToken='';passwordForm.reset();showEmailSignin();status.textContent='Sign in with your invited email address and password.';});
 const returnedByGuard=new URLSearchParams(location.search).get('reason')==='session';
 let inviteToken='';
 let busy=false;
@@ -32,8 +35,8 @@ async function initialize() {
   if(/^#(?:confirmation_token|recovery_token|invite_token|email_change_token|access_token)=/.test(location.hash))form.hidden=true;
   try {
     const callback=await handleAuthCallback();
-    if(callback?.type==='invite') {inviteToken=callback.token || '';passwordForm.hidden=false;status.textContent='Welcome. Set your password to accept your invitation.';return;}
-    if(callback?.type==='recovery') {passwordForm.hidden=false;signout.hidden=false;status.textContent='Choose a new password for your account.';return;}
+    if(callback?.type==='invite') {inviteToken=callback.token || '';passwordForm.hidden=false;emailSignin.hidden=false;status.textContent='Welcome. Set your password to accept your invitation.';return;}
+    if(callback?.type==='recovery') {passwordForm.hidden=false;emailSignin.hidden=false;signout.hidden=false;status.textContent='Choose a new password for your account.';return;}
     if(callback?.type==='confirmation')afterGoogle='/studio/welcome';
     if(callback?.type==='oauth'){
       try{afterGoogle=sessionStorage.getItem('explore-google-return')==='/studio/account'?'/studio/account':'';sessionStorage.removeItem('explore-google-return');}catch{}
@@ -54,7 +57,14 @@ async function initialize() {
   } catch(error) {status.textContent=message(error);form.hidden=false;signout.hidden=false;}
 }
 form.addEventListener('submit',async event=>{event.preventDefault();if(busy)return;busy=true;status.textContent='Signing in…';try{await login((document.querySelector<HTMLInputElement>('#login-email')!.value).trim(),document.querySelector<HTMLInputElement>('#login-password')!.value);document.querySelector<HTMLInputElement>('#login-password')!.value='';await session();}catch(error){status.textContent=message(error);}finally{busy=false;}});
-passwordForm.addEventListener('submit',async event=>{event.preventDefault();if(busy)return;const password=document.querySelector<HTMLInputElement>('#new-password')!.value;if(password!==document.querySelector<HTMLInputElement>('#confirm-password')!.value){status.textContent='The passwords do not match.';return;}if(new TextEncoder().encode(password).length>72){status.textContent='Please choose a password no longer than 72 UTF-8 bytes.';return;}busy=true;try{if(inviteToken){await acceptInvite(inviteToken,password);inviteToken='';}else await updateUser({password});passwordForm.reset();passwordForm.hidden=true;await session();}catch(error){status.textContent=message(error);}finally{busy=false;}});
+passwordForm.addEventListener('submit',async event=>{event.preventDefault();if(busy)return;const password=document.querySelector<HTMLInputElement>('#new-password')!.value;if(password!==document.querySelector<HTMLInputElement>('#confirm-password')!.value){status.textContent='The passwords do not match.';return;}if(new TextEncoder().encode(password).length>72){status.textContent='Please choose a password no longer than 72 UTF-8 bytes.';return;}busy=true;try{let changed;
+ if(inviteToken){changed=await acceptInvite(inviteToken,password);inviteToken='';}else changed=await updateUser({password});
+ // acceptInvite() in Identity 2.0.0 does not set the nf_jwt cookie used by SSR.
+ // Sign in through the SDK with the freshly accepted account, without hand-writing tokens.
+ const email=changed?.email;if(!email)throw Error('Your password was updated. Sign in with your invited email to continue.');
+ document.querySelector<HTMLInputElement>('#login-email')!.value=email;
+ await login(email,password);passwordForm.reset();passwordForm.hidden=true;emailSignin.hidden=true;await session();
+ }catch(error){status.textContent=message(error);if(inviteToken){passwordForm.hidden=false;emailSignin.hidden=false;}else{passwordForm.reset();showEmailSignin();signout.hidden=false;}}finally{busy=false;}});
 document.querySelector('#recover-password')!.addEventListener('click',async()=>{const email=document.querySelector<HTMLInputElement>('#login-email')!;if(!email.reportValidity())return;try{await requestPasswordRecovery(email.value.trim());status.textContent='If this email belongs to an account, a password reset link has been requested.';}catch{status.textContent='The password reset request could not be sent. Please try again.';}});
 google.addEventListener('click',()=>{location.assign('/studio/login?provider=google');});
 signout.addEventListener('click',async()=>{try{await logout();location.replace('/studio/login');}catch(error){status.textContent=message(error);}});
