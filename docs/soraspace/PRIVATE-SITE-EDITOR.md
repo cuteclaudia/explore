@@ -1,6 +1,6 @@
-# Owner-only private site editor trial
+# Private site editor trial
 
-30 October 2026 (Sydney). A testable continuation of the [setup questionnaire](SITE-SETUP-WORKFLOW.md). **This is not a customer publisher or the live tenant backend.** It runs under Claudia's existing fresh owner identity on Explore, not the standalone public SoraSpace landing site.
+30 October 2026 (Sydney). A testable continuation of the [setup questionnaire](SITE-SETUP-WORKFLOW.md). **This is not a customer publisher or the live tenant backend.** It runs under existing Explore identity, with owner access or an explicit beta.soraspace approval. It does not run on the static SoraSpace landing deployment.
 
 ## Delivered controls
 
@@ -18,9 +18,9 @@ Brand controls collapse to keep page editing compact. Navigation-order buttons a
 
 ## Storage and security
 
-`server/soraspace-editor.mjs` uses a dedicated strong-consistency Blobs store `soraspace-owner-editor`. The key is `owner-drafts/<SHA-256 of verified owner identity>`. The stored account binding is checked on reads. It does not reuse Explore content, cloud file indexes, app libraries or HobbyNest's catalogue. There is one trial draft per verified owner, not an arbitrary tenant ID supplied by the browser.
+`server/soraspace-editor.mjs` uses a dedicated strong-consistency Blobs store `soraspace-owner-editor`. The key is `owner-drafts/<SHA-256 of verified owner identity>`. The stored account binding is checked on reads. It does not reuse Explore content, cloud file indexes, app libraries or HobbyNest's catalogue. There is one trial draft per verified approved account, not an arbitrary tenant ID supplied by the browser.
 
-`/api/soraspace/editor-draft` requires fresh `settings.manage` access and server-side isOwner checks. GET/PUT only, private/no-store. PUT verifies Origin/CSRF, streams a maximum 128 KiB request and validates schema 2, private/draft status, page IDs, text bounds, theme IDs, homepage/highlight and derived navigation eligibility. The model is bounded to 60,000 UTF-8 bytes, compatible with the future resource body bound. No public visibility state or publication operation is accepted.
+`/api/soraspace/editor-draft` requires fresh `beta.soraspace` access and server-side owner-or-explicit-trial checks. GET/PUT only, private/no-store. PUT verifies Origin/CSRF, streams a maximum 128 KiB request and validates schema 2, private/draft status, page IDs, text bounds, theme IDs, homepage/highlight and derived navigation eligibility. The model is bounded to 60,000 UTF-8 bytes, compatible with the future resource body bound. No public visibility state or publication operation is accepted.
 
 Each save binds expected account, strong ETag and a client-generated mutation UUID. CAS prevents stale writes; the last 32 normalized request digests make lost-response retries idempotent. A reused UUID with different content is rejected. An old successful request receipt returns the latest current record; it does not reapply old content. Older receipts beyond the bound cannot pass a stale ETag. This is a bounded save receipt, not a full administrator audit/history or a backup.
 
@@ -28,7 +28,7 @@ A failed/uncertain save blocks further saves until reload. In-tab edits remain e
 
 All preview user text is rendered with DOM text nodes. Imports are bounded and validated before replacing current state. Preview changes use no iframe/remote code. Unsaved work receives a browser unload warning where supported; this is not guaranteed crash recovery or autosave.
 
-This is an explicit owner preview exception, not a shortcut to multi-customer tenancy: do not enable ordinary customers on this store/API, infer platform-staff authority from legacy owner flags, or move these keys into a shared SaaS account. Before customer rollout use the qualified tenant database/identity/object authorization/provisioning/audit design and gates in [tenant foundation](TENANT-FOUNDATION.md).
+This is a limited approved single-account trial, not full multi-member tenancy: do not infer platform-staff authority from a trial grant, open these APIs to unapproved users, or treat them as the production shared-team backend. Before customer rollout use the qualified tenant database/identity/object authorization/provisioning/audit design and gates in [tenant foundation](TENANT-FOUNDATION.md).
 
 ## Administration assessment
 
@@ -43,3 +43,5 @@ My Studio → **SoraSpace Administration** (`/studio/soraspace-admin`) is a prot
 Actual app/storage two-device acceptance remains separate. No production customer was provisioned, public publication enabled, payment created, domain rebound, original file moved or credential changed. Draft storage remains on the existing Netlify infrastructure; it is not a Europe-only or end-to-end encrypted service. Whole-platform backup/restore and an administrative audit plane remain requirements.
 
 Rollback can remove owner links/routes/modules without touching existing Explore data. Preserve/export any trial draft first; do not automatically delete its store. Current application files, publishing content, database foundation and third-party storage folders remain independent.
+
+See [new-email trial signup](TRIAL-SIGNUP-AND-SERVICES.md) for activation, verification, service requests and manual approval. Ordinary trial accounts cannot access administrator/store controls, and cannot read owner/other-trial drafts.

@@ -17,7 +17,7 @@ const headers=await readFile(site+'dist/_headers','utf8'),csp=headers.match(/Con
 assert(csp.includes("script-src 'none'"));assert(csp.includes("connect-src 'none'"));
 const html=await readFile(site+'dist/index.html','utf8');
 assert(!/<script\b|<form\b|<iframe\b/i.test(html));assert.equal((html.match(/class="template-card"/g)||[]).length,5);
-assert(!html.includes('app.soraspace.studio'));for(const path of ['/apps/files','/studio/soraspace-setup','/studio/soraspace-editor','/studio/soraspace-admin'])assert(html.includes('https://www.claudiagilbert.com'+path));assert(html.includes('New account registration is not open yet'));
+assert(!html.includes('app.soraspace.studio'));for(const path of ['/apps/files','/studio/soraspace-setup','/studio/soraspace-editor','/studio/soraspace-admin'])assert(html.includes('https://www.claudiagilbert.com'+path));assert(html.includes('Email verification and approval required'));
 const server=createServer(async(req,res)=>{
  const path=new URL(req.url,'http://localhost').pathname;const filename=path==='/'?'index.html':path.slice(1);
  if(!expected.includes(filename)||filename==='_headers'){res.writeHead(404,{'Content-Type':'text/plain'});res.end('Not found');return;}
@@ -33,8 +33,8 @@ try{
  await page.emulateMedia({colorScheme:'light'});
  for(const [width,height] of [[320,844],[390,844],[768,1024],[1024,768],[1280,720],[1366,768],[1920,1080]]){
   await page.setViewportSize({width,height});await page.goto(base);assert.equal(await page.title(),'SoraSpace — Space for everything you create');
-  assert.equal(await page.locator('.template-card').count(),5);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Fits '+width);
-  assert.equal(await page.locator('form,script,iframe').count(),0);assert.equal(await page.locator('.workspace-shortcuts article').count(),4);assert.equal(await page.locator('.workspace-shortcuts .shortcut-label').filter({hasText:'Owner preview'}).count(),2);for(const a of await page.locator('.workspace-shortcuts a').all())assert((await a.boundingBox()).height>=44);
+  assert.equal(await page.locator('.template-card').count(),5);assert.equal(await page.locator('.app-preview-card').count(),4);assert.equal(await page.locator('#pricing .pricing-grid article').count(),2);assert((await page.locator('#pricing').innerText()).includes('no card required'));assert.equal((await page.locator('.site-header .sign-in').innerText()).trim(),'Sign In');assert.equal(await page.locator('.site-header .sign-up').innerText(),'Sign Up');assert.equal(await page.locator('.app-mini[role=img]').count(),4);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Fits '+width);
+  assert.equal(await page.locator('form,script,iframe').count(),0);assert.equal(await page.locator('.workspace-shortcuts article').count(),4);assert.equal(await page.locator('.workspace-shortcuts .shortcut-label').filter({hasText:'Approved trial'}).count(),2);for(const a of await page.locator('.workspace-shortcuts a').all())assert((await a.boundingBox()).height>=44);
   for(const link of await page.locator('a[target="_blank"]').all()){assert.equal(await link.getAttribute('rel'),'noopener');assert((await link.getAttribute('href')).startsWith('https://www.claudiagilbert.com/'));}
   await page.getByRole('link',{name:'Templates',exact:true}).click();assert.equal(new URL(page.url()).hash,'#templates');assert(await page.locator('#templates').isVisible());
   if([390,768,1366].includes(width))await page.screenshot({path:`/workspace/reviews/soraspace-landing/${width}.png`,fullPage:true});
@@ -50,7 +50,7 @@ try{
   assert(scheme==='light'?luminance(colours.background)>.9:luminance(colours.background)<.1);
   assert(contrast(colours.text,colours.background)>=7);
   for(const item of colours.targets)assert(contrast(item.foreground,item.background)>=4.5,item.name+' contrast in '+scheme+': '+JSON.stringify(item));
-  assert(colours.hero<430,'compact desktop hero');assert(colours.height<1450,'compact desktop page: '+colours.height);
+  assert(colours.hero<430,'compact desktop hero');assert(colours.height<2800,'compact desktop page: '+colours.height);
   await page.screenshot({path:`/workspace/reviews/soraspace-landing/system-${scheme}-1366.png`,fullPage:true});
  }
  // An OS theme change while already open also updates native colours.

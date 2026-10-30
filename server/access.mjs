@@ -4,6 +4,7 @@ export const CAPABILITIES = Object.freeze({
   'tools.lightcraft': 'Use Hikari photo development',
   'tools.wordcraft': 'Use Fumi document editor',
   'tools.pdfcraft': 'Use Tsuzuri PDF workbench',
+  'beta.soraspace': 'Trial SoraSpace website setup and private editor',
   'beta.hikari': 'Test the rebuilt Hikari web beta',
   'desktop.photocraft': 'Download Irodori desktop',
   'desktop.lightcraft': 'Download Hikari desktop',
@@ -43,10 +44,11 @@ export async function resolveActor({ session, getFreshUser, ownerId, communityEn
   if (!(Array.isArray(ownerId) ? ownerId.some(Boolean) : ownerId)) throw new AccessError(503, 'Owner access has not been configured yet.');
   const isOwner = isOwnerIdentity(user.id, ownerId);
   const tripAccess=tripsEnabled&&user.appMetadata?.capabilities?.['trips.manage_own']===true;
+  const trialAccess=appsEnabled&&user.appMetadata?.capabilities?.['beta.soraspace']===true;
   const appAccess=appsEnabled&&Object.keys(CAPABILITIES).some(key=>(key.startsWith('tools.')||key.startsWith('desktop.'))&&user.appMetadata?.capabilities?.[key]===true);
-  if (!isOwner && ((!communityEnabled&&!appAccess&&!tripAccess) || user.appMetadata?.suspended === true)) throw new AccessError(403, 'App access has not been granted, or this account is suspended.');
+  if (!isOwner && ((!communityEnabled&&!appAccess&&!tripAccess&&!trialAccess) || user.appMetadata?.suspended === true)) throw new AccessError(403, 'App access has not been granted, or this account is suspended.');
   const permissions=permissionsFor(user,ownerId);
-  if(!isOwner&&!communityEnabled)for(const key of Object.keys(permissions))if(!key.startsWith('tools.')&&!key.startsWith('desktop.')&&!(appsEnabled&&key==='beta.hikari')&&!(tripsEnabled&&key==='trips.manage_own'))permissions[key]=false;
+  if(!isOwner&&!communityEnabled)for(const key of Object.keys(permissions))if(!key.startsWith('tools.')&&!key.startsWith('desktop.')&&!(appsEnabled&&['beta.hikari','beta.soraspace'].includes(key))&&!(tripsEnabled&&key==='trips.manage_own'))permissions[key]=false;
   return { user, isOwner, permissions };
 }
 export function requireCapability(actor, capability) {

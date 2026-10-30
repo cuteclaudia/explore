@@ -3,12 +3,12 @@ import Workspace from '../../layouts/KoboWorkspace.astro';
 import {protectPage} from '../../../server/identity';
 import {SITE_TEMPLATES,SITE_PALETTES} from '../../lib/soraspace-site-setup.mjs';
 export const prerender=false;
-const actor=await protectPage('/studio/soraspace-editor','settings.manage');if(actor instanceof Response)return actor;
+const actor=await protectPage('/studio/soraspace-editor','beta.soraspace');if(actor instanceof Response)return actor;
 Astro.response.headers.set('Cache-Control','private, no-store');
 ---
 <Workspace actor={actor} title="Site editor preview" section="site">
 <section id="site-editor" data-account={actor.user.id}>
- <header class="editor-heading"><div><a href="/studio/soraspace-setup">← Site setup</a><h1>Your site, your way.</h1><p>Owner preview · Private draft · Publishing is not enabled</p></div><div class="editor-actions"><button id="editor-reload" type="button">Reload saved</button><button id="editor-export" type="button" disabled>Export draft</button><label class="editor-file">Import draft<input id="editor-import" type="file" accept=".json,application/json" disabled/></label><button id="editor-save" type="button" disabled>Save draft</button></div></header>
+ <header class="editor-heading"><div><a href="/studio/soraspace-setup">← Site setup</a><h1>Your site, your way.</h1><p>Approved trial · Private draft · Publishing is not enabled</p></div><div class="editor-actions"><button id="editor-reload" type="button">Reload saved</button><button id="editor-export" type="button" disabled>Export draft</button><label class="editor-file">Import draft<input id="editor-import" type="file" accept=".json,application/json" disabled/></label><button id="editor-save" type="button" disabled>Save draft</button></div></header>
  <p class="editor-status" id="editor-status" role="status">Loading your private draft…</p>
  <div id="editor-panels" hidden>
  <div class="editor-grid">

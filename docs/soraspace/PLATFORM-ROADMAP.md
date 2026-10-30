@@ -70,3 +70,7 @@ Each merchant should connect their own authorized payment account unless a separ
 Select the database, private object storage, transactional email and operational backup services after checking current costs, supported transactions, recovery and region terms. Add restore drills, dependency patching, uptime/error alerts, abuse and upload limits, account recovery, lawful takedown process, deletion/retention policy and support ownership before selling. No new provider account or paid resource is created here.
 
 Regional storage is a per-service evidence question. User files in Europe do not remove US jurisdiction or localise Netlify identity, credentials, indexes, relays, logs or backups. Keep Netlify stability first; European infrastructure migration remains a separate reviewed workstream.
+
+## Individual trial and longer-term services update
+
+[Trial signup and service choices](TRIAL-SIGNUP-AND-SERVICES.md) now define the new-email verification/manual-approval journey and explicit per-account website-trial grant. This limited individual trial does not activate the multi-member tenant backend, public publishing or billing. [Research/Projects roadmap](RESEARCH-AND-PROJECTS-ROADMAP.md) records Zotero-compatible research tools, a later Projects service and opt-in AI after stable builds. These services are planned rather than currently sold or connected.

@@ -41,3 +41,10 @@ test('Hikari beta is an additional app grant, never an admission or administrati
  const forged=await actor({...fresh(memberId,{capabilities:{'tools.lightcraft':true}}),userMetadata:{capabilities:{'beta.hikari':true}}},{appsEnabled:true,session:{id:memberId,appMetadata:{capabilities:{'beta.hikari':true}}}});
  assert.throws(()=>requireCapability(forged,'beta.hikari'),status(403));
 });
+
+test('SoraSpace trial admits only a fresh approved account and never grants administration or other apps',async()=>{
+ const a=await actor(fresh(memberId,{capabilities:{'beta.soraspace':true,'users.manage':true,'settings.manage':true,'articles.edit_any':true}}),{appsEnabled:true});
+ assert.equal(a.isOwner,false);requireCapability(a,'beta.soraspace');for(const cap of ['users.manage','settings.manage','articles.edit_any','tools.wordcraft'])assert.throws(()=>requireCapability(a,cap),status(403));
+ await assert.rejects(actor(fresh(memberId,{capabilities:{'beta.soraspace':true},suspended:true}),{appsEnabled:true}),status(403));
+ const forged={...fresh(memberId,{}),userMetadata:{capabilities:{'beta.soraspace':true}}};await assert.rejects(actor(forged,{appsEnabled:true}),status(403));
+});

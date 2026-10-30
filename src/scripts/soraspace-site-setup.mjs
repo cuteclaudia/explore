@@ -41,7 +41,7 @@ if(root){
  root.querySelector('#setup-open-editor').addEventListener('click',async()=>{
   const button=root.querySelector('#setup-open-editor');if(button.disabled)return;button.disabled=true;status.textContent='Saving your private editor draft…';
   try{
-   const account=root.dataset.account,verify=async()=>{const r=await fetch('/api/studio/session',{cache:'no-store',signal:AbortSignal.timeout(10000)});const data=await r.json();if(!r.ok||data.id!==account||data.isOwner!==true||data.capabilities?.['settings.manage']!==true)throw Error('Your account access changed. Reopen setup after signing in.');};
+   const account=root.dataset.account,verify=async()=>{const r=await fetch('/api/studio/session',{cache:'no-store',signal:AbortSignal.timeout(10000)});const data=await r.json();if(!r.ok||data.id!==account||data.capabilities?.['beta.soraspace']!==true)throw Error('Your account access changed. Reopen setup after signing in.');};
    await verify();const r=await fetch('/api/soraspace/editor-draft',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({expectedAccount:account,etag:null,mutationId:crypto.randomUUID(),draft:editableSiteFromSetup(answers())}),signal:AbortSignal.timeout(20000)});let data;try{data=await r.json();}catch{throw Error('The save could not be confirmed. Open the saved editor draft to check before retrying.');}
    if(!r.ok)throw Error(r.status===409?'An editor draft already exists or the save could not be confirmed. Open the saved editor draft; your existing work has been kept.':data.error||'The draft could not be saved.');
    await verify();if(data.account!==account)throw Error('Your account changed.');location.assign('/studio/soraspace-editor');

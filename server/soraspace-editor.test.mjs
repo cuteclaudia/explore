@@ -33,3 +33,11 @@ test('concurrent owner saves have one winner and reject stale forms without losi
  const results=await Promise.allSettled([service.save(owner,input(a,saved.etag)),service.save(owner,input(b,saved.etag))]);assert.equal(results.filter(r=>r.status==='fulfilled').length,1);assert.equal(results.find(r=>r.status==='rejected').reason.status,409);
  assert(['Writer one','Writer two'].includes((await service.load(owner)).draft.tagline));
 }));
+
+test('approved non-owner trials have isolated drafts and revoked access fails closed',()=>fixture(async service=>{
+ const a={isOwner:false,user:{id:'trial-a'},permissions:{'beta.soraspace':true}},b={isOwner:false,user:{id:'trial-b'},permissions:{'beta.soraspace':true}};
+ const saved=await service.save(a,{...input(),expectedAccount:a.user.id});assert.equal((await service.load(b)).draft,null);
+ await assert.rejects(()=>service.save(b,{...input(),expectedAccount:a.user.id,etag:saved.etag}),e=>e.status===409);
+ await service.save(b,{...input(),expectedAccount:b.user.id,draft:{...make(),siteName:'Trial B'}});assert.equal((await service.load(a)).draft.siteName,'Research space');assert.equal((await service.load(b)).draft.siteName,'Trial B');
+ await assert.rejects(()=>service.load({...a,permissions:{}}),e=>e.status===403);
+}));

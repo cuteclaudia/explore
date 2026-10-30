@@ -4,7 +4,7 @@ import Base from '../../layouts/Base.astro';
 <Base title="Owner sign in" description="Sign in to your Explore by Claudia studio." noindex>
   <section class="wrap login-wrap">
     <span class="eyebrow">Your creative space</span><h1 class="serif">Welcome to Explore.</h1>
-    <p>Sign in to open your apps or your private owner Studio. Access is invitation-only.</p>
+    <p>Sign in to open your apps or your private owner Studio. App access requires approval.</p>
     <p id="auth-status" role="status">Sign in with your invited email address and password.</p>
     <form id="login-form" class="form" method="post" action="/api/studio/login">
       <label>Email address<input id="login-email" name="email" type="email" autocomplete="username" required /></label>
@@ -21,7 +21,7 @@ import Base from '../../layouts/Base.astro';
     <div id="owner-setup" hidden><h2 class="serif">Finish connecting your owner account</h2><p>Your email is verified. Copy your Identity user ID below into the Netlify environment variable <code id="owner-variable">OWNER_IDENTITY_ID</code>, then redeploy. Your ID alone cannot sign anyone in.</p><p><code id="owner-id"></code></p></div>
     <button class="btn ghost" id="logout" type="button" hidden>Sign out</button>
     <button class="btn" id="continue-session" type="button" hidden>Continue to your account</button>
-    <p><a href="/">← Return to Explore</a></p>
+    <p><a href="/studio/signup">Create a SoraSpace trial account →</a></p><p><a href="/studio/welcome">Check approval or manage requested services →</a></p><p><a href="/">← Return to Explore</a></p>
   </section>
 </Base>
 <script>import '../../scripts/identity-login';</script>

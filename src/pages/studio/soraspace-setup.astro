@@ -3,13 +3,13 @@ import Base from '../../layouts/Base.astro';
 import {protectPage} from '../../../server/identity';
 import {SITE_PURPOSES,SITE_PAGES,SITE_TEMPLATES,SITE_PALETTES} from '../../lib/soraspace-site-setup.mjs';
 export const prerender=false;
-const actor=await protectPage('/studio/soraspace-setup','settings.manage');if(actor instanceof Response)return actor;
+const actor=await protectPage('/studio/soraspace-setup','beta.soraspace');if(actor instanceof Response)return actor;
 Astro.response.headers.set('Cache-Control','private, no-store');
 ---
 <Base title="SoraSpace site setup preview" noindex skipPageFeature>
 <section class="wrap site-setup" id="site-setup" data-account={actor.user.id}>
- <a href="/studio">← My Studio</a><header><span class="eyebrow">SoraSpace · Owner preview</span><h1>A space that feels like yours.</h1><p>Tell us what you have in mind. Start with a template, then make it your own.</p></header>
- <p class="setup-notice">Try the setup flow here. Your answers stay in this tab; download the draft to keep a copy. This preview does not create or publish a website.</p>
+ <a href="/studio">← My Studio</a><header><span class="eyebrow">SoraSpace · Private trial</span><h1>A space that feels like yours.</h1><p>Tell us what you have in mind. Start with a template, then make it your own.</p></header>
+ <p class="setup-notice">Create your private starting draft. Save & open editor keeps it in your account; Download keeps a copy on your device. Public publishing is not enabled.</p>
  <noscript><p>Enable JavaScript to try the site setup preview.</p></noscript>
  <div id="setup-interactive" hidden>
  <ol class="setup-progress" aria-label="Site setup progress">{['Purpose','Pages & template','Your style','Review'].map((label,index)=><li data-progress={index}><span>{index+1}</span>{label}</li>)}</ol>

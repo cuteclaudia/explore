@@ -1,11 +1,11 @@
-// OWNER-ONLY trial store. Not the tenant backend and not a public publisher.
+// Account-isolated, explicitly approved trial store. Not the tenant backend and not a public publisher.
 import {createHash} from 'node:crypto';
 import {AccessError} from './access.mjs';
 import {revision,commit} from './blob-revisions.mjs';
 import {validateEditableSite} from '../src/lib/soraspace-site-editor.mjs';
 const uuid=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export function siteEditorTrial(store){
- function scope(actor){if(!actor?.isOwner||typeof actor.user?.id!=='string'||!actor.user.id)throw new AccessError(403,'Only the owner can try this editor.');return 'owner-drafts/'+createHash('sha256').update(actor.user.id).digest('hex');}
+ function scope(actor){if(!(actor?.isOwner||actor?.permissions?.['beta.soraspace']===true)||typeof actor.user?.id!=='string'||!actor.user.id)throw new AccessError(403,'SoraSpace trial access has not been approved.');return 'owner-drafts/'+createHash('sha256').update(actor.user.id).digest('hex');}
  async function read(actor){const key=scope(actor),before=await revision(store,key);if(before&&before.data.account!==actor.user.id)throw new AccessError(409,'Draft account binding failed.');return {key,before};}
  function response(actor,record){return {account:actor.user.id,etag:record?.etag||null,draft:record?.data.draft||null,savedAt:record?.data.savedAt||null,publishingEnabled:false};}
  return {

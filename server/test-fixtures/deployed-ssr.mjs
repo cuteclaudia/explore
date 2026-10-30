@@ -31,13 +31,13 @@ assert.equal((await response('/api/apps/irodori-session')).status,401);
 // Astro runtime has no SDK identity global. Verify the real packaged middleware
 // uses the native session endpoint, not an unverified decoded cookie or claims.
 const originalFetch=globalThis.fetch,originalOwner=process.env.OWNER_IDENTITY_ID;
-const owner='11111111-1111-4111-8111-111111111111';let sessionStatus=200,sessionChecks=0;
+const owner='11111111-1111-4111-8111-111111111111';let sessionStatus=200,sessionChecks=0,trialIdentity=false;
 process.env.OWNER_IDENTITY_ID=owner;
 globalThis.fetch=async(input,options)=>{
  const url=new URL(typeof input==='string'||input instanceof URL?input:input.url);
  if(['www.claudiagilbert.com','claudiagilbert.com'].includes(url.hostname)&&url.pathname==='/api/studio/session'){
   sessionChecks++;assert.equal(options.headers.Cookie,'nf_jwt=verified-by-session-service');assert.equal(options.redirect,'error');
-  return sessionStatus===200?Response.json({setupRequired:false,id:owner,email:'owner@example.test',isOwner:true,capabilities:{'settings.manage':true,'users.manage':true,'tools.photocraft':true}}):new Response(null,{status:sessionStatus});
+  return sessionStatus===200?Response.json({setupRequired:false,id:trialIdentity?'22222222-2222-4222-8222-222222222222':owner,email:trialIdentity?'trial@example.test':'owner@example.test',isOwner:!trialIdentity,capabilities:trialIdentity?{'beta.soraspace':true}:{'settings.manage':true,'users.manage':true,'tools.photocraft':true,'beta.soraspace':true}}):new Response(null,{status:sessionStatus});
  }
  return originalFetch(input,options);
 };
@@ -54,6 +54,13 @@ try{
  assert.equal((await ownerRequest('/api/soraspace/editor-draft',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({...editorPayload,mutationId:'33333333-3333-4333-8333-333333333333'})})).status,409);
  assert.equal((await ownerRequest('/api/soraspace/editor-draft',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({...editorPayload,mutationId:'44444444-4444-4444-8444-444444444444',etag:editorSaved.etag,draft:{...editorModel,status:'published'}})})).status,400);
  console.log('PASS packaged owner site draft authentication, CSRF, private save, stale-version and publication refusal');
+ trialIdentity=true;
+ assert.equal((await ownerRequest('/studio/soraspace-editor')).status,200);assert.equal((await ownerRequest('/studio/soraspace-admin')).status,403);assert.equal((await ownerRequest('/studio/users')).status,403);assert.equal((await ownerRequest('/api/hobbynest/settings')).status,403);
+ const trialDraft=await (await ownerRequest('/api/soraspace/editor-draft')).json();assert.equal(trialDraft.draft,null);assert.equal(trialDraft.account,'22222222-2222-4222-8222-222222222222');
+ const trialSave=await ownerRequest('/api/soraspace/editor-draft',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({...editorPayload,expectedAccount:trialDraft.account,draft:{...editorModel,siteName:'Separate trial site'}})});assert.equal(trialSave.status,200);
+ trialIdentity=false;assert.equal((await (await ownerRequest('/api/soraspace/editor-draft')).json()).draft.siteName,'Package draft');
+ console.log('PASS packaged approved trial is isolated from owner draft and denied administrator/store access');
+
  let nest=await (await ownerRequest('/api/hobbynest/settings')).json();
  const product={id:'fixture-print',name:'Packaged photo fixture',sku:'PACKAGE-1',kind:'physical',priceCents:2000,description:'Isolated package test only',collectionIds:[],licence:'',allowBackorder:true,printMinDays:3,printMaxDays:5,dispatchMinDays:1,dispatchMaxDays:2,weightGrams:0,lengthMm:0,widthMm:0,heightMm:0};
  let saved=await ownerRequest('/api/hobbynest/settings',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({expectedAccount:owner,etag:nest.etag,operation:'product.save',value:product})});assert.equal(saved.status,200);nest=await saved.json();
