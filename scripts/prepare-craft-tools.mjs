@@ -3,7 +3,7 @@ import {createHash} from 'node:crypto';
 import {resolve,dirname} from 'node:path';
 import {unzipSync} from 'fflate';
 import {CRAFT_TOOLS} from '../server/craft-tools.mjs';
-import {openingAppMessage} from '../src/lib/app-presentation.mjs';
+import {APP_PRESENTATION,openingAppMessage} from '../src/lib/app-presentation.mjs';
 for(const [id,tool] of Object.entries(CRAFT_TOOLS)){
  const filename=`${id}-web-${tool.version}.zip`;
  const cache=resolve('.netlify/craft-cache',filename);await mkdir(dirname(cache),{recursive:true});
@@ -28,11 +28,20 @@ for(const [id,tool] of Object.entries(CRAFT_TOOLS)){
  if(!html)throw Error(`${id}: no application entry page`);
  // Rebrand visible wrapper text only. Keep upstream binary/API identifiers and
  // separate licence/NOTICE files untouched while rebuilt apps are validated.
- html=html.replaceAll(`<title>${tool.engineName}</title>`,`<title>${tool.name}</title>`)
+ const displayName=APP_PRESENTATION[tool.slug]?.shortName||tool.name;
+ html=html.replaceAll(`<title>${tool.engineName}</title>`,`<title>${displayName}</title>`)
   .replaceAll(`Loading ${tool.engineName}`,openingAppMessage(tool.slug).slice(0,-1))
   .replaceAll(`Starting ${tool.engineName}`,openingAppMessage(tool.slug).slice(0,-1))
-  .replaceAll(`${tool.engineName} failed to load`,`${tool.name} failed to load`)
-  .replaceAll(`content="${tool.engineName}:`,`content="${tool.name}:`);
+  .replaceAll(`${tool.engineName} failed to load`,`${displayName} failed to load`)
+  .replaceAll(`content="${tool.engineName}:`,`content="${displayName}:`);
+ // A timed hint is not evidence of a failed download.
+ html=html.replace(/<p id="photocraft_stalled">[\s\S]*?<\/p>/,`<p id="photocraft_stalled">${displayName} is still starting. The first launch can take longer while the editor downloads and initialises. Keep this tab open. If loading does not complete, <a href="">reload</a> to try again.</p>`);
+ // Hikari's handwritten bootstrap does not emit Trunk's startup event.
+ // Signal only after its WASM init and native start call, using the same host bridge.
+ if(id==='lightcraft'){
+  if(!html.includes('      start(font);'))throw Error('Review the changed photo bootstrap before adding startup feedback.');
+  html=html.replace('      start(font);',"      start(font);\n      dispatchEvent(new Event('TrunkApplicationStarted'));");
+ }
  await mkdir('src/generated/craft',{recursive:true});
  const bridge=await readFile('scripts/craft-file-bridge.js','utf8');
  html=html.replace(/<head>/i,`<head><script>${bridge}</script>`);

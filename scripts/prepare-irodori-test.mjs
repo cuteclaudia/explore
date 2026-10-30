@@ -2,8 +2,9 @@ import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {resolve,relative} from 'node:path';
 import {createHash} from 'node:crypto';
 import {unzipSync} from 'fflate';
-const [archive,destination]=process.argv.slice(2);
-if(!archive||!destination)throw Error('Usage: node scripts/prepare-irodori-test.mjs ZIP OUTPUT_DIRECTORY');
+const [archive,destination,option]=process.argv.slice(2);
+if(option&&option!=='--friendly-loader')throw Error('Unknown preparation option.');
+if(!archive||!destination)throw Error('Usage: node scripts/prepare-irodori-test.mjs ZIP OUTPUT_DIRECTORY [--friendly-loader]');
 const raw=await readFile(archive),releases={'4177ab26781a5e2ebe10c2d15e1dae98e115c090254f1ec841d75b7a700a4e78':'0.16.0','13943bda7bae68e3f8857cc9a2a70251a232cbbdaaa37f2582ec646dc40294f2':'0.16.1'},version=releases[createHash('sha256').update(raw).digest('hex')];
 if(!version)throw Error('Review and pin this Irodori release before preparing it.');
 const files=unzipSync(raw),output=resolve(destination),prefix='irodori-web-'+version+'/';await mkdir(output,{recursive:true});
@@ -14,10 +15,16 @@ for(const [path,bytes] of Object.entries(files)){
 }
 const html=await readFile(resolve(output,'index.html'),'utf8');
 if([...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)].some(m=>! /\bsrc\s*=/.test(m[1])||m[2].trim()))throw Error('Strict CSP build unexpectedly has inline script.');
+if(option==='--friendly-loader'){
+ const originalNotice=/<p id="photocraft_stalled">[\s\S]*?<\/p>/;
+ if(!originalNotice.test(html)||!html.includes('<title>Irodori</title>')||!html.includes('Loading Irodori&hellip;'))throw Error('Unexpected loader markup; review before changing it.');
+ const friendly=html.replace('<title>Irodori</title>','<title>SoraImage</title>').replace('Loading Irodori&hellip;','Starting SoraImage&hellip;').replace(originalNotice,'<p id="photocraft_stalled">SoraImage is still starting. The first launch can take longer while the editor downloads and initialises. Keep this tab open. If loading does not complete, <a href="">reload</a> to try again.</p>');
+ await writeFile(resolve(output,'index.html'),friendly);
+}
 const supplied=await readFile(resolve(output,'_headers'),'utf8');
 if(!supplied.includes("script-src 'self' 'wasm-unsafe-eval'")||!supplied.includes("frame-ancestors 'self' https://explorebyclaudia.netlify.app"))throw Error('Unexpected security policy.');
 // start-1.js is not content-addressed. Never cache it across releases: it imports
-// versioned bootstrap assets. Preserve the supplied CSP and every app byte.
+// versioned bootstrap assets. Preserve the supplied CSP and every executable app byte. The optional loader copy changes only index.html.
 if(version==='0.16.0')await writeFile(resolve(output,'_headers'),supplied+'\n# Website review: fixed-name startup and root HTML must revalidate on updates.\n/start-1.js\n  ! Cache-Control\n  Cache-Control: no-cache\n\n/\n  Cache-Control: no-cache\n');
 await writeFile(resolve(output,'netlify.toml'),'[build]\n  publish = "."\n');
-console.log('Prepared Irodori '+version+' at '+output+'. Deploy only to its own separate test site.');
+console.log('Prepared Irodori '+version+' at '+output+(option?' (friendly loading text only)':'')+'. Deploy only to its own separate app site.');

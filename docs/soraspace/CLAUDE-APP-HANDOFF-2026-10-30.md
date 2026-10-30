@@ -1,6 +1,6 @@
 # SoraSpace app handoff · 30 October 2026
 
-Prepared for Claudia to give Claude; no message has been sent automatically.
+Prepared for Claudia to give Claude; no message has been sent automatically. Claudia expects Claude access to resume on **2 November 2026 at 5:00 pm Australia/Sydney**. Hold the app-side changes for that handoff; no separate app upload is requested from Claudia now.
 
 ## Product branding
 
@@ -18,7 +18,7 @@ Please profile cold/warm launches on a typical laptop and mid-range phone, with 
 
 Claudia reported the “This is taking longer than usual … files may have failed to download or come from a different version” notice, followed by a successful launch. In the supplied 0.16.1 build, `index.html` reveals `#photocraft_stalled` with a CSS animation after **20 seconds**, regardless of whether any fetch has failed. The app removes the loading element when it starts. `start-1.js` imports and initialises the boot module, then dispatches `TrunkApplicationStarted`. This timer is not proof of a failed download or mixed release. The screenshot's older outer toolbar does not identify the exact deployed native build; the timer was verified in the supplied local package, not by authenticated live inspection.
 
-Change the timed copy to “SoraImage is still starting. The first launch can take longer while the editor downloads and initialises. Please keep this tab open.” Reserve a failure/reload message for an observed fetch, integrity or initialisation failure, and record the actual error without exposing private data. Add real download/initialisation progress if the loader supports it; do not invent percentages or mark ready on the HTML load event. Keep its strict CSP, asset integrity and unchanged versioned binaries. This notice is inside the separately hosted app, so the Explore wrapper deployment cannot replace it. Prepare and test a complete app release for that origin, without mixing old and new files.
+A packaging-only candidate with unchanged executable assets has been prepared and locally checked; see [Startup improvements](STARTUP-IMPROVEMENTS-2026-10-30.md). It has not been deployed to the separate app origin. Claude can include the correction in the next app release. Change the timed copy to “SoraImage is still starting. The first launch can take longer while the editor downloads and initialises. Please keep this tab open.” Reserve a failure/reload message for an observed fetch, integrity or initialisation failure, and record the actual error without exposing private data. Add real download/initialisation progress if the loader supports it; do not invent percentages or mark ready on the HTML load event. Keep its strict CSP, asset integrity and unchanged versioned binaries. This notice is inside the separately hosted app, so the Explore wrapper deployment cannot replace it. Prepare and test a complete app release for that origin, without mixing old and new files.
 
 ## Autosave: app support needed
 
