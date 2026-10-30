@@ -1,3 +1,4 @@
+import {trialPermissions} from './trial-access.mjs';
 export const CAPABILITIES = Object.freeze({
   'trips.manage_own': 'Create and manage private trips/events',
   'tools.photocraft': 'Use Irodori image editor',
@@ -31,23 +32,27 @@ export class AccessError extends Error {
   constructor(status, message) { super(message); this.status = status; }
 }
 export const isOwnerIdentity = (id, owners) => (Array.isArray(owners) ? owners : [owners]).filter(Boolean).some(value => value.toLowerCase() === id.toLowerCase());
-export function permissionsFor(user, ownerId) {
+export function permissionsFor(user, ownerId, {trial=null,now=Date.now()}={}) {
   const owner = isOwnerIdentity(user.id, ownerId);
   const stored = user.appMetadata?.capabilities || {};
-  return Object.fromEntries(Object.keys(CAPABILITIES).map(key => [key, owner || (!OWNER_ONLY_CAPABILITIES.includes(key) && stored[key] === true)]));
+  const temporary=new Set(owner?[]:trialPermissions(trial,user.id,now));
+  return Object.fromEntries(Object.keys(CAPABILITIES).map(key => [key, owner || (!OWNER_ONLY_CAPABILITIES.includes(key) && (stored[key] === true||temporary.has(key)))]));
 }
-export async function resolveActor({ session, getFreshUser, ownerId, communityEnabled = false, appsEnabled = false, tripsEnabled = false }) {
+export async function resolveActor({ session, getFreshUser, ownerId, communityEnabled = false, appsEnabled = false, tripsEnabled = false, getTrial=async()=>null, now=undefined }) {
   if (!session?.id) throw new AccessError(401, 'Please sign in.');
   let user;
   try { user = await getFreshUser(session.id); } catch { throw new AccessError(401, 'Your session could not be verified. Please sign in again.'); }
   if (!user || user.id !== session.id || !user.confirmedAt) throw new AccessError(401, 'A verified account is required.');
   if (!(Array.isArray(ownerId) ? ownerId.some(Boolean) : ownerId)) throw new AccessError(503, 'Owner access has not been configured yet.');
   const isOwner = isOwnerIdentity(user.id, ownerId);
-  const tripAccess=tripsEnabled&&user.appMetadata?.capabilities?.['trips.manage_own']===true;
-  const trialAccess=appsEnabled&&user.appMetadata?.capabilities?.['beta.soraspace']===true;
-  const appAccess=appsEnabled&&Object.keys(CAPABILITIES).some(key=>(key.startsWith('tools.')||key.startsWith('desktop.'))&&user.appMetadata?.capabilities?.[key]===true);
+  let trial=null,trialUnavailable=false;
+  if(!isOwner&&user.appMetadata?.suspended!==true){try{trial=await getTrial(user.id);}catch{trialUnavailable=true;}}
+  const permissions=permissionsFor(user,ownerId,{trial,now:now??Date.now()});
+  const tripAccess=tripsEnabled&&permissions['trips.manage_own']===true;
+  const trialAccess=appsEnabled&&permissions['beta.soraspace']===true;
+  const appAccess=appsEnabled&&Object.keys(CAPABILITIES).some(key=>(key.startsWith('tools.')||key.startsWith('desktop.'))&&permissions[key]===true);
+  if(!isOwner&&trialUnavailable&&!communityEnabled&&!appAccess&&!tripAccess&&!trialAccess&&user.appMetadata?.suspended!==true)throw new AccessError(503,'Trial access could not be verified. Please try again shortly.');
   if (!isOwner && ((!communityEnabled&&!appAccess&&!tripAccess&&!trialAccess) || user.appMetadata?.suspended === true)) throw new AccessError(403, 'App access has not been granted, or this account is suspended.');
-  const permissions=permissionsFor(user,ownerId);
   if(!isOwner&&!communityEnabled)for(const key of Object.keys(permissions))if(!key.startsWith('tools.')&&!key.startsWith('desktop.')&&!(appsEnabled&&['beta.hikari','beta.soraspace'].includes(key))&&!(tripsEnabled&&key==='trips.manage_own'))permissions[key]=false;
   return { user, isOwner, permissions };
 }

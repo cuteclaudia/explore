@@ -61,3 +61,7 @@ const fileTools=Object.fromEntries(Object.entries(WEB_TOOLS).filter(([id,t])=>ac
 
 <style>.trial-website-tools{display:flex;gap:8px 16px;align-items:center;flex-wrap:wrap;padding:10px 12px;border:1px solid var(--border);border-radius:7px;margin-bottom:12px;font-size:12px}.trial-website-tools strong{flex-basis:100%}.trial-website-tools a{display:inline-flex;align-items:center;min-height:44px}</style>
 <style>.apps-grid :global(.app-tile-text>.app-title-line){display:flex;align-items:baseline;flex-wrap:wrap;overflow:visible;-webkit-line-clamp:unset;gap:3px 8px}.apps-grid :global(.app-title-line .app-legacy){white-space:nowrap}</style>
+
+<style is:global>
+.apps-library .welcome-files .workspace-file-list article>div{min-width:0;position:relative}.apps-library .welcome-files a.workspace-file-name{display:block!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:44px!important;padding-bottom:16px;box-sizing:border-box}.apps-library .welcome-files .workspace-file-list small{position:absolute;bottom:0;left:0;pointer-events:none}
+</style>

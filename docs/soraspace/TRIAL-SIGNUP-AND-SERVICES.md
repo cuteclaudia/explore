@@ -61,3 +61,8 @@ Users choose their package and features at signup and may change services later.
 Current behaviour remains a free approved trial: choices are requests, not entitlement or billing changes. Paid prices, a live calculator, checkout and automated subscription changes are not implemented by this copy update.
 
 Both pricing cards link directly to `/studio/signup` with an allowlisted `package=workspace` or `package=workspace-website` starting point. Signup displays that choice; Website is initially selected for Workspace + Website, and unselected for Workspace. Other service choices remain editable, with no paid package or entitlement silently granted. Unknown query values are ignored and not reflected into the page. The saved trial request records the user's selected services, not a purchased package.
+
+
+## 30 October update
+
+Owner rollout controls and configurable timed tester/public trials are now implemented. See [Launch switches and tester trials](LAUNCH-SWITCHES-AND-TESTER-TRIALS.md) for actual gates and limitations. Public trials default off; paid checkout remains disabled. Earlier future-tense trial proposals below/above are superseded by that operational guide.

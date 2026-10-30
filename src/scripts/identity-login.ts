@@ -20,7 +20,7 @@ const message=(error:unknown)=>error instanceof Error?error.message:'Sign-in cou
 async function session(allowRedirect=true) {
   const response=await fetch('/api/studio/session',{cache:'no-store',signal:AbortSignal.timeout(10000)});
   const data=await response.json();
-  if(response.status===403){try{const pending=await fetch('/api/soraspace/account/status',{cache:'no-store',signal:AbortSignal.timeout(10000)});const info=await pending.json();if(pending.ok&&['pending','suspended'].includes(info.status)){location.replace('/studio/welcome');return;}}catch{}}
+  if(response.status===403){try{const pending=await fetch('/api/soraspace/account/status',{cache:'no-store',signal:AbortSignal.timeout(10000)});const info=await pending.json();if(pending.ok&&['pending','suspended','expired'].includes(info.status)){location.replace('/studio/welcome');return;}}catch{}}
   if(!response.ok) throw Error(data.error || 'You do not have access to this studio.');
   form.hidden=true;google.hidden=true;signout.hidden=false;
   if(!data.setupRequired&&!allowRedirect){resume.hidden=false;status.textContent='You are signed in, but the account page could not confirm your session. Continue to retry, or sign out and sign in again.';return;}

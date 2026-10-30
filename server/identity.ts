@@ -1,3 +1,5 @@
+import {getStore} from '@netlify/blobs';
+import {readAccountTrial} from './soraspace-controls.mjs';
 import { getUser, admin, AuthError } from '@netlify/identity';
 import { AccessError, resolveActor, requireCapability } from './access.mjs';
 import { scopedActor, scopedLanguage } from './request-actor.mjs';
@@ -7,7 +9,7 @@ export const setupVariableFor = (email: string) => email.toLowerCase() === 'clau
 export const ownerEmail = () => (process.env.OWNER_EMAIL || 'claudia@claudiagilbert.com').trim().toLowerCase();
 export async function currentActor(capability?: string) {
   const scoped=scopedActor({ownerIds:ownerIds()});
-  const actor = scoped ? await scoped : await resolveActor({session:await getUser(), getFreshUser:admin.getUser, ownerId:ownerIds(), communityEnabled:false, appsEnabled:true, tripsEnabled:true});
+  const actor = scoped ? await scoped : await resolveActor({session:await getUser(), getFreshUser:admin.getUser, ownerId:ownerIds(), communityEnabled:false, appsEnabled:true, tripsEnabled:true,getTrial:id=>readAccountTrial(getStore({name:'soraspace-controls',consistency:'strong'}),id)});
   if (capability) requireCapability(actor, capability);
   return actor;
 }

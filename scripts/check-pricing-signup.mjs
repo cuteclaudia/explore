@@ -4,7 +4,7 @@ const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,headless:true,args:['--no-sandbox']});
 try{
  const context=await browser.newContext(),page=await context.newPage(),base='http://127.0.0.1:4352';
- await context.route('**/*',route=>{const url=new URL(route.request().url());if(url.origin!==base)return route.abort();if(url.pathname.startsWith('/api/')||url.pathname.startsWith('/.netlify/identity/'))return route.fulfill({status:401,json:{error:'Offline fixture'}});return route.continue();});
+ await context.route('**/*',route=>{const url=new URL(route.request().url());if(url.origin!==base)return route.abort();if(url.pathname==='/api/soraspace/account/registration')return route.fulfill({json:{enabled:true}});if(url.pathname.startsWith('/api/')||url.pathname.startsWith('/.netlify/identity/'))return route.fulfill({status:401,json:{error:'Offline fixture'}});return route.continue();});
  for(const [id,label,website] of [['workspace','Workspace',false],['workspace-website','Workspace + Website',true]]){
   for(const width of [320,768,1366]){
    await page.setViewportSize({width,height:900});await page.goto(base+'/studio/signup?package='+id);

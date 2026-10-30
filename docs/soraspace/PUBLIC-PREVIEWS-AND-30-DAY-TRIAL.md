@@ -27,3 +27,8 @@ Before advertising and enabling it:
 7. Test boundary times, repeated requests, verification/approval delays, revoked/suspended accounts, app readiness, native offline use, cancelled checkout, failed payment and migration of existing accounts. Monitor abuse with proportionate signup/quota controls.
 
 Current signup copy accurately offers the approved free preview. It does not say a functioning automated 30-day trial is available. Publish that offer after these requirements are implemented and the trial policy is confirmed.
+
+
+## 30 October update
+
+Owner rollout controls and configurable timed tester/public trials are now implemented. See [Launch switches and tester trials](LAUNCH-SWITCHES-AND-TESTER-TRIALS.md) for actual gates and limitations. Public trials default off; paid checkout remains disabled. Earlier future-tense trial proposals below/above are superseded by that operational guide.

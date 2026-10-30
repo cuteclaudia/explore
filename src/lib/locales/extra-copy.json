@@ -2458,5 +2458,75 @@
     "it": "Calendario",
     "id": "Kalender",
     "th": "ปฏิทิน"
+  },
+  "Familiar workflows": {
+    "uk": "Знайомі робочі процеси",
+    "nl": "Vertrouwde werkwijzen",
+    "sv": "Välbekanta arbetsflöden",
+    "fi": "Tutut työnkulut",
+    "nb": "Kjente arbeidsflyter",
+    "it": "Flussi di lavoro familiari",
+    "id": "Alur kerja yang dikenal",
+    "th": "ขั้นตอนการทำงานที่คุ้นเคย"
+  },
+  "Write reports, essays and everyday documents. Organise the page layout and references, then prepare a PDF to share. Check the accepted app build for the document formats you use.": {
+    "uk": "Пишіть звіти, есе й повсякденні документи. Упорядковуйте сторінки та посилання, готуйте PDF для поширення. Перевіряйте потрібні формати у схваленій версії.",
+    "nl": "Schrijf rapporten, essays en documenten. Orden pagina's en referenties en maak een PDF om te delen. Controleer je bestandsformaten in de geteste versie.",
+    "sv": "Skriv rapporter, uppsatser och vardagsdokument. Ordna sidlayout och referenser och skapa PDF för delning. Kontrollera filformaten i den godkända versionen.",
+    "fi": "Kirjoita raportteja, esseitä ja arkisia asiakirjoja. Järjestä sivut ja viitteet ja valmistele jaettava PDF. Tarkista tiedostomuodot hyväksytystä versiosta.",
+    "nb": "Skriv rapporter, essays og dokumenter. Ordne sider og referanser og lag en PDF til deling. Kontroller filformatene i godkjent versjon.",
+    "it": "Scrivi relazioni, saggi e documenti. Organizza pagine e riferimenti e prepara un PDF da condividere. Verifica i formati nella versione approvata.",
+    "id": "Tulis laporan, esai, dan dokumen sehari-hari. Atur halaman dan referensi, lalu siapkan PDF untuk dibagikan. Periksa format file pada versi yang telah diuji.",
+    "th": "เขียนรายงาน เรียงความ และเอกสารทั่วไป จัดหน้าและอ้างอิง แล้วเตรียม PDF เพื่อแบ่งปัน ตรวจสอบรูปแบบไฟล์กับแอปรุ่นที่ผ่านการตรวจสอบ"
+  },
+  "Read and organise PDFs, review pages and add annotations. Forms and supported editing tools belong in the same workspace; the exact capabilities depend on the accepted build and document.": {
+    "uk": "Читайте й упорядковуйте PDF, переглядайте сторінки та додавайте анотації. Форми й підтримуване редагування — в одному просторі; можливості залежать від версії та документа.",
+    "nl": "Lees en orden PDF's, bekijk pagina's en voeg annotaties toe. Formulieren en ondersteunde bewerking staan samen; mogelijkheden hangen af van versie en document.",
+    "sv": "Läs och ordna PDF, granska sidor och kommentera. Formulär och stödd redigering samlas; funktionerna beror på version och dokument.",
+    "fi": "Lue ja järjestä PDF-tiedostoja, tarkista sivuja ja lisää merkintöjä. Lomakkeet ja tuettu muokkaus ovat yhdessä; ominaisuudet riippuvat versiosta ja asiakirjasta.",
+    "nb": "Les og organiser PDF, se gjennom sider og legg til merknader. Skjemaer og støttet redigering samles; funksjoner avhenger av versjon og dokument.",
+    "it": "Leggi e organizza PDF, rivedi pagine e aggiungi annotazioni. Moduli e strumenti supportati sono riuniti; le capacità dipendono da versione e documento.",
+    "id": "Baca dan atur PDF, tinjau halaman, dan tambahkan anotasi. Formulir dan alat sunting yang didukung tersedia bersama; kemampuan bergantung pada versi dan dokumen.",
+    "th": "อ่านและจัดระเบียบ PDF ตรวจหน้าและเพิ่มคำอธิบายประกอบ รวมแบบฟอร์มและเครื่องมือแก้ไขที่รองรับไว้ด้วยกัน ความสามารถขึ้นอยู่กับรุ่นและเอกสาร"
+  },
+  "Develop photographs with exposure and colour controls and organise a photo collection. Library and web-sync behaviour remain subject to release checks; no cloud-storage allowance is implied.": {
+    "uk": "Обробляйте фото регуляторами експозиції й кольору та впорядковуйте колекцію. Бібліотека й вебсинхронізація ще перевіряються; хмарний обсяг не обіцяється.",
+    "nl": "Ontwikkel foto's met belichtings- en kleurregelaars en orden je collectie. Bibliotheek en websync moeten worden getest; inbegrepen cloudopslag wordt niet beloofd.",
+    "sv": "Framkalla foton med exponerings- och färgreglage och ordna samlingen. Bibliotek och webbsynk ska verifieras; inkluderad molnlagring utlovas inte.",
+    "fi": "Kehitä kuvia valotus- ja värisäädöillä ja järjestä kokoelmasi. Kirjasto ja verkkosynkronointi vaativat testit; mukana tulevaa pilvitilaa ei luvata.",
+    "nb": "Fremkall bilder med eksponerings- og fargekontroller og organiser samlingen. Bibliotek og nettsynk må verifiseres; inkludert skylagring er ikke lovet.",
+    "it": "Sviluppa foto con controlli di esposizione e colore e organizza la raccolta. Libreria e sincronizzazione web sono da verificare; non è promesso spazio cloud incluso.",
+    "id": "Olah foto dengan kontrol pencahayaan dan warna lalu atur koleksi. Pustaka dan sinkronisasi web masih perlu pengujian; tidak menjanjikan kuota penyimpanan cloud.",
+    "th": "ปรับภาพด้วยแสงและสีแล้วจัดคอลเลกชัน คลังภาพและการซิงก์เว็บยังต้องตรวจสอบก่อนเผยแพร่ ไม่ได้หมายความว่ามีพื้นที่คลาวด์รวมให้"
+  },
+  "Build image compositions with layers, masks, selections and adjustments. Use a dedicated editing workspace for combining artwork and refining an image; supported formats depend on the accepted build.": {
+    "uk": "Створюйте композиції з шарами, масками, виділенням і корекцією. Поєднуйте й вдосконалюйте зображення в окремому редакторі; формати залежать від схваленої версії.",
+    "nl": "Maak composities met lagen, maskers, selecties en aanpassingen. Combineer en verfijn beelden in een eigen editor; formaten hangen af van de geteste versie.",
+    "sv": "Skapa kompositioner med lager, masker, markeringar och justeringar. Kombinera och förfina bilder i en egen editor; format beror på godkänd version.",
+    "fi": "Sommittele kuvia tasoilla, maskeilla, valinnoilla ja säädöillä. Yhdistä ja viimeistele kuvat omassa editorissa; muodot riippuvat hyväksytystä versiosta.",
+    "nb": "Lag komposisjoner med lag, masker, markeringer og justeringer. Kombiner og finpuss bilder i en egen editor; formater avhenger av godkjent versjon.",
+    "it": "Crea composizioni con livelli, maschere, selezioni e regolazioni. Combina e rifinisci immagini in un editor dedicato; formati secondo la versione verificata.",
+    "id": "Buat komposisi dengan lapisan, masker, seleksi, dan penyesuaian. Gabungkan dan sempurnakan gambar dalam editor khusus; format bergantung pada versi yang diuji.",
+    "th": "สร้างองค์ประกอบด้วยเลเยอร์ มาสก์ การเลือก และการปรับแต่ง รวมและขัดเกลาภาพในพื้นที่แก้ไขเฉพาะ รูปแบบที่รองรับขึ้นอยู่กับรุ่นที่ตรวจสอบ"
+  },
+  "A desktop workspace for email, calendar, contacts and tasks using supported mail accounts. The app is in development. Shared contacts with Projects and CRM are planned, pending the confirmed SoraMail data interface.": {
+    "uk": "Настільний простір для пошти, календаря, контактів і завдань із підтримуваними обліковими записами. У розробці. Спільні контакти з Projects і CRM заплановані після підтвердження інтерфейсу SoraMail.",
+    "nl": "Desktopruimte voor e-mail, agenda, contacten en taken met ondersteunde accounts. In ontwikkeling. Gedeelde contacten met Projects en CRM volgen na bevestiging van de SoraMail-interface.",
+    "sv": "Datorarbetsyta för e-post, kalender, kontakter och uppgifter med stödda konton. Under utveckling. Delade kontakter med Projects och CRM planeras efter bekräftat SoraMail-gränssnitt.",
+    "fi": "Työpöytätila sähköpostille, kalenterille, yhteystiedoille ja tehtäville tuetuilla tileillä. Kehitteillä. Yhteiset kontaktit Projectsin ja CRM:n kanssa odottavat SoraMail-rajapinnan vahvistusta.",
+    "nb": "Skrivebordsområde for e-post, kalender, kontakter og oppgaver med støttede kontoer. Under utvikling. Delte kontakter med Projects og CRM planlegges etter bekreftet SoraMail-grensesnitt.",
+    "it": "Spazio desktop per email, calendario, contatti e attività con account supportati. In sviluppo. Contatti condivisi con Projects e CRM previsti dopo conferma dell’interfaccia SoraMail.",
+    "id": "Ruang desktop untuk email, kalender, kontak, dan tugas pada akun yang didukung. Sedang dikembangkan. Kontak bersama Projects dan CRM menunggu antarmuka data SoraMail yang dikonfirmasi.",
+    "th": "พื้นที่เดสก์ท็อปสำหรับอีเมล ปฏิทิน รายชื่อติดต่อ และงานด้วยบัญชีที่รองรับ อยู่ระหว่างพัฒนา การแชร์รายชื่อติดต่อกับ Projects และ CRM วางแผนหลังยืนยันอินเทอร์เฟซ SoraMail"
+  },
+  "A desktop spreadsheet workspace for tables, formulas, charts and data. Workbook and CSV workflows are in development; file compatibility and advanced features must be checked against the released app.": {
+    "uk": "Настільні таблиці для даних, формул і діаграм. Робота з книгами й CSV розробляється; сумісність та розширені функції слід перевірити у випущеному застосунку.",
+    "nl": "Desktopspreadsheet voor tabellen, formules, grafieken en gegevens. Werkmappen en CSV zijn in ontwikkeling; controleer compatibiliteit en geavanceerde functies in de uitgebrachte app.",
+    "sv": "Datorbaserat kalkylblad för tabeller, formler, diagram och data. Arbetsböcker och CSV utvecklas; kompatibilitet och avancerade funktioner ska kontrolleras i släppt app.",
+    "fi": "Työpöytätaulukkolaskenta taulukoille, kaavoille, kaavioille ja tiedoille. Työkirja- ja CSV-toiminnot kehittyvät; yhteensopivuus ja edistyneet ominaisuudet on tarkistettava julkaistusta sovelluksesta.",
+    "nb": "Regneark for tabeller, formler, diagrammer og data. Arbeidsbøker og CSV utvikles; kompatibilitet og avanserte funksjoner må kontrolleres i utgitt app.",
+    "it": "Foglio di calcolo desktop per tabelle, formule, grafici e dati. Cartelle di lavoro e CSV sono in sviluppo; compatibilità e funzioni avanzate vanno verificate nella versione rilasciata.",
+    "id": "Lembar kerja desktop untuk tabel, rumus, grafik, dan data. Alur buku kerja dan CSV masih dikembangkan; kompatibilitas dan fitur lanjutan perlu diperiksa pada aplikasi rilis.",
+    "th": "สเปรดชีตเดสก์ท็อปสำหรับตาราง สูตร กราฟ และข้อมูล สมุดงานและ CSV อยู่ระหว่างพัฒนา ต้องตรวจสอบความเข้ากันได้และฟีเจอร์ขั้นสูงกับแอปรุ่นที่เผยแพร่"
   }
 }

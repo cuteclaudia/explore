@@ -8,10 +8,10 @@ export function registrationFields(raw){
  let services;try{services=requestedServices(f.getAll('services'));}catch(e){throw new AccessError(400,e.message);}
  return {email,password,data:{full_name:name,requested_services:services}};
 }
-export function accountStatus(user,owners){
- const owner=isOwnerIdentity(user.id,owners),permissions=permissionsFor(user,owners),suspended=!owner&&user.appMetadata?.suspended===true;
+export function accountStatus(user,owners,options={}){
+ const owner=isOwnerIdentity(user.id,owners),permissions=permissionsFor(user,owners,options),suspended=!owner&&user.appMetadata?.suspended===true;
  const approved=!suspended&&(owner||permissions['beta.soraspace']===true||Object.entries(permissions).some(([key,value])=>value&&(key.startsWith('tools.')||key.startsWith('desktop.'))));
- return {id:user.id,email:user.email,status:suspended?'suspended':approved?'approved':'pending',websiteTrial:!suspended&&permissions['beta.soraspace']===true,services:permissions};
+ return {id:user.id,email:user.email,status:suspended?'suspended':approved?'approved':['expired','revoked'].includes(options.trialStatus)?'expired':'pending',websiteTrial:!suspended&&permissions['beta.soraspace']===true,services:permissions};
 }
 export function serviceRequests(store){
  const key=user=>'requests/'+createHash('sha256').update(user.id).digest('hex');
