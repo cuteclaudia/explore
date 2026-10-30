@@ -1,0 +1,5 @@
+# Verified PyPI wheel set used for the CPU runtime import check only.
+# CPython 3.12 / Linux x86_64; not a complete tokenizer/conversion or deployment lock.
+ctranslate2==4.8.4 --hash=sha256:0d1830d12c84b2240bf51893ee6bfe24a671dccfd232b05a74ef197d27fb164a
+PyYAML==6.0.3 --hash=sha256:ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc
+numpy==2.5.4 --hash=sha256:fbde6962867ee75b48b0ee29b2b9372ec5d617799dbaf38e82dc0596f2f7738a

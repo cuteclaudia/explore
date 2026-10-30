@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "runtimeVersion": "4.8.4",
+  "modelId": "google/madlad400-3b-mt",
+  "modelRevision": "REPLACE_WITH_VERIFIED_40_HEX_MODEL_REVISION",
+  "files": {},
+  "targets": {},
+  "evaluationPairs": []
+}
