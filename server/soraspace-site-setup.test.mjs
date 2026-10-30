@@ -41,3 +41,9 @@ test('all five starter templates preserve selected pages and private draft statu
  assert.equal(recommendedSiteAnswers('business').template,'practice');
  assert.equal(recommendedSiteAnswers('personal').template,'canvas');
 });
+
+test('new site setups default to system appearance while explicit saved palettes remain supported',()=>{
+ for(const purpose of Object.keys(SITE_PURPOSES))assert.equal(recommendedSiteAnswers(purpose).palette,'system');
+ assert.equal(createSiteDraft(input()).theme.palette,'system');
+ for(const palette of ['moss','ink','clay'])assert.equal(createSiteDraft(input({palette})).theme.palette,palette);
+});

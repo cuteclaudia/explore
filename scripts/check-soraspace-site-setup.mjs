@@ -16,7 +16,7 @@ try{
  });
  const response=await page.goto(base+'/studio/soraspace-setup');assert.equal(response.status(),200);assert.equal(response.headers()['cache-control'],'private, no-store');
  await page.locator('#setup-interactive').waitFor({state:'visible'});
- assert.equal(await page.locator('[data-step="0"]').isVisible(),true);
+ assert.equal(await page.locator('[data-step="0"]').isVisible(),true);assert(await page.locator('[name=palette][value=system]').isChecked());
  await page.locator('[name=purpose][value=academic]').check();await page.locator('#setup-next').click();
  assert.equal(await page.locator('[name=template]:checked').inputValue(),'folio');
  assert.deepEqual(await page.locator('[name=pages]:checked').evaluateAll(nodes=>nodes.map(n=>n.value)),['home','about','articles','contact']);
@@ -50,6 +50,12 @@ try{
   assert.equal(await page.locator('.draft-preview').getAttribute('data-template'),template);
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
  }
+ await page.locator('#setup-back').click();await page.locator('[name=palette][value=system]').check();await page.locator('#setup-next').click();
+ assert.equal(await page.locator('.draft-preview').getAttribute('data-palette'),'system');
+ const lightPreview=await page.locator('#setup-preview').evaluate(el=>getComputedStyle(el).backgroundColor);
+ await page.emulateMedia({colorScheme:'dark'});
+ const darkPreview=await page.locator('#setup-preview').evaluate(el=>getComputedStyle(el).backgroundColor);
+ assert.notEqual(lightPreview,darkPreview,'System draft reacts to OS theme');await page.emulateMedia({colorScheme:'light'});
  await page.keyboard.press('Shift+Tab');assert(await page.locator('#site-setup').evaluate(root=>root.contains(document.activeElement)));
  await page.goto(base+'/studio');assert.equal(await page.locator('a[href="/studio/soraspace-setup"]').count(),1);
  assert.deepEqual(errors,[]);console.log('PASS suggested templates/pages, custom choice preservation, validation, edit/regenerate, XSS-safe preview, private JSON download, no mutations, keyboard and 320–1366px layouts');

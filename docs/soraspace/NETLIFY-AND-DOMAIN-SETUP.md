@@ -2,6 +2,8 @@
 
 30 October 2026 (Sydney). The public landing site is prepared in `sites/soraspace`. **Claudia chose manual ZIP deployment for the first launch; use Option A below. Git deployment is optional.** The domain registration, current DNS records and Netlify projects have not been checked through a live provider session. Official help pages could not be fetched from this execution environment (proxy CONNECT 403); dashboard labels may differ. Always use the exact DNS values Netlify displays for your new project.
 
+Update: the public project is now named **soraspacestudio**, with `https://soraspacestudio.netlify.app`. Claudia is linking GitHub for automatic updates; follow [the current continuous-deployment instructions](CONTINUOUS-DEPLOYMENT-AND-APPEARANCE.md). This first-launch guide remains useful for DNS.
+
 ## The arrangement
 
 | Address | Purpose | Netlify project | Action now |

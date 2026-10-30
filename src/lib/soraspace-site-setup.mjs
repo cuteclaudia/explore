@@ -8,7 +8,7 @@ export const SITE_TEMPLATES=freeze({
  practice:{name:'Practice',description:'A focused introduction for independent businesses and professional services.'},
  canvas:{name:'Canvas',description:'A simple, flexible personal space with a compact collection of pages.'}
 });
-export const SITE_PALETTES=freeze({moss:{name:'Moss',accent:'#36594a',wash:'#e7eee9'},ink:{name:'Ink',accent:'#344e72',wash:'#e8edf5'},clay:{name:'Clay',accent:'#854a36',wash:'#f4e9e3'}});
+export const SITE_PALETTES=freeze({system:{name:'System',accent:'Highlight',wash:'ButtonFace'},moss:{name:'Moss',accent:'#36594a',wash:'#e7eee9'},ink:{name:'Ink',accent:'#344e72',wash:'#e8edf5'},clay:{name:'Clay',accent:'#854a36',wash:'#f4e9e3'}});
 export const SITE_PURPOSES=freeze({
  student:{name:'Study & projects',description:'Introduce yourself and share coursework or projects.',pages:['home','about','articles'],template:'folio'},
  academic:{name:'Research & academic work',description:'Present your interests, articles and ways to get in touch.',pages:['home','about','articles','contact'],template:'folio'},
@@ -24,7 +24,7 @@ function text(value,key,max,required=false){
 }
 export function recommendedSiteAnswers(purpose='personal'){
  if(!Object.hasOwn(SITE_PURPOSES,purpose))throw new SiteSetupError('purpose','Choose a site purpose.');
- const preset=SITE_PURPOSES[purpose];return {purpose,pages:[...preset.pages],template:preset.template,palette:'moss',density:'compact',siteName:'',tagline:'',introduction:''};
+ const preset=SITE_PURPOSES[purpose];return {purpose,pages:[...preset.pages],template:preset.template,palette:'system',density:'compact',siteName:'',tagline:'',introduction:''};
 }
 export function validateSiteAnswers(input){
  const keys=['purpose','pages','template','palette','density','siteName','tagline','introduction'];
