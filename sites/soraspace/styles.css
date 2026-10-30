@@ -175,3 +175,17 @@ html { scroll-padding-top: 12px; }
   .mock-apps b, .template-drawing i { background: Canvas; color: CanvasText; border: 1px solid CanvasText; }
   .mini-landscape { background: Canvas; border: 1px solid CanvasText; }
 }
+/* Real, protected destinations on the existing authenticated origin. */
+.workspace-entry { background: var(--soft); }
+.workspace-shortcuts { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; margin-top: 14px; }
+.workspace-shortcuts article { min-width: 0; padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.shortcut-label { display: block; color: var(--muted); font-size: 10px; margin-bottom: 6px; }
+.workspace-shortcuts h3 { margin: 0 0 6px; }
+.workspace-shortcuts p { font-size: 12px; color: var(--muted); margin: 0; }
+.workspace-shortcuts a { display: inline-flex; align-items: center; min-height: 44px; font-size: 12px; font-weight: 600; color: LinkText; }
+.workspace-roadmap { margin-top: 8px; font-size: 12px; }
+.workspace-roadmap summary { cursor: pointer; min-height: 44px; align-content: center; }
+.workspace-roadmap p { max-width: 85ch; color: var(--muted); margin-bottom: 0; }
+.site-footer > a.owner-admin { margin-left: 0; }
+@media(max-width:900px) { .workspace-shortcuts { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width:450px) { .workspace-shortcuts { grid-template-columns: minmax(0,1fr); } }
