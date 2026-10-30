@@ -51,3 +51,13 @@ Paid service additions/removals need a reviewed quote, currency/tax, effective d
 Server tests cover default-off signup, provider autoconfirm/disabled refusal, CSRF, payload/role rejection, no entitlement in signup metadata, unverified/pending/suspended status, own service preference CAS, isolated approved trial drafts, revoked grants and no administrator escalation. Browser checks use actual signup markup/controller and welcome controller with mocked Identity/email/account replies: chosen services, check-email state, pending approval, preference updates with no grant/payment, refreshed approval, account clearing and phone/tablet layout. Existing login, permission, editor and packaged deployment regressions also run. Live provider email and real-user signup still require the manual checklist above.
 
 The public page now has separate Sign In and Sign Up buttons, a Pricing link with two proposed package directions (amounts unannounced), and app/research previews. The trial workspace shows its website shortcuts even if no separate app bundle has been granted. See [research and projects](RESEARCH-AND-PROJECTS-ROADMAP.md) for planned services and current desktop-only Zotero evidence.
+
+## Pricing presentation decision — 30 October 2026
+
+Launch package prices are **starting prices**, not a promise that every service is included. Display each as “From A$[approved amount]/month” (or the appropriate yearly billing period), state precisely what the base includes, and separately identify optional features/packages. Do not publish the brackets or invent an amount: the current public cards say “Starting price to be announced”.
+
+Users choose their package and features at signup and may change services later. Before paid subscriptions launch, the provider-backed quote must show the full selected recurring total, billing period, tax treatment, and any one-off charges before confirmation. Changes need a clear preview of effective dates and any proration; a starting-price headline must never be treated as the checkout total.
+
+Current behaviour remains a free approved trial: choices are requests, not entitlement or billing changes. Paid prices, a live calculator, checkout and automated subscription changes are not implemented by this copy update.
+
+Both pricing cards link directly to `/studio/signup` with an allowlisted `package=workspace` or `package=workspace-website` starting point. Signup displays that choice; Website is initially selected for Workspace + Website, and unselected for Workspace. Other service choices remain editable, with no paid package or entitlement silently granted. Unknown query values are ignored and not reflected into the page. The saved trial request records the user's selected services, not a purchased package.

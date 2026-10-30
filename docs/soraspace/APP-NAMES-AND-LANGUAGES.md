@@ -47,3 +47,9 @@ Authored articles, private documents, filenames, research sources and customer p
 `server/interface-locales.test.mjs`, `scripts/check-interface-languages.mjs` and expanded `scripts/check-soraspace-landing.mjs` check language allowlists, locale routes/metadata, eight choices, branding/kanji, no-script public pages, 320/768/1366px layouts, preserved auth destinations and private-content exclusion. Login recovery and production SSR packaging checks remain required when redirect handling changes.
 
 Deploy through the existing `cuteclaudia/explore` main branch. Public Netlify base stays `sites/soraspace`; Explore stays at the repository root. No environment variables or DNS changes are required for names or languages. Signup's existing separate enablement and identity settings are unchanged.
+
+## Expanded splash overview
+
+The opening tool panel also links to website templates for blogging/journals and photography galleries, plus the planned research and Projects sections. Research management explicitly covers sources, notes, citations, bibliographies and Zotero compatibility; Projects includes the requested staged jobs/time/alterations/rates/invoices/payments direction.
+
+Eight additional app families are shown publicly as in development: Akari (presentations), Sen (illustration), Hanga (page layout), Hinagata (UI design), Kage (video), Hibiki (audio), Mai (motion) and Takumi (CAD). The inventory is shared with the owner's workspace roadmap in `src/lib/soraspace-upcoming-apps.mjs`. These working names are retained until their Sora branding is agreed; the entries have no launch links, capabilities or published release dates.
