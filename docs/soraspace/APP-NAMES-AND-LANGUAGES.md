@@ -17,9 +17,9 @@ This is website presentation. App IDs, capability keys, bridge messages, cloud f
 
 ## Languages and implemented coverage
 
-English plus Japanese (`ja`), Traditional Chinese (`zh-Hant`), Simplified Chinese (`zh-Hans`), Korean (`ko`), French (`fr`), German (`de`) and European Portuguese (`pt-PT`). Chinese scripts and Portuguese region are separate explicit choices.
+English plus Japanese (`ja`), Traditional Chinese (`zh-Hant`), Simplified Chinese (`zh-Hans`), Korean (`ko`), French (`fr`), German (`de`) and European Portuguese (`pt-PT`), plus Ukrainian (`uk`), Dutch (`nl`), Swedish (`sv`), Finnish (`fi`), Norwegian Bokmål (`nb`), Italian (`it`), Indonesian (`id`) and Thai (`th`). Chinese scripts and Portuguese region are separate explicit choices.
 
-- **SoraSpace public landing:** translated visible marketing copy, templates/descriptions, pricing/availability explanations, metadata, native HTML language picker, canonical URLs, reciprocal language links and sitemap entries. English remains `/`; the seven translations have their own paths, e.g. `/ja/` and `/pt-PT/`. No JavaScript, translation API or additional hosting project is required.
+- **SoraSpace public landing:** translated visible marketing copy, templates/descriptions, pricing/availability explanations, metadata, native HTML language picker, canonical URLs, reciprocal language links and sitemap entries. English remains `/`; the fifteen translations have their own paths, e.g. `/ja/` and `/pt-PT/`. No JavaScript, translation API or additional hosting project is required.
 - **Explore shared interface:** language selector, main navigation, marked account-menu/footer labels and selected signup/login controls. This is partial interface coverage; page bodies, detailed settings and admin tools are not fully translated yet.
 - **SoraSpace workspace:** common sidebar labels, search placeholder, selected dashboard controls and a persisted language choice. Detailed dashboard paragraphs, errors and editor controls still include English.
 - **HobbyNest:** shared language choice and marked navigation/preview labels. Product descriptions, checkout/fulfilment language and most shop/admin copy remain a further pass.
@@ -44,7 +44,7 @@ Authored articles, private documents, filenames, research sources and customer p
 
 ## Validation
 
-`server/interface-locales.test.mjs`, `scripts/check-interface-languages.mjs` and expanded `scripts/check-soraspace-landing.mjs` check language allowlists, locale routes/metadata, eight choices, branding/kanji, no-script public pages, 320/768/1366px layouts, preserved auth destinations and private-content exclusion. Login recovery and production SSR packaging checks remain required when redirect handling changes.
+`server/interface-locales.test.mjs`, `scripts/check-interface-languages.mjs` and expanded `scripts/check-soraspace-landing.mjs` check language allowlists, locale routes/metadata, sixteen choices, branding/kanji, no-script public pages, 320/768/1366px layouts, preserved auth destinations and private-content exclusion. Login recovery and production SSR packaging checks remain required when redirect handling changes.
 
 Deploy through the existing `cuteclaudia/explore` main branch. Public Netlify base stays `sites/soraspace`; Explore stays at the repository root. No environment variables or DNS changes are required for names or languages. Signup's existing separate enablement and identity settings are unchanged.
 
@@ -53,3 +53,11 @@ Deploy through the existing `cuteclaudia/explore` main branch. Public Netlify ba
 The opening tool panel also links to website templates for blogging/journals and photography galleries, plus the planned research and Projects sections. Research management explicitly covers sources, notes, citations, bibliographies and Zotero compatibility; Projects includes the requested staged jobs/time/alterations/rates/invoices/payments direction.
 
 Eight additional app families are shown publicly as in development: Akari (presentations), Sen (illustration), Hanga (page layout), Hinagata (UI design), Kage (video), Hibiki (audio), Mai (motion) and Takumi (CAD). The inventory is shared with the owner's workspace roadmap in `src/lib/soraspace-upcoming-apps.mjs`. These working names are retained until their Sora branding is agreed; the entries have no launch links, capabilities or published release dates.
+
+## Language ordering
+
+All selectors use the same approximate total-speaker order (first and second language combined): English; Chinese Simplified and Traditional together; French; Portuguese; Indonesian; German; Japanese; Korean; Italian; Thai; Ukrainian; Dutch; Swedish; Finnish; Norwegian. Regional Portuguese and English choices inherit their language's rank; Chinese script variants do not represent separately ranked spoken languages. These are approximate language-family totals, not a live demographic statistic or a measure of user importance. No automatic IP location, browser-language override or tracking was added.
+
+Public reference points for a later reviewed demographic update: Ethnologue (https://www.ethnologue.com/) and https://en.wikipedia.org/wiki/List_of_languages_by_total_number_of_speakers . Live sources could not be retrieved from this workspace; no exact speaker counts are presented to users. Norwegian currently means Bokmål, explicitly labelled; Nynorsk is not silently included.
+
+All 225 existing catalogue entries have a first-pass translation in each additional language. The public landing builds sixteen separate locales. Existing partial translation coverage on Explore, HobbyNest, admin and native app internals remains as described above. Native-speaker review is still required before promising fully localized paid service. Interface language selection does not enable automatic article translation.

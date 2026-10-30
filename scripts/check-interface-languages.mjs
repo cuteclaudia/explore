@@ -35,5 +35,5 @@ try{
  await page.locator('[data-ui-language]').selectOption('pt-PT');assert.equal(await page.locator('html').getAttribute('lang'),'pt-PT');assert.equal(new URL(page.url()).searchParams.get('lang'),'pt-PT');
  await page.goto(base+'/hobbynest');await page.waitForFunction(()=>document.documentElement.lang==='pt-PT');assert.equal(await page.locator('[data-ui-language]').inputValue(),'pt-PT');assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
  await page.goto(base+'/kobo?lang=__proto__');await page.waitForFunction(()=>document.querySelector('[data-ui-language]').value==='pt-PT');
- assert.deepEqual(errors,[]);console.log('PASS eight locale choices across catalogue/workspace at 320/768/1366px, signup labels, saved preference, invalid locale fallback and private-content exclusion.');
+ assert.deepEqual(errors,[]);console.log('PASS sixteen locale choices across catalogue/workspace at 320/768/1366px, signup labels, saved preference, invalid locale fallback and private-content exclusion.');
 }finally{await browser.close();}

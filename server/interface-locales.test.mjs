@@ -8,7 +8,7 @@ import {APP_PRESENTATION} from '../src/lib/app-presentation.mjs';
 import {KOBO_APPS} from '../src/lib/kobo-catalogue.mjs';
 const source=await readFile(new URL('../sites/soraspace/index.html',import.meta.url),'utf8');
 test('locale catalogues distinguish Chinese scripts and European Portuguese and reject unsafe codes',()=>{
- assert.deepEqual(Object.keys(LANGUAGES),['en','ja','zh-Hant','zh-Hans','ko','fr','de','pt-PT']);
+ assert.deepEqual(Object.keys(LANGUAGES),['en','zh-Hans','zh-Hant','fr','pt-PT','id','de','ja','ko','it','th','uk','nl','sv','fi','nb']);
  for(const value of ['__proto__','constructor','pt-BR','../../','ja<script>',null,{}])assert.equal(languageCode(value),'en');
  for(const row of Object.values(PUBLIC_COPY)){assert.deepEqual(Object.keys(row),Object.keys(LANGUAGES));for(const text of Object.values(row))assert.equal(typeof text,'string');}
  assert.equal(translate('Your files','pt-PT'),'Os seus ficheiros');assert.notEqual(translate('Files','zh-Hant'),translate('Files','zh-Hans'));

@@ -56,10 +56,10 @@ try{
    assert.equal(await page.locator('h1').textContent(),translate('Space for everything you create.',code));
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Locale fits '+code+' at '+width);
    await page.locator('.language-picker summary').click();
-   assert.equal(await page.locator('.language-picker a').count(),8);
+   assert.equal(await page.locator('.language-picker a').count(),Object.keys(LANGUAGES).length);assert.deepEqual(await page.locator('.language-picker a').evaluateAll(links=>links.map(link=>link.hreflang)),Object.values(LANGUAGES).map(language=>language.tag));
    assert.equal(await page.locator('.language-picker a[hreflang="en-AU"]').getAttribute('href'),'/');
    assert.equal(await page.locator('.language-picker a[aria-current]').getAttribute('hreflang'),language.tag);
-   assert.equal(await page.locator('link[rel=alternate]').count(),9);
+   assert.equal(await page.locator('link[rel=alternate]').count(),Object.keys(LANGUAGES).length+1);
    assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'),'https://www.soraspace.studio'+localePath(code));
    for(const link of await page.locator('.tool-link').all()){const target=new URL(await link.getAttribute('href'));assert.equal(target.origin,'https://www.claudiagilbert.com');if(code!=='en')assert.equal(target.searchParams.get('lang'),code);if(target.searchParams.has('desktop'))assert.equal(target.hash,'#workspace-app-'+target.searchParams.get('desktop'));}
    for(const [i,packageId] of ['workspace','workspace-website'].entries()){const signup=new URL(await page.locator('#pricing .pricing-grid article>a').nth(i).getAttribute('href'));assert.equal(signup.pathname,'/studio/signup');assert.equal(signup.searchParams.get('package'),packageId);if(code!=='en')assert.equal(signup.searchParams.get('lang'),code);}

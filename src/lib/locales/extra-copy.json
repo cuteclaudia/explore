@@ -1,0 +1,2252 @@
+{
+  "Skip to content": {
+    "uk": "Перейти до вмісту",
+    "nl": "Naar inhoud",
+    "sv": "Hoppa till innehåll",
+    "fi": "Siirry sisältöön",
+    "nb": "Hopp til innhold",
+    "it": "Vai al contenuto",
+    "id": "Lewati ke konten",
+    "th": "ข้ามไปยังเนื้อหา"
+  },
+  "Apps": {
+    "uk": "Застосунки",
+    "nl": "Apps",
+    "sv": "Appar",
+    "fi": "Sovellukset",
+    "nb": "Apper",
+    "it": "App",
+    "id": "Aplikasi",
+    "th": "แอป"
+  },
+  "Templates": {
+    "uk": "Шаблони",
+    "nl": "Sjablonen",
+    "sv": "Mallar",
+    "fi": "Mallit",
+    "nb": "Maler",
+    "it": "Modelli",
+    "id": "Templat",
+    "th": "เทมเพลต"
+  },
+  "Workspace": {
+    "uk": "Робочий простір",
+    "nl": "Werkruimte",
+    "sv": "Arbetsyta",
+    "fi": "Työtila",
+    "nb": "Arbeidsområde",
+    "it": "Spazio di lavoro",
+    "id": "Ruang kerja",
+    "th": "พื้นที่ทำงาน"
+  },
+  "Pricing": {
+    "uk": "Ціни",
+    "nl": "Prijzen",
+    "sv": "Priser",
+    "fi": "Hinnat",
+    "nb": "Priser",
+    "it": "Prezzi",
+    "id": "Harga",
+    "th": "ราคา"
+  },
+  "System": {
+    "uk": "Система",
+    "nl": "Systeem",
+    "sv": "System",
+    "fi": "Järjestelmä",
+    "nb": "System",
+    "it": "Sistema",
+    "id": "Sistem",
+    "th": "ระบบ"
+  },
+  "Sign In": {
+    "uk": "Увійти",
+    "nl": "Inloggen",
+    "sv": "Logga in",
+    "fi": "Kirjaudu sisään",
+    "nb": "Logg inn",
+    "it": "Accedi",
+    "id": "Masuk",
+    "th": "เข้าสู่ระบบ"
+  },
+  "Sign Up": {
+    "uk": "Зареєструватися",
+    "nl": "Registreren",
+    "sv": "Registrera dig",
+    "fi": "Rekisteröidy",
+    "nb": "Registrer deg",
+    "it": "Registrati",
+    "id": "Daftar",
+    "th": "สมัครสมาชิก"
+  },
+  "Your workspace. Your website. Your way.": {
+    "uk": "Ваш простір. Ваш сайт. Ваш стиль.",
+    "nl": "Jouw werkruimte. Jouw website. Jouw manier.",
+    "sv": "Din arbetsyta. Din webbplats. På ditt sätt.",
+    "fi": "Oma työtila. Oma sivusto. Omalla tavalla.",
+    "nb": "Ditt arbeidsområde. Ditt nettsted. På din måte.",
+    "it": "Il tuo spazio. Il tuo sito. A modo tuo.",
+    "id": "Ruang kerja Anda. Situs Anda. Cara Anda.",
+    "th": "พื้นที่ทำงานของคุณ เว็บไซต์ของคุณ ในแบบของคุณ"
+  },
+  "Space for everything you create.": {
+    "uk": "Простір для всього, що ви створюєте.",
+    "nl": "Ruimte voor alles wat je maakt.",
+    "sv": "Plats för allt du skapar.",
+    "fi": "Tilaa kaikelle luomallesi.",
+    "nb": "Plass til alt du skaper.",
+    "it": "Spazio per tutto ciò che crei.",
+    "id": "Ruang untuk semua karya Anda.",
+    "th": "พื้นที่สำหรับทุกสิ่งที่คุณสร้าง"
+  },
+  "Write, create and organise your work. Build a website that feels like yours, with a workspace that brings it all together.": {
+    "uk": "Пишіть, творіть і впорядковуйте роботу. Поєднайте власний сайт і робочі інструменти.",
+    "nl": "Schrijf, creëer en organiseer je werk. Verbind je eigen website met je werkruimte.",
+    "sv": "Skriv, skapa och ordna ditt arbete. Samla din webbplats och dina verktyg.",
+    "fi": "Kirjoita, luo ja järjestä työsi. Yhdistä oma sivusto ja työkalut.",
+    "nb": "Skriv, skap og organiser arbeidet. Samle nettstedet og verktøyene dine.",
+    "it": "Scrivi, crea e organizza il lavoro. Riunisci il tuo sito e i tuoi strumenti.",
+    "id": "Tulis, berkarya, dan atur pekerjaan. Satukan situs dan alat kerja Anda.",
+    "th": "เขียน สร้างสรรค์ และจัดระเบียบงาน รวมเว็บไซต์และเครื่องมือของคุณไว้ด้วยกัน"
+  },
+  "Open workspace": {
+    "uk": "Відкрити робочий простір",
+    "nl": "Werkruimte openen",
+    "sv": "Öppna arbetsytan",
+    "fi": "Avaa työtila",
+    "nb": "Åpne arbeidsområdet",
+    "it": "Apri lo spazio di lavoro",
+    "id": "Buka ruang kerja",
+    "th": "เปิดพื้นที่ทำงาน"
+  },
+  "Create trial account ↗": {
+    "uk": "Створити пробний обліковий запис ↗",
+    "nl": "Proefaccount maken ↗",
+    "sv": "Skapa provkonto ↗",
+    "fi": "Luo kokeilutili ↗",
+    "nb": "Opprett prøvekonto ↗",
+    "it": "Crea un account di prova ↗",
+    "id": "Buat akun uji coba ↗",
+    "th": "สร้างบัญชีทดลอง ↗"
+  },
+  "Trial access · Email verification and approval required.": {
+    "uk": "Пробний доступ · Потрібні підтвердження пошти та схвалення.",
+    "nl": "Proeftoegang · E-mailbevestiging en goedkeuring vereist.",
+    "sv": "Provåtkomst · E-postbekräftelse och godkännande krävs.",
+    "fi": "Kokeilu · Sähköpostivahvistus ja hyväksyntä tarvitaan.",
+    "nb": "Prøvetilgang · E-postbekreftelse og godkjenning kreves.",
+    "it": "Accesso di prova · Verifica email e approvazione richieste.",
+    "id": "Akses uji coba · Memerlukan verifikasi email dan persetujuan.",
+    "th": "การทดลองใช้ · ต้องยืนยันอีเมลและได้รับอนุมัติ"
+  },
+  "Your creative space": {
+    "uk": "Ваш творчий простір",
+    "nl": "Jouw creatieve ruimte",
+    "sv": "Din kreativa plats",
+    "fi": "Luova tilasi",
+    "nb": "Ditt kreative rom",
+    "it": "Il tuo spazio creativo",
+    "id": "Ruang kreatif Anda",
+    "th": "พื้นที่สร้างสรรค์ของคุณ"
+  },
+  "Your workspace": {
+    "uk": "Ваш робочий простір",
+    "nl": "Jouw werkruimte",
+    "sv": "Din arbetsyta",
+    "fi": "Oma työtila",
+    "nb": "Ditt arbeidsområde",
+    "it": "Il tuo spazio di lavoro",
+    "id": "Ruang kerja Anda",
+    "th": "พื้นที่ทำงานของคุณ"
+  },
+  "Everything, in one place.": {
+    "uk": "Усе в одному місці.",
+    "nl": "Alles op één plek.",
+    "sv": "Allt på ett ställe.",
+    "fi": "Kaikki samassa paikassa.",
+    "nb": "Alt på ett sted.",
+    "it": "Tutto in un unico posto.",
+    "id": "Semuanya di satu tempat.",
+    "th": "ทุกอย่างในที่เดียว"
+  },
+  "Your files": {
+    "uk": "Ваші файли",
+    "nl": "Jouw bestanden",
+    "sv": "Dina filer",
+    "fi": "Omat tiedostot",
+    "nb": "Dine filer",
+    "it": "I tuoi file",
+    "id": "File Anda",
+    "th": "ไฟล์ของคุณ"
+  },
+  "Research notes": {
+    "uk": "Дослідницькі нотатки",
+    "nl": "Onderzoeksnotities",
+    "sv": "Forskningsanteckningar",
+    "fi": "Tutkimusmuistiinpanot",
+    "nb": "Forskningsnotater",
+    "it": "Note di ricerca",
+    "id": "Catatan penelitian",
+    "th": "บันทึกการวิจัย"
+  },
+  "Private": {
+    "uk": "Приватне",
+    "nl": "Privé",
+    "sv": "Privat",
+    "fi": "Yksityinen",
+    "nb": "Privat",
+    "it": "Privato",
+    "id": "Pribadi",
+    "th": "ส่วนตัว"
+  },
+  "Creative projects": {
+    "uk": "Творчі проєкти",
+    "nl": "Creatieve projecten",
+    "sv": "Kreativa projekt",
+    "fi": "Luovat projektit",
+    "nb": "Kreative prosjekter",
+    "it": "Progetti creativi",
+    "id": "Proyek kreatif",
+    "th": "โครงการสร้างสรรค์"
+  },
+  "Ideas for later": {
+    "uk": "Ідеї на потім",
+    "nl": "Ideeën voor later",
+    "sv": "Idéer för senare",
+    "fi": "Ideoita myöhemmäksi",
+    "nb": "Ideer til senere",
+    "it": "Idee per dopo",
+    "id": "Ide untuk nanti",
+    "th": "ไอเดียสำหรับภายหลัง"
+  },
+  "Your website": {
+    "uk": "Ваш сайт",
+    "nl": "Jouw website",
+    "sv": "Din webbplats",
+    "fi": "Oma sivusto",
+    "nb": "Ditt nettsted",
+    "it": "Il tuo sito",
+    "id": "Situs Anda",
+    "th": "เว็บไซต์ของคุณ"
+  },
+  "A space of your own.": {
+    "uk": "Ваш власний простір.",
+    "nl": "Een eigen plek.",
+    "sv": "En egen plats.",
+    "fi": "Oma paikka.",
+    "nb": "Et eget rom.",
+    "it": "Uno spazio tutto tuo.",
+    "id": "Ruang milik Anda sendiri.",
+    "th": "พื้นที่ที่เป็นของคุณเอง"
+  },
+  "Unpublished draft": {
+    "uk": "Неопублікована чернетка",
+    "nl": "Ongepubliceerd concept",
+    "sv": "Opublicerat utkast",
+    "fi": "Julkaisematon luonnos",
+    "nb": "Upublisert utkast",
+    "it": "Bozza non pubblicata",
+    "id": "Draf belum diterbitkan",
+    "th": "ฉบับร่างที่ยังไม่เผยแพร่"
+  },
+  "Illustrative workspace preview": {
+    "uk": "Ілюстрація робочого простору",
+    "nl": "Illustratieve werkruimte",
+    "sv": "Illustration av arbetsyta",
+    "fi": "Työtilan havainnekuva",
+    "nb": "Illustrasjon av arbeidsområde",
+    "it": "Anteprima illustrativa",
+    "id": "Ilustrasi ruang kerja",
+    "th": "ภาพจำลองพื้นที่ทำงาน"
+  },
+  "Made for the way you work": {
+    "uk": "Для вашого способу роботи",
+    "nl": "Gemaakt voor jouw werkwijze",
+    "sv": "För ditt sätt att arbeta",
+    "fi": "Omaan tapaasi työskennellä",
+    "nb": "For din måte å jobbe på",
+    "it": "Per il tuo modo di lavorare",
+    "id": "Untuk cara kerja Anda",
+    "th": "เพื่อวิธีทำงานของคุณ"
+  },
+  "Your everyday essentials, together.": {
+    "uk": "Повсякденні інструменти разом.",
+    "nl": "Je dagelijkse hulpmiddelen samen.",
+    "sv": "Dina vardagsverktyg samlade.",
+    "fi": "Arjen työkalut yhdessä.",
+    "nb": "Hverdagsverktøyene samlet.",
+    "it": "I tuoi strumenti quotidiani, insieme.",
+    "id": "Kebutuhan harian dalam satu tempat.",
+    "th": "เครื่องมือประจำวันรวมไว้ด้วยกัน"
+  },
+  "Apps, personal publishing and storage choices, in one workspace.": {
+    "uk": "Застосунки, публікації та сховище в одному просторі.",
+    "nl": "Apps, publicaties en opslag in één werkruimte.",
+    "sv": "Appar, publicering och lagring på en arbetsyta.",
+    "fi": "Sovellukset, julkaisut ja tallennus samassa työtilassa.",
+    "nb": "Apper, publisering og lagring i ett arbeidsområde.",
+    "it": "App, pubblicazioni e archiviazione in un unico spazio.",
+    "id": "Aplikasi, publikasi, dan penyimpanan dalam satu ruang kerja.",
+    "th": "แอป การเผยแพร่ และตัวเลือกจัดเก็บข้อมูลในพื้นที่เดียว"
+  },
+  "A workspace for your day": {
+    "uk": "Робочий простір на щодень",
+    "nl": "Een werkruimte voor je dag",
+    "sv": "En arbetsyta för din dag",
+    "fi": "Työtila arkeesi",
+    "nb": "Et arbeidsområde for dagen",
+    "it": "Uno spazio per la tua giornata",
+    "id": "Ruang kerja untuk keseharian",
+    "th": "พื้นที่ทำงานสำหรับแต่ละวัน"
+  },
+  "Documents, photos and creative tools, with your work easy to find.": {
+    "uk": "Документи, фото й творчі інструменти завжди під рукою.",
+    "nl": "Documenten, foto's en creatieve tools, makkelijk te vinden.",
+    "sv": "Dokument, foton och kreativa verktyg, lätta att hitta.",
+    "fi": "Asiakirjat, kuvat ja luovat työkalut helposti saatavilla.",
+    "nb": "Dokumenter, bilder og kreative verktøy, lett å finne.",
+    "it": "Documenti, foto e strumenti creativi facili da trovare.",
+    "id": "Dokumen, foto, dan alat kreatif yang mudah ditemukan.",
+    "th": "เอกสาร ภาพถ่าย และเครื่องมือสร้างสรรค์ที่ค้นหาได้ง่าย"
+  },
+  "A website that feels like you": {
+    "uk": "Сайт у вашому стилі",
+    "nl": "Een website die bij je past",
+    "sv": "En webbplats som känns som du",
+    "fi": "Oman näköinen sivusto",
+    "nb": "Et nettsted som føles som deg",
+    "it": "Un sito che ti rispecchia",
+    "id": "Situs yang mencerminkan Anda",
+    "th": "เว็บไซต์ที่สะท้อนตัวคุณ"
+  },
+  "Choose a template, customise your pages and review before publishing.": {
+    "uk": "Виберіть шаблон, налаштуйте сторінки й перевірте перед публікацією.",
+    "nl": "Kies een sjabloon, pas pagina's aan en controleer voor publicatie.",
+    "sv": "Välj mall, anpassa sidor och granska före publicering.",
+    "fi": "Valitse malli, muokkaa sivut ja tarkista ennen julkaisua.",
+    "nb": "Velg mal, tilpass sider og se gjennom før publisering.",
+    "it": "Scegli un modello, personalizza le pagine e controlla prima di pubblicare.",
+    "id": "Pilih templat, sesuaikan halaman, dan tinjau sebelum diterbitkan.",
+    "th": "เลือกเทมเพลต ปรับแต่งหน้า และตรวจสอบก่อนเผยแพร่"
+  },
+  "Clear choices about storage": {
+    "uk": "Зрозумілі варіанти зберігання",
+    "nl": "Duidelijke opslagkeuzes",
+    "sv": "Tydliga lagringsval",
+    "fi": "Selkeät tallennusvaihtoehdot",
+    "nb": "Tydelige lagringsvalg",
+    "it": "Scelte di archiviazione chiare",
+    "id": "Pilihan penyimpanan yang jelas",
+    "th": "ตัวเลือกการจัดเก็บที่ชัดเจน"
+  },
+  "Choose supported storage with clear file locations. Integrations are being tested.": {
+    "uk": "Вибирайте підтримуване сховище з відомим розташуванням файлів. Інтеграції тестуються.",
+    "nl": "Kies ondersteunde opslag met duidelijke bestandslocaties. Integraties worden getest.",
+    "sv": "Välj lagring med tydliga filplatser. Integrationer testas.",
+    "fi": "Valitse tuettu tallennus ja tiedä tiedostojen sijainti. Integraatioita testataan.",
+    "nb": "Velg støttet lagring med tydelige filplasseringer. Integrasjoner testes.",
+    "it": "Scegli uno spazio supportato con posizioni dei file chiare. Integrazioni in fase di test.",
+    "id": "Pilih penyimpanan yang didukung dengan lokasi file yang jelas. Integrasi sedang diuji.",
+    "th": "เลือกพื้นที่จัดเก็บที่รองรับและทราบตำแหน่งไฟล์ การเชื่อมต่ออยู่ระหว่างทดสอบ"
+  },
+  "A closer look at the tools": {
+    "uk": "Ближче до інструментів",
+    "nl": "Bekijk de tools",
+    "sv": "En närmare titt på verktygen",
+    "fi": "Tutustu työkaluihin",
+    "nb": "Se nærmere på verktøyene",
+    "it": "Uno sguardo agli strumenti",
+    "id": "Kenali alat-alatnya",
+    "th": "รู้จักเครื่องมือให้มากขึ้น"
+  },
+  "From the first idea to the finished work.": {
+    "uk": "Від задуму до готової роботи.",
+    "nl": "Van idee tot eindresultaat.",
+    "sv": "Från idé till färdigt arbete.",
+    "fi": "Ideasta valmiiseen työhön.",
+    "nb": "Fra idé til ferdig arbeid.",
+    "it": "Dalla prima idea al lavoro finito.",
+    "id": "Dari ide hingga karya selesai.",
+    "th": "จากไอเดียแรกสู่งานที่เสร็จสมบูรณ์"
+  },
+  "Compact interface illustrations below. Open an app to try the current build with approved access.": {
+    "uk": "Нижче — ілюстрації інтерфейсу. Схвалені користувачі можуть відкрити поточну версію застосунку.",
+    "nl": "Hieronder staan interface-illustraties. Met goedgekeurde toegang kun je de huidige apps proberen.",
+    "sv": "Här visas gränssnittsillustrationer. Godkända användare kan prova aktuell appversion.",
+    "fi": "Alla on käyttöliittymän havainnekuvia. Hyväksytyllä pääsyllä voit kokeilla nykyisiä versioita.",
+    "nb": "Her vises grensesnittillustrasjoner. Godkjente brukere kan prøve gjeldende appversjon.",
+    "it": "Illustrazioni dell'interfaccia. Con accesso approvato puoi provare le versioni attuali.",
+    "id": "Berikut ilustrasi antarmuka. Pengguna yang disetujui dapat mencoba versi aplikasi saat ini.",
+    "th": "ภาพด้านล่างเป็นภาพจำลองอินเทอร์เฟซ ผู้ได้รับอนุมัติสามารถลองแอปรุ่นปัจจุบันได้"
+  },
+  "File Home Insert Review": {
+    "uk": "Файл Головна Вставлення Рецензування",
+    "nl": "Bestand Start Invoegen Controleren",
+    "sv": "Arkiv Start Infoga Granska",
+    "fi": "Tiedosto Aloitus Lisää Tarkista",
+    "nb": "Fil Hjem Sett inn Se gjennom",
+    "it": "File Home Inserisci Revisione",
+    "id": "File Beranda Sisipkan Tinjau",
+    "th": "ไฟล์ หน้าแรก แทรก ตรวจทาน"
+  },
+  "Research in progress": {
+    "uk": "Дослідження триває",
+    "nl": "Onderzoek in uitvoering",
+    "sv": "Pågående forskning",
+    "fi": "Tutkimus käynnissä",
+    "nb": "Forskning pågår",
+    "it": "Ricerca in corso",
+    "id": "Penelitian berlangsung",
+    "th": "การวิจัยอยู่ระหว่างดำเนินการ"
+  },
+  "Document layout, references and PDF export workflows.": {
+    "uk": "Верстка документів, посилання й експорт PDF.",
+    "nl": "Documentopmaak, verwijzingen en PDF-export.",
+    "sv": "Dokumentlayout, referenser och PDF-export.",
+    "fi": "Asiakirjojen asettelu, viitteet ja PDF-vienti.",
+    "nb": "Dokumentoppsett, referanser og PDF-eksport.",
+    "it": "Impaginazione, riferimenti ed esportazione PDF.",
+    "id": "Tata letak dokumen, referensi, dan ekspor PDF.",
+    "th": "จัดหน้าเอกสาร อ้างอิง และส่งออก PDF"
+  },
+  "Open SoraDocs ↗": {
+    "uk": "Відкрити SoraDocs ↗",
+    "nl": "SoraDocs openen ↗",
+    "sv": "Öppna SoraDocs ↗",
+    "fi": "Avaa SoraDocs ↗",
+    "nb": "Åpne SoraDocs ↗",
+    "it": "Apri SoraDocs ↗",
+    "id": "Buka SoraDocs ↗",
+    "th": "เปิด SoraDocs ↗"
+  },
+  "Pages Annotate Forms": {
+    "uk": "Сторінки Анотації Форми",
+    "nl": "Pagina's Annotaties Formulieren",
+    "sv": "Sidor Anteckna Formulär",
+    "fi": "Sivut Merkinnät Lomakkeet",
+    "nb": "Sider Merknader Skjemaer",
+    "it": "Pagine Annotazioni Moduli",
+    "id": "Halaman Anotasi Formulir",
+    "th": "หน้า คำอธิบายประกอบ แบบฟอร์ม"
+  },
+  "Read, organise and annotate PDF documents.": {
+    "uk": "Читайте, упорядковуйте й анотуйте PDF.",
+    "nl": "Lees, orden en annoteer PDF-documenten.",
+    "sv": "Läs, ordna och kommentera PDF-dokument.",
+    "fi": "Lue, järjestä ja annotoi PDF-tiedostoja.",
+    "nb": "Les, organiser og kommenter PDF-dokumenter.",
+    "it": "Leggi, organizza e annota i PDF.",
+    "id": "Baca, atur, dan beri anotasi dokumen PDF.",
+    "th": "อ่าน จัดระเบียบ และใส่คำอธิบายประกอบใน PDF"
+  },
+  "Open SoraPDF ↗": {
+    "uk": "Відкрити SoraPDF ↗",
+    "nl": "SoraPDF openen ↗",
+    "sv": "Öppna SoraPDF ↗",
+    "fi": "Avaa SoraPDF ↗",
+    "nb": "Åpne SoraPDF ↗",
+    "it": "Apri SoraPDF ↗",
+    "id": "Buka SoraPDF ↗",
+    "th": "เปิด SoraPDF ↗"
+  },
+  "Library Light Colour": {
+    "uk": "Бібліотека Світло Колір",
+    "nl": "Bibliotheek Licht Kleur",
+    "sv": "Bibliotek Ljus Färg",
+    "fi": "Kirjasto Valo Väri",
+    "nb": "Bibliotek Lys Farge",
+    "it": "Libreria Luce Colore",
+    "id": "Pustaka Cahaya Warna",
+    "th": "คลังภาพ แสง สี"
+  },
+  "Develop photographs with exposure and colour tools.": {
+    "uk": "Обробляйте фото інструментами експозиції та кольору.",
+    "nl": "Ontwikkel foto's met belichtings- en kleurtools.",
+    "sv": "Framkalla foton med exponerings- och färgverktyg.",
+    "fi": "Kehitä kuvia valotus- ja värityökaluilla.",
+    "nb": "Fremkall bilder med verktøy for eksponering og farge.",
+    "it": "Sviluppa le foto con strumenti di esposizione e colore.",
+    "id": "Olah foto dengan alat pencahayaan dan warna.",
+    "th": "ปรับแต่งภาพถ่ายด้วยเครื่องมือแสงและสี"
+  },
+  "Open SoraPhotos ↗": {
+    "uk": "Відкрити SoraPhotos ↗",
+    "nl": "SoraPhotos openen ↗",
+    "sv": "Öppna SoraPhotos ↗",
+    "fi": "Avaa SoraPhotos ↗",
+    "nb": "Åpne SoraPhotos ↗",
+    "it": "Apri SoraPhotos ↗",
+    "id": "Buka SoraPhotos ↗",
+    "th": "เปิด SoraPhotos ↗"
+  },
+  "Image Layers Brushes": {
+    "uk": "Зображення Шари Пензлі",
+    "nl": "Afbeelding Lagen Penselen",
+    "sv": "Bild Lager Penslar",
+    "fi": "Kuva Tasot Siveltimet",
+    "nb": "Bilde Lag Pensler",
+    "it": "Immagine Livelli Pennelli",
+    "id": "Gambar Lapisan Kuas",
+    "th": "ภาพ เลเยอร์ แปรง"
+  },
+  "Artwork": {
+    "uk": "Твір",
+    "nl": "Illustratie",
+    "sv": "Konstverk",
+    "fi": "Teos",
+    "nb": "Kunstverk",
+    "it": "Opera",
+    "id": "Karya",
+    "th": "ผลงาน"
+  },
+  "Background": {
+    "uk": "Тло",
+    "nl": "Achtergrond",
+    "sv": "Bakgrund",
+    "fi": "Tausta",
+    "nb": "Bakgrunn",
+    "it": "Sfondo",
+    "id": "Latar belakang",
+    "th": "พื้นหลัง"
+  },
+  "Layers, masks, selections and image composition.": {
+    "uk": "Шари, маски, виділення й композиція зображень.",
+    "nl": "Lagen, maskers, selecties en beeldcompositie.",
+    "sv": "Lager, masker, markeringar och bildkomposition.",
+    "fi": "Tasot, maskit, valinnat ja sommittelu.",
+    "nb": "Lag, masker, markeringer og bildekomposisjon.",
+    "it": "Livelli, maschere, selezioni e composizione.",
+    "id": "Lapisan, masker, seleksi, dan komposisi gambar.",
+    "th": "เลเยอร์ มาสก์ การเลือก และการจัดองค์ประกอบภาพ"
+  },
+  "Open SoraImage ↗": {
+    "uk": "Відкрити SoraImage ↗",
+    "nl": "SoraImage openen ↗",
+    "sv": "Öppna SoraImage ↗",
+    "fi": "Avaa SoraImage ↗",
+    "nb": "Åpne SoraImage ↗",
+    "it": "Apri SoraImage ↗",
+    "id": "Buka SoraImage ↗",
+    "th": "เปิด SoraImage ↗"
+  },
+  "Illustrations show the type of workflow, not exact app layouts or feature parity. Availability and file compatibility depend on the accepted app build.": {
+    "uk": "Ілюстрації показують тип роботи, а не точний інтерфейс чи однаковий набір функцій. Доступність і сумісність залежать від перевіреної версії.",
+    "nl": "Illustraties tonen het soort werk, niet de exacte interface of gelijke functies. Beschikbaarheid en compatibiliteit hangen af van de geteste versie.",
+    "sv": "Illustrationerna visar arbetsflöden, inte exakt utseende eller samma funktioner. Tillgänglighet och kompatibilitet beror på granskad version.",
+    "fi": "Kuvat esittävät työnkulkua, eivät tarkkaa käyttöliittymää tai vastaavia ominaisuuksia. Saatavuus ja yhteensopivuus riippuvat hyväksytystä versiosta.",
+    "nb": "Illustrasjonene viser arbeidsflyt, ikke nøyaktig grensesnitt eller like funksjoner. Tilgjengelighet og kompatibilitet avhenger av godkjent versjon.",
+    "it": "Le illustrazioni mostrano il flusso, non l'interfaccia esatta o funzioni equivalenti. Disponibilità e compatibilità dipendono dalla versione verificata.",
+    "id": "Ilustrasi menunjukkan jenis alur kerja, bukan tampilan persis atau kesetaraan fitur. Ketersediaan dan kompatibilitas bergantung pada versi yang ditinjau.",
+    "th": "ภาพจำลองแสดงลักษณะงาน ไม่ใช่หน้าจอจริงหรือความเท่าเทียมของฟีเจอร์ ความพร้อมและความเข้ากันได้ขึ้นอยู่กับรุ่นที่ตรวจสอบแล้ว"
+  },
+  "Research & project management · In development": {
+    "uk": "Дослідження та проєкти · У розробці",
+    "nl": "Onderzoek en projecten · In ontwikkeling",
+    "sv": "Forskning och projekt · Under utveckling",
+    "fi": "Tutkimus ja projektit · Kehitteillä",
+    "nb": "Forskning og prosjekter · Under utvikling",
+    "it": "Ricerca e progetti · In sviluppo",
+    "id": "Penelitian dan proyek · Dalam pengembangan",
+    "th": "การวิจัยและโครงการ · อยู่ระหว่างพัฒนา"
+  },
+  "Your sources, ideas and projects, connected.": {
+    "uk": "Ваші джерела, ідеї та проєкти разом.",
+    "nl": "Je bronnen, ideeën en projecten verbonden.",
+    "sv": "Dina källor, idéer och projekt tillsammans.",
+    "fi": "Lähteet, ideat ja projektit yhdessä.",
+    "nb": "Kilder, ideer og prosjekter samlet.",
+    "it": "Fonti, idee e progetti collegati.",
+    "id": "Sumber, ide, dan proyek Anda terhubung.",
+    "th": "แหล่งข้อมูล ไอเดีย และโครงการที่เชื่อมถึงกัน"
+  },
+  "Zotero integration & research management:": {
+    "uk": "Інтеграція Zotero та керування дослідженнями:",
+    "nl": "Zotero-integratie en onderzoeksbeheer:",
+    "sv": "Zotero-integration och forskningshantering:",
+    "fi": "Zotero-integraatio ja tutkimuksen hallinta:",
+    "nb": "Zotero-integrasjon og forskningshåndtering:",
+    "it": "Integrazione Zotero e gestione della ricerca:",
+    "id": "Integrasi Zotero dan pengelolaan penelitian:",
+    "th": "การเชื่อมต่อ Zotero และการจัดการงานวิจัย:"
+  },
+  "a planned Zotero-compatible library linking sources, reading notes, references and manuscript drafts.": {
+    "uk": "Запланована бібліотека з підтримкою Zotero, джерелами, нотатками, посиланнями й чернетками.",
+    "nl": "Een geplande Zotero-compatibele bibliotheek met bronnen, notities, referenties en concepten.",
+    "sv": "Ett planerat Zotero-kompatibelt bibliotek för källor, anteckningar, referenser och utkast.",
+    "fi": "Suunniteltu Zotero-yhteensopiva kirjasto lähteille, muistiinpanoille, viitteille ja luonnoksille.",
+    "nb": "Et planlagt Zotero-kompatibelt bibliotek for kilder, notater, referanser og utkast.",
+    "it": "Una biblioteca prevista compatibile con Zotero per fonti, note, riferimenti e bozze.",
+    "id": "Pustaka kompatibel Zotero yang direncanakan untuk sumber, catatan, referensi, dan draf.",
+    "th": "คลังที่วางแผนให้รองรับ Zotero เพื่อเชื่อมแหล่งข้อมูล บันทึก อ้างอิง และต้นฉบับ"
+  },
+  "Project management:": {
+    "uk": "Керування проєктами:",
+    "nl": "Projectbeheer:",
+    "sv": "Projekthantering:",
+    "fi": "Projektinhallinta:",
+    "nb": "Prosjektstyring:",
+    "it": "Gestione dei progetti:",
+    "id": "Pengelolaan proyek:",
+    "th": "การจัดการโครงการ:"
+  },
+  "planned SoraSpace Projects boards, tasks and deadlines for creative work and research.": {
+    "uk": "Заплановані дошки, завдання й терміни SoraSpace Projects.",
+    "nl": "Geplande SoraSpace Projects-borden, taken en deadlines.",
+    "sv": "Planerade tavlor, uppgifter och tidsfrister i SoraSpace Projects.",
+    "fi": "Suunnitteilla SoraSpace Projects -taulut, tehtävät ja määräajat.",
+    "nb": "Planlagte tavler, oppgaver og frister i SoraSpace Projects.",
+    "it": "Bacheche, attività e scadenze previste in SoraSpace Projects.",
+    "id": "Papan, tugas, dan tenggat SoraSpace Projects yang direncanakan.",
+    "th": "วางแผนกระดาน งาน และกำหนดส่งใน SoraSpace Projects"
+  },
+  "Zotero integration is documented in the desktop Docs engine. Browser integration requires separate work and is not currently offered.": {
+    "uk": "Інтеграцію Zotero описано для настільного рушія Docs. Браузерна версія потребує окремої роботи й поки недоступна.",
+    "nl": "Zotero-integratie is gedocumenteerd voor de desktop-Docs-engine. Browserintegratie vereist apart werk en is nog niet beschikbaar.",
+    "sv": "Zotero-integration finns dokumenterad för Docs på datorn. Webbintegration kräver separat arbete och erbjuds inte ännu.",
+    "fi": "Zotero-integraatio on dokumentoitu Docsin työpöytämoottorissa. Selainintegraatio vaatii erillistä työtä eikä ole vielä saatavilla.",
+    "nb": "Zotero-integrasjon er dokumentert for Docs på skrivebordet. Nettleserintegrasjon krever eget arbeid og tilbys ikke ennå.",
+    "it": "L'integrazione Zotero è documentata nel motore Docs desktop. Quella nel browser richiede altro lavoro e non è disponibile.",
+    "id": "Integrasi Zotero didokumentasikan pada mesin Docs desktop. Integrasi browser memerlukan pengembangan terpisah dan belum tersedia.",
+    "th": "มีเอกสารการเชื่อมต่อ Zotero ใน Docs บนเดสก์ท็อป ส่วนเบราว์เซอร์ต้องพัฒนาแยกและยังไม่เปิดให้ใช้"
+  },
+  "Collect sources": {
+    "uk": "Збирайте джерела",
+    "nl": "Bronnen verzamelen",
+    "sv": "Samla källor",
+    "fi": "Kerää lähteitä",
+    "nb": "Samle kilder",
+    "it": "Raccogli le fonti",
+    "id": "Kumpulkan sumber",
+    "th": "รวบรวมแหล่งข้อมูล"
+  },
+  "— planned reference imports and a Zotero-compatible library.": {
+    "uk": "— заплановані імпорт посилань і бібліотека з підтримкою Zotero.",
+    "nl": "— geplande referentie-import en Zotero-compatibele bibliotheek.",
+    "sv": "— planerad referensimport och Zotero-kompatibelt bibliotek.",
+    "fi": "— suunniteltu viitteiden tuonti ja Zotero-yhteensopiva kirjasto.",
+    "nb": "— planlagt referanseimport og Zotero-kompatibelt bibliotek.",
+    "it": "— importazione di riferimenti e biblioteca compatibile con Zotero previste.",
+    "id": "— impor referensi dan pustaka kompatibel Zotero yang direncanakan.",
+    "th": "— วางแผนนำเข้าอ้างอิงและคลังที่รองรับ Zotero"
+  },
+  "Read and develop ideas": {
+    "uk": "Читайте й розвивайте ідеї",
+    "nl": "Lezen en ideeën uitwerken",
+    "sv": "Läs och utveckla idéer",
+    "fi": "Lue ja kehitä ideoita",
+    "nb": "Les og utvikle ideer",
+    "it": "Leggi e sviluppa idee",
+    "id": "Baca dan kembangkan ide",
+    "th": "อ่านและพัฒนาไอเดีย"
+  },
+  "— private notes linked to sources and projects.": {
+    "uk": "— приватні нотатки, пов'язані з джерелами й проєктами.",
+    "nl": "— privénotities gekoppeld aan bronnen en projecten.",
+    "sv": "— privata anteckningar kopplade till källor och projekt.",
+    "fi": "— yksityiset muistiinpanot lähteisiin ja projekteihin.",
+    "nb": "— private notater knyttet til kilder og prosjekter.",
+    "it": "— note private collegate a fonti e progetti.",
+    "id": "— catatan pribadi terkait sumber dan proyek.",
+    "th": "— บันทึกส่วนตัวที่เชื่อมกับแหล่งข้อมูลและโครงการ"
+  },
+  "Write and reference": {
+    "uk": "Пишіть і посилайтеся",
+    "nl": "Schrijven en verwijzen",
+    "sv": "Skriv och hänvisa",
+    "fi": "Kirjoita ja viittaa",
+    "nb": "Skriv og referer",
+    "it": "Scrivi e cita",
+    "id": "Tulis dan kutip",
+    "th": "เขียนและอ้างอิง"
+  },
+  "— preserve citations and verify bibliographies in supported workflows.": {
+    "uk": "— збереження цитат і перевірка бібліографії в підтримуваних процесах.",
+    "nl": "— citaten behouden en bibliografieën controleren waar ondersteund.",
+    "sv": "— bevara citeringar och kontrollera bibliografier i stödda flöden.",
+    "fi": "— säilytä viitteet ja tarkista lähdeluettelot tuetuissa työnkuluissa.",
+    "nb": "— bevar sitater og kontroller bibliografier i støttede arbeidsflyter.",
+    "it": "— conserva le citazioni e verifica le bibliografie nei flussi supportati.",
+    "id": "— pertahankan kutipan dan periksa bibliografi dalam alur yang didukung.",
+    "th": "— รักษาการอ้างอิงและตรวจบรรณานุกรมในขั้นตอนที่รองรับ"
+  },
+  "Choose what to publish": {
+    "uk": "Вибирайте, що публікувати",
+    "nl": "Kiezen wat je publiceert",
+    "sv": "Välj vad du publicerar",
+    "fi": "Valitse julkaistava sisältö",
+    "nb": "Velg hva du publiserer",
+    "it": "Scegli cosa pubblicare",
+    "id": "Pilih yang akan diterbitkan",
+    "th": "เลือกสิ่งที่จะเผยแพร่"
+  },
+  "— private research journals remain separate from public articles.": {
+    "uk": "— приватні дослідницькі щоденники окремі від публічних статей.",
+    "nl": "— privéonderzoeksdagboeken blijven gescheiden van openbare artikelen.",
+    "sv": "— privata forskningsjournaler hålls åtskilda från offentliga artiklar.",
+    "fi": "— yksityiset tutkimuspäiväkirjat pidetään erillään julkisista artikkeleista.",
+    "nb": "— private forskningsjournaler holdes atskilt fra offentlige artikler.",
+    "it": "— i diari di ricerca privati restano separati dagli articoli pubblici.",
+    "id": "— jurnal penelitian pribadi tetap terpisah dari artikel publik.",
+    "th": "— บันทึกวิจัยส่วนตัวแยกจากบทความสาธารณะ"
+  },
+  "Research Library, Projects and optional AI assistance are planned features. No AI provider receives files through this page.": {
+    "uk": "Бібліотека досліджень, Projects і необов'язковий ШІ заплановані. Ця сторінка не передає файли постачальникам ШІ.",
+    "nl": "Onderzoeksbibliotheek, Projects en optionele AI zijn gepland. Deze pagina stuurt geen bestanden naar AI-aanbieders.",
+    "sv": "Forskningsbibliotek, Projects och valfri AI planeras. Inga filer skickas till AI-leverantörer från denna sida.",
+    "fi": "Tutkimuskirjasto, Projects ja valinnainen tekoäly ovat suunnitteilla. Tämä sivu ei lähetä tiedostoja tekoälypalveluille.",
+    "nb": "Forskningsbibliotek, Projects og valgfri KI er planlagt. Denne siden sender ingen filer til KI-leverandører.",
+    "it": "Biblioteca di ricerca, Projects e IA opzionale sono previsti. Questa pagina non invia file a fornitori di IA.",
+    "id": "Pustaka Penelitian, Projects, dan AI opsional masih direncanakan. Halaman ini tidak mengirim file ke penyedia AI.",
+    "th": "คลังวิจัย Projects และ AI แบบเลือกใช้เป็นฟีเจอร์ที่วางแผนไว้ หน้านี้ไม่ส่งไฟล์ให้ผู้ให้บริการ AI"
+  },
+  "Start with a template": {
+    "uk": "Почніть із шаблону",
+    "nl": "Begin met een sjabloon",
+    "sv": "Börja med en mall",
+    "fi": "Aloita mallista",
+    "nb": "Start med en mal",
+    "it": "Parti da un modello",
+    "id": "Mulai dengan templat",
+    "th": "เริ่มจากเทมเพลต"
+  },
+  "A starting point for every kind of work.": {
+    "uk": "Основа для будь-якої роботи.",
+    "nl": "Een startpunt voor elk soort werk.",
+    "sv": "En startpunkt för alla slags arbeten.",
+    "fi": "Lähtökohta jokaiseen työhön.",
+    "nb": "Et utgangspunkt for alle typer arbeid.",
+    "it": "Un punto di partenza per ogni lavoro.",
+    "id": "Titik awal untuk setiap jenis karya.",
+    "th": "จุดเริ่มต้นสำหรับงานทุกประเภท"
+  },
+  "Five starter layouts for study, research, writing, creative work and independent businesses.": {
+    "uk": "П'ять макетів для навчання, досліджень, письма, творчості й незалежного бізнесу.",
+    "nl": "Vijf startlayouts voor studie, onderzoek, schrijven, creatief werk en zelfstandigen.",
+    "sv": "Fem startmallar för studier, forskning, skrivande, kreativt arbete och egna företag.",
+    "fi": "Viisi aloituspohjaa opiskeluun, tutkimukseen, kirjoittamiseen, luovaan työhön ja yrittäjille.",
+    "nb": "Fem startoppsett for studier, forskning, skriving, kreativt arbeid og selvstendige.",
+    "it": "Cinque modelli per studio, ricerca, scrittura, creatività e attività indipendenti.",
+    "id": "Lima tata letak untuk studi, penelitian, tulisan, karya kreatif, dan usaha mandiri.",
+    "th": "ห้าแบบสำหรับการเรียน วิจัย เขียน งานสร้างสรรค์ และธุรกิจอิสระ"
+  },
+  "A clear introduction with space for research, articles and projects.": {
+    "uk": "Зрозумілий вступ із місцем для досліджень, статей і проєктів.",
+    "nl": "Een heldere introductie met ruimte voor onderzoek, artikelen en projecten.",
+    "sv": "En tydlig introduktion med plats för forskning, artiklar och projekt.",
+    "fi": "Selkeä esittely tutkimukselle, artikkeleille ja projekteille.",
+    "nb": "En tydelig introduksjon med plass til forskning, artikler og prosjekter.",
+    "it": "Una presentazione chiara con spazio per ricerca, articoli e progetti.",
+    "id": "Pengantar jelas dengan ruang untuk penelitian, artikel, dan proyek.",
+    "th": "บทนำที่ชัดเจนพร้อมพื้นที่สำหรับงานวิจัย บทความ และโครงการ"
+  },
+  "Writing first, with a featured introduction and a compact reading list.": {
+    "uk": "Письмо на першому місці, помітний вступ і стислий список матеріалів.",
+    "nl": "Tekst centraal, met een uitgelichte introductie en compacte leeslijst.",
+    "sv": "Skrivandet i fokus, med en framhävd introduktion och kompakt läslista.",
+    "fi": "Kirjoittaminen etusijalla, nostettu esittely ja tiivis lukulista.",
+    "nb": "Skriving i fokus, med fremhevet introduksjon og kompakt leseliste.",
+    "it": "Scrittura in primo piano, introduzione in evidenza e lista di lettura compatta.",
+    "id": "Fokus pada tulisan, dengan pengantar unggulan dan daftar bacaan ringkas.",
+    "th": "เน้นงานเขียน พร้อมบทนำเด่นและรายการอ่านแบบกระชับ"
+  },
+  "A visual introduction with room for galleries and creative work.": {
+    "uk": "Візуальний вступ із місцем для галерей і творчості.",
+    "nl": "Een visuele introductie met ruimte voor galerijen en creatief werk.",
+    "sv": "En visuell introduktion med plats för gallerier och kreativt arbete.",
+    "fi": "Visuaalinen esittely gallerioille ja luovalle työlle.",
+    "nb": "En visuell introduksjon med plass til gallerier og kreativt arbeid.",
+    "it": "Una presentazione visiva con spazio per gallerie e creatività.",
+    "id": "Pengantar visual dengan ruang untuk galeri dan karya kreatif.",
+    "th": "บทนำแบบภาพพร้อมพื้นที่สำหรับแกลเลอรีและผลงานสร้างสรรค์"
+  },
+  "A focused introduction for independent businesses and professional services.": {
+    "uk": "Чітка презентація незалежного бізнесу та професійних послуг.",
+    "nl": "Een gerichte introductie voor zelfstandige bedrijven en professionele diensten.",
+    "sv": "En fokuserad introduktion för egna företag och professionella tjänster.",
+    "fi": "Selkeä esittely itsenäisille yrityksille ja asiantuntijapalveluille.",
+    "nb": "En målrettet introduksjon for selvstendige bedrifter og faglige tjenester.",
+    "it": "Una presentazione mirata per attività indipendenti e servizi professionali.",
+    "id": "Pengantar terarah untuk usaha mandiri dan jasa profesional.",
+    "th": "บทนำที่ตรงประเด็นสำหรับธุรกิจอิสระและบริการวิชาชีพ"
+  },
+  "A simple, flexible personal space with a compact collection of pages.": {
+    "uk": "Простий особистий простір із компактним набором сторінок.",
+    "nl": "Een eenvoudige, flexibele persoonlijke plek met compacte pagina's.",
+    "sv": "En enkel, flexibel personlig plats med en kompakt samling sidor.",
+    "fi": "Yksinkertainen ja joustava oma tila, jossa on tiivis sivukokoelma.",
+    "nb": "Et enkelt, fleksibelt personlig rom med en kompakt samling sider.",
+    "it": "Uno spazio personale semplice e flessibile con poche pagine.",
+    "id": "Ruang pribadi sederhana dan fleksibel dengan kumpulan halaman ringkas.",
+    "th": "พื้นที่ส่วนตัวที่เรียบง่าย ยืดหยุ่น พร้อมหน้าต่าง ๆ แบบกระชับ"
+  },
+  "Guided setup and the saved editor are available to approved trial accounts. Customer domains and public site publishing are still in development.": {
+    "uk": "Покрокове налаштування й редактор доступні схваленим пробним обліковим записам. Власні домени й публікація сайтів ще розробляються.",
+    "nl": "Begeleide instellingen en de editor zijn beschikbaar voor goedgekeurde proefaccounts. Klantdomeinen en publicatie worden nog ontwikkeld.",
+    "sv": "Guidad konfiguration och editor finns för godkända provkonton. Egna domäner och offentlig publicering utvecklas ännu.",
+    "fi": "Ohjattu käyttöönotto ja editori ovat hyväksyttyjen kokeilutilien käytössä. Omat verkkotunnukset ja julkinen julkaisu ovat kehitteillä.",
+    "nb": "Veiledet oppsett og editor er tilgjengelig for godkjente prøvekontoer. Egne domener og offentlig publisering utvikles fortsatt.",
+    "it": "Configurazione guidata ed editor disponibili per account di prova approvati. Domini dei clienti e pubblicazione pubblica sono in sviluppo.",
+    "id": "Penyiapan terpandu dan editor tersedia untuk akun uji coba yang disetujui. Domain pelanggan dan penerbitan situs masih dikembangkan.",
+    "th": "การตั้งค่าแบบมีคำแนะนำและตัวแก้ไขมีให้บัญชีทดลองที่ได้รับอนุมัติ โดเมนลูกค้าและการเผยแพร่เว็บไซต์ยังอยู่ระหว่างพัฒนา"
+  },
+  "Pricing & early access": {
+    "uk": "Ціни та ранній доступ",
+    "nl": "Prijzen en vroege toegang",
+    "sv": "Priser och tidig åtkomst",
+    "fi": "Hinnat ja ennakkokäyttö",
+    "nb": "Priser og tidlig tilgang",
+    "it": "Prezzi e accesso anticipato",
+    "id": "Harga dan akses awal",
+    "th": "ราคาและการเข้าถึงก่อนเปิดตัว"
+  },
+  "Start with what you need. Grow from there.": {
+    "uk": "Почніть із потрібного. Розширюйте згодом.",
+    "nl": "Begin met wat je nodig hebt. Groei verder.",
+    "sv": "Börja med det du behöver. Väx vidare.",
+    "fi": "Aloita tarpeistasi. Laajenna myöhemmin.",
+    "nb": "Start med det du trenger. Utvid etter hvert.",
+    "it": "Inizia da ciò che serve. Cresci nel tempo.",
+    "id": "Mulai dari kebutuhan Anda. Kembangkan kemudian.",
+    "th": "เริ่มจากสิ่งที่ต้องการ แล้วค่อยขยาย"
+  },
+  "The approved preview is free, with no card required. Paid packages, limits and prices will be confirmed before launch.": {
+    "uk": "Схвалений пробний доступ безкоштовний і не потребує картки. Платні пакети, обмеження й ціни підтвердимо до запуску.",
+    "nl": "De goedgekeurde proef is gratis, zonder betaalkaart. Betaalde pakketten, limieten en prijzen volgen vóór de lancering.",
+    "sv": "Godkänd förhandsversion är gratis utan kort. Betalpaket, gränser och priser bekräftas före lansering.",
+    "fi": "Hyväksytty kokeilu on maksuton eikä vaadi korttia. Maksupaketit, rajat ja hinnat vahvistetaan ennen julkaisua.",
+    "nb": "Godkjent forhåndsvisning er gratis uten kort. Betalte pakker, grenser og priser bekreftes før lansering.",
+    "it": "La prova approvata è gratuita, senza carta. Pacchetti, limiti e prezzi saranno confermati prima del lancio.",
+    "id": "Pratinjau yang disetujui gratis tanpa kartu. Paket berbayar, batas, dan harga akan dikonfirmasi sebelum peluncuran.",
+    "th": "การทดลองที่ได้รับอนุมัติฟรี ไม่ต้องใช้บัตร แพ็กเกจแบบชำระเงิน ขีดจำกัด และราคาจะยืนยันก่อนเปิดตัว"
+  },
+  "Planned package": {
+    "uk": "Запланований пакет",
+    "nl": "Gepland pakket",
+    "sv": "Planerat paket",
+    "fi": "Suunniteltu paketti",
+    "nb": "Planlagt pakke",
+    "it": "Pacchetto previsto",
+    "id": "Paket yang direncanakan",
+    "th": "แพ็กเกจที่วางแผนไว้"
+  },
+  "Pricing to be announced": {
+    "uk": "Ціни оголосимо пізніше",
+    "nl": "Prijzen volgen",
+    "sv": "Priser meddelas senare",
+    "fi": "Hinnat ilmoitetaan myöhemmin",
+    "nb": "Priser kommer",
+    "it": "Prezzi da annunciare",
+    "id": "Harga akan diumumkan",
+    "th": "จะแจ้งราคาในภายหลัง"
+  },
+  "Your apps, private drafts and connected-storage choices in one place.": {
+    "uk": "Застосунки, приватні чернетки й вибір сховища в одному місці.",
+    "nl": "Apps, privéconcepten en opslagkeuzes op één plek.",
+    "sv": "Appar, privata utkast och lagringsval på ett ställe.",
+    "fi": "Sovellukset, yksityiset luonnokset ja tallennusvalinnat yhdessä.",
+    "nb": "Apper, private utkast og lagringsvalg på ett sted.",
+    "it": "App, bozze private e opzioni di archiviazione insieme.",
+    "id": "Aplikasi, draf pribadi, dan pilihan penyimpanan di satu tempat.",
+    "th": "แอป ฉบับร่างส่วนตัว และตัวเลือกจัดเก็บในที่เดียว"
+  },
+  "Choose the app services you need": {
+    "uk": "Виберіть потрібні застосунки",
+    "nl": "Kies de apps die je nodig hebt",
+    "sv": "Välj de apptjänster du behöver",
+    "fi": "Valitse tarvitsemasi sovellukset",
+    "nb": "Velg apptjenestene du trenger",
+    "it": "Scegli le app che ti servono",
+    "id": "Pilih layanan aplikasi yang diperlukan",
+    "th": "เลือกบริการแอปที่ต้องการ"
+  },
+  "Manage your requested services after signup": {
+    "uk": "Змінюйте запитані послуги після реєстрації",
+    "nl": "Beheer je aangevraagde diensten na registratie",
+    "sv": "Hantera önskade tjänster efter registrering",
+    "fi": "Hallitse pyytämiäsi palveluja rekisteröitymisen jälkeen",
+    "nb": "Administrer forespurte tjenester etter registrering",
+    "it": "Gestisci i servizi richiesti dopo la registrazione",
+    "id": "Kelola layanan yang diminta setelah mendaftar",
+    "th": "จัดการบริการที่ขอหลังสมัครสมาชิก"
+  },
+  "Trial access is approved manually": {
+    "uk": "Пробний доступ схвалюється вручну",
+    "nl": "Proeftoegang wordt handmatig goedgekeurd",
+    "sv": "Provåtkomst godkänns manuellt",
+    "fi": "Kokeilukäyttö hyväksytään käsin",
+    "nb": "Prøvetilgang godkjennes manuelt",
+    "it": "Accesso di prova approvato manualmente",
+    "id": "Akses uji coba disetujui secara manual",
+    "th": "การทดลองใช้ต้องได้รับอนุมัติด้วยตนเอง"
+  },
+  "Try the free preview ↗": {
+    "uk": "Спробувати безкоштовно ↗",
+    "nl": "Gratis proberen ↗",
+    "sv": "Prova gratis ↗",
+    "fi": "Kokeile maksutta ↗",
+    "nb": "Prøv gratis ↗",
+    "it": "Prova gratis ↗",
+    "id": "Coba gratis ↗",
+    "th": "ทดลองฟรี ↗"
+  },
+  "Workspace + Website": {
+    "uk": "Робочий простір + сайт",
+    "nl": "Werkruimte + website",
+    "sv": "Arbetsyta + webbplats",
+    "fi": "Työtila + sivusto",
+    "nb": "Arbeidsområde + nettsted",
+    "it": "Spazio di lavoro + sito",
+    "id": "Ruang kerja + situs",
+    "th": "พื้นที่ทำงาน + เว็บไซต์"
+  },
+  "A workspace plus your own publishing space, with templates that feel like you.": {
+    "uk": "Робочий простір і власний сайт із шаблонами у вашому стилі.",
+    "nl": "Een werkruimte met je eigen publicatieplek en passende sjablonen.",
+    "sv": "En arbetsyta och egen publiceringsplats med personliga mallar.",
+    "fi": "Työtila ja oma julkaisupaikka sopivilla malleilla.",
+    "nb": "Et arbeidsområde og eget publiseringssted med personlige maler.",
+    "it": "Uno spazio di lavoro e un sito con modelli a tua misura.",
+    "id": "Ruang kerja dan ruang publikasi sendiri dengan templat pilihan.",
+    "th": "พื้นที่ทำงานพร้อมพื้นที่เผยแพร่ของคุณและเทมเพลตที่เข้ากับสไตล์"
+  },
+  "Private site setup and editor in the trial": {
+    "uk": "Приватне налаштування сайту й редактор у пробному доступі",
+    "nl": "Privésite-instellingen en editor in de proef",
+    "sv": "Privat webbplatskonfiguration och editor i provet",
+    "fi": "Yksityinen sivuston käyttöönotto ja editori kokeilussa",
+    "nb": "Privat nettstedoppsett og editor i prøveperioden",
+    "it": "Configurazione ed editor privati nella prova",
+    "id": "Penyiapan situs dan editor pribadi dalam uji coba",
+    "th": "ตั้งค่าเว็บไซต์ส่วนตัวและตัวแก้ไขในการทดลองใช้"
+  },
+  "Public publishing and custom domains planned": {
+    "uk": "Заплановані публікація й власні домени",
+    "nl": "Publicatie en eigen domeinen gepland",
+    "sv": "Offentlig publicering och egna domäner planeras",
+    "fi": "Julkinen julkaisu ja omat verkkotunnukset suunnitteilla",
+    "nb": "Offentlig publisering og egne domener planlagt",
+    "it": "Pubblicazione e domini personalizzati previsti",
+    "id": "Penerbitan publik dan domain sendiri direncanakan",
+    "th": "วางแผนเผยแพร่สาธารณะและใช้โดเมนของตนเอง"
+  },
+  "Add research and project tools as they become available": {
+    "uk": "Додавайте дослідницькі та проєктні інструменти в міру появи",
+    "nl": "Voeg onderzoeks- en projecttools toe zodra beschikbaar",
+    "sv": "Lägg till forsknings- och projektverktyg när de blir klara",
+    "fi": "Lisää tutkimus- ja projektityökaluja niiden valmistuessa",
+    "nb": "Legg til forsknings- og prosjektverktøy når de blir tilgjengelige",
+    "it": "Aggiungi strumenti di ricerca e progetto quando disponibili",
+    "id": "Tambahkan alat penelitian dan proyek saat tersedia",
+    "th": "เพิ่มเครื่องมือวิจัยและโครงการเมื่อพร้อมใช้"
+  },
+  "Explore the website trial ↗": {
+    "uk": "Спробувати створення сайту ↗",
+    "nl": "Websiteproef bekijken ↗",
+    "sv": "Utforska webbplatsprovet ↗",
+    "fi": "Tutustu sivustokokeiluun ↗",
+    "nb": "Utforsk nettstedprøven ↗",
+    "it": "Esplora la prova del sito ↗",
+    "id": "Jelajahi uji coba situs ↗",
+    "th": "สำรวจการทดลองสร้างเว็บไซต์ ↗"
+  },
+  "These are proposed package directions, not active subscriptions. No checkout or automatic charge is enabled. Requested service changes are reviewed during testing.": {
+    "uk": "Це пропозиції пакетів, а не активні підписки. Оплата й автоматичні списання вимкнені. Зміни послуг під час тестування перевіряються.",
+    "nl": "Dit zijn pakketvoorstellen, geen actieve abonnementen. Betalen en automatische afschrijving staan uit. Wijzigingen worden tijdens tests beoordeeld.",
+    "sv": "Detta är paketförslag, inte aktiva abonnemang. Ingen betalning eller automatisk debitering. Ändringar granskas under test.",
+    "fi": "Nämä ovat pakettiehdotuksia, eivät aktiivisia tilauksia. Maksuja tai automaattisia veloituksia ei ole. Palvelumuutokset tarkistetaan kokeilussa.",
+    "nb": "Dette er pakkeforslag, ikke aktive abonnementer. Ingen betaling eller automatisk belastning. Tjenesteendringer vurderes under testing.",
+    "it": "Sono proposte, non abbonamenti attivi. Nessun pagamento o addebito automatico. Le modifiche sono valutate durante i test.",
+    "id": "Ini usulan paket, bukan langganan aktif. Pembayaran dan tagihan otomatis belum aktif. Perubahan layanan ditinjau selama pengujian.",
+    "th": "นี่คือแนวทางแพ็กเกจ ไม่ใช่การสมัครสมาชิกที่ใช้งานอยู่ ยังไม่เปิดชำระเงินหรือตัดเงินอัตโนมัติ การเปลี่ยนบริการจะได้รับการตรวจสอบระหว่างทดสอบ"
+  },
+  "Continue your work": {
+    "uk": "Продовжуйте роботу",
+    "nl": "Verder werken",
+    "sv": "Fortsätt arbeta",
+    "fi": "Jatka työtäsi",
+    "nb": "Fortsett arbeidet",
+    "it": "Continua il lavoro",
+    "id": "Lanjutkan pekerjaan",
+    "th": "ทำงานต่อ"
+  },
+  "Your workspace and site tools.": {
+    "uk": "Ваш робочий простір та інструменти сайту.",
+    "nl": "Je werkruimte en websitetools.",
+    "sv": "Din arbetsyta och dina webbplatsverktyg.",
+    "fi": "Työtila ja sivustotyökalut.",
+    "nb": "Ditt arbeidsområde og nettstedverktøy.",
+    "it": "Il tuo spazio e gli strumenti del sito.",
+    "id": "Ruang kerja dan alat situs Anda.",
+    "th": "พื้นที่ทำงานและเครื่องมือเว็บไซต์ของคุณ"
+  },
+  "Invited users can open the current workspace. Website tools are available after trial approval, with private drafts and publishing disabled.": {
+    "uk": "Запрошені користувачі можуть відкрити простір. Сайтові інструменти — після схвалення пробного доступу; чернетки приватні, публікацію вимкнено.",
+    "nl": "Genodigden kunnen de werkruimte openen. Websitetools volgen na goedkeuring; concepten zijn privé en publicatie staat uit.",
+    "sv": "Inbjudna kan öppna arbetsytan. Webbplatsverktyg kräver provgodkännande; utkast är privata och publicering avstängd.",
+    "fi": "Kutsutut voivat avata työtilan. Sivustotyökalut vaativat kokeiluhyväksynnän; luonnokset ovat yksityisiä ja julkaisu pois käytöstä.",
+    "nb": "Inviterte kan åpne arbeidsområdet. Nettstedverktøy krever prøvegodkjenning; utkast er private og publisering er av.",
+    "it": "Gli invitati possono aprire lo spazio. Gli strumenti sito richiedono approvazione; bozze private e pubblicazione disabilitata.",
+    "id": "Pengguna undangan dapat membuka ruang kerja. Alat situs memerlukan persetujuan uji coba; draf pribadi dan penerbitan dinonaktifkan.",
+    "th": "ผู้ได้รับเชิญเปิดพื้นที่ทำงานได้ เครื่องมือเว็บไซต์ต้องได้รับอนุมัติทดลอง ฉบับร่างเป็นส่วนตัวและปิดการเผยแพร่"
+  },
+  "Invited users": {
+    "uk": "Запрошені користувачі",
+    "nl": "Uitgenodigde gebruikers",
+    "sv": "Inbjudna användare",
+    "fi": "Kutsutut käyttäjät",
+    "nb": "Inviterte brukere",
+    "it": "Utenti invitati",
+    "id": "Pengguna undangan",
+    "th": "ผู้ใช้ที่ได้รับเชิญ"
+  },
+  "Apps & workspace": {
+    "uk": "Застосунки та простір",
+    "nl": "Apps en werkruimte",
+    "sv": "Appar och arbetsyta",
+    "fi": "Sovellukset ja työtila",
+    "nb": "Apper og arbeidsområde",
+    "it": "App e spazio di lavoro",
+    "id": "Aplikasi dan ruang kerja",
+    "th": "แอปและพื้นที่ทำงาน"
+  },
+  "Open your apps and daily workspace.": {
+    "uk": "Відкрийте застосунки й щоденний простір.",
+    "nl": "Open je apps en dagelijkse werkruimte.",
+    "sv": "Öppna dina appar och din arbetsyta.",
+    "fi": "Avaa sovellukset ja päivittäinen työtila.",
+    "nb": "Åpne appene og arbeidsområdet ditt.",
+    "it": "Apri le app e il tuo spazio quotidiano.",
+    "id": "Buka aplikasi dan ruang kerja harian.",
+    "th": "เปิดแอปและพื้นที่ทำงานประจำวัน"
+  },
+  "Open workspace ↗": {
+    "uk": "Відкрити простір ↗",
+    "nl": "Werkruimte openen ↗",
+    "sv": "Öppna arbetsytan ↗",
+    "fi": "Avaa työtila ↗",
+    "nb": "Åpne arbeidsområdet ↗",
+    "it": "Apri lo spazio ↗",
+    "id": "Buka ruang kerja ↗",
+    "th": "เปิดพื้นที่ทำงาน ↗"
+  },
+  "Your saved files": {
+    "uk": "Ваші збережені файли",
+    "nl": "Je opgeslagen bestanden",
+    "sv": "Dina sparade filer",
+    "fi": "Omat tallennetut tiedostot",
+    "nb": "Dine lagrede filer",
+    "it": "I tuoi file salvati",
+    "id": "File tersimpan Anda",
+    "th": "ไฟล์ที่คุณบันทึกไว้"
+  },
+  "Find private site revisions by app.": {
+    "uk": "Знайдіть приватні версії за застосунком.",
+    "nl": "Vind privéversies per app.",
+    "sv": "Hitta privata versioner per app.",
+    "fi": "Etsi yksityisiä versioita sovelluksittain.",
+    "nb": "Finn private versjoner etter app.",
+    "it": "Trova le versioni private per app.",
+    "id": "Cari revisi pribadi menurut aplikasi.",
+    "th": "ค้นหาฉบับแก้ไขส่วนตัวตามแอป"
+  },
+  "Browse saved files ↗": {
+    "uk": "Переглянути файли ↗",
+    "nl": "Bestanden bekijken ↗",
+    "sv": "Bläddra bland filer ↗",
+    "fi": "Selaa tiedostoja ↗",
+    "nb": "Bla i filer ↗",
+    "it": "Sfoglia i file ↗",
+    "id": "Jelajahi file ↗",
+    "th": "เรียกดูไฟล์ ↗"
+  },
+  "Approved trial": {
+    "uk": "Схвалений пробний доступ",
+    "nl": "Goedgekeurde proef",
+    "sv": "Godkänt prov",
+    "fi": "Hyväksytty kokeilu",
+    "nb": "Godkjent prøve",
+    "it": "Prova approvata",
+    "id": "Uji coba disetujui",
+    "th": "การทดลองที่ได้รับอนุมัติ"
+  },
+  "Start a website draft": {
+    "uk": "Створити чернетку сайту",
+    "nl": "Websiteconcept starten",
+    "sv": "Starta ett webbplatsutkast",
+    "fi": "Aloita sivustoluonnos",
+    "nb": "Start et nettstedsutkast",
+    "it": "Inizia una bozza del sito",
+    "id": "Mulai draf situs",
+    "th": "เริ่มฉบับร่างเว็บไซต์"
+  },
+  "Choose a purpose, pages and a template.": {
+    "uk": "Виберіть мету, сторінки та шаблон.",
+    "nl": "Kies een doel, pagina's en een sjabloon.",
+    "sv": "Välj syfte, sidor och mall.",
+    "fi": "Valitse tarkoitus, sivut ja malli.",
+    "nb": "Velg formål, sider og mal.",
+    "it": "Scegli scopo, pagine e modello.",
+    "id": "Pilih tujuan, halaman, dan templat.",
+    "th": "เลือกวัตถุประสงค์ หน้า และเทมเพลต"
+  },
+  "Open guided setup ↗": {
+    "uk": "Відкрити покрокове налаштування ↗",
+    "nl": "Begeleide instellingen openen ↗",
+    "sv": "Öppna guidad konfiguration ↗",
+    "fi": "Avaa ohjattu käyttöönotto ↗",
+    "nb": "Åpne veiledet oppsett ↗",
+    "it": "Apri la configurazione guidata ↗",
+    "id": "Buka penyiapan terpandu ↗",
+    "th": "เปิดการตั้งค่าแบบมีคำแนะนำ ↗"
+  },
+  "Edit your site draft": {
+    "uk": "Редагувати чернетку сайту",
+    "nl": "Websiteconcept bewerken",
+    "sv": "Redigera webbplatsutkastet",
+    "fi": "Muokkaa sivustoluonnosta",
+    "nb": "Rediger nettstedsutkastet",
+    "it": "Modifica la bozza del sito",
+    "id": "Edit draf situs",
+    "th": "แก้ไขฉบับร่างเว็บไซต์"
+  },
+  "Customise pages, navigation and branding.": {
+    "uk": "Налаштуйте сторінки, навігацію та стиль.",
+    "nl": "Pas pagina's, navigatie en huisstijl aan.",
+    "sv": "Anpassa sidor, navigering och varumärke.",
+    "fi": "Muokkaa sivuja, navigointia ja brändiä.",
+    "nb": "Tilpass sider, navigasjon og profil.",
+    "it": "Personalizza pagine, navigazione e marchio.",
+    "id": "Sesuaikan halaman, navigasi, dan merek.",
+    "th": "ปรับแต่งหน้า การนำทาง และแบรนด์"
+  },
+  "Open private editor ↗": {
+    "uk": "Відкрити приватний редактор ↗",
+    "nl": "Privé-editor openen ↗",
+    "sv": "Öppna privat editor ↗",
+    "fi": "Avaa yksityinen editori ↗",
+    "nb": "Åpne privat editor ↗",
+    "it": "Apri l'editor privato ↗",
+    "id": "Buka editor pribadi ↗",
+    "th": "เปิดตัวแก้ไขส่วนตัว ↗"
+  },
+  "These tools open securely on Explore by Claudia in a new tab. Sign in with your existing invited account; access is checked there. Trial signup availability is shown on the registration page. Paid subscriptions are not open yet.": {
+    "uk": "Інструменти відкриваються в новій вкладці Explore by Claudia. Увійдіть запрошеним обліковим записом; доступ перевіряється там. Реєстрація пробних користувачів залежить від сторінки реєстрації. Платні підписки ще не відкриті.",
+    "nl": "Tools openen veilig op Explore by Claudia in een nieuw tabblad. Log in met je uitgenodigde account; daar wordt toegang gecontroleerd. De registratiepagina toont of aanmelden open is. Betaalde abonnementen zijn nog gesloten.",
+    "sv": "Verktygen öppnas säkert på Explore by Claudia i en ny flik. Logga in med ditt inbjudna konto; åtkomst kontrolleras där. Registreringssidan visar om provregistrering är öppen. Betalabonnemang har inte öppnat.",
+    "fi": "Työkalut avautuvat turvallisesti Explore by Claudia -sivulle uuteen välilehteen. Kirjaudu kutsutulla tilillä; pääsy tarkistetaan siellä. Rekisteröintisivu kertoo kokeilun saatavuuden. Maksulliset tilaukset eivät ole vielä avoinna.",
+    "nb": "Verktøyene åpnes trygt på Explore by Claudia i ny fane. Logg inn med invitert konto; tilgangen kontrolleres der. Registreringssiden viser om prøveregistrering er åpen. Betalte abonnementer er ikke åpnet.",
+    "it": "Gli strumenti si aprono su Explore by Claudia in una nuova scheda. Accedi con l'account invitato; l'accesso è verificato lì. La pagina di registrazione indica la disponibilità della prova. Gli abbonamenti a pagamento non sono aperti.",
+    "id": "Alat dibuka aman di Explore by Claudia pada tab baru. Masuk dengan akun undangan; akses diperiksa di sana. Halaman pendaftaran menampilkan ketersediaan uji coba. Langganan berbayar belum dibuka.",
+    "th": "เครื่องมือเปิดอย่างปลอดภัยบน Explore by Claudia ในแท็บใหม่ เข้าสู่ระบบด้วยบัญชีที่ได้รับเชิญและตรวจสอบสิทธิ์ที่นั่น ดูสถานะการสมัครทดลองได้ที่หน้าสมัคร ยังไม่เปิดสมาชิกแบบชำระเงิน"
+  },
+  "What’s coming to SoraSpace?": {
+    "uk": "Що далі в SoraSpace?",
+    "nl": "Wat komt er naar SoraSpace?",
+    "sv": "Vad kommer till SoraSpace?",
+    "fi": "Mitä SoraSpaceen on tulossa?",
+    "nb": "Hva kommer til SoraSpace?",
+    "it": "Cosa arriva su SoraSpace?",
+    "id": "Apa yang akan hadir di SoraSpace?",
+    "th": "มีอะไรใหม่ที่จะมาใน SoraSpace?"
+  },
+  "Customer-owned websites and domains, a dedicated SoraSpace account workspace and SoraShop commerce are being developed. Availability will follow their release checks.": {
+    "uk": "Власні сайти й домени, окремий простір облікового запису та торгівля SoraShop розробляються. Доступ відкриємо після перевірок.",
+    "nl": "Eigen websites en domeinen, een aparte accountwerkruimte en SoraShop worden ontwikkeld. Beschikbaarheid volgt na releasecontroles.",
+    "sv": "Egna webbplatser och domäner, en separat kontoarbetsyta och SoraShop utvecklas. Åtkomst följer efter releasekontroller.",
+    "fi": "Omat sivustot ja verkkotunnukset, erillinen tilityötila ja SoraShop ovat kehitteillä. Saatavuus vahvistuu julkaisutarkistusten jälkeen.",
+    "nb": "Egne nettsteder og domener, eget kontoarbeidsområde og SoraShop utvikles. Tilgang kommer etter utgivelseskontroller.",
+    "it": "Siti e domini propri, spazio account dedicato e SoraShop sono in sviluppo. Disponibilità dopo i controlli di rilascio.",
+    "id": "Situs dan domain sendiri, ruang akun khusus, dan SoraShop sedang dikembangkan. Akses tersedia setelah pemeriksaan rilis.",
+    "th": "กำลังพัฒนาเว็บไซต์และโดเมนของลูกค้า พื้นที่บัญชีเฉพาะ และ SoraShop จะเปิดใช้หลังผ่านการตรวจสอบรุ่น"
+  },
+  "Account & services ↗": {
+    "uk": "Обліковий запис і послуги ↗",
+    "nl": "Account en diensten ↗",
+    "sv": "Konto och tjänster ↗",
+    "fi": "Tili ja palvelut ↗",
+    "nb": "Konto og tjenester ↗",
+    "it": "Account e servizi ↗",
+    "id": "Akun dan layanan ↗",
+    "th": "บัญชีและบริการ ↗"
+  },
+  "Owner administration ↗": {
+    "uk": "Адміністрування власника ↗",
+    "nl": "Eigenaarsbeheer ↗",
+    "sv": "Ägaradministration ↗",
+    "fi": "Omistajan hallinta ↗",
+    "nb": "Eieradministrasjon ↗",
+    "it": "Amministrazione proprietario ↗",
+    "id": "Administrasi pemilik ↗",
+    "th": "การดูแลระบบของเจ้าของ ↗"
+  },
+  "Language": {
+    "uk": "Мова",
+    "nl": "Taal",
+    "sv": "Språk",
+    "fi": "Kieli",
+    "nb": "Språk",
+    "it": "Lingua",
+    "id": "Bahasa",
+    "th": "ภาษา"
+  },
+  "Home": {
+    "uk": "Головна",
+    "nl": "Home",
+    "sv": "Hem",
+    "fi": "Etusivu",
+    "nb": "Hjem",
+    "it": "Home",
+    "id": "Beranda",
+    "th": "หน้าแรก"
+  },
+  "Writing & analysis": {
+    "uk": "Тексти й аналітика",
+    "nl": "Teksten en analyse",
+    "sv": "Texter och analys",
+    "fi": "Kirjoitukset ja analyysi",
+    "nb": "Tekster og analyse",
+    "it": "Scrittura e analisi",
+    "id": "Tulisan dan analisis",
+    "th": "งานเขียนและการวิเคราะห์"
+  },
+  "Explore": {
+    "uk": "Досліджуйте",
+    "nl": "Ontdekken",
+    "sv": "Utforska",
+    "fi": "Tutustu",
+    "nb": "Utforsk",
+    "it": "Esplora",
+    "id": "Jelajahi",
+    "th": "สำรวจ"
+  },
+  "Photography": {
+    "uk": "Фотографія",
+    "nl": "Fotografie",
+    "sv": "Fotografi",
+    "fi": "Valokuvaus",
+    "nb": "Fotografi",
+    "it": "Fotografia",
+    "id": "Fotografi",
+    "th": "การถ่ายภาพ"
+  },
+  "Journal": {
+    "uk": "Щоденник",
+    "nl": "Dagboek",
+    "sv": "Journal",
+    "fi": "Päiväkirja",
+    "nb": "Journal",
+    "it": "Diario",
+    "id": "Jurnal",
+    "th": "บันทึก"
+  },
+  "Trips": {
+    "uk": "Подорожі",
+    "nl": "Reizen",
+    "sv": "Resor",
+    "fi": "Matkat",
+    "nb": "Reiser",
+    "it": "Viaggi",
+    "id": "Perjalanan",
+    "th": "ทริป"
+  },
+  "3D Printing": {
+    "uk": "3D-друк",
+    "nl": "3D-printen",
+    "sv": "3D-utskrift",
+    "fi": "3D-tulostus",
+    "nb": "3D-utskrift",
+    "it": "Stampa 3D",
+    "id": "Pencetakan 3D",
+    "th": "การพิมพ์ 3 มิติ"
+  },
+  "About Claudia": {
+    "uk": "Про Claudia",
+    "nl": "Over Claudia",
+    "sv": "Om Claudia",
+    "fi": "Tietoa Claudiasta",
+    "nb": "Om Claudia",
+    "it": "Informazioni su Claudia",
+    "id": "Tentang Claudia",
+    "th": "เกี่ยวกับ Claudia"
+  },
+  "Contact": {
+    "uk": "Контакти",
+    "nl": "Contact",
+    "sv": "Kontakt",
+    "fi": "Yhteystiedot",
+    "nb": "Kontakt",
+    "it": "Contatti",
+    "id": "Kontak",
+    "th": "ติดต่อ"
+  },
+  "Sign in": {
+    "uk": "Увійти",
+    "nl": "Inloggen",
+    "sv": "Logga in",
+    "fi": "Kirjaudu sisään",
+    "nb": "Logg inn",
+    "it": "Accedi",
+    "id": "Masuk",
+    "th": "เข้าสู่ระบบ"
+  },
+  "Settings": {
+    "uk": "Налаштування",
+    "nl": "Instellingen",
+    "sv": "Inställningar",
+    "fi": "Asetukset",
+    "nb": "Innstillinger",
+    "it": "Impostazioni",
+    "id": "Pengaturan",
+    "th": "การตั้งค่า"
+  },
+  "My apps": {
+    "uk": "Мої застосунки",
+    "nl": "Mijn apps",
+    "sv": "Mina appar",
+    "fi": "Omat sovellukset",
+    "nb": "Mine apper",
+    "it": "Le mie app",
+    "id": "Aplikasi saya",
+    "th": "แอปของฉัน"
+  },
+  "My Studio": {
+    "uk": "Моя студія",
+    "nl": "Mijn Studio",
+    "sv": "Min Studio",
+    "fi": "Oma Studio",
+    "nb": "Mitt Studio",
+    "it": "Il mio Studio",
+    "id": "Studio saya",
+    "th": "สตูดิโอของฉัน"
+  },
+  "Sign out": {
+    "uk": "Вийти",
+    "nl": "Uitloggen",
+    "sv": "Logga ut",
+    "fi": "Kirjaudu ulos",
+    "nb": "Logg ut",
+    "it": "Esci",
+    "id": "Keluar",
+    "th": "ออกจากระบบ"
+  },
+  "Files": {
+    "uk": "Файли",
+    "nl": "Bestanden",
+    "sv": "Filer",
+    "fi": "Tiedostot",
+    "nb": "Filer",
+    "it": "File",
+    "id": "File",
+    "th": "ไฟล์"
+  },
+  "Storage": {
+    "uk": "Сховище",
+    "nl": "Opslag",
+    "sv": "Lagring",
+    "fi": "Tallennus",
+    "nb": "Lagring",
+    "it": "Archiviazione",
+    "id": "Penyimpanan",
+    "th": "พื้นที่จัดเก็บ"
+  },
+  "Mail": {
+    "uk": "Пошта",
+    "nl": "E-mail",
+    "sv": "E-post",
+    "fi": "Sähköposti",
+    "nb": "E-post",
+    "it": "Posta",
+    "id": "Email",
+    "th": "อีเมล"
+  },
+  "Theme": {
+    "uk": "Тема",
+    "nl": "Thema",
+    "sv": "Tema",
+    "fi": "Teema",
+    "nb": "Tema",
+    "it": "Tema",
+    "id": "Tema",
+    "th": "ธีม"
+  },
+  "Studio": {
+    "uk": "Студія",
+    "nl": "Studio",
+    "sv": "Studio",
+    "fi": "Studio",
+    "nb": "Studio",
+    "it": "Studio",
+    "id": "Studio",
+    "th": "สตูดิโอ"
+  },
+  "Saved site files": {
+    "uk": "Збережені файли сайту",
+    "nl": "Opgeslagen sitebestanden",
+    "sv": "Sparade webbplatsfiler",
+    "fi": "Tallennetut sivustotiedostot",
+    "nb": "Lagrede nettstedfiler",
+    "it": "File del sito salvati",
+    "id": "File situs tersimpan",
+    "th": "ไฟล์เว็บไซต์ที่บันทึก"
+  },
+  "Refresh": {
+    "uk": "Оновити",
+    "nl": "Vernieuwen",
+    "sv": "Uppdatera",
+    "fi": "Päivitä",
+    "nb": "Oppdater",
+    "it": "Aggiorna",
+    "id": "Muat ulang",
+    "th": "รีเฟรช"
+  },
+  "Refresh files": {
+    "uk": "Оновити файли",
+    "nl": "Bestanden vernieuwen",
+    "sv": "Uppdatera filer",
+    "fi": "Päivitä tiedostot",
+    "nb": "Oppdater filer",
+    "it": "Aggiorna i file",
+    "id": "Muat ulang file",
+    "th": "รีเฟรชไฟล์"
+  },
+  "Save draft": {
+    "uk": "Зберегти чернетку",
+    "nl": "Concept opslaan",
+    "sv": "Spara utkast",
+    "fi": "Tallenna luonnos",
+    "nb": "Lagre utkast",
+    "it": "Salva bozza",
+    "id": "Simpan draf",
+    "th": "บันทึกฉบับร่าง"
+  },
+  "Back": {
+    "uk": "Назад",
+    "nl": "Terug",
+    "sv": "Tillbaka",
+    "fi": "Takaisin",
+    "nb": "Tilbake",
+    "it": "Indietro",
+    "id": "Kembali",
+    "th": "ย้อนกลับ"
+  },
+  "Continue →": {
+    "uk": "Продовжити →",
+    "nl": "Doorgaan →",
+    "sv": "Fortsätt →",
+    "fi": "Jatka →",
+    "nb": "Fortsett →",
+    "it": "Continua →",
+    "id": "Lanjutkan →",
+    "th": "ดำเนินการต่อ →"
+  },
+  "Desktop": {
+    "uk": "Настільна версія",
+    "nl": "Desktop",
+    "sv": "Dator",
+    "fi": "Työpöytä",
+    "nb": "Skrivebord",
+    "it": "Desktop",
+    "id": "Desktop",
+    "th": "เดสก์ท็อป"
+  },
+  "Coming soon": {
+    "uk": "Незабаром",
+    "nl": "Binnenkort",
+    "sv": "Kommer snart",
+    "fi": "Tulossa",
+    "nb": "Kommer snart",
+    "it": "In arrivo",
+    "id": "Segera hadir",
+    "th": "เร็ว ๆ นี้"
+  },
+  "Read more": {
+    "uk": "Докладніше",
+    "nl": "Meer lezen",
+    "sv": "Läs mer",
+    "fi": "Lue lisää",
+    "nb": "Les mer",
+    "it": "Leggi di più",
+    "id": "Baca selengkapnya",
+    "th": "อ่านเพิ่มเติม"
+  },
+  "SoraSpace home": {
+    "uk": "Головна SoraSpace",
+    "nl": "SoraSpace-home",
+    "sv": "SoraSpace startsida",
+    "fi": "SoraSpacen etusivu",
+    "nb": "SoraSpace startside",
+    "it": "Home SoraSpace",
+    "id": "Beranda SoraSpace",
+    "th": "หน้าแรก SoraSpace"
+  },
+  "Main navigation": {
+    "uk": "Основна навігація",
+    "nl": "Hoofdnavigatie",
+    "sv": "Huvudnavigering",
+    "fi": "Päänavigointi",
+    "nb": "Hovednavigasjon",
+    "it": "Navigazione principale",
+    "id": "Navigasi utama",
+    "th": "เมนูหลัก"
+  },
+  "Follows your device’s light or dark appearance": {
+    "uk": "Вигляд відповідно до світлої чи темної теми пристрою",
+    "nl": "Volgt de lichte of donkere modus van je apparaat",
+    "sv": "Följer enhetens ljusa eller mörka läge",
+    "fi": "Seuraa laitteen vaaleaa tai tummaa tilaa",
+    "nb": "Følger enhetens lyse eller mørke utseende",
+    "it": "Segue il tema chiaro o scuro del dispositivo",
+    "id": "Mengikuti mode terang atau gelap perangkat",
+    "th": "ตามโหมดสว่างหรือมืดของอุปกรณ์"
+  },
+  "A workspace for your ideas, files and creative tools, with a website that feels like yours. SoraSpace is in development.": {
+    "uk": "Простір для ідей, файлів і творчих інструментів та власний сайт. SoraSpace розробляється.",
+    "nl": "Een werkruimte voor ideeën, bestanden en creatieve tools met je eigen website. SoraSpace is in ontwikkeling.",
+    "sv": "En arbetsyta för idéer, filer och kreativa verktyg med egen webbplats. SoraSpace är under utveckling.",
+    "fi": "Työtila ideoille, tiedostoille ja luoville työkaluille sekä oma sivusto. SoraSpace on kehitteillä.",
+    "nb": "Et arbeidsområde for ideer, filer og kreative verktøy med eget nettsted. SoraSpace er under utvikling.",
+    "it": "Uno spazio per idee, file e creatività con un sito tuo. SoraSpace è in sviluppo.",
+    "id": "Ruang untuk ide, file, dan alat kreatif beserta situs Anda. SoraSpace sedang dikembangkan.",
+    "th": "พื้นที่สำหรับไอเดีย ไฟล์ เครื่องมือสร้างสรรค์ และเว็บไซต์ของคุณ SoraSpace อยู่ระหว่างพัฒนา"
+  },
+  "Work privately. Publish thoughtfully. Make it yours. A new workspace and website platform, in development.": {
+    "uk": "Працюйте приватно. Публікуйте зважено. Нова платформа роботи й сайтів у розробці.",
+    "nl": "Werk privé. Publiceer bewust. Een nieuw platform voor werkruimtes en websites, in ontwikkeling.",
+    "sv": "Arbeta privat. Publicera med omsorg. En ny plattform för arbetsytor och webbplatser utvecklas.",
+    "fi": "Työskentele yksityisesti. Julkaise harkiten. Uusi työtila- ja sivustoalusta on kehitteillä.",
+    "nb": "Jobb privat. Publiser med omtanke. En ny plattform for arbeidsområder og nettsteder utvikles.",
+    "it": "Lavora in privato. Pubblica con cura. Una nuova piattaforma per lavoro e siti, in sviluppo.",
+    "id": "Bekerja secara pribadi. Terbitkan dengan bijak. Platform ruang kerja dan situs baru sedang dikembangkan.",
+    "th": "ทำงานอย่างเป็นส่วนตัว เผยแพร่อย่างรอบคอบ แพลตฟอร์มพื้นที่ทำงานและเว็บไซต์ใหม่อยู่ระหว่างพัฒนา"
+  },
+  "Pin menu": {
+    "uk": "Закріпити меню",
+    "nl": "Menu vastzetten",
+    "sv": "Fäst menyn",
+    "fi": "Kiinnitä valikko",
+    "nb": "Fest menyen",
+    "it": "Fissa menu",
+    "id": "Sematkan menu",
+    "th": "ปักหมุดเมนู"
+  },
+  "Search apps and saved files…": {
+    "uk": "Пошук застосунків і файлів…",
+    "nl": "Zoek apps en opgeslagen bestanden…",
+    "sv": "Sök appar och sparade filer…",
+    "fi": "Hae sovelluksia ja tiedostoja…",
+    "nb": "Søk i apper og lagrede filer…",
+    "it": "Cerca app e file salvati…",
+    "id": "Cari aplikasi dan file tersimpan…",
+    "th": "ค้นหาแอปและไฟล์ที่บันทึก…"
+  },
+  "Creative apps": {
+    "uk": "Творчі застосунки",
+    "nl": "Creatieve apps",
+    "sv": "Kreativa appar",
+    "fi": "Luovat sovellukset",
+    "nb": "Kreative apper",
+    "it": "App creative",
+    "id": "Aplikasi kreatif",
+    "th": "แอปสร้างสรรค์"
+  },
+  "Browse tags": {
+    "uk": "Переглянути теги",
+    "nl": "Tags bekijken",
+    "sv": "Bläddra bland taggar",
+    "fi": "Selaa tunnisteita",
+    "nb": "Bla i emner",
+    "it": "Sfoglia i tag",
+    "id": "Jelajahi tag",
+    "th": "เรียกดูแท็ก"
+  },
+  "Published library": {
+    "uk": "Опублікована бібліотека",
+    "nl": "Gepubliceerde bibliotheek",
+    "sv": "Publicerat bibliotek",
+    "fi": "Julkaistu kirjasto",
+    "nb": "Publisert bibliotek",
+    "it": "Biblioteca pubblicata",
+    "id": "Pustaka terbitan",
+    "th": "คลังที่เผยแพร่"
+  },
+  "Owner studio": {
+    "uk": "Студія власника",
+    "nl": "Eigenaarsstudio",
+    "sv": "Ägarstudio",
+    "fi": "Omistajan studio",
+    "nb": "Eierstudio",
+    "it": "Studio proprietario",
+    "id": "Studio pemilik",
+    "th": "สตูดิโอเจ้าของ"
+  },
+  "Your space": {
+    "uk": "Ваш простір",
+    "nl": "Jouw plek",
+    "sv": "Din plats",
+    "fi": "Oma tila",
+    "nb": "Ditt rom",
+    "it": "Il tuo spazio",
+    "id": "Ruang Anda",
+    "th": "พื้นที่ของคุณ"
+  },
+  "Trips & events": {
+    "uk": "Подорожі й події",
+    "nl": "Reizen en evenementen",
+    "sv": "Resor och evenemang",
+    "fi": "Matkat ja tapahtumat",
+    "nb": "Reiser og arrangementer",
+    "it": "Viaggi ed eventi",
+    "id": "Perjalanan dan acara",
+    "th": "ทริปและกิจกรรม"
+  },
+  "Sign-in & security": {
+    "uk": "Вхід і безпека",
+    "nl": "Inloggen en beveiliging",
+    "sv": "Inloggning och säkerhet",
+    "fi": "Kirjautuminen ja turvallisuus",
+    "nb": "Innlogging og sikkerhet",
+    "it": "Accesso e sicurezza",
+    "id": "Masuk dan keamanan",
+    "th": "การเข้าสู่ระบบและความปลอดภัย"
+  },
+  "User permissions": {
+    "uk": "Дозволи користувачів",
+    "nl": "Gebruikersrechten",
+    "sv": "Användarbehörigheter",
+    "fi": "Käyttäjäoikeudet",
+    "nb": "Brukertillatelser",
+    "it": "Permessi utenti",
+    "id": "Izin pengguna",
+    "th": "สิทธิ์ผู้ใช้"
+  },
+  "Places & map": {
+    "uk": "Місця й карта",
+    "nl": "Plekken en kaart",
+    "sv": "Platser och karta",
+    "fi": "Paikat ja kartta",
+    "nb": "Steder og kart",
+    "it": "Luoghi e mappa",
+    "id": "Tempat dan peta",
+    "th": "สถานที่และแผนที่"
+  },
+  "SoraSpace workspace": {
+    "uk": "Робочий простір SoraSpace",
+    "nl": "SoraSpace-werkruimte",
+    "sv": "SoraSpace-arbetsyta",
+    "fi": "SoraSpace-työtila",
+    "nb": "SoraSpace-arbeidsområde",
+    "it": "Spazio di lavoro SoraSpace",
+    "id": "Ruang kerja SoraSpace",
+    "th": "พื้นที่ทำงาน SoraSpace"
+  },
+  "Email address": {
+    "uk": "Електронна пошта",
+    "nl": "E-mailadres",
+    "sv": "E-postadress",
+    "fi": "Sähköpostiosoite",
+    "nb": "E-postadresse",
+    "it": "Indirizzo email",
+    "id": "Alamat email",
+    "th": "ที่อยู่อีเมล"
+  },
+  "Password": {
+    "uk": "Пароль",
+    "nl": "Wachtwoord",
+    "sv": "Lösenord",
+    "fi": "Salasana",
+    "nb": "Passord",
+    "it": "Password",
+    "id": "Kata sandi",
+    "th": "รหัสผ่าน"
+  },
+  "Your name": {
+    "uk": "Ваше ім'я",
+    "nl": "Je naam",
+    "sv": "Ditt namn",
+    "fi": "Nimesi",
+    "nb": "Navnet ditt",
+    "it": "Il tuo nome",
+    "id": "Nama Anda",
+    "th": "ชื่อของคุณ"
+  },
+  "Create your account.": {
+    "uk": "Створіть обліковий запис.",
+    "nl": "Maak je account.",
+    "sv": "Skapa ditt konto.",
+    "fi": "Luo tilisi.",
+    "nb": "Opprett kontoen din.",
+    "it": "Crea il tuo account.",
+    "id": "Buat akun Anda.",
+    "th": "สร้างบัญชีของคุณ"
+  },
+  "Choose the services you’d like to try. Verify your email, then wait for approval before opening the trial tools.": {
+    "uk": "Виберіть послуги для проби. Підтвердьте пошту й дочекайтеся схвалення доступу.",
+    "nl": "Kies de diensten die je wilt proberen. Bevestig je e-mail en wacht op goedkeuring.",
+    "sv": "Välj tjänster att prova. Bekräfta din e-post och invänta godkännande.",
+    "fi": "Valitse kokeiltavat palvelut. Vahvista sähköposti ja odota hyväksyntää.",
+    "nb": "Velg tjenestene du vil prøve. Bekreft e-posten og vent på godkjenning.",
+    "it": "Scegli i servizi da provare. Verifica l'email e attendi l'approvazione.",
+    "id": "Pilih layanan yang ingin dicoba. Verifikasi email lalu tunggu persetujuan.",
+    "th": "เลือกบริการที่ต้องการทดลอง ยืนยันอีเมลแล้วรออนุมัติก่อนใช้เครื่องมือ"
+  },
+  "Services you’re interested in": {
+    "uk": "Послуги, що вас цікавлять",
+    "nl": "Diensten waarin je interesse hebt",
+    "sv": "Tjänster du är intresserad av",
+    "fi": "Kiinnostavat palvelut",
+    "nb": "Tjenester du er interessert i",
+    "it": "Servizi che ti interessano",
+    "id": "Layanan yang diminati",
+    "th": "บริการที่คุณสนใจ"
+  },
+  "At least 12 characters, up to 72 UTF-8 bytes.": {
+    "uk": "Щонайменше 12 символів, до 72 байтів UTF-8.",
+    "nl": "Minimaal 12 tekens, maximaal 72 UTF-8-bytes.",
+    "sv": "Minst 12 tecken, högst 72 UTF-8-byte.",
+    "fi": "Vähintään 12 merkkiä, enintään 72 UTF-8-tavua.",
+    "nb": "Minst 12 tegn, maksimalt 72 UTF-8-byte.",
+    "it": "Almeno 12 caratteri, massimo 72 byte UTF-8.",
+    "id": "Minimal 12 karakter, maksimal 72 byte UTF-8.",
+    "th": "อย่างน้อย 12 อักขระ ไม่เกิน 72 ไบต์ UTF-8"
+  },
+  "Create trial account": {
+    "uk": "Створити пробний обліковий запис",
+    "nl": "Proefaccount maken",
+    "sv": "Skapa provkonto",
+    "fi": "Luo kokeilutili",
+    "nb": "Opprett prøvekonto",
+    "it": "Crea account di prova",
+    "id": "Buat akun uji coba",
+    "th": "สร้างบัญชีทดลอง"
+  },
+  "Already registered? Sign in →": {
+    "uk": "Уже зареєстровані? Увійти →",
+    "nl": "Al geregistreerd? Inloggen →",
+    "sv": "Redan registrerad? Logga in →",
+    "fi": "Jo rekisteröitynyt? Kirjaudu →",
+    "nb": "Allerede registrert? Logg inn →",
+    "it": "Già registrato? Accedi →",
+    "id": "Sudah terdaftar? Masuk →",
+    "th": "สมัครแล้ว? เข้าสู่ระบบ →"
+  },
+  "Website & journal": {
+    "uk": "Сайт і щоденник",
+    "nl": "Website en dagboek",
+    "sv": "Webbplats och journal",
+    "fi": "Sivusto ja päiväkirja",
+    "nb": "Nettsted og journal",
+    "it": "Sito e diario",
+    "id": "Situs dan jurnal",
+    "th": "เว็บไซต์และบันทึก"
+  },
+  "Guided site setup and a private editor trial.": {
+    "uk": "Покрокове налаштування й пробний приватний редактор.",
+    "nl": "Begeleide site-instellingen en een privé-editor op proef.",
+    "sv": "Guidad webbplatskonfiguration och privat editor på prov.",
+    "fi": "Ohjattu sivuston käyttöönotto ja yksityinen editorikokeilu.",
+    "nb": "Veiledet nettstedoppsett og privat editorprøve.",
+    "it": "Configurazione guidata e prova dell'editor privato.",
+    "id": "Penyiapan situs terpandu dan uji coba editor pribadi.",
+    "th": "ตั้งค่าเว็บไซต์แบบมีคำแนะนำและทดลองตัวแก้ไขส่วนตัว"
+  },
+  "Forgot password?": {
+    "uk": "Забули пароль?",
+    "nl": "Wachtwoord vergeten?",
+    "sv": "Glömt lösenord?",
+    "fi": "Unohditko salasanan?",
+    "nb": "Glemt passord?",
+    "it": "Password dimenticata?",
+    "id": "Lupa kata sandi?",
+    "th": "ลืมรหัสผ่าน?"
+  },
+  "New password": {
+    "uk": "Новий пароль",
+    "nl": "Nieuw wachtwoord",
+    "sv": "Nytt lösenord",
+    "fi": "Uusi salasana",
+    "nb": "Nytt passord",
+    "it": "Nuova password",
+    "id": "Kata sandi baru",
+    "th": "รหัสผ่านใหม่"
+  },
+  "Confirm password": {
+    "uk": "Підтвердьте пароль",
+    "nl": "Wachtwoord bevestigen",
+    "sv": "Bekräfta lösenord",
+    "fi": "Vahvista salasana",
+    "nb": "Bekreft passord",
+    "it": "Conferma password",
+    "id": "Konfirmasi kata sandi",
+    "th": "ยืนยันรหัสผ่าน"
+  },
+  "Set password": {
+    "uk": "Установити пароль",
+    "nl": "Wachtwoord instellen",
+    "sv": "Ange lösenord",
+    "fi": "Aseta salasana",
+    "nb": "Angi passord",
+    "it": "Imposta password",
+    "id": "Tetapkan kata sandi",
+    "th": "ตั้งรหัสผ่าน"
+  },
+  "Shop preview · Orders are not open yet": {
+    "uk": "Попередній перегляд магазину · Замовлення ще закриті",
+    "nl": "Winkelvoorbeeld · Bestellen nog gesloten",
+    "sv": "Butiksförhandsvisning · Beställningar är inte öppna",
+    "fi": "Kaupan esikatselu · Tilaukset eivät ole vielä käytössä",
+    "nb": "Butikkforhåndsvisning · Bestillinger er ikke åpnet",
+    "it": "Anteprima negozio · Ordini non ancora aperti",
+    "id": "Pratinjau toko · Pesanan belum dibuka",
+    "th": "ตัวอย่างร้านค้า · ยังไม่เปิดรับคำสั่งซื้อ"
+  },
+  "Printed pieces": {
+    "uk": "Друковані вироби",
+    "nl": "Geprinte producten",
+    "sv": "Utskrivna produkter",
+    "fi": "Tulostetut tuotteet",
+    "nb": "Utskrevne produkter",
+    "it": "Oggetti stampati",
+    "id": "Produk cetak",
+    "th": "ผลิตภัณฑ์พิมพ์"
+  },
+  "STL designs": {
+    "uk": "STL-моделі",
+    "nl": "STL-ontwerpen",
+    "sv": "STL-modeller",
+    "fi": "STL-mallit",
+    "nb": "STL-modeller",
+    "it": "Modelli STL",
+    "id": "Desain STL",
+    "th": "แบบ STL"
+  },
+  "Get in touch": {
+    "uk": "Зв'яжіться з нами",
+    "nl": "Neem contact op",
+    "sv": "Kontakta oss",
+    "fi": "Ota yhteyttä",
+    "nb": "Ta kontakt",
+    "it": "Contattaci",
+    "id": "Hubungi kami",
+    "th": "ติดต่อเรา"
+  },
+  "Back to Explore by Claudia": {
+    "uk": "Назад до Explore by Claudia",
+    "nl": "Terug naar Explore by Claudia",
+    "sv": "Tillbaka till Explore by Claudia",
+    "fi": "Takaisin Explore by Claudia -sivulle",
+    "nb": "Tilbake til Explore by Claudia",
+    "it": "Torna a Explore by Claudia",
+    "id": "Kembali ke Explore by Claudia",
+    "th": "กลับไปที่ Explore by Claudia"
+  },
+  "Illustrative preview, not live account data or a product screenshot": {
+    "uk": "Ілюстрація, а не дані облікового запису чи знімок продукту",
+    "nl": "Illustratief voorbeeld, geen live accountgegevens of productscreenshot",
+    "sv": "Illustration, inte kontodata eller produktskärmbild",
+    "fi": "Havainnekuva, ei tilitietoja tai tuotteen kuvakaappaus",
+    "nb": "Illustrasjon, ikke kontodata eller produktskjermbilde",
+    "it": "Illustrazione, non dati reali né schermata del prodotto",
+    "id": "Ilustrasi, bukan data akun langsung atau tangkapan layar produk",
+    "th": "ภาพจำลอง ไม่ใช่ข้อมูลบัญชีจริงหรือภาพหน้าจอผลิตภัณฑ์"
+  },
+  "Your tools, at a glance.": {
+    "uk": "Ваші інструменти одним поглядом.",
+    "nl": "Je tools in één oogopslag.",
+    "sv": "Dina verktyg i överblick.",
+    "fi": "Työkalusi yhdellä silmäyksellä.",
+    "nb": "Verktøyene dine på et øyeblikk.",
+    "it": "I tuoi strumenti a colpo d'occhio.",
+    "id": "Alat Anda sekilas.",
+    "th": "เครื่องมือของคุณในภาพรวม"
+  },
+  "Documents & references": {
+    "uk": "Документи й посилання",
+    "nl": "Documenten en referenties",
+    "sv": "Dokument och referenser",
+    "fi": "Asiakirjat ja viitteet",
+    "nb": "Dokumenter og referanser",
+    "it": "Documenti e riferimenti",
+    "id": "Dokumen dan referensi",
+    "th": "เอกสารและการอ้างอิง"
+  },
+  "PDFs & annotations": {
+    "uk": "PDF та анотації",
+    "nl": "PDF's en annotaties",
+    "sv": "PDF och anteckningar",
+    "fi": "PDF ja merkinnät",
+    "nb": "PDF og merknader",
+    "it": "PDF e annotazioni",
+    "id": "PDF dan anotasi",
+    "th": "PDF และคำอธิบายประกอบ"
+  },
+  "Photo development": {
+    "uk": "Обробка фото",
+    "nl": "Foto-ontwikkeling",
+    "sv": "Fotoframkallning",
+    "fi": "Kuvankehitys",
+    "nb": "Bildefremkalling",
+    "it": "Sviluppo foto",
+    "id": "Pengolahan foto",
+    "th": "การปรับแต่งภาพถ่าย"
+  },
+  "Images & layers": {
+    "uk": "Зображення й шари",
+    "nl": "Afbeeldingen en lagen",
+    "sv": "Bilder och lager",
+    "fi": "Kuvat ja tasot",
+    "nb": "Bilder og lag",
+    "it": "Immagini e livelli",
+    "id": "Gambar dan lapisan",
+    "th": "ภาพและเลเยอร์"
+  },
+  "Mail & calendar": {
+    "uk": "Пошта й календар",
+    "nl": "E-mail en agenda",
+    "sv": "E-post och kalender",
+    "fi": "Sähköposti ja kalenteri",
+    "nb": "E-post og kalender",
+    "it": "Posta e calendario",
+    "id": "Email dan kalender",
+    "th": "อีเมลและปฏิทิน"
+  },
+  "Spreadsheets & data": {
+    "uk": "Таблиці й дані",
+    "nl": "Spreadsheets en gegevens",
+    "sv": "Kalkylblad och data",
+    "fi": "Laskentataulukot ja tiedot",
+    "nb": "Regneark og data",
+    "it": "Fogli di calcolo e dati",
+    "id": "Lembar kerja dan data",
+    "th": "สเปรดชีตและข้อมูล"
+  },
+  "Web preview": {
+    "uk": "Вебверсія для проби",
+    "nl": "Webvoorbeeld",
+    "sv": "Webbförhandsvisning",
+    "fi": "Verkkoversion esikatselu",
+    "nb": "Nettforhåndsvisning",
+    "it": "Anteprima web",
+    "id": "Pratinjau web",
+    "th": "ตัวอย่างเว็บ"
+  },
+  "Desktop · In development": {
+    "uk": "Настільна версія · У розробці",
+    "nl": "Desktop · In ontwikkeling",
+    "sv": "Dator · Under utveckling",
+    "fi": "Työpöytä · Kehitteillä",
+    "nb": "Skrivebord · Under utvikling",
+    "it": "Desktop · In sviluppo",
+    "id": "Desktop · Dalam pengembangan",
+    "th": "เดสก์ท็อป · อยู่ระหว่างพัฒนา"
+  },
+  "Web previews require approved access. Desktop downloads depend on release availability.": {
+    "uk": "Вебверсії потребують схвалення. Завантаження настільних версій залежать від випусків.",
+    "nl": "Webvoorbeelden vereisen goedkeuring. Desktopdownloads hangen af van beschikbare releases.",
+    "sv": "Webbförhandsvisningar kräver godkännande. Datornedladdningar beror på tillgängliga versioner.",
+    "fi": "Verkkokokeilut vaativat hyväksynnän. Työpöytälataukset riippuvat julkaisuista.",
+    "nb": "Nettforhåndsvisning krever godkjenning. Skrivebordsnedlastinger avhenger av utgivelser.",
+    "it": "Le anteprime web richiedono approvazione. I download dipendono dalle versioni disponibili.",
+    "id": "Pratinjau web memerlukan persetujuan. Unduhan desktop bergantung pada rilis yang tersedia.",
+    "th": "ตัวอย่างเว็บต้องได้รับอนุมัติ การดาวน์โหลดเดสก์ท็อปขึ้นอยู่กับรุ่นที่พร้อม"
+  },
+  "A closer look. Choose what you want to create.": {
+    "uk": "Розгляньте ближче. Виберіть, що створювати.",
+    "nl": "Bekijk ze van dichtbij. Kies wat je wilt maken.",
+    "sv": "Titta närmare. Välj vad du vill skapa.",
+    "fi": "Tutustu tarkemmin. Valitse mitä luot.",
+    "nb": "Se nærmere. Velg hva du vil skape.",
+    "it": "Guarda più da vicino. Scegli cosa creare.",
+    "id": "Lihat lebih dekat. Pilih karya Anda.",
+    "th": "ดูให้ใกล้ขึ้น แล้วเลือกสิ่งที่ต้องการสร้าง"
+  },
+  "Write documents, work with PDFs, develop photos and create images. Bring your tools and your own website together in SoraSpace.": {
+    "uk": "Пишіть документи, працюйте з PDF, обробляйте фото й створюйте зображення. Поєднайте інструменти й власний сайт у SoraSpace.",
+    "nl": "Schrijf documenten, werk met PDF's, ontwikkel foto's en maak afbeeldingen. Breng je tools en website samen in SoraSpace.",
+    "sv": "Skriv dokument, arbeta med PDF, framkalla foton och skapa bilder. Samla dina verktyg och din webbplats i SoraSpace.",
+    "fi": "Kirjoita asiakirjoja, työstä PDF-tiedostoja, kehitä kuvia ja luo grafiikkaa. Yhdistä työkalut ja oma sivusto SoraSpacessa.",
+    "nb": "Skriv dokumenter, jobb med PDF, fremkall bilder og lag grafikk. Samle verktøyene og nettstedet i SoraSpace.",
+    "it": "Scrivi documenti, lavora sui PDF, sviluppa foto e crea immagini. Riunisci strumenti e sito in SoraSpace.",
+    "id": "Tulis dokumen, olah PDF, kembangkan foto, dan buat gambar. Satukan alat dan situs Anda di SoraSpace.",
+    "th": "เขียนเอกสาร ทำงานกับ PDF ปรับแต่งภาพถ่าย และสร้างภาพ รวมเครื่องมือและเว็บไซต์ใน SoraSpace"
+  },
+  "Starting price to be announced": {
+    "uk": "Початкову ціну оголосимо пізніше",
+    "nl": "Vanafprijs volgt",
+    "sv": "Startpris meddelas senare",
+    "fi": "Lähtöhinta ilmoitetaan myöhemmin",
+    "nb": "Startpris kommer",
+    "it": "Prezzo di partenza da annunciare",
+    "id": "Harga awal akan diumumkan",
+    "th": "จะแจ้งราคาเริ่มต้นในภายหลัง"
+  },
+  "Choose your package and the features you need.": {
+    "uk": "Виберіть пакет і потрібні функції.",
+    "nl": "Kies je pakket en de gewenste functies.",
+    "sv": "Välj ditt paket och de funktioner du behöver.",
+    "fi": "Valitse paketti ja tarvitsemasi ominaisuudet.",
+    "nb": "Velg pakken og funksjonene du trenger.",
+    "it": "Scegli il pacchetto e le funzioni che ti servono.",
+    "id": "Pilih paket dan fitur yang diperlukan.",
+    "th": "เลือกแพ็กเกจและฟีเจอร์ที่ต้องการ"
+  },
+  "Launch pricing will start from a base package, with optional features priced separately. You’ll see the full total before subscribing.": {
+    "uk": "Ціна починатиметься з базового пакета; додаткові функції оплачуватимуться окремо. Повну суму ви побачите до підписки.",
+    "nl": "De prijs begint bij een basispakket; opties worden apart berekend. Je ziet het volledige totaal voordat je een abonnement afsluit.",
+    "sv": "Priset utgår från ett baspaket med tillval som kostar extra. Du ser totalsumman före prenumeration.",
+    "fi": "Hinta alkaa peruspaketista; lisäominaisuudet hinnoitellaan erikseen. Näet kokonaishinnan ennen tilausta.",
+    "nb": "Prisen starter med en grunnpakke; tilvalg prises separat. Du ser totalbeløpet før du abonnerer.",
+    "it": "Il prezzo parte da un pacchetto base, con opzioni a parte. Vedrai il totale prima di abbonarti.",
+    "id": "Harga dimulai dari paket dasar dengan fitur opsional berbayar terpisah. Total ditampilkan sebelum berlangganan.",
+    "th": "ราคาเริ่มจากแพ็กเกจพื้นฐาน ฟีเจอร์เสริมคิดแยก และจะแสดงยอดรวมก่อนสมัคร"
+  },
+  "Sign up for Workspace ↗": {
+    "uk": "Зареєструвати робочий простір ↗",
+    "nl": "Werkruimte registreren ↗",
+    "sv": "Registrera arbetsyta ↗",
+    "fi": "Rekisteröi työtila ↗",
+    "nb": "Registrer arbeidsområde ↗",
+    "it": "Registrati allo spazio di lavoro ↗",
+    "id": "Daftar ruang kerja ↗",
+    "th": "สมัครพื้นที่ทำงาน ↗"
+  },
+  "Sign up for Workspace + Website ↗": {
+    "uk": "Зареєструвати простір і сайт ↗",
+    "nl": "Werkruimte en website registreren ↗",
+    "sv": "Registrera arbetsyta och webbplats ↗",
+    "fi": "Rekisteröi työtila ja sivusto ↗",
+    "nb": "Registrer arbeidsområde og nettsted ↗",
+    "it": "Registrati a spazio e sito ↗",
+    "id": "Daftar ruang kerja dan situs ↗",
+    "th": "สมัครพื้นที่ทำงานและเว็บไซต์ ↗"
+  },
+  "Your starting package": {
+    "uk": "Ваш початковий пакет",
+    "nl": "Je startpakket",
+    "sv": "Ditt startpaket",
+    "fi": "Aloituspakettisi",
+    "nb": "Din startpakke",
+    "it": "Il tuo pacchetto iniziale",
+    "id": "Paket awal Anda",
+    "th": "แพ็กเกจเริ่มต้นของคุณ"
+  },
+  "You can change the service choices below.": {
+    "uk": "Можна змінити вибір послуг нижче.",
+    "nl": "Je kunt hieronder je diensten aanpassen.",
+    "sv": "Du kan ändra tjänstevalen nedan.",
+    "fi": "Voit muuttaa palveluvalintoja alla.",
+    "nb": "Du kan endre tjenestevalgene nedenfor.",
+    "it": "Puoi cambiare i servizi qui sotto.",
+    "id": "Anda dapat mengubah pilihan layanan di bawah.",
+    "th": "คุณสามารถเปลี่ยนบริการที่เลือกด้านล่าง"
+  },
+  "Blogging & journals": {
+    "uk": "Блоги та щоденники",
+    "nl": "Blogs en dagboeken",
+    "sv": "Bloggar och journaler",
+    "fi": "Blogit ja päiväkirjat",
+    "nb": "Blogger og journaler",
+    "it": "Blog e diari",
+    "id": "Blog dan jurnal",
+    "th": "บล็อกและบันทึก"
+  },
+  "Photography galleries": {
+    "uk": "Фотогалереї",
+    "nl": "Fotogalerijen",
+    "sv": "Fotogallerier",
+    "fi": "Valokuvagalleriat",
+    "nb": "Fotogallerier",
+    "it": "Gallerie fotografiche",
+    "id": "Galeri fotografi",
+    "th": "แกลเลอรีภาพถ่าย"
+  },
+  "Research management": {
+    "uk": "Керування дослідженнями",
+    "nl": "Onderzoeksbeheer",
+    "sv": "Forskningshantering",
+    "fi": "Tutkimuksen hallinta",
+    "nb": "Forskningshåndtering",
+    "it": "Gestione della ricerca",
+    "id": "Pengelolaan penelitian",
+    "th": "การจัดการงานวิจัย"
+  },
+  "Projects, time & billing": {
+    "uk": "Проєкти, час і рахунки",
+    "nl": "Projecten, tijd en facturatie",
+    "sv": "Projekt, tid och fakturering",
+    "fi": "Projektit, aika ja laskutus",
+    "nb": "Prosjekter, tid og fakturering",
+    "it": "Progetti, tempo e fatturazione",
+    "id": "Proyek, waktu, dan tagihan",
+    "th": "โครงการ เวลา และการเรียกเก็บเงิน"
+  },
+  "Website templates · Trial": {
+    "uk": "Шаблони сайтів · Пробний доступ",
+    "nl": "Websitesjablonen · Proef",
+    "sv": "Webbplatsmallar · Prov",
+    "fi": "Sivustomallit · Kokeilu",
+    "nb": "Nettstedmaler · Prøve",
+    "it": "Modelli sito · Prova",
+    "id": "Templat situs · Uji coba",
+    "th": "เทมเพลตเว็บไซต์ · ทดลองใช้"
+  },
+  "Planned": {
+    "uk": "Заплановано",
+    "nl": "Gepland",
+    "sv": "Planerat",
+    "fi": "Suunnitteilla",
+    "nb": "Planlagt",
+    "it": "Previsto",
+    "id": "Direncanakan",
+    "th": "วางแผนไว้"
+  },
+  "In development": {
+    "uk": "У розробці",
+    "nl": "In ontwikkeling",
+    "sv": "Under utveckling",
+    "fi": "Kehitteillä",
+    "nb": "Under utvikling",
+    "it": "In sviluppo",
+    "id": "Dalam pengembangan",
+    "th": "อยู่ระหว่างพัฒนา"
+  },
+  "More ways to create.": {
+    "uk": "Ще більше способів творити.",
+    "nl": "Meer manieren om te creëren.",
+    "sv": "Fler sätt att skapa.",
+    "fi": "Lisää tapoja luoda.",
+    "nb": "Flere måter å skape på.",
+    "it": "Altri modi di creare.",
+    "id": "Lebih banyak cara berkarya.",
+    "th": "วิธีสร้างสรรค์ที่หลากหลายขึ้น"
+  },
+  "The next apps in the SoraSpace family are being built. These previews describe the roadmap; release dates and access will follow testing.": {
+    "uk": "Наступні застосунки SoraSpace розробляються. Це огляд планів; дати випуску й доступ визначимо після тестів.",
+    "nl": "Nieuwe SoraSpace-apps worden ontwikkeld. Dit is de routekaart; releasedata en toegang volgen na tests.",
+    "sv": "Nästa SoraSpace-appar utvecklas. Detta är färdplanen; datum och åtkomst följer efter tester.",
+    "fi": "Seuraavat SoraSpace-sovellukset ovat kehitteillä. Tässä on suunnitelma; julkaisuajat ja pääsy vahvistuvat testien jälkeen.",
+    "nb": "De neste SoraSpace-appene utvikles. Dette er veikartet; datoer og tilgang kommer etter testing.",
+    "it": "Le prossime app SoraSpace sono in sviluppo. Questa è la direzione; date e accesso seguiranno i test.",
+    "id": "Aplikasi SoraSpace berikutnya sedang dibangun. Ini peta jalan; tanggal rilis dan akses diumumkan setelah pengujian.",
+    "th": "แอปถัดไปของ SoraSpace อยู่ระหว่างพัฒนา นี่คือแผนงาน วันเปิดตัวและการเข้าถึงจะตามมาหลังทดสอบ"
+  },
+  "Presentations": {
+    "uk": "Презентації",
+    "nl": "Presentaties",
+    "sv": "Presentationer",
+    "fi": "Esitykset",
+    "nb": "Presentasjoner",
+    "it": "Presentazioni",
+    "id": "Presentasi",
+    "th": "งานนำเสนอ"
+  },
+  "Illustration": {
+    "uk": "Ілюстрації",
+    "nl": "Illustratie",
+    "sv": "Illustration",
+    "fi": "Kuvitus",
+    "nb": "Illustrasjon",
+    "it": "Illustrazione",
+    "id": "Ilustrasi",
+    "th": "ภาพประกอบ"
+  },
+  "Page layout": {
+    "uk": "Верстка сторінок",
+    "nl": "Paginaopmaak",
+    "sv": "Sidlayout",
+    "fi": "Sivun asettelu",
+    "nb": "Sideoppsett",
+    "it": "Impaginazione",
+    "id": "Tata letak halaman",
+    "th": "การจัดหน้า"
+  },
+  "UI design": {
+    "uk": "Дизайн інтерфейсів",
+    "nl": "UI-ontwerp",
+    "sv": "UI-design",
+    "fi": "Käyttöliittymäsuunnittelu",
+    "nb": "UI-design",
+    "it": "Design interfacce",
+    "id": "Desain UI",
+    "th": "ออกแบบ UI"
+  },
+  "Video": {
+    "uk": "Відео",
+    "nl": "Video",
+    "sv": "Video",
+    "fi": "Video",
+    "nb": "Video",
+    "it": "Video",
+    "id": "Video",
+    "th": "วิดีโอ"
+  },
+  "Audio": {
+    "uk": "Аудіо",
+    "nl": "Audio",
+    "sv": "Ljud",
+    "fi": "Ääni",
+    "nb": "Lyd",
+    "it": "Audio",
+    "id": "Audio",
+    "th": "เสียง"
+  },
+  "Motion": {
+    "uk": "Анімація",
+    "nl": "Animatie",
+    "sv": "Animation",
+    "fi": "Animaatio",
+    "nb": "Animasjon",
+    "it": "Animazione",
+    "id": "Animasi",
+    "th": "ภาพเคลื่อนไหว"
+  },
+  "CAD": {
+    "uk": "CAD",
+    "nl": "CAD",
+    "sv": "CAD",
+    "fi": "CAD",
+    "nb": "CAD",
+    "it": "CAD",
+    "id": "CAD",
+    "th": "CAD"
+  },
+  "For researchers, academics and creative teams.": {
+    "uk": "Для дослідників, науковців і творчих команд.",
+    "nl": "Voor onderzoekers, academici en creatieve teams.",
+    "sv": "För forskare, akademiker och kreativa team.",
+    "fi": "Tutkijoille, akateemisille käyttäjille ja luoville tiimeille.",
+    "nb": "For forskere, akademikere og kreative team.",
+    "it": "Per ricercatori, accademici e team creativi.",
+    "id": "Untuk peneliti, akademisi, dan tim kreatif.",
+    "th": "สำหรับนักวิจัย นักวิชาการ และทีมสร้างสรรค์"
+  },
+  "Planned research tools bring sources, reading notes, citations, bibliographies and Zotero compatibility into your workspace.": {
+    "uk": "Заплановані інструменти об'єднають джерела, читацькі нотатки, цитати, бібліографії та сумісність із Zotero.",
+    "nl": "Geplande onderzoekstools verbinden bronnen, leesnotities, citaten, bibliografieën en Zotero-compatibiliteit.",
+    "sv": "Planerade forskningsverktyg samlar källor, läsanteckningar, citeringar, bibliografier och Zotero-kompatibilitet.",
+    "fi": "Suunnitellut tutkimustyökalut yhdistävät lähteet, lukumuistiinpanot, viitteet, lähdeluettelot ja Zotero-yhteensopivuuden.",
+    "nb": "Planlagte forskningsverktøy samler kilder, lesenotater, sitater, bibliografier og Zotero-kompatibilitet.",
+    "it": "Gli strumenti previsti riuniscono fonti, note, citazioni, bibliografie e compatibilità Zotero.",
+    "id": "Alat penelitian yang direncanakan menyatukan sumber, catatan bacaan, kutipan, bibliografi, dan kompatibilitas Zotero.",
+    "th": "เครื่องมือวิจัยที่วางแผนไว้จะรวมแหล่งข้อมูล บันทึกการอ่าน การอ้างอิง บรรณานุกรม และการรองรับ Zotero"
+  },
+  "Planned SoraSpace Projects connects jobs and sub-jobs, time tracking, alterations, hourly or fixed fees, invoices and online payments.": {
+    "uk": "Запланований SoraSpace Projects поєднає роботи й підзавдання, облік часу, зміни, погодинні та фіксовані тарифи, рахунки й онлайн-оплату.",
+    "nl": "SoraSpace Projects moet opdrachten en subtaken, tijdregistratie, wijzigingen, uur- of vaste tarieven, facturen en online betalingen verbinden.",
+    "sv": "Planerade SoraSpace Projects kopplar jobb och deljobb, tidrapportering, ändringar, tim- eller fastpris, fakturor och onlinebetalningar.",
+    "fi": "Suunniteltu SoraSpace Projects yhdistää työt ja osatehtävät, ajanseurannan, muutokset, tunti- tai kiinteät hinnat, laskut ja verkkomaksut.",
+    "nb": "Planlagte SoraSpace Projects knytter jobber og deljobber, tidsføring, endringer, time- eller fastpris, fakturaer og nettbetalinger sammen.",
+    "it": "SoraSpace Projects prevede lavori e sottoattività, tempi, modifiche, tariffe orarie o fisse, fatture e pagamenti online.",
+    "id": "SoraSpace Projects direncanakan menghubungkan pekerjaan dan subtugas, waktu, revisi, tarif per jam atau proyek, faktur, dan pembayaran online.",
+    "th": "SoraSpace Projects วางแผนเชื่อมงานและงานย่อย การติดตามเวลา การแก้ไข ค่าจ้างรายชั่วโมงหรือต่องาน ใบแจ้งหนี้ และการชำระเงินออนไลน์"
+  },
+  "Publishing and planned services": {
+    "uk": "Публікації та заплановані послуги",
+    "nl": "Publiceren en geplande diensten",
+    "sv": "Publicering och planerade tjänster",
+    "fi": "Julkaisu ja suunnitellut palvelut",
+    "nb": "Publisering og planlagte tjenester",
+    "it": "Pubblicazione e servizi previsti",
+    "id": "Penerbitan dan layanan yang direncanakan",
+    "th": "การเผยแพร่และบริการที่วางแผนไว้"
+  }
+}
