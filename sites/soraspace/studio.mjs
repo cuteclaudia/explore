@@ -18,6 +18,7 @@ const features=[
  ['Work with the controls that suit you','Resize using mouse, touch or keyboard, and set crop dimensions with number fields. The layout adapts to phones; images keep their proportions.'],
  ['Keep the original beside a translation · planned','My writing and Journal will share Translate to with a target-language selector, an editable side-by-side result and linked saved versions. On-device processing is the intended first choice where supported.'],
  ['Build your research library · planned','Save published writing to SoraResearch, organise references and notes, and use a planned Zotero connection and citation workflow. The private inbox is in testing; the full research app is planned.'],
+ ['Keep your place while setting up sharing','Open Sharing settings from the post you are working on. Pending edits save first, and Back to My writing returns you to that same item so you can keep creating.'],
  ['Choose your spelling language','Select a regional language such as Australian or UK English for title, summary and writing spellcheck. Suggestions depend on the dictionaries available in your browser.'],
 ];
 const screenshotLabels={

@@ -6,16 +6,75 @@
 
 The public feature guide is `/tools/features/`. Homepage sections preview translation, SoraResearch and SoraShop. The guide links all six existing app previews and adds eight planned creative workspace concepts. SoraX was clarified by the owner as a placeholder, not another product.
 
-## App previews
+## Complete app and module directory
 
-| App | Purpose | Preview |
+Every app and module listed below appears in the directory on both sales sites. Working names are provisional; shared services are not promises of separate paid apps.
+
+### Office
+
+| App/module | Purpose | Availability |
 | --- | --- | --- |
-| SoraPhotos | photo development and editing | `/tools/hikari/` |
-| SoraImage | image editing and design | `/tools/irodori/` |
-| SoraDocs | writing and document editing | `/tools/fumi/` |
-| SoraPDF | PDF editing and organisation | `/tools/tsuzuri/` |
-| SoraMail | mail, calendar and contacts | `/tools/tayori/` |
-| SoraSheets | spreadsheets and data | `/tools/goban/` |
+| SoraDocs | Documents, page layout and references | Preview |
+| SoraSheets | Spreadsheets and data | In development |
+| SoraMail | Email workflows | In development |
+| Presentations | Slides, themes and speaker notes · working name Akari | Planned |
+
+### Photography & images
+
+| App/module | Purpose | Availability |
+| --- | --- | --- |
+| SoraPhotos | Photo development and editing | Preview |
+| SoraImage | Image editing and design | Preview |
+| Photography galleries | Collections, captions and compact photo views | In testing |
+
+### Creative, music & video
+
+| App/module | Purpose | Availability |
+| --- | --- | --- |
+| Illustration | Paths, shapes and layers · working name Sen | Planned |
+| Page layout | Multi-page publishing · working name Hanga | Planned |
+| Interface design | Components and screen flows · working name Hinagata | Planned |
+| Video | Timelines, clips and titles · working name Kage | Planned |
+| Audio & music | Tracks, recording and mixing · working name Hibiki | Planned |
+| Motion | Keyframes and animated layers · working name Mai | Planned |
+| CAD | Geometry and dimensioned views · working name Takumi | Planned |
+
+### PDF
+
+| App/module | Purpose | Availability |
+| --- | --- | --- |
+| SoraPDF | Reading, annotation and page organisation | Preview |
+
+### Writing, research & websites
+
+| App/module | Purpose | Availability |
+| --- | --- | --- |
+| My writing & Journal | Write, add images and review publication | In testing |
+| SoraResearch | Compact libraries, citations and Zotero connection | Planned |
+| Website builder | Pages, themes, menus and custom domains | Planned |
+| Journeys & activities | Trips, places, maps and activity stories | Planned |
+
+### Business & collaboration
+
+| App/module | Purpose | Availability |
+| --- | --- | --- |
+| SoraShop | Products, stock, storefronts and orders | Planned |
+| SoraProjects | Projects, tasks, schedules and time | Planned |
+| SoraCRM | Contacts, customer activity and sales views | Planned |
+| Procurement & capability | Suppliers, costs and resource planning | Planned |
+| Quotes & invoicing | Estimates, invoices and payment allocation | Planned |
+| Customer support | Requests, conversations and service workflows | Planned |
+| Messaging | Authorised personal and workgroup conversations | Planned |
+
+### Shared workspace tools
+
+| App/module | Purpose | Availability |
+| --- | --- | --- |
+| Contacts & calendar | Shared contacts, events and appointments | Planned |
+| Files & storage | Private files, folders, versions and storage choices | In development |
+| Customisable Home | Your preferred start page and workspace overview | In development |
+| Translation | Linked originals and editable language versions | Planned |
+| Optional AI assistance | Editable writing and sharing suggestions | Planned |
 
 ## Further app concepts
 
@@ -73,11 +132,14 @@ Planned: Precise geometry and object organisation; Dimensioned views and model i
 
 ### SoraResearch — Planned
 
-- A reference library with collections, subcollections, tags and search
+- Compact resizable three-pane library with dense reference rows, tabs and full item metadata
+- Nested collections, multiple collection membership, coloured tags and live saved searches
+- Duplicate/unfiled/retracted items, trash and research feeds
 - Collect published My writing and Journal posts into your research workspace
 - DOI/ISBN capture, duplicate review and BibTeX/RIS import and export
 - PDF reading, annotations, notes, related sources and literature-review projects
-- Citations and bibliographies linked to SoraDocs and your writing
+- CSL styles, editable citations and dynamic bibliographies in SoraDocs; planned Word, LibreOffice and Google Docs interoperability
+- One-click browser capture and metadata detection with reviewed Connector support
 - A supported Zotero connection, with private and shared libraries and clear sync controls
 
 ### SoraShop — Planned
