@@ -1,8 +1,10 @@
 import {SALES_APP_GROUPS} from './app-directory.mjs';
-const ids=['akari','hinagata','sen','hanga','research','projects','crm','shop','journal','galleries','soratrip','writing'];
+const ids=['kage','hibiki','akari','hinagata','sen','hanga','research','projects','crm','shop','journal','galleries','soratrip','writing'];
 const byId=new Map(SALES_APP_GROUPS.flatMap(group=>group.items).map(app=>[app.id,app]));
 // Original miniature workflow illustrations; no private app or third-party artwork.
 function miniature(id){
+ if(id==='kage')return '<div class="ld-media"><aside>Media · 4<br>Harbour<br>Coastal path<br>Evening light<br>Ambience</aside><section class="ld-media-main"><div class="ld-media-picture">Harbour walk</div><div class="ld-media-sequence"><span>Opening · 8 s</span><span>Path · 10 s</span><span>Evening · 12 s</span></div><small>30-second sequence · titles &amp; sound</small></section></div>';
+ if(id==='hibiki')return '<div class="ld-media"><aside>Session<br>Tracks · 3<br>Takes · 4<br>Mix<br>Output</aside><section class="ld-media-main ld-media-audio">'+['Narration','Piano sketch','Room tone'].map((name,j)=>'<div>'+name+'<span class="ms-wave">'+Array.from({length:32},(_,i)=>'<i class="ms-wave-height-'+((i*3+j)%8)+'"></i>').join('')+'</span></div>').join('')+'<small>24-second session · original waveform illustration</small></section></div>';
  if(id==='akari')return '<div class="ld-slides"><aside>1　Title<br>2　Why<br><b>3　Observations</b><br>4　Closer look</aside><section><small>FIELD NOTES · 3 / 6</small><b>Three observations</b><div><span>Notice</span><span>Connect</span><span>Share</span></div><small>Speaker notes · separate view</small></section></div>';
  if(id==='hinagata')return '<div class="ld-interface"><aside>Frames<br>Home<br>Collection<br>Story</aside><section><small>FIELD NOTES</small><b>Make room for small stories.</b><div><i></i><i></i><i></i></div></section><aside>Components<br>Spacing<br>Colour</aside></div>';
  if(id==='sen')return '<div class="ld-poster"><small>FIELD NOTES</small><b>GROW AT<br>YOUR PACE</b><i></i><span>Paths · Layers · Colour</span></div>';
