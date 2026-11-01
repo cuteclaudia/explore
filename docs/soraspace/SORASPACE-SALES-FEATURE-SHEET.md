@@ -52,7 +52,7 @@ Every app and module listed below appears in the directory on both sales sites. 
 | My writing & Journal | Write, add images and review publication | In testing |
 | SoraResearch | Compact libraries, citations and Zotero connection | Planned |
 | Website builder | Pages, themes, menus and custom domains | Planned |
-| Journeys & activities | Trips, places, maps and activity stories | Planned |
+| Journeys & activities | Trip planning, journals, maps and activity stories | Planned |
 
 ### Business & collaboration
 
@@ -221,8 +221,12 @@ Planned: Precise geometry and object organisation; Dimensioned views and model i
 
 ### Journeys, maps & activities — Planned
 
-- Trips, places, activity records and map-based stories
-- Photographs and writing linked to journeys
+- A trip planner within Journal, with day-by-day flights, stays, transport and activities
+- Reviewed booking imports, calendar export and destination-aware timezones
+- Private participant sharing and optional offline or printable itineraries
+- Journal entries, photographs and maps linked to the same trip
+- Upcoming-trip, next-segment and itinerary summary widgets
+- Optional live flight alerts require separately qualified data providers
 - Exercise integrations with explicit provider permission
 - Private/public controls and a guided existing-content migration
 
