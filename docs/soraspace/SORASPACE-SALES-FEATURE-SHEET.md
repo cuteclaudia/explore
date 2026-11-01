@@ -1,8 +1,10 @@
-SoraShop sales update: [seven detailed commerce concepts](SORASHOP-SALES-PAGE.md) now have their own `/tools/sorashop/` page on both sources, reached from Business & collaboration. Current coverage is four detailed pages, six basic previews and 22 guide-only entries. The compact catalogue/order/stock views follow the shared SoraSpace library approach; full commerce remains Planned.
+Photography/Journal sales update: [two separate pages and ten matching concepts](CREATIVE-STUDIO-SALES-PAGES.md) now distinguish personal Journal entries from My writing and show compact gallery/thumbnail views. The current directory has 33 modules, six detailed pages, six previews and 21 guide-only entries. Current owner-testing, future features and fictional mockups remain labelled separately.
 
-SoraResearch detail continuation: `/tools/soraresearch/` now has six original research-specific concepts, including the compact 24-reference/24-metadata-field library, reader/notes, citations, capture/duplicates, storage/collaboration and phone navigation. Full app and integrations remain Planned. The current audit is four detailed pages, six basic previews and 22 guide-only gaps.
+SoraShop sales update: [seven detailed commerce concepts](SORASHOP-SALES-PAGE.md) now have their own `/tools/sorashop/` page on both sources, reached from Business & collaboration. Current coverage is six detailed pages, six basic previews and 21 guide-only entries. The compact catalogue/order/stock views follow the shared SoraSpace library approach; full commerce remains Planned.
 
-SoraTrip sales continuation: [detailed page and five travel mockups](SORATRIP-SALES-PAGE.md) now appear on both marketing builds. The [32-entry page audit](SALES-APP-PAGE-AUDIT.md) now records four detailed sales pages, six basic app previews and 22 guide-only gaps. Planned labels remain; no subscriptions or travel integrations are enabled.
+SoraResearch detail continuation: `/tools/soraresearch/` now has six original research-specific concepts, including the compact 24-reference/24-metadata-field library, reader/notes, citations, capture/duplicates, storage/collaboration and phone navigation. Full app and integrations remain Planned. The current audit is six detailed pages, six basic previews and 21 guide-only gaps.
+
+SoraTrip sales continuation: [detailed page and five travel mockups](SORATRIP-SALES-PAGE.md) now appear on both marketing builds. The [33-entry page audit](SALES-APP-PAGE-AUDIT.md) now records six detailed sales pages, six basic app previews and 21 guide-only gaps. Planned labels remain; no subscriptions or travel integrations are enabled.
 
 # SoraSpace sales feature sheet
 
@@ -55,7 +57,8 @@ Every app and module listed below appears in the directory on both sales sites. 
 
 | App/module | Purpose | Availability |
 | --- | --- | --- |
-| My writing & Journal | Write, add images and review publication | In testing |
+| My writing | Write, add images and review publication | In testing |
+| Journal | Personal entries, photographs, reflections and memories | In testing |
 | SoraResearch | Compact libraries, citations and Zotero connection | Planned |
 | Website builder | Pages, themes, menus and custom domains | Planned |
 | SoraTrip | Standalone travel planning, itineraries, private documents and offline access | Planned |
@@ -121,7 +124,7 @@ Planned: Precise geometry and object organisation; Dimensioned views and model i
 
 ## Feature areas
 
-### My writing & Journal — In testing
+### My writing — In testing
 
 - Journals, essays, articles and reports with your own writing types
 - Familiar formatting, regional spelling, tables, links and inserted images
@@ -129,12 +132,20 @@ Planned: Precise geometry and object organisation; Dimensioned views and model i
 - Image resizing, cropping, adjustments, covers and galleries
 - Social sharing and a developing Save to SoraResearch inbox
 
-### Translation beside your original — Planned
+### Journal — Restricted owner testing
+
+- Personal entries for everyday moments, observations, reflections and memories
+- Compact dated entry library with summaries, tags, private states and clear return navigation
+- Shared rich editor, images, autosave, Save/Save As, recovery and reviewed publication foundations
+- Original/translation review and separate linked saved versions in the restricted pilot
+- Optional SoraTrip and Photography links, named journals/sub-journals and container-level privacy remain planned
+
+### Translation beside your original — Owner review pilot; wider capability planned
 
 - Translate to a selected language in My writing and Journal
 - Keep the original on the left and an editable translation on the right
-- Linked saved language versions, with a review flag when the source changes
-- Publish the language version you choose; preserve images, structure and citations
+- Private linked saved language reviews, retained history, recovery and stale-source checks in the owner pilot
+- Formatted review preserves supported structure/images and eligible descriptions/captions; translated publishing and citation integration remain separate planned work
 - Use on-device processing where supported; explain model downloads and resource requirements
 
 ### SoraResearch — Planned
@@ -169,9 +180,11 @@ Planned: Precise geometry and object organisation; Dimensioned views and model i
 
 - SoraPhotos photo development and SoraImage image editing previews
 - Private galleries, sub-galleries, covers, captions, descriptions and tags
-- Small and large thumbnail grids, local search suggestions and date/size/name views
+- Four-across Small and three-across Large thumbnails on wide screens; Caption, Image description and Tags stacked per card
+- Local gallery search suggestions, name/date-added/stored-size sorts and none/day/month/year grouping
+- Per-account/gallery browser view preferences remembered after sign-out; cross-device sync remains planned
 - Gallery organisation, retained image edits and private sharing controls
-- Public gallery publishing and featured selections are planned
+- Staging-owner private preview and reviewed public snapshots; customer/production publishing and featured selections remain planned
 
 ### Creative, PDF, music & video — In development
 
