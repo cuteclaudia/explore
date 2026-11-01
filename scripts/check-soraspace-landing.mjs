@@ -40,13 +40,15 @@ let browser;
 try{
  const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,headless:true,args:['--no-sandbox']});
  const base='http://127.0.0.1:'+server.address().port,context=await browser.newContext(),page=await context.newPage(),errors=[];
+ // Inspect the optional extended material here; the grouped showcase has its own behaviour checks.
+ await context.addInitScript(()=>document.addEventListener('DOMContentLoaded',()=>{const more=document.querySelector('.extra-sales-previews');if(more)more.open=true;}));
  page.on('pageerror',e=>errors.push(e.message));await context.route('**/*',route=>new URL(route.request().url()).origin===base?route.continue():route.abort());
  await mkdir('/workspace/reviews/soraspace-landing',{recursive:true});
  await page.emulateMedia({colorScheme:'light'});
  for(const [width,height] of [[320,844],[390,844],[768,1024],[1024,768],[1280,720],[1366,768],[1920,1080]]){
   await page.setViewportSize({width,height});await page.goto(base);assert.equal(await page.title(),'SoraSpace — Space for everything you create');
   assert.equal(await page.locator('.upcoming-app').count(),8);assert.equal(await page.locator('.upcoming-app a').count(),0);assert.equal(await page.locator('.capability-links a').count(),5);assert((await page.locator('#research').innerText()).includes('Zotero'));assert((await page.locator('#research').innerText()).includes('invoices'));
-  assert.equal(await page.locator('.tool-link').count(),6);assert.equal(await page.locator('.tool-web').count(),4);assert.equal(await page.locator('.tool-desktop').count(),2);assert.equal(await page.locator('.tool-title small[lang=ja]').count(),6);assert.equal(await page.locator('main>section:nth-child(2)').getAttribute('id'),'writing-publishing');
+  assert.equal(await page.locator('.tool-link').count(),6);assert.equal(await page.locator('.tool-web').count(),4);assert.equal(await page.locator('.tool-desktop').count(),2);assert.equal(await page.locator('.tool-title small[lang=ja]').count(),6);assert.equal(await page.locator('main>section:nth-child(2)').getAttribute('id'),'all-apps');
   assert(await page.locator('.tool-link>img').evaluateAll(images=>images.every(image=>image.complete&&image.naturalWidth>0)),'Tool icons load');
   if(width>=1280)assert((await page.locator('.tool-showcase').boundingBox()).y+(await page.locator('.tool-showcase').boundingBox()).height<height,'All six tool links visible before scrolling at '+width);
   assert.equal(await page.locator('.template-card').count(),5);assert.equal(await page.locator('.app-preview-card').count(),4);assert.equal(await page.locator('#pricing .pricing-grid article').count(),2);assert((await page.locator('#pricing').innerText()).includes('no card required'));assert.equal((await page.locator('.site-header .sign-in').innerText()).trim(),'Sign In');assert.equal(await page.locator('.site-header .sign-up').innerText(),'Sign Up');assert.equal(await page.locator('.app-mini[role=img]').count(),4);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Fits '+width);
