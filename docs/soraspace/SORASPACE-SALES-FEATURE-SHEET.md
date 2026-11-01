@@ -1,3 +1,5 @@
+Landing discoverability update: [scrolling sales tour and access guide](SCROLLING-LANDING-PAGE.md). App previews / New app previews leads to ten visible detailed-page cards; all 33 modules appear in scrolling groups, with the slideshow optional. Home and templates are visible. Live deployment could not be verified from this environment.
+
 Naming correction: use the English Sora product name together with its Romanised/Japanese pairing. The [shared naming catalogue](APP-NAMING-CATALOGUE.md) retains the established names and proposes SoraSlides/Akari, SoraDraw/Sen, SoraLayout/Hanga, SoraDesign/Hinagata, SoraVideo/Kage, SoraAudio/Hibiki, SoraMotion/Mai and SoraCAD/Takumi. Proposed branding and Planned release labels remain distinct.
 
 Illustration/Page Layout sales update: [two detailed pages with ten original concepts](DESIGN-SALES-PAGES.md) now link from both splash builds and the shared creative guide. Sen and Hanga remain provisional working names; both apps are Planned. Current coverage: 33 modules, ten detailed pages, six basic previews and 17 guide-only entries.

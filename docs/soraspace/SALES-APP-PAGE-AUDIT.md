@@ -2,7 +2,7 @@
 
 The splash links all 33 listed apps/modules to an existing public path and, where used, a valid feature-guide anchor. Coverage is recorded per entry in `audits/sales-app-page-audit.csv`; run `node scripts/audit-sales-app-pages.mjs` after building marketing output. This audit distinguishes a detailed page from a minimal app preview or a guide section.
 
-The main splash now presents the same 33 entries in seven ordered app-group tabs, rotating every eight seconds while visible and idle. Choosing a tab stops rotation; Play resumes it. Hover, keyboard focus, background tabs and off-screen viewing suspend the timer. Reduced-motion users start paused. Without JavaScript all seven groups remain readable. Longer app/workspace/template previews are collapsed beneath the showcase, and existing hash links open that section. Detailed pages keep their static directory. New showcase descriptions and controls are English; full editorial localisation remains outstanding.
+The main splash is now [a scrolling landing tour](SCROLLING-LANDING-PAGE.md). A visible ten-card preview gallery leads directly to the detailed pages, with SoraDraw and SoraLayout highlighted. All 33 catalogue entries appear in seven scrolling groups with sticky chapter links. The earlier eight-second rotating tab view is available through an explicit Slideshow view choice, with pause/manual/keyboard/focus/reduced-motion controls. Home/templates remain visible; supplemental editor/roadmap mockups are optional, and legacy bookmarks open their disclosures. New English explanations are labelled; editorial localisation remains outstanding.
 
 | Coverage | Count | Current examples |
 | --- | ---: | --- |
@@ -18,4 +18,4 @@ Every new mockup must reflect that app's actual purpose and reviewed design: den
 
 This is source/build/link coverage, not proof of deployed availability or functional app acceptance. Sales copy, detailed localisation, provider claims, approved pricing and owner review remain tracked in MKT-01/02/05/06.
 
-Showcase validation: `node scripts/check-app-showcase.mjs` checks manual/automatic selection, keyboard order, focus pause, reduced-motion defaults, no-script visibility, legacy hash navigation and 320–1366px layouts. The legacy landing smoke also expands and checks the optional material through 1920px. Marketing metadata remains checked across 288 locale routes.
+Showcase validation: `node scripts/check-app-showcase.mjs` checks default scrolling/discovery visibility, chapter/progress navigation, optional slideshow/manual/keyboard pause, reduced-motion/no-script behaviour, legacy bookmarks and 320–1366px layouts. The legacy landing smoke also expands and checks the optional material through 1920px. Marketing metadata remains checked across 288 locale routes.

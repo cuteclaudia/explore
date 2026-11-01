@@ -45,16 +45,16 @@ try{
  const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');browser=await chromium.launch({executablePath:process.env.CHROMIUM_PATH||undefined,headless:true,args:['--no-sandbox']});
  const base='http://127.0.0.1:'+server.address().port,context=await browser.newContext(),page=await context.newPage(),errors=[];
  // Inspect the optional extended material here; the grouped showcase has its own behaviour checks.
- await context.addInitScript(()=>document.addEventListener('DOMContentLoaded',()=>{const more=document.querySelector('.extra-sales-previews');if(more)more.open=true;}));
+ await context.addInitScript(()=>document.addEventListener('DOMContentLoaded',()=>{for(const more of document.querySelectorAll('.extra-sales-previews,.extra-roadmap-previews'))more.open=true;}));
  page.on('pageerror',e=>errors.push(e.message));await context.route('**/*',route=>new URL(route.request().url()).origin===base?route.continue():route.abort());
  await mkdir('/workspace/reviews/soraspace-landing',{recursive:true});
  await page.emulateMedia({colorScheme:'light'});
  for(const [width,height] of [[320,844],[390,844],[768,1024],[1024,768],[1280,720],[1366,768],[1920,1080]]){
   await page.setViewportSize({width,height});await page.goto(base);assert.equal(await page.title(),'SoraSpace — Space for everything you create');
   assert.equal(await page.locator('.upcoming-app').count(),8);assert.equal(await page.locator('.upcoming-app a').count(),0);assert.equal(await page.locator('.capability-links a').count(),5);assert((await page.locator('#research').innerText()).includes('Zotero'));assert((await page.locator('#research').innerText()).includes('invoices'));
-  assert.equal(await page.locator('.tool-link').count(),6);assert.equal(await page.locator('.tool-web').count(),4);assert.equal(await page.locator('.tool-desktop').count(),2);assert.equal(await page.locator('.tool-title small[lang=ja]').count(),6);assert.equal(await page.locator('main>section:nth-child(2)').getAttribute('id'),'all-apps');
+  assert.equal(await page.locator('.tool-link').count(),6);assert.equal(await page.locator('.tool-web').count(),4);assert.equal(await page.locator('.tool-desktop').count(),2);assert.equal(await page.locator('.tool-title small[lang=ja]').count(),6);assert.equal(await page.locator('.landing-discovery').getAttribute('id'),'discover-apps');
   assert(await page.locator('.tool-link>img').evaluateAll(images=>images.every(image=>image.complete&&image.naturalWidth>0)),'Tool icons load');
-  if(width>=1280)assert((await page.locator('.tool-showcase').boundingBox()).y+(await page.locator('.tool-showcase').boundingBox()).height<height,'All six tool links visible before scrolling at '+width);
+  if(width>=1280)assert((await page.locator('.hero .actions .button').boundingBox()).y+(await page.locator('.hero .actions .button').boundingBox()).height<height,'App-preview call to action visible before scrolling at '+width);
   assert.equal(await page.locator('.template-card').count(),5);assert.equal(await page.locator('.app-preview-card').count(),4);assert.equal(await page.locator('#pricing .pricing-grid article').count(),2);assert((await page.locator('#pricing').innerText()).includes('no card required'));assert.equal((await page.locator('.site-header .sign-in').innerText()).trim(),'Sign In');assert.equal(await page.locator('.site-header .sign-up').innerText(),'Sign Up');assert.equal(await page.locator('.app-mini[role=img]').count(),4);assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Fits '+width);
   assert.equal(await page.locator('form,iframe').count(),0);assert.equal(await page.locator('.workspace-shortcuts article').count(),4);assert.equal(await page.locator('.workspace-shortcuts .shortcut-label').filter({hasText:'Approved trial'}).count(),2);for(const a of await page.locator('.workspace-shortcuts a').all())assert((await a.boundingBox()).height>=44);
   for(const link of await page.locator('a[target="_blank"]').all()){assert.equal(await link.getAttribute('rel'),'noopener');assert((await link.getAttribute('href')).startsWith('https://www.claudiagilbert.com/'));}
@@ -100,7 +100,7 @@ try{
   assert(scheme==='light'?luminance(colours.background)>.9:luminance(colours.background)<.1);
   assert(contrast(colours.text,colours.background)>=7);
   for(const item of colours.targets)assert(contrast(item.foreground,item.background)>=4.5,item.name+' contrast in '+scheme+': '+JSON.stringify(item));
-  assert(colours.hero<560,'compact desktop hero');assert((await page.locator('#writing-publishing').boundingBox()).height<800,'desktop writing section includes one actual screenshot');
+  assert(colours.hero<650,'bounded scrolling-tour hero');assert((await page.locator('#writing-publishing').boundingBox()).height<800,'desktop writing section includes one actual screenshot');
   await page.screenshot({path:`/workspace/reviews/soraspace-landing/system-${scheme}-1366.png`,fullPage:true});
  }
  // An OS theme change while already open also updates native colours.
