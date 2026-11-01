@@ -1,12 +1,14 @@
-Projects/CRM sales update: [two detailed pages and twelve matching business concepts](WORK-SALES-PAGES.md) now cover compact work/contact libraries, boards/timelines, time/scope, organisations, opportunities, activity and imports. Current coverage is 33 modules, eight detailed pages, six basic previews and 19 guide-only entries; both apps remain Planned.
+Illustration/Page Layout sales update: [two detailed pages with ten original concepts](DESIGN-SALES-PAGES.md) now link from both splash builds and the shared creative guide. Sen and Hanga remain provisional working names; both apps are Planned. Current coverage: 33 modules, ten detailed pages, six basic previews and 17 guide-only entries.
 
-Photography/Journal sales update: [two separate pages and ten matching concepts](CREATIVE-STUDIO-SALES-PAGES.md) now distinguish personal Journal entries from My writing and show compact gallery/thumbnail views. The current directory has 33 modules, eight detailed pages, six previews and 19 guide-only entries. Current owner-testing, future features and fictional mockups remain labelled separately.
+Projects/CRM sales update: [two detailed pages and twelve matching business concepts](WORK-SALES-PAGES.md) now cover compact work/contact libraries, boards/timelines, time/scope, organisations, opportunities, activity and imports. Current coverage is 33 modules, ten detailed pages, six basic previews and 17 guide-only entries; both apps remain Planned.
 
-SoraShop sales update: [seven detailed commerce concepts](SORASHOP-SALES-PAGE.md) now have their own `/tools/sorashop/` page on both sources, reached from Business & collaboration. Current coverage is eight detailed pages, six basic previews and 19 guide-only entries. The compact catalogue/order/stock views follow the shared SoraSpace library approach; full commerce remains Planned.
+Photography/Journal sales update: [two separate pages and ten matching concepts](CREATIVE-STUDIO-SALES-PAGES.md) now distinguish personal Journal entries from My writing and show compact gallery/thumbnail views. The current directory has 33 modules, ten detailed pages, six previews and 17 guide-only entries. Current owner-testing, future features and fictional mockups remain labelled separately.
 
-SoraResearch detail continuation: `/tools/soraresearch/` now has six original research-specific concepts, including the compact 24-reference/24-metadata-field library, reader/notes, citations, capture/duplicates, storage/collaboration and phone navigation. Full app and integrations remain Planned. The current audit is eight detailed pages, six basic previews and 19 guide-only gaps.
+SoraShop sales update: [seven detailed commerce concepts](SORASHOP-SALES-PAGE.md) now have their own `/tools/sorashop/` page on both sources, reached from Business & collaboration. Current coverage is ten detailed pages, six basic previews and 17 guide-only entries. The compact catalogue/order/stock views follow the shared SoraSpace library approach; full commerce remains Planned.
 
-SoraTrip sales continuation: [detailed page and five travel mockups](SORATRIP-SALES-PAGE.md) now appear on both marketing builds. The [33-entry page audit](SALES-APP-PAGE-AUDIT.md) now records eight detailed sales pages, six basic app previews and 19 guide-only gaps. Planned labels remain; no subscriptions or travel integrations are enabled.
+SoraResearch detail continuation: `/tools/soraresearch/` now has six original research-specific concepts, including the compact 24-reference/24-metadata-field library, reader/notes, citations, capture/duplicates, storage/collaboration and phone navigation. Full app and integrations remain Planned. The current audit is ten detailed pages, six basic previews and 17 guide-only gaps.
+
+SoraTrip sales continuation: [detailed page and five travel mockups](SORATRIP-SALES-PAGE.md) now appear on both marketing builds. The [33-entry page audit](SALES-APP-PAGE-AUDIT.md) now records ten detailed sales pages, six basic app previews and 17 guide-only gaps. Planned labels remain; no subscriptions or travel integrations are enabled.
 
 # SoraSpace sales feature sheet
 
@@ -98,11 +100,11 @@ Planned: Slide layouts and themes; Speaker notes and presenting; Reviewed export
 
 ### Illustration — working name Sen
 
-Planned: Vector paths and shapes; Layers, colour and typography; Illustration export workflows.
+Planned: Vector paths, shapes, anchors/handles, readable layers, named colours and typography; compact artwork library and reviewed vector/raster output. [Detailed original concepts](DESIGN-SALES-PAGES.md).
 
 ### Page layout — working name Hanga
 
-Planned: Multi-page layouts and master pages; Typography and image placement; Print and digital publication output.
+Planned: Multi-page spreads, parent/master pages, linked text/styles, placed-image links and resolution review, preflight and print/digital output. Supported formats, fonts and print suitability need qualification. [Detailed original concepts](DESIGN-SALES-PAGES.md).
 
 ### UI design — working name Hinagata
 

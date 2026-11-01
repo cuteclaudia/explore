@@ -1,3 +1,4 @@
+import {DESIGN_SALES_COPY} from './design-sales-copy.mjs';
 import {WORK_SALES_COPY} from './work-sales-copy.mjs';
 import {CREATIVE_SALES_COPY} from './creative-sales-copy.mjs';
 import {SHOP_SALES_COPY} from './shop-sales-copy.mjs';
@@ -272,5 +273,5 @@ Illustrative dashboard concept. Widget editing and connected modules are planned
 My tasks | 自分のタスク | 我的工作 | 我的任务 | 내 작업 | Mes tâches | Meine Aufgaben | As minhas tarefas
 `;
 const original=Object.fromEntries(rows.trim().split('\n').map(row=>{const cells=row.split(' | ');if(cells.length!==8)throw Error('Invalid language row: '+cells[0]);if(cells.some(cell=>!cell.trim()))throw Error('Empty language copy: '+cells[0]);return [cells[0],Object.freeze(Object.fromEntries(['en','ja','zh-Hant','zh-Hans','ko','fr','de','pt-PT'].map((code,i)=>[code,cells[i]])))];}));
-export const PUBLIC_COPY=Object.freeze({...WORK_SALES_COPY,...CREATIVE_SALES_COPY,...SHOP_SALES_COPY,...RESEARCH_SALES_COPY,...TRIP_SALES_COPY,...Object.fromEntries(Object.entries(original).map(([key,copy])=>{const added=extra[key];if(!added)throw Error('Missing additional locales: '+key);return [key,Object.freeze(Object.fromEntries(Object.keys(LANGUAGES).map(code=>{const value=copy[code]||added[code];if(typeof value!=='string'||!value.trim())throw Error('Missing translation: '+code+' '+key);return [code,value];})))];})),...WORKSPACE_COPY});
+export const PUBLIC_COPY=Object.freeze({...DESIGN_SALES_COPY,...WORK_SALES_COPY,...CREATIVE_SALES_COPY,...SHOP_SALES_COPY,...RESEARCH_SALES_COPY,...TRIP_SALES_COPY,...Object.fromEntries(Object.entries(original).map(([key,copy])=>{const added=extra[key];if(!added)throw Error('Missing additional locales: '+key);return [key,Object.freeze(Object.fromEntries(Object.keys(LANGUAGES).map(code=>{const value=copy[code]||added[code];if(typeof value!=='string'||!value.trim())throw Error('Missing translation: '+code+' '+key);return [code,value];})))];})),...WORKSPACE_COPY});
 export const translate=(text,locale)=>Object.hasOwn(PUBLIC_COPY,text)?PUBLIC_COPY[text][locale]||text:text;
