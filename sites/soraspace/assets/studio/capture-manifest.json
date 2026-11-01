@@ -1,0 +1,61 @@
+{
+  "capturedAt": "2026-11-01T01:45:22.413Z",
+  "interfaceLanguage": "en",
+  "interfaceSourceHashes": [
+    {
+      "file": "src/scripts/studio-writing.mjs",
+      "sha256": "97929c1ac58d442cb4e58da2e1e7f1b4b11b3fa5ed72b008f1f22e46e1ff8519"
+    },
+    {
+      "file": "src/lib/writing-image.mjs",
+      "sha256": "0cbb608b803d6a3ee3d0a73f2b9a65dd1e34e471715384e9fe0f1e0e939814c1"
+    },
+    {
+      "file": "src/lib/studio-crop-controls.mjs",
+      "sha256": "82f3cc9207ccd8298ebbdaf96d30cd3a12a229304a345bc0bb19d6d4cddb1cce"
+    },
+    {
+      "file": "src/components/StudioImageEditor.astro",
+      "sha256": "44b866724c5a729cbabd849f3a69ebfccd52efdb27718cf3b66f569e0eed6a4f"
+    },
+    {
+      "file": "src/components/StudioToolbar.astro",
+      "sha256": "f97a2c2d401c482695ac655c587c56ced3d30b4c0129523af791576c0d379864"
+    },
+    {
+      "file": "src/pages/studio/writing.astro",
+      "sha256": "8fc928f74e411700eb81c050ab9f5d232e52375c6e4fffa00d16aa3e4f0ce269"
+    }
+  ],
+  "baselineCommit": "dde6e39949e6f23098a182bb40dac81a958cf56b",
+  "captureScript": "scripts/capture-studio-marketing.mjs",
+  "sampleImage": {
+    "source": "scripts/fixtures/studio-demo-landscape.svg",
+    "sha256": "f0247c4c13be3f8fd053799aabaa4b2e36bcdf3586951b374703a6d124a9c96d",
+    "rights": "Purpose-made geometric landscape illustration authored for SoraSpace; no third-party photographs."
+  },
+  "scope": "Actual packaged browser interface; fictional writing and local synthetic API records. Not hosted/customer acceptance.",
+  "assets": [
+    {
+      "file": "writing-tools.png",
+      "width": 1126,
+      "height": 246,
+      "sha256": "8b338e5d08d3c832ffaba1ab7cef7093775c406e0f051b87e5f5552f30d6f425",
+      "description": "Grouped formatting, insert, history, table and spelling controls in the actual English writing editor."
+    },
+    {
+      "file": "writing-image.png",
+      "width": 1126,
+      "height": 635,
+      "sha256": "f49ac32fb09f68d33f65a3dfa6492f32a22e67ac865a6e94248a615c7d6c7735",
+      "description": "Fictional lakeside writing with an authored sample illustration and actual proportional resize handles."
+    },
+    {
+      "file": "image-crop.png",
+      "width": 700,
+      "height": 1620,
+      "sha256": "b49577f4fe321368efa951205e3497bcaa5899ca60d5faf78fbc153c534fb3e6",
+      "description": "Actual image editor showing movable free crop, full-source and result previews, width and colour controls."
+    }
+  ]
+}

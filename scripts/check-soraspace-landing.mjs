@@ -1,6 +1,6 @@
 // Independent public-site build and responsive/CSP smoke checks. No live service.
 import assert from 'node:assert/strict';
-import {STUDIO_PATH} from '../sites/soraspace/studio.mjs';
+import {STUDIO_PATH,STUDIO_SCREENSHOTS} from '../sites/soraspace/studio.mjs';
 import {TOOL_PREVIEWS,previewPath} from '../sites/soraspace/previews.mjs';
 import {LANGUAGES} from '../src/lib/locales/languages.mjs';
 import {publicLocaleRoute} from '../src/lib/locales/preference.mjs';
@@ -17,8 +17,9 @@ const resolved=await resolveConfig({cwd:repo,repositoryRoot:repo,base:'sites/sor
 assert.equal(resolved.configPath,site+'netlify.toml');
 assert.equal(resolved.config.build.publish,site+'dist');
 assert.equal(resolved.config.build.command,'npm run build');
-const expected=['404.html','_headers','favicon.svg','index.html','robots.txt','sitemap.xml','styles.css','language.js','icons','tools',...Object.keys(LANGUAGES).filter(code=>code!=='en')];
+const expected=['404.html','_headers','favicon.svg','index.html','robots.txt','sitemap.xml','styles.css','language.js','icons','tools','assets',...Object.keys(LANGUAGES).filter(code=>code!=='en')];
 assert.deepEqual((await readdir(site+'dist')).sort(),expected.sort());
+const screenshotFiles=STUDIO_SCREENSHOTS.map(asset=>'assets/studio/'+asset.file);
 const iconFiles=['fumi','tsuzuri','hikari','irodori','tayori','goban'].map(id=>id+'.svg');
 assert.deepEqual((await readdir(site+'dist/icons')).sort(),iconFiles.slice().sort());
 const headers=await readFile(site+'dist/_headers','utf8'),csp=headers.match(/Content-Security-Policy: (.+)/)[1];
@@ -29,8 +30,8 @@ assert(!html.includes('app.soraspace.studio'));for(const path of ['/apps/files',
 const previewFiles=new Set(Object.keys(LANGUAGES).flatMap(code=>[STUDIO_PATH,...TOOL_PREVIEWS.map(tool=>previewPath(tool.id))].map(path=>(code==='en'?'':code+'/')+path.slice(1)+'index.html')));
 const server=createServer(async(req,res)=>{
  const rawPath=new URL(req.url,'http://localhost').pathname,route=publicLocaleRoute(rawPath);const path=!route.needsRecovery&&route.language!=='en'?localePath(route.language)+route.pagePath.slice(1):rawPath;const filename=(Object.keys(LANGUAGES).some(code=>localePath(code)===path)||previewFiles.has(path.slice(1)+'index.html'))?(path==='/'?'index.html':path.slice(1)+'index.html'):path.slice(1);
- if(!expected.filter(file=>file!=='icons'&&file!=='tools').includes(filename)&&!previewFiles.has(filename)&&!iconFiles.some(file=>filename==='icons/'+file)&&!Object.keys(LANGUAGES).filter(code=>code!=='en').some(code=>filename===code+'/index.html')||filename==='_headers'){res.writeHead(404,{'Content-Type':'text/html','Content-Security-Policy':csp});res.end(await readFile(site+'dist/404.html'));return;}
- res.writeHead(200,{'Content-Type':filename.endsWith('.js')?'text/javascript':filename.endsWith('.css')?'text/css':filename.endsWith('.svg')?'image/svg+xml':filename.endsWith('.xml')?'application/xml':'text/html','Content-Security-Policy':csp});res.end(await readFile(site+'dist/'+filename));
+ if(!expected.filter(file=>file!=='icons'&&file!=='tools').includes(filename)&&!previewFiles.has(filename)&&!screenshotFiles.includes(filename)&&!iconFiles.some(file=>filename==='icons/'+file)&&!Object.keys(LANGUAGES).filter(code=>code!=='en').some(code=>filename===code+'/index.html')||filename==='_headers'){res.writeHead(404,{'Content-Type':'text/html','Content-Security-Policy':csp});res.end(await readFile(site+'dist/404.html'));return;}
+ res.writeHead(200,{'Content-Type':filename.endsWith('.js')?'text/javascript':filename.endsWith('.css')?'text/css':filename.endsWith('.svg')?'image/svg+xml':filename.endsWith('.png')?'image/png':filename.endsWith('.xml')?'application/xml':'text/html','Content-Security-Policy':csp});res.end(await readFile(site+'dist/'+filename));
 });
 await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
 let browser;
@@ -91,7 +92,7 @@ try{
   assert(scheme==='light'?luminance(colours.background)>.9:luminance(colours.background)<.1);
   assert(contrast(colours.text,colours.background)>=7);
   for(const item of colours.targets)assert(contrast(item.foreground,item.background)>=4.5,item.name+' contrast in '+scheme+': '+JSON.stringify(item));
-  assert(colours.hero<560,'compact desktop hero');assert((await page.locator('#writing-publishing').boundingBox()).height<600,'compact desktop writing feature section');
+  assert(colours.hero<560,'compact desktop hero');assert((await page.locator('#writing-publishing').boundingBox()).height<800,'desktop writing section includes one actual screenshot');
   await page.screenshot({path:`/workspace/reviews/soraspace-landing/system-${scheme}-1366.png`,fullPage:true});
  }
  // An OS theme change while already open also updates native colours.
