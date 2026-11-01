@@ -1,4 +1,6 @@
-SoraTrip sales continuation: [detailed page and five travel mockups](SORATRIP-SALES-PAGE.md) now appear on both marketing builds. The [32-entry page audit](SALES-APP-PAGE-AUDIT.md) finds two detailed sales pages, six basic app previews and 24 guide-only gaps. Planned labels remain; no subscriptions or travel integrations are enabled.
+SoraResearch detail continuation: `/tools/soraresearch/` now has six original research-specific concepts, including the compact 24-reference/24-metadata-field library, reader/notes, citations, capture/duplicates, storage/collaboration and phone navigation. Full app and integrations remain Planned. The current audit is three detailed pages, six basic previews and 23 guide-only gaps.
+
+SoraTrip sales continuation: [detailed page and five travel mockups](SORATRIP-SALES-PAGE.md) now appear on both marketing builds. The [32-entry page audit](SALES-APP-PAGE-AUDIT.md) now records three detailed sales pages, six basic app previews and 23 guide-only gaps. Planned labels remain; no subscriptions or travel integrations are enabled.
 
 # SoraSpace sales feature sheet
 
