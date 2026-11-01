@@ -1,3 +1,4 @@
+import {SLIDES_PATH,UI_DESIGN_PATH} from '../sites/soraspace/screens-sales.mjs';
 import {ILLUSTRATION_PATH,LAYOUT_PATH} from '../sites/soraspace/design-sales.mjs';
 import {PROJECTS_PATH,CRM_PATH} from '../sites/soraspace/work-sales.mjs';
 import {PHOTOGRAPHY_PATH,JOURNAL_PATH} from '../sites/soraspace/creative-sales.mjs';
@@ -33,7 +34,7 @@ assert.match(csp,/script-src 'sha256-[A-Za-z0-9+/=]+'/);assert(csp.includes("con
 const html=await readFile(site+'dist/index.html','utf8');
 assert(!/<form\b|<iframe\b/i.test(html));assert.equal((html.match(/<script\b/g)||[]).length,1);assert(html.includes('src="/language.js" integrity="sha256-'));assert.equal((html.match(/class="template-card"/g)||[]).length,5);
 assert(!html.includes('app.soraspace.studio'));for(const path of ['/apps/files','/studio/soraspace-setup','/studio/soraspace-editor','/studio/soraspace-admin'])assert(html.includes('https://www.claudiagilbert.com'+path));assert(html.includes('Email verification and approval required'));
-const previewFiles=new Set(Object.keys(LANGUAGES).flatMap(code=>[STUDIO_PATH,SORATRIP_PATH,RESEARCH_PATH,SHOP_PATH,PHOTOGRAPHY_PATH,JOURNAL_PATH,PROJECTS_PATH,CRM_PATH,ILLUSTRATION_PATH,LAYOUT_PATH,...TOOL_PREVIEWS.map(tool=>previewPath(tool.id))].map(path=>(code==='en'?'':code+'/')+path.slice(1)+'index.html')));
+const previewFiles=new Set(Object.keys(LANGUAGES).flatMap(code=>[SLIDES_PATH,UI_DESIGN_PATH,STUDIO_PATH,SORATRIP_PATH,RESEARCH_PATH,SHOP_PATH,PHOTOGRAPHY_PATH,JOURNAL_PATH,PROJECTS_PATH,CRM_PATH,ILLUSTRATION_PATH,LAYOUT_PATH,...TOOL_PREVIEWS.map(tool=>previewPath(tool.id))].map(path=>(code==='en'?'':code+'/')+path.slice(1)+'index.html')));
 const server=createServer(async(req,res)=>{
  const rawPath=new URL(req.url,'http://localhost').pathname,route=publicLocaleRoute(rawPath);const path=!route.needsRecovery&&route.language!=='en'?localePath(route.language)+route.pagePath.slice(1):rawPath;const filename=(Object.keys(LANGUAGES).some(code=>localePath(code)===path)||previewFiles.has(path.slice(1)+'index.html'))?(path==='/'?'index.html':path.slice(1)+'index.html'):path.slice(1);
  if(!expected.filter(file=>file!=='icons'&&file!=='tools').includes(filename)&&!previewFiles.has(filename)&&!screenshotFiles.includes(filename)&&!iconFiles.some(file=>filename==='icons/'+file)&&!Object.keys(LANGUAGES).filter(code=>code!=='en').some(code=>filename===code+'/index.html')||filename==='_headers'){res.writeHead(404,{'Content-Type':'text/html','Content-Security-Policy':csp});res.end(await readFile(site+'dist/404.html'));return;}
