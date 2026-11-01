@@ -2,7 +2,7 @@
 
 Public routes: `/tools/sen/` and `/tools/hanga/` in both marketing builds. The Creative, music & video splash group, complete directory and existing shared creative concepts link to the detail pages. Each page links the other. Illustration links the SoraImage preview to distinguish vector work from raster/image composition; Page Layout links SoraDocs to distinguish multi-page publishing from document writing.
 
-Capability names are Illustration and Page layout. Sen and Hanga remain explicitly provisional working names, not newly approved Sora-branded product names. Both apps remain Planned. No app engine, vendor code, editor bridge, installed font inspection, file/storage operation, preflight engine or output generation is activated. No proprietary-format parity, print standard, release date or approved price is promised. Native app acceptance remains separate from this marketing work.
+The proposed paired names are **SoraDraw — Sen · 線** and **SoraLayout — Hanga · 版画**, with Illustration and Page layout retained as capability descriptions. See [the naming catalogue](APP-NAMING-CATALOGUE.md). English names and Japanese spellings remain provisional. Both apps remain Planned. No app engine, vendor code, editor bridge, installed font inspection, file/storage operation, preflight engine or output generation is activated. No proprietary-format parity, print standard, release date or approved price is promised. Native app acceptance remains separate from this marketing work.
 
 ## Illustration: five original concepts
 

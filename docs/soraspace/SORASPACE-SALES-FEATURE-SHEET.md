@@ -1,3 +1,5 @@
+Naming correction: use the English Sora product name together with its Romanised/Japanese pairing. The [shared naming catalogue](APP-NAMING-CATALOGUE.md) retains the established names and proposes SoraSlides/Akari, SoraDraw/Sen, SoraLayout/Hanga, SoraDesign/Hinagata, SoraVideo/Kage, SoraAudio/Hibiki, SoraMotion/Mai and SoraCAD/Takumi. Proposed branding and Planned release labels remain distinct.
+
 Illustration/Page Layout sales update: [two detailed pages with ten original concepts](DESIGN-SALES-PAGES.md) now link from both splash builds and the shared creative guide. Sen and Hanga remain provisional working names; both apps are Planned. Current coverage: 33 modules, ten detailed pages, six basic previews and 17 guide-only entries.
 
 Projects/CRM sales update: [two detailed pages and twelve matching business concepts](WORK-SALES-PAGES.md) now cover compact work/contact libraries, boards/timelines, time/scope, organisations, opportunities, activity and imports. Current coverage is 33 modules, ten detailed pages, six basic previews and 17 guide-only entries; both apps remain Planned.
@@ -29,7 +31,7 @@ Every app and module listed below appears in the directory on both sales sites. 
 | SoraDocs | Documents, page layout and references | Preview |
 | SoraSheets | Spreadsheets and data | In development |
 | SoraMail | Email workflows | In development |
-| Presentations | Slides, themes and speaker notes · working name Akari | Planned |
+| SoraSlides — Akari · 明かり | Slides, themes and speaker notes · working name Akari | Planned |
 
 ### Photography & images
 
@@ -43,13 +45,13 @@ Every app and module listed below appears in the directory on both sales sites. 
 
 | App/module | Purpose | Availability |
 | --- | --- | --- |
-| Illustration | Paths, shapes and layers · working name Sen | Planned |
-| Page layout | Multi-page publishing · working name Hanga | Planned |
-| Interface design | Components and screen flows · working name Hinagata | Planned |
-| Video | Timelines, clips and titles · working name Kage | Planned |
-| Audio & music | Tracks, recording and mixing · working name Hibiki | Planned |
-| Motion | Keyframes and animated layers · working name Mai | Planned |
-| CAD | Geometry and dimensioned views · working name Takumi | Planned |
+| SoraDraw — Sen · 線 | Paths, shapes and layers · working name Sen | Planned |
+| SoraLayout — Hanga · 版画 | Multi-page publishing · working name Hanga | Planned |
+| SoraDesign — Hinagata · 雛形 | Components and screen flows · working name Hinagata | Planned |
+| SoraVideo — Kage · 影 | Timelines, clips and titles · working name Kage | Planned |
+| SoraAudio — Hibiki · 響 | Tracks, recording and mixing · working name Hibiki | Planned |
+| SoraMotion — Mai · 舞 | Keyframes and animated layers · working name Mai | Planned |
+| SoraCAD — Takumi · 匠 | Geometry and dimensioned views · working name Takumi | Planned |
 
 ### PDF
 
@@ -94,35 +96,35 @@ Every app and module listed below appears in the directory on both sales sites. 
 
 Final names and qualified features remain subject to release review.
 
-### Presentations — working name Akari
+### SoraSlides — Akari · 明かり — proposed
 
 Planned: Slide layouts and themes; Speaker notes and presenting; Reviewed export and document links.
 
-### Illustration — working name Sen
+### SoraDraw — Sen · 線 — proposed
 
 Planned: Vector paths, shapes, anchors/handles, readable layers, named colours and typography; compact artwork library and reviewed vector/raster output. [Detailed original concepts](DESIGN-SALES-PAGES.md).
 
-### Page layout — working name Hanga
+### SoraLayout — Hanga · 版画 — proposed
 
 Planned: Multi-page spreads, parent/master pages, linked text/styles, placed-image links and resolution review, preflight and print/digital output. Supported formats, fonts and print suitability need qualification. [Detailed original concepts](DESIGN-SALES-PAGES.md).
 
-### UI design — working name Hinagata
+### SoraDesign — Hinagata · 雛形 — proposed
 
 Planned: Interface layouts and reusable components; Screen flows and design handoff; Responsive design concepts.
 
-### Video — working name Kage
+### SoraVideo — Kage · 影 — proposed
 
 Planned: Video timelines and clip organisation; Titles, transitions and audio tracks; Reviewed video export workflows.
 
-### Audio — working name Hibiki
+### SoraAudio — Hibiki · 響 — proposed
 
 Planned: Audio tracks and waveforms; Recording, trimming and mixing concepts; Reviewed music and audio export.
 
-### Motion — working name Mai
+### SoraMotion — Mai · 舞 — proposed
 
 Planned: Keyframes and animated layers; Timing, motion and visual effects; Animation preview and export.
 
-### CAD — working name Takumi
+### SoraCAD — Takumi · 匠 — proposed
 
 Planned: Precise geometry and object organisation; Dimensioned views and model inspection; Reviewed design import and export.
 
