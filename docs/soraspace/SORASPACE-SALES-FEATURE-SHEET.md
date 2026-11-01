@@ -223,7 +223,9 @@ Planned: Precise geometry and object organisation; Dimensioned views and model i
 
 - A trip planner within Journal, with day-by-day flights, stays, transport and activities
 - Reviewed booking imports, calendar export and destination-aware timezones
-- Private travel documents, selected-participant sharing and optional offline or printable itineraries
+- Private travel documents and selected-participant sharing
+- Save itineraries and selected documents for offline access, with readiness and last-saved status
+- Download a self-contained itinerary PDF as an offline backup
 - Optional check-in and passport-expiry reminders
 - Journal entries, photographs and maps linked to the same trip
 - Upcoming-trip, next-segment and itinerary summary widgets
