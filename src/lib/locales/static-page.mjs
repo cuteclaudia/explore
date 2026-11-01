@@ -3,7 +3,7 @@ import {LANGUAGES,escapeHTML} from './languages.mjs';
 import {translate} from './public-copy.mjs';
 export const localePath=code=>code==='en'?'/':`/${code}/`;
 const decode=value=>value.replaceAll('&amp;','&').replaceAll('&quot;','"').replaceAll('&#39;',"'").replaceAll('&lt;','<').replaceAll('&gt;','>');
-export function localizeLanding(html,code,{path='/',name=null,purpose=null}={}){
+export function localizeLanding(html,code,{path='/',name=null,purpose=null,description=null}={}){
  if(path!=='/'&&!/^\/tools\/[a-z0-9-]{1,40}\/$/.test(path))throw Error('Unsupported public page path');
  if(!Object.hasOwn(LANGUAGES,code))throw Error('Unsupported language');
  const localizedPath=key=>localePath(key)+(path==='/'?'':path.replace(/^\//,''));
@@ -12,6 +12,7 @@ export function localizeLanding(html,code,{path='/',name=null,purpose=null}={}){
  page=page.replace(/(aria-label|title|content)="([^"]*)"/g,(_,attr,value)=>`${attr}="${t(attr==='aria-label'&&value.startsWith('Illustration of')?'Illustrative preview, not live account data or a product screenshot':value)}"`);
  const title=name?name+' — '+translate(purpose,code)+' · SoraSpace':'SoraSpace — '+translate('Space for everything you create.',code).replace(/\.$/,'');
  page=page.replace(/<title>.*?<\/title>/,`<title>${escapeHTML(title)}</title>`).replace(/(<meta property="og:title" content=")[^"]*/,`$1${escapeHTML(title)}`);
+ if(name&&description){const summary=escapeHTML(name+' — '+translate(description,code));page=page.replace(/(<meta (?:name="description"|property="og:description") content=")[^"]*/g,(_,prefix)=>prefix+summary);}
  const url='https://www.soraspace.studio'+localizedPath(code);
  page=page.replace('lang="en-AU"',`lang="${LANGUAGES[code].tag}"`).replace(/(<link rel="canonical" href=")[^"]*/,`$1${url}`).replace(/(<meta property="og:url" content=")[^"]*/,`$1${url}`);
  page=page.replace('</head>',Object.entries(LANGUAGES).map(([key,lang])=>`<link rel="alternate" hreflang="${lang.tag}" href="https://www.soraspace.studio${localizedPath(key)}">`).join('')+`<link rel="alternate" hreflang="x-default" href="https://www.soraspace.studio${path}">\n</head>`);
