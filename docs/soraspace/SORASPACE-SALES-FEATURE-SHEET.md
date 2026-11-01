@@ -1,10 +1,12 @@
+SoraTrip sales continuation: [detailed page and five travel mockups](SORATRIP-SALES-PAGE.md) now appear on both marketing builds. The [32-entry page audit](SALES-APP-PAGE-AUDIT.md) finds two detailed sales pages, six basic app previews and 24 guide-only gaps. Planned labels remain; no subscriptions or travel integrations are enabled.
+
 # SoraSpace sales feature sheet
 
 1 November 2026. Shared copy for staging and the SoraSpace public landing site.
 
 **Availability:** In testing means a restricted pilot/preview. In development and Planned describe future capabilities, not included access today. No approved prices, release dates or universal format/provider compatibility are promised.
 
-The public feature guide is `/tools/features/`. Homepage sections preview translation, SoraResearch and SoraShop. The guide links all six existing app previews and adds eight planned creative workspace concepts. SoraX was clarified by the owner as a placeholder, not another product.
+The public feature guide is `/tools/features/`. Homepage sections preview translation, SoraResearch, SoraShop and the standalone SoraTrip app. A detailed SoraTrip page at `/tools/soratrip/` shows five matching travel concepts. The guide links all six existing app previews and adds eight planned creative workspace concepts. SoraX was clarified by the owner as a placeholder, not another product.
 
 ## Complete app and module directory
 
@@ -52,7 +54,8 @@ Every app and module listed below appears in the directory on both sales sites. 
 | My writing & Journal | Write, add images and review publication | In testing |
 | SoraResearch | Compact libraries, citations and Zotero connection | Planned |
 | Website builder | Pages, themes, menus and custom domains | Planned |
-| Journeys & activities | Trip planning, journals, maps and activity stories | Planned |
+| SoraTrip | Standalone travel planning, itineraries, private documents and offline access | Planned |
+| Journeys & activities | Maps, routes and activity stories | Planned |
 
 ### Business & collaboration
 
@@ -221,7 +224,7 @@ Planned: Precise geometry and object organisation; Dimensioned views and model i
 
 ### Journeys, maps & activities — Planned
 
-- A trip planner within Journal, with day-by-day flights, stays, transport and activities
+- SoraTrip as a standalone itinerary planner with optional Journal connections, with day-by-day flights, stays, transport and activities
 - Reviewed booking imports, calendar export and destination-aware timezones
 - Private travel documents and selected-participant sharing
 - Save itineraries and selected documents for offline access, with readiness and last-saved status
