@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "id": "open-source",
+  "number": 48,
+  "name": "Open-source project",
+  "category": "organisation",
+  "status": "preview",
+  "description": "Developer-friendly: monospaced headings, documentation cards, a release list with versions and the contributors.",
+  "suits": [
+    "Open-source projects",
+    "Developer tools",
+    "Community software",
+    "Research software"
+  ],
+  "baseTemplate": "folio",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "articles",
+    "blog",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Docs",
+    "blog": "Releases",
+    "about": "Contributors",
+    "contact": "Community"
+  },
+  "density": "compact",
+  "colours": {
+    "light": {
+      "heroShade": "#0b0f17",
+      "heroText": "#e5e7eb",
+      "bg": "#fbfbfc",
+      "surface": "#f3f4f6",
+      "text": "#111827",
+      "muted": "#4b5563",
+      "accent": "#0e7a4e",
+      "onAccent": "#ffffff",
+      "border": "#e5e7eb",
+      "art1": "#10b981",
+      "art2": "#6366f1"
+    },
+    "dark": {
+      "heroShade": "#0b0f17",
+      "heroText": "#e5e7eb",
+      "bg": "#0b0f17",
+      "surface": "#121826",
+      "text": "#e5e7eb",
+      "muted": "#9ca3af",
+      "accent": "#34d399",
+      "onAccent": "#052e1f",
+      "border": "#1f2937",
+      "art1": "#065f46",
+      "art2": "#3730a3"
+    }
+  },
+  "typography": {
+    "heading": "mono",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 6,
+    "buttonRadius": 6
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "cards",
+        "page": "articles",
+        "heading": "Get started",
+        "images": false
+      },
+      {
+        "type": "list",
+        "page": "blog",
+        "heading": "Releases"
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "Maintainers"
+      },
+      {
+        "type": "cta",
+        "heading": "Contribute",
+        "text": "Bug reports, docs and code are all welcome.",
+        "button": "Get involved"
+      }
+    ]
+  },
+  "notes": [
+    "Repository widgets and badges from code-hosting sites are not embedded; tenants can link to their repository instead."
+  ]
+}

@@ -112,15 +112,22 @@ Status: **built** = folder exists in this repo; **planned** = agreed, not yet bu
 | 38 | Childcare & early learning | `childcare` | built |
 | 39 | Tours & guiding | `tours-guiding` | built |
 | 40 | Venue hire | `venue-hire` | built |
-| 41 | Automotive & mechanic | `automotive` | planned |
-| 42 | Creative agency | `creative-agency` | planned |
-| 43 | Faith community | `faith-community` | planned |
-| 44 | School & parent group | `school-parents` | planned |
-| 45 | Conference & event | `conference` | planned |
-| 46 | Neighbourhood noticeboard | `neighbourhood` | planned |
-| 47 | Alumni network | `alumni` | planned |
-| 48 | Open-source project | `open-source` | planned |
-| 49 | Cause & campaign | `cause-campaign` | planned |
-| 50 | Team handbook | `team-handbook` | planned |
+| 41 | Automotive & mechanic | `automotive` | built |
+| 42 | Creative agency | `creative-agency` | built |
+| 43 | Faith community | `faith-community` | built |
+| 44 | School & parent group | `school-parents` | built |
+| 45 | Conference & event | `conference` | built |
+| 46 | Neighbourhood noticeboard | `neighbourhood` | built |
+| 47 | Alumni network | `alumni` | built |
+| 48 | Open-source project | `open-source` | built |
+| 49 | Cause & campaign | `cause-campaign` | built |
+| 50 | Team handbook | `team-handbook` | built |
 
 `manifest.json` lists only built themes.
+
+## Manifest fields for importers
+
+- `schemaVersion` (1), theme `id`, `definition` (`themes/<id>/theme.json`) and `preview` (`themes/<id>/index.html`) are **stable**. Ids are never renamed; new fields may be added within schemaVersion 1, but existing fields are not renamed or removed.
+- `batches[]` records each batch, its theme numbers, date added and whether it is ready to import.
+- Each theme entry carries `batch` and `readyToImport`. `true` means the theme passed the validity, contrast and security checks and a visual review of its preview in light and dark, so its `theme.json` can be imported.
+- Preview HTML is for people only. Importers should read `theme.json`, never parse `index.html`.

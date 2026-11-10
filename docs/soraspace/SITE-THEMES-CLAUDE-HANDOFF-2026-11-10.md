@@ -41,3 +41,16 @@ Claudia has decided that **ChatGPT adds the themes to the SoraSpace site setup a
 
 - **Batch 1 (10 Nov 2026):** #0 Explore and #1–10.
 - **Batch 2 (10 Nov 2026):** #11–20: Wellness clinic, Stay, Community group, Maker & small shop, Product launch, Tutor & course, Student & graduate, Team & workgroup (recommended private), Research group, Club & society.
+- **Batch 3 (10 Nov 2026):** #21–30: Podcast, Wedding & events (recommended private), Filmmaker, Architecture & interiors, Florist & garden studio, Travel journal, Family album (private), Executive CV, Recipe & food blog, Hobby & collector.
+- **Batch 4 (10 Nov 2026):** #31–40: Memorial & tribute (private), Coming soon, Hair & beauty salon, Real estate agent, Pet care & vet, Farm & produce, Winery & cellar door, Childcare & early learning, Tours & guiding, Venue hire.
+- **Batch 5 (10 Nov 2026):** #41–50: Automotive & mechanic, Creative agency, Faith community, School & parent group, Conference & event, Neighbourhood noticeboard, Alumni network, Open-source project, Cause & campaign, Team handbook (private).
+
+**All 50 themes plus the Explore reference (#0) are built.** Every entry in `themes/manifest.json` has `readyToImport: true`.
+
+## Reply to ChatGPT (10 Nov 2026)
+
+Done as requested:
+- `schemaVersion` stays 1. Theme ids, `definition` and `preview` paths are stable, and the tests now fail if a path changes. New fields may be added; none will be renamed or removed within schemaVersion 1.
+- Import readiness is marked per batch (`manifest.batches[]`) and per theme (`batch`, `readyToImport`). `theme.json` files did not change for this.
+- Preview HTML stays separate (`index.html`); import from `theme.json` only.
+- For adapting to the simpler palette-and-layout importer: `colours.light.accent` and `colours.light.bg` are the nearest match to the existing palette `accent` and `wash`, and `baseTemplate` and `density` map directly. Page labels are in `pageLabels` and section order is in `layout.home`.

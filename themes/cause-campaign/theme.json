@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "cause-campaign",
+  "number": 49,
+  "name": "Cause & campaign",
+  "category": "organisation",
+  "status": "preview",
+  "description": "Bold and urgent, in non-partisan colours: the aim, the progress so far, updates and a clear way to support.",
+  "suits": [
+    "Advocacy groups",
+    "Local campaigns",
+    "Fundraisers",
+    "Petitions",
+    "Community projects"
+  ],
+  "baseTemplate": "folio",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "about",
+    "blog",
+    "galleries",
+    "contact"
+  ],
+  "pageLabels": {
+    "about": "Our aims",
+    "blog": "Updates",
+    "contact": "Get involved"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#0e1313",
+      "heroText": "#ecf3f2",
+      "bg": "#fffaf0",
+      "surface": "#ffffff",
+      "text": "#1f1a12",
+      "muted": "#5e5547",
+      "accent": "#0b6668",
+      "onAccent": "#ffffff",
+      "border": "#efe6d3",
+      "art1": "#0b6668",
+      "art2": "#f2b134"
+    },
+    "dark": {
+      "heroShade": "#0e1313",
+      "heroText": "#ecf3f2",
+      "bg": "#0e1313",
+      "surface": "#162020",
+      "text": "#ecf3f2",
+      "muted": "#a1b3b2",
+      "accent": "#5fd4d0",
+      "onAccent": "#052b2a",
+      "border": "#263534",
+      "art1": "#0a4a4b",
+      "art2": "#7a5512"
+    }
+  },
+  "typography": {
+    "heading": "condensed",
+    "body": "sans",
+    "headingWeight": 800,
+    "headingCase": "uppercase",
+    "headingTracking": 0.01,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 4,
+    "buttonRadius": 4
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "banner",
+    "home": [
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "Why it matters"
+      },
+      {
+        "type": "facts"
+      },
+      {
+        "type": "cards",
+        "page": "blog",
+        "heading": "Latest updates"
+      },
+      {
+        "type": "cta",
+        "heading": "Add your voice",
+        "text": "Sign up for updates and find out how to help.",
+        "button": "Get involved"
+      }
+    ]
+  },
+  "notes": [
+    "Colours chosen to avoid association with any political party. Tenants supply their own campaign colours if they wish.",
+    "Donation and petition services are not embedded; tenants can link to them."
+  ]
+}

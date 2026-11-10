@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "creative-agency",
+  "number": 42,
+  "name": "Creative agency",
+  "category": "creative",
+  "status": "preview",
+  "description": "Big, confident type and a strong accent: selected work, the people, a short list of thinking and a project enquiry.",
+  "suits": [
+    "Design studios",
+    "Marketing agencies",
+    "Production companies",
+    "Collectives"
+  ],
+  "baseTemplate": "folio",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "articles",
+    "about",
+    "blog",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Work",
+    "about": "People",
+    "blog": "Thinking"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#0a0a0a",
+      "heroText": "#f5f5f5",
+      "bg": "#ffffff",
+      "surface": "#f4f4f4",
+      "text": "#0a0a0a",
+      "muted": "#565656",
+      "accent": "#c92a62",
+      "onAccent": "#ffffff",
+      "border": "#e5e5e5",
+      "art1": "#ff5c8a",
+      "art2": "#ffd43b"
+    },
+    "dark": {
+      "heroShade": "#0a0a0a",
+      "heroText": "#f5f5f5",
+      "bg": "#0a0a0a",
+      "surface": "#151515",
+      "text": "#f5f5f5",
+      "muted": "#a6a6a6",
+      "accent": "#ff8fb1",
+      "onAccent": "#3a0618",
+      "border": "#262626",
+      "art1": "#8a1d43",
+      "art2": "#8a6f10"
+    }
+  },
+  "typography": {
+    "heading": "geometric",
+    "body": "sans",
+    "headingWeight": 800,
+    "headingCase": "none",
+    "headingTracking": -0.03,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 0,
+    "buttonRadius": 0
+  },
+  "layout": {
+    "maxWidth": 1320,
+    "header": "minimal",
+    "hero": "statement",
+    "home": [
+      {
+        "type": "cards",
+        "page": "articles",
+        "heading": "Selected work",
+        "columns": 2,
+        "count": 2
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "The studio"
+      },
+      {
+        "type": "list",
+        "page": "blog",
+        "heading": "Thinking"
+      },
+      {
+        "type": "cta",
+        "heading": "Got a project?",
+        "button": "Start a conversation"
+      }
+    ]
+  },
+  "notes": []
+}

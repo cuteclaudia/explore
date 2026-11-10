@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "id": "team-handbook",
+  "number": 50,
+  "name": "Team handbook",
+  "category": "organisation",
+  "status": "preview",
+  "description": "A clear internal guide for a workgroup: how-to guides, recent changes, who to ask, all private to the team.",
+  "suits": [
+    "Teams",
+    "Small businesses",
+    "Volunteer organisations",
+    "Clubs’ committees"
+  ],
+  "baseTemplate": "editorial",
+  "purpose": "business",
+  "recommendedVisibility": "private",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "articles",
+    "blog",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Guides",
+    "blog": "Changes",
+    "about": "Who’s who",
+    "contact": "Ask a question"
+  },
+  "density": "compact",
+  "colours": {
+    "light": {
+      "heroShade": "#0f1114",
+      "heroText": "#e8eaed",
+      "bg": "#ffffff",
+      "surface": "#f6f7f8",
+      "text": "#1a1d21",
+      "muted": "#50565e",
+      "accent": "#0b5cad",
+      "onAccent": "#ffffff",
+      "border": "#e3e6ea",
+      "art1": "#0b5cad",
+      "art2": "#8fb8e6"
+    },
+    "dark": {
+      "heroShade": "#0f1114",
+      "heroText": "#e8eaed",
+      "bg": "#0f1114",
+      "surface": "#171a1f",
+      "text": "#e8eaed",
+      "muted": "#a1a7b0",
+      "accent": "#8ab8f0",
+      "onAccent": "#0b2340",
+      "border": "#2a2e35",
+      "art1": "#0a3d73",
+      "art2": "#2c4a6b"
+    }
+  },
+  "typography": {
+    "heading": "sans",
+    "body": "sans",
+    "headingWeight": 600,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 6,
+    "buttonRadius": 6
+  },
+  "layout": {
+    "maxWidth": 1100,
+    "header": "bar",
+    "hero": "text",
+    "home": [
+      {
+        "type": "cards",
+        "page": "articles",
+        "heading": "Guides",
+        "images": false
+      },
+      {
+        "type": "list",
+        "page": "blog",
+        "heading": "Recent changes"
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "Who to ask"
+      },
+      {
+        "type": "contact",
+        "page": "contact",
+        "heading": "Ask a question"
+      }
+    ]
+  },
+  "notes": [
+    "Recommended private: only workspace members can read it."
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "automotive",
+  "number": 41,
+  "name": "Automotive & mechanic",
+  "category": "business",
+  "status": "preview",
+  "description": "Tough and direct: services, workshop details, photos of recent work and a large book-a-service button.",
+  "suits": [
+    "Mechanics",
+    "Auto electricians",
+    "Tyre shops",
+    "Panel beaters",
+    "Bike shops"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "articles",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Services",
+    "galleries": "Workshop",
+    "contact": "Book a service"
+  },
+  "density": "compact",
+  "colours": {
+    "light": {
+      "heroShade": "#0b0c0e",
+      "heroText": "#eef0f2",
+      "bg": "#f3f4f5",
+      "surface": "#ffffff",
+      "text": "#121417",
+      "muted": "#4c535b",
+      "accent": "#b8170f",
+      "onAccent": "#ffffff",
+      "border": "#d9dde1",
+      "art1": "#3a4048",
+      "art2": "#d9a03f"
+    },
+    "dark": {
+      "heroShade": "#0b0c0e",
+      "heroText": "#eef0f2",
+      "bg": "#0b0c0e",
+      "surface": "#15171a",
+      "text": "#eef0f2",
+      "muted": "#a4abb3",
+      "accent": "#ff7a6e",
+      "onAccent": "#2e0503",
+      "border": "#272b30",
+      "art1": "#23272d",
+      "art2": "#7a5512"
+    }
+  },
+  "typography": {
+    "heading": "condensed",
+    "body": "sans",
+    "headingWeight": 800,
+    "headingCase": "uppercase",
+    "headingTracking": 0.02,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 4,
+    "buttonRadius": 4
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "bar",
+    "hero": "banner",
+    "home": [
+      {
+        "type": "cards",
+        "page": "articles",
+        "heading": "What we fix",
+        "images": false
+      },
+      {
+        "type": "facts"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "In the workshop",
+        "style": "even",
+        "count": 3
+      },
+      {
+        "type": "cta",
+        "heading": "Due for a service?",
+        "text": "Book online and we will confirm a time by text.",
+        "button": "Book a service"
+      }
+    ]
+  },
+  "notes": []
+}

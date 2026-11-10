@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "conference",
+  "number": 45,
+  "name": "Conference & event",
+  "category": "organisation",
+  "status": "preview",
+  "description": "Energetic and organised: the dates and venue, the programme with times, speakers and a strong register button.",
+  "suits": [
+    "Conferences",
+    "Festivals",
+    "Symposiums",
+    "Meetups",
+    "Workshops"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "articles",
+    "about",
+    "blog",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Programme",
+    "about": "Speakers & venue",
+    "blog": "Announcements",
+    "contact": "Register"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#070a1c",
+      "heroText": "#eceffd",
+      "bg": "#f5f7ff",
+      "surface": "#ffffff",
+      "text": "#0e1330",
+      "muted": "#4c5378",
+      "accent": "#3730a3",
+      "onAccent": "#ffffff",
+      "border": "#dde2f5",
+      "art1": "#3730a3",
+      "art2": "#06b6d4"
+    },
+    "dark": {
+      "heroShade": "#070a1c",
+      "heroText": "#eceffd",
+      "bg": "#070a1c",
+      "surface": "#0f1430",
+      "text": "#eceffd",
+      "muted": "#a3a9cc",
+      "accent": "#a5b4fc",
+      "onAccent": "#13124a",
+      "border": "#232a52",
+      "art1": "#23207a",
+      "art2": "#0e6f80"
+    }
+  },
+  "typography": {
+    "heading": "geometric",
+    "body": "sans",
+    "headingWeight": 800,
+    "headingCase": "none",
+    "headingTracking": -0.02,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 12,
+    "buttonRadius": 10
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "statement",
+    "home": [
+      {
+        "type": "facts"
+      },
+      {
+        "type": "list",
+        "page": "articles",
+        "heading": "Programme highlights"
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "Speakers"
+      },
+      {
+        "type": "cta",
+        "heading": "Seats are limited",
+        "text": "Early-bird registration closes 31 January.",
+        "button": "Register now"
+      }
+    ]
+  },
+  "notes": [
+    "Registration is the Contact page; ticket sales and payments are not part of the theme."
+  ]
+}

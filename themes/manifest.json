@@ -1,11 +1,47 @@
 {
   "schemaVersion": 1,
-  "description": "SoraSpace tenant site themes. Each entry has a folder containing theme.json, index.html and README.md.",
+  "description": "SoraSpace tenant site themes. Each entry has a folder containing theme.json (definition), index.html (preview only) and README.md.",
+  "stability": "schemaVersion, theme ids and definition paths are stable. New fields may be added; existing ones are not renamed or removed within schemaVersion 1.",
+  "readyToImport": "An entry with readyToImport true has passed the validity, contrast and security checks and a visual review in light and dark, and its theme.json may be imported.",
+  "batches": [
+    {
+      "batch": 1,
+      "themes": "0-10",
+      "added": "2026-11-10",
+      "readyToImport": true
+    },
+    {
+      "batch": 2,
+      "themes": "11-20",
+      "added": "2026-11-10",
+      "readyToImport": true
+    },
+    {
+      "batch": 3,
+      "themes": "21-30",
+      "added": "2026-11-10",
+      "readyToImport": true
+    },
+    {
+      "batch": 4,
+      "themes": "31-40",
+      "added": "2026-11-10",
+      "readyToImport": true
+    },
+    {
+      "batch": 5,
+      "themes": "41-50",
+      "added": "2026-11-10",
+      "readyToImport": true
+    }
+  ],
   "themes": [
     {
       "id": "explore",
       "number": 0,
       "name": "Explore",
+      "batch": 1,
+      "readyToImport": true,
       "category": "personal",
       "status": "reference",
       "suits": [
@@ -32,6 +68,8 @@
       "id": "photography-portfolio",
       "number": 1,
       "name": "Photography portfolio",
+      "batch": 1,
+      "readyToImport": true,
       "category": "creative",
       "status": "preview",
       "suits": [
@@ -56,6 +94,8 @@
       "id": "artist-studio",
       "number": 2,
       "name": "Artist studio",
+      "batch": 1,
+      "readyToImport": true,
       "category": "creative",
       "status": "preview",
       "suits": [
@@ -83,6 +123,8 @@
       "id": "restaurant-cafe",
       "number": 3,
       "name": "Restaurant & café",
+      "batch": 1,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -110,6 +152,8 @@
       "id": "trades-services",
       "number": 4,
       "name": "Trades & local services",
+      "batch": 1,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -138,6 +182,8 @@
       "id": "professional-practice",
       "number": 5,
       "name": "Professional practice",
+      "batch": 1,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -163,6 +209,8 @@
       "id": "consultant",
       "number": 6,
       "name": "Consultant",
+      "batch": 1,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -190,6 +238,8 @@
       "id": "writer-author",
       "number": 7,
       "name": "Writer & author",
+      "batch": 1,
+      "readyToImport": true,
       "category": "writing",
       "status": "preview",
       "suits": [
@@ -217,6 +267,8 @@
       "id": "magazine",
       "number": 8,
       "name": "Magazine",
+      "batch": 1,
+      "readyToImport": true,
       "category": "writing",
       "status": "preview",
       "suits": [
@@ -243,6 +295,8 @@
       "id": "musician-band",
       "number": 9,
       "name": "Musician & band",
+      "batch": 1,
+      "readyToImport": true,
       "category": "creative",
       "status": "preview",
       "suits": [
@@ -270,6 +324,8 @@
       "id": "fitness-studio",
       "number": 10,
       "name": "Fitness & studio",
+      "batch": 1,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -298,6 +354,8 @@
       "id": "wellness-clinic",
       "number": 11,
       "name": "Wellness clinic",
+      "batch": 2,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -324,6 +382,8 @@
       "id": "stay",
       "number": 12,
       "name": "Stay",
+      "batch": 2,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -351,6 +411,8 @@
       "id": "community-group",
       "number": 13,
       "name": "Community group",
+      "batch": 2,
+      "readyToImport": true,
       "category": "organisation",
       "status": "preview",
       "suits": [
@@ -379,6 +441,8 @@
       "id": "maker-shop",
       "number": 14,
       "name": "Maker & small shop",
+      "batch": 2,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -405,6 +469,8 @@
       "id": "product-launch",
       "number": 15,
       "name": "Product launch",
+      "batch": 2,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -431,6 +497,8 @@
       "id": "tutor-course",
       "number": 16,
       "name": "Tutor & course",
+      "batch": 2,
+      "readyToImport": true,
       "category": "education",
       "status": "preview",
       "suits": [
@@ -459,6 +527,8 @@
       "id": "student-graduate",
       "number": 17,
       "name": "Student & graduate",
+      "batch": 2,
+      "readyToImport": true,
       "category": "personal",
       "status": "preview",
       "suits": [
@@ -485,6 +555,8 @@
       "id": "team-workgroup",
       "number": 18,
       "name": "Team & workgroup",
+      "batch": 2,
+      "readyToImport": true,
       "category": "organisation",
       "status": "preview",
       "suits": [
@@ -512,6 +584,8 @@
       "id": "research-group",
       "number": 19,
       "name": "Research group",
+      "batch": 2,
+      "readyToImport": true,
       "category": "education",
       "status": "preview",
       "suits": [
@@ -539,6 +613,8 @@
       "id": "club-society",
       "number": 20,
       "name": "Club & society",
+      "batch": 2,
+      "readyToImport": true,
       "category": "organisation",
       "status": "preview",
       "suits": [
@@ -566,6 +642,8 @@
       "id": "podcast",
       "number": 21,
       "name": "Podcast",
+      "batch": 3,
+      "readyToImport": true,
       "category": "creative",
       "status": "preview",
       "suits": [
@@ -591,6 +669,8 @@
       "id": "wedding-events",
       "number": 22,
       "name": "Wedding & events",
+      "batch": 3,
+      "readyToImport": true,
       "category": "personal",
       "status": "preview",
       "suits": [
@@ -618,6 +698,8 @@
       "id": "filmmaker",
       "number": 23,
       "name": "Filmmaker",
+      "batch": 3,
+      "readyToImport": true,
       "category": "creative",
       "status": "preview",
       "suits": [
@@ -644,6 +726,8 @@
       "id": "architecture-interiors",
       "number": 24,
       "name": "Architecture & interiors",
+      "batch": 3,
+      "readyToImport": true,
       "category": "creative",
       "status": "preview",
       "suits": [
@@ -671,6 +755,8 @@
       "id": "florist-garden",
       "number": 25,
       "name": "Florist & garden studio",
+      "batch": 3,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -698,6 +784,8 @@
       "id": "travel-journal",
       "number": 26,
       "name": "Travel journal",
+      "batch": 3,
+      "readyToImport": true,
       "category": "personal",
       "status": "preview",
       "suits": [
@@ -724,6 +812,8 @@
       "id": "family-album",
       "number": 27,
       "name": "Family album",
+      "batch": 3,
+      "readyToImport": true,
       "category": "personal",
       "status": "preview",
       "suits": [
@@ -749,6 +839,8 @@
       "id": "executive-cv",
       "number": 28,
       "name": "Executive CV",
+      "batch": 3,
+      "readyToImport": true,
       "category": "personal",
       "status": "preview",
       "suits": [
@@ -776,6 +868,8 @@
       "id": "recipe-blog",
       "number": 29,
       "name": "Recipe & food blog",
+      "batch": 3,
+      "readyToImport": true,
       "category": "writing",
       "status": "preview",
       "suits": [
@@ -802,6 +896,8 @@
       "id": "hobby-collector",
       "number": 30,
       "name": "Hobby & collector",
+      "batch": 3,
+      "readyToImport": true,
       "category": "personal",
       "status": "preview",
       "suits": [
@@ -830,6 +926,8 @@
       "id": "memorial-tribute",
       "number": 31,
       "name": "Memorial & tribute",
+      "batch": 4,
+      "readyToImport": true,
       "category": "personal",
       "status": "preview",
       "suits": [
@@ -855,6 +953,8 @@
       "id": "coming-soon",
       "number": 32,
       "name": "Coming soon",
+      "batch": 4,
+      "readyToImport": true,
       "category": "personal",
       "status": "preview",
       "suits": [
@@ -878,6 +978,8 @@
       "id": "hair-beauty",
       "number": 33,
       "name": "Hair & beauty salon",
+      "batch": 4,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -905,6 +1007,8 @@
       "id": "real-estate",
       "number": 34,
       "name": "Real estate agent",
+      "batch": 4,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -931,6 +1035,8 @@
       "id": "pet-care",
       "number": 35,
       "name": "Pet care & vet",
+      "batch": 4,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -959,6 +1065,8 @@
       "id": "farm-produce",
       "number": 36,
       "name": "Farm & produce",
+      "batch": 4,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -987,6 +1095,8 @@
       "id": "winery-cellar-door",
       "number": 37,
       "name": "Winery & cellar door",
+      "batch": 4,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -1014,6 +1124,8 @@
       "id": "childcare",
       "number": 38,
       "name": "Childcare & early learning",
+      "batch": 4,
+      "readyToImport": true,
       "category": "education",
       "status": "preview",
       "suits": [
@@ -1042,6 +1154,8 @@
       "id": "tours-guiding",
       "number": 39,
       "name": "Tours & guiding",
+      "batch": 4,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -1069,6 +1183,8 @@
       "id": "venue-hire",
       "number": 40,
       "name": "Venue hire",
+      "batch": 4,
+      "readyToImport": true,
       "category": "business",
       "status": "preview",
       "suits": [
@@ -1091,6 +1207,300 @@
       "path": "themes/venue-hire/",
       "definition": "themes/venue-hire/theme.json",
       "preview": "themes/venue-hire/index.html"
+    },
+    {
+      "id": "automotive",
+      "number": 41,
+      "name": "Automotive & mechanic",
+      "batch": 5,
+      "readyToImport": true,
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Mechanics",
+        "Auto electricians",
+        "Tyre shops",
+        "Panel beaters",
+        "Bike shops"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "articles",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/automotive/",
+      "definition": "themes/automotive/theme.json",
+      "preview": "themes/automotive/index.html"
+    },
+    {
+      "id": "creative-agency",
+      "number": 42,
+      "name": "Creative agency",
+      "batch": 5,
+      "readyToImport": true,
+      "category": "creative",
+      "status": "preview",
+      "suits": [
+        "Design studios",
+        "Marketing agencies",
+        "Production companies",
+        "Collectives"
+      ],
+      "baseTemplate": "folio",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "articles",
+        "about",
+        "blog",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/creative-agency/",
+      "definition": "themes/creative-agency/theme.json",
+      "preview": "themes/creative-agency/index.html"
+    },
+    {
+      "id": "faith-community",
+      "number": 43,
+      "name": "Faith community",
+      "batch": 5,
+      "readyToImport": true,
+      "category": "organisation",
+      "status": "preview",
+      "suits": [
+        "Churches",
+        "Mosques",
+        "Temples",
+        "Synagogues",
+        "Meditation groups"
+      ],
+      "baseTemplate": "folio",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "about",
+        "blog",
+        "galleries",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/faith-community/",
+      "definition": "themes/faith-community/theme.json",
+      "preview": "themes/faith-community/index.html"
+    },
+    {
+      "id": "school-parents",
+      "number": 44,
+      "name": "School & parent group",
+      "batch": 5,
+      "readyToImport": true,
+      "category": "organisation",
+      "status": "preview",
+      "suits": [
+        "P&C and P&F associations",
+        "School committees",
+        "Kindergarten committees",
+        "Scout and guide groups"
+      ],
+      "baseTemplate": "canvas",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "blog",
+        "about",
+        "galleries",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/school-parents/",
+      "definition": "themes/school-parents/theme.json",
+      "preview": "themes/school-parents/index.html"
+    },
+    {
+      "id": "conference",
+      "number": 45,
+      "name": "Conference & event",
+      "batch": 5,
+      "readyToImport": true,
+      "category": "organisation",
+      "status": "preview",
+      "suits": [
+        "Conferences",
+        "Festivals",
+        "Symposiums",
+        "Meetups",
+        "Workshops"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "articles",
+        "about",
+        "blog",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/conference/",
+      "definition": "themes/conference/theme.json",
+      "preview": "themes/conference/index.html"
+    },
+    {
+      "id": "neighbourhood",
+      "number": 46,
+      "name": "Neighbourhood noticeboard",
+      "batch": 5,
+      "readyToImport": true,
+      "category": "organisation",
+      "status": "preview",
+      "suits": [
+        "Residents’ associations",
+        "Street groups",
+        "Village committees",
+        "Progress associations"
+      ],
+      "baseTemplate": "canvas",
+      "purpose": "personal",
+      "pages": [
+        "home",
+        "blog",
+        "articles",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/neighbourhood/",
+      "definition": "themes/neighbourhood/theme.json",
+      "preview": "themes/neighbourhood/index.html"
+    },
+    {
+      "id": "alumni",
+      "number": 47,
+      "name": "Alumni network",
+      "batch": 5,
+      "readyToImport": true,
+      "category": "organisation",
+      "status": "preview",
+      "suits": [
+        "Alumni associations",
+        "Old scholars’ groups",
+        "Former colleagues",
+        "Veterans’ associations"
+      ],
+      "baseTemplate": "folio",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "blog",
+        "journal",
+        "galleries",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/alumni/",
+      "definition": "themes/alumni/theme.json",
+      "preview": "themes/alumni/index.html"
+    },
+    {
+      "id": "open-source",
+      "number": 48,
+      "name": "Open-source project",
+      "batch": 5,
+      "readyToImport": true,
+      "category": "organisation",
+      "status": "preview",
+      "suits": [
+        "Open-source projects",
+        "Developer tools",
+        "Community software",
+        "Research software"
+      ],
+      "baseTemplate": "folio",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "articles",
+        "blog",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/open-source/",
+      "definition": "themes/open-source/theme.json",
+      "preview": "themes/open-source/index.html"
+    },
+    {
+      "id": "cause-campaign",
+      "number": 49,
+      "name": "Cause & campaign",
+      "batch": 5,
+      "readyToImport": true,
+      "category": "organisation",
+      "status": "preview",
+      "suits": [
+        "Advocacy groups",
+        "Local campaigns",
+        "Fundraisers",
+        "Petitions",
+        "Community projects"
+      ],
+      "baseTemplate": "folio",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "about",
+        "blog",
+        "galleries",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/cause-campaign/",
+      "definition": "themes/cause-campaign/theme.json",
+      "preview": "themes/cause-campaign/index.html"
+    },
+    {
+      "id": "team-handbook",
+      "number": 50,
+      "name": "Team handbook",
+      "batch": 5,
+      "readyToImport": true,
+      "category": "organisation",
+      "status": "preview",
+      "suits": [
+        "Teams",
+        "Small businesses",
+        "Volunteer organisations",
+        "Clubs’ committees"
+      ],
+      "baseTemplate": "editorial",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "articles",
+        "blog",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "private",
+      "path": "themes/team-handbook/",
+      "definition": "themes/team-handbook/theme.json",
+      "preview": "themes/team-handbook/index.html"
     }
   ]
 }

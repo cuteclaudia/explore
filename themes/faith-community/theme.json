@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "id": "faith-community",
+  "number": 43,
+  "name": "Faith community",
+  "category": "organisation",
+  "status": "preview",
+  "description": "Welcoming and calm, for any faith: gathering times, who the community is, news and a warm invitation to visit.",
+  "suits": [
+    "Churches",
+    "Mosques",
+    "Temples",
+    "Synagogues",
+    "Meditation groups"
+  ],
+  "baseTemplate": "folio",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "about",
+    "blog",
+    "galleries",
+    "contact"
+  ],
+  "pageLabels": {
+    "blog": "News",
+    "galleries": "Community",
+    "contact": "Visit"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#141218",
+      "heroText": "#efeaf3",
+      "bg": "#faf8f4",
+      "surface": "#ffffff",
+      "text": "#262320",
+      "muted": "#5f5a52",
+      "accent": "#5a3e7a",
+      "onAccent": "#ffffff",
+      "border": "#e8e3da",
+      "art1": "#c9b8e0",
+      "art2": "#e8d3a4"
+    },
+    "dark": {
+      "heroShade": "#141218",
+      "heroText": "#efeaf3",
+      "bg": "#141218",
+      "surface": "#1d1a22",
+      "text": "#efeaf3",
+      "muted": "#ada6b6",
+      "accent": "#c7b0ea",
+      "onAccent": "#2a1844",
+      "border": "#312c39",
+      "art1": "#4a3966",
+      "art2": "#6b5a2c"
+    }
+  },
+  "typography": {
+    "heading": "serif",
+    "body": "sans",
+    "headingWeight": 500,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 8,
+    "buttonRadius": 8
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "centered",
+    "hero": "text",
+    "home": [
+      {
+        "type": "facts"
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "Who we are"
+      },
+      {
+        "type": "cards",
+        "page": "blog",
+        "heading": "News & events"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "style": "even",
+        "count": 3
+      },
+      {
+        "type": "cta",
+        "heading": "Plan a visit",
+        "text": "First time? We would love to meet you.",
+        "button": "Get in touch"
+      }
+    ]
+  },
+  "notes": [
+    "Deliberately neutral: no religious symbols in the theme itself, so any faith community can use it with its own imagery."
+  ]
+}

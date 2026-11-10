@@ -1,6 +1,7 @@
 import BATCH_02 from './batches/batch-02.mjs';
 import BATCH_03 from './batches/batch-03.mjs';
 import BATCH_04 from './batches/batch-04.mjs';
+import BATCH_05 from './batches/batch-05.mjs';
 
 // SoraSpace tenant site theme catalogue — the single source for every theme folder.
 // All sample names, places and details are fictional. Never put real people, addresses or Claudia's own content here.
@@ -184,4 +185,15 @@ const BATCH_01 = [
   }
 ];
 
-export const THEMES = [...BATCH_01, ...BATCH_02, ...BATCH_03, ...BATCH_04];
+// Import readiness, recorded per batch. A batch is marked ready only after it passes
+// themes.test.mjs and a visual review of every preview in light and dark.
+export const BATCHES = [
+  { batch: 1, themes: '0-10', added: '2026-11-10', readyToImport: true },
+  { batch: 2, themes: '11-20', added: '2026-11-10', readyToImport: true },
+  { batch: 3, themes: '21-30', added: '2026-11-10', readyToImport: true },
+  { batch: 4, themes: '31-40', added: '2026-11-10', readyToImport: true },
+  { batch: 5, themes: '41-50', added: '2026-11-10', readyToImport: true }
+];
+
+const ready = n => BATCHES.find(b => b.batch === (n <= 10 ? 1 : Math.ceil(n / 10)))?.readyToImport === true;
+export const THEMES = [...BATCH_01, ...BATCH_02, ...BATCH_03, ...BATCH_04, ...BATCH_05].map(t => ({ ...t, readyToImport: ready(t.number) }));

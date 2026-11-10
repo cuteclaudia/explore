@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "id": "alumni",
+  "number": 47,
+  "name": "Alumni network",
+  "category": "organisation",
+  "status": "preview",
+  "description": "Collegiate and proud: network news, member stories, reunion photographs and an invitation to join.",
+  "suits": [
+    "Alumni associations",
+    "Old scholars’ groups",
+    "Former colleagues",
+    "Veterans’ associations"
+  ],
+  "baseTemplate": "folio",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "blog",
+    "journal",
+    "galleries",
+    "contact"
+  ],
+  "pageLabels": {
+    "blog": "News",
+    "journal": "Member stories",
+    "galleries": "Reunions",
+    "contact": "Join"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#0f121a",
+      "heroText": "#eaecf2",
+      "bg": "#f7f6f2",
+      "surface": "#ffffff",
+      "text": "#1d2230",
+      "muted": "#545a68",
+      "accent": "#1f3f73",
+      "onAccent": "#ffffff",
+      "border": "#e3e1d8",
+      "art1": "#1f3f73",
+      "art2": "#d4a72c"
+    },
+    "dark": {
+      "heroShade": "#0f121a",
+      "heroText": "#eaecf2",
+      "bg": "#0f121a",
+      "surface": "#171b26",
+      "text": "#eaecf2",
+      "muted": "#a2a8b8",
+      "accent": "#f0c75e",
+      "onAccent": "#2e2204",
+      "border": "#2a2f3d",
+      "art1": "#1a2f57",
+      "art2": "#7a5f14"
+    }
+  },
+  "typography": {
+    "heading": "serif",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 6,
+    "buttonRadius": 6
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "cards",
+        "page": "blog",
+        "heading": "Network news"
+      },
+      {
+        "type": "feature",
+        "page": "journal",
+        "heading": "Member story"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "Reunions",
+        "style": "even",
+        "count": 3
+      },
+      {
+        "type": "cta",
+        "heading": "Stay connected",
+        "text": "Join to hear about reunions, mentoring and events.",
+        "button": "Join the network"
+      }
+    ]
+  },
+  "notes": []
+}

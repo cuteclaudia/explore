@@ -64,6 +64,12 @@ test('colour contrast meets WCAG AA in light and dark', () => {
 test('generated files are current and the manifest lists every theme folder', async () => {
   const manifest = JSON.parse(await readFile(join(ROOT, 'manifest.json'), 'utf8'));
   assert.deepEqual(manifest.themes.map(t => t.id), [...THEMES].sort((a, b) => a.number - b.number).map(t => t.id));
+  assert.equal(manifest.schemaVersion, 1, 'schemaVersion is stable');
+  for (const e of manifest.themes) {
+    assert.equal(typeof e.readyToImport, 'boolean', `${e.id} readyToImport`);
+    assert.equal(e.definition, `themes/${e.id}/theme.json`, `${e.id} definition path is stable`);
+    assert.equal(e.preview, `themes/${e.id}/index.html`, `${e.id} preview stays separate from the definition`);
+  }
   const folders = (await readdir(ROOT, { withFileTypes: true })).filter(d => d.isDirectory() && !d.name.startsWith('_')).map(d => d.name).sort();
   assert.deepEqual(folders, THEMES.map(t => t.id).sort(), 'every folder is in the catalogue and vice versa');
   for (const def of THEMES) {
