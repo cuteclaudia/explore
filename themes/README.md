@@ -102,16 +102,16 @@ Status: **built** = folder exists in this repo; **planned** = agreed, not yet bu
 | 28 | Executive CV | `executive-cv` | built |
 | 29 | Recipe & food blog | `recipe-blog` | built |
 | 30 | Hobby & collector | `hobby-collector` | built |
-| 31 | Memorial & tribute | `memorial-tribute` | planned |
-| 32 | Coming soon | `coming-soon` | planned |
-| 33 | Hair & beauty salon | `hair-beauty` | planned |
-| 34 | Real estate agent | `real-estate` | planned |
-| 35 | Pet care & vet | `pet-care` | planned |
-| 36 | Farm & produce | `farm-produce` | planned |
-| 37 | Winery & cellar door | `winery-cellar-door` | planned |
-| 38 | Childcare & early learning | `childcare` | planned |
-| 39 | Tours & guiding | `tours-guiding` | planned |
-| 40 | Venue hire | `venue-hire` | planned |
+| 31 | Memorial & tribute | `memorial-tribute` | built |
+| 32 | Coming soon | `coming-soon` | built |
+| 33 | Hair & beauty salon | `hair-beauty` | built |
+| 34 | Real estate agent | `real-estate` | built |
+| 35 | Pet care & vet | `pet-care` | built |
+| 36 | Farm & produce | `farm-produce` | built |
+| 37 | Winery & cellar door | `winery-cellar-door` | built |
+| 38 | Childcare & early learning | `childcare` | built |
+| 39 | Tours & guiding | `tours-guiding` | built |
+| 40 | Venue hire | `venue-hire` | built |
 | 41 | Automotive & mechanic | `automotive` | planned |
 | 42 | Creative agency | `creative-agency` | planned |
 | 43 | Faith community | `faith-community` | planned |

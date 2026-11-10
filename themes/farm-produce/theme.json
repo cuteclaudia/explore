@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "id": "farm-produce",
+  "number": 36,
+  "name": "Farm & produce",
+  "category": "business",
+  "status": "preview",
+  "description": "Earthy and seasonal: a full-bleed paddock, farm-gate and market details, seasonal news and farm photographs.",
+  "suits": [
+    "Farms",
+    "Orchards",
+    "Market gardens",
+    "Dairies",
+    "Honey producers"
+  ],
+  "baseTemplate": "horizon",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "blog",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "blog": "Farm news",
+    "galleries": "The farm",
+    "about": "Our story",
+    "contact": "Farm gate"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#1d2210",
+      "heroText": "#ffffff",
+      "bg": "#f8f6ee",
+      "surface": "#fffdf6",
+      "text": "#26261a",
+      "muted": "#5e5d4a",
+      "accent": "#4f6a1d",
+      "onAccent": "#ffffff",
+      "border": "#e6e2cf",
+      "art1": "#b8c77a",
+      "art2": "#d9a441"
+    },
+    "dark": {
+      "heroShade": "#0b0c06",
+      "heroText": "#ffffff",
+      "bg": "#14150e",
+      "surface": "#1d1f15",
+      "text": "#efeee2",
+      "muted": "#b0ae98",
+      "accent": "#c3dc7e",
+      "onAccent": "#22300a",
+      "border": "#313424",
+      "art1": "#4a5a1f",
+      "art2": "#7a5a17"
+    }
+  },
+  "typography": {
+    "heading": "slab",
+    "body": "humanist",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 6,
+    "buttonRadius": 6
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "full-bleed",
+    "home": [
+      {
+        "type": "facts"
+      },
+      {
+        "type": "cards",
+        "page": "blog",
+        "heading": "This season"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "style": "strip",
+        "count": 6
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "Our story"
+      }
+    ]
+  },
+  "notes": []
+}

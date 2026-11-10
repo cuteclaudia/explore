@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "winery-cellar-door",
+  "number": 37,
+  "name": "Winery & cellar door",
+  "category": "business",
+  "status": "preview",
+  "description": "Dark, elegant and unhurried: vineyard photographs, the current wines, cellar-door hours and planning a visit.",
+  "suits": [
+    "Wineries",
+    "Breweries",
+    "Distilleries",
+    "Cideries"
+  ],
+  "baseTemplate": "horizon",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "about",
+    "galleries",
+    "blog",
+    "contact"
+  ],
+  "pageLabels": {
+    "about": "Our wines",
+    "galleries": "The vineyard",
+    "blog": "News",
+    "contact": "Visit"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#1a1012",
+      "heroText": "#ffffff",
+      "bg": "#f8f5f1",
+      "surface": "#ffffff",
+      "text": "#241a1c",
+      "muted": "#625457",
+      "accent": "#6d1f2f",
+      "onAccent": "#ffffff",
+      "border": "#e8dfd8",
+      "art1": "#7a2e3e",
+      "art2": "#c3a46a"
+    },
+    "dark": {
+      "heroShade": "#000000",
+      "heroText": "#ffffff",
+      "bg": "#120c0e",
+      "surface": "#1c1416",
+      "text": "#f2e9e6",
+      "muted": "#b9a8a6",
+      "accent": "#e7a9b4",
+      "onAccent": "#3d0f19",
+      "border": "#33262a",
+      "art1": "#4d1623",
+      "art2": "#6b5426"
+    }
+  },
+  "typography": {
+    "heading": "didone",
+    "body": "sans",
+    "headingWeight": 400,
+    "headingCase": "none",
+    "headingTracking": 0.02,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 0,
+    "buttonRadius": 0
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "centered",
+    "hero": "full-bleed",
+    "home": [
+      {
+        "type": "list",
+        "page": "about",
+        "heading": "Current releases"
+      },
+      {
+        "type": "facts"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "style": "wide",
+        "count": 4
+      },
+      {
+        "type": "cta",
+        "heading": "Plan a visit",
+        "text": "Tastings daily. Groups of eight or more please book.",
+        "button": "Book a tasting"
+      }
+    ]
+  },
+  "notes": [
+    "Tenants selling alcohol must meet their local liquor licensing and advertising rules. The theme does not include an age check."
+  ]
+}

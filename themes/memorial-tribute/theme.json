@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "id": "memorial-tribute",
+  "number": 31,
+  "name": "Memorial & tribute",
+  "category": "personal",
+  "status": "preview",
+  "description": "Quiet and respectful: a life story, service details, photographs, shared memories and a way for people to leave a message.",
+  "suits": [
+    "Families remembering someone",
+    "Funeral and memorial services"
+  ],
+  "baseTemplate": "canvas",
+  "purpose": "personal",
+  "recommendedVisibility": "private",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "about",
+    "journal",
+    "galleries",
+    "contact"
+  ],
+  "pageLabels": {
+    "about": "Their life",
+    "journal": "Memories",
+    "galleries": "Photos",
+    "contact": "Share a memory"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#141516",
+      "heroText": "#ececea",
+      "bg": "#f7f7f5",
+      "surface": "#ffffff",
+      "text": "#262626",
+      "muted": "#5c5c58",
+      "accent": "#4a5a6a",
+      "onAccent": "#ffffff",
+      "border": "#e3e3de",
+      "art1": "#b7bfc6",
+      "art2": "#d8d0c0"
+    },
+    "dark": {
+      "heroShade": "#141516",
+      "heroText": "#ececea",
+      "bg": "#141516",
+      "surface": "#1c1d1f",
+      "text": "#ececea",
+      "muted": "#a9aaa6",
+      "accent": "#b4c3d2",
+      "onAccent": "#17212b",
+      "border": "#2e3033",
+      "art1": "#3b4651",
+      "art2": "#5b5547"
+    }
+  },
+  "typography": {
+    "heading": "oldstyle",
+    "body": "sans",
+    "headingWeight": 400,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 4,
+    "buttonRadius": 4
+  },
+  "layout": {
+    "maxWidth": 960,
+    "header": "centered",
+    "hero": "text",
+    "home": [
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "A life well lived"
+      },
+      {
+        "type": "facts"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "style": "even",
+        "count": 6
+      },
+      {
+        "type": "cards",
+        "page": "journal",
+        "heading": "Memories shared",
+        "images": false
+      },
+      {
+        "type": "contact",
+        "page": "contact",
+        "heading": "Share a memory",
+        "text": "Messages are read by the family before they appear here."
+      }
+    ]
+  },
+  "notes": [
+    "Recommended private and shared by link. Messages should be reviewed by the family before they are published.",
+    "Muted colours and no animation by design."
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "id": "real-estate",
+  "number": 34,
+  "name": "Real estate agent",
+  "category": "business",
+  "status": "preview",
+  "description": "Listings first, with property cards, the agents, market news and a call to action for appraisals.",
+  "suits": [
+    "Real estate agents",
+    "Property managers",
+    "Small agencies"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "articles",
+    "about",
+    "blog",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Listings",
+    "about": "Agents",
+    "blog": "Market news",
+    "contact": "Appraisal"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#0f1a1a",
+      "heroText": "#ffffff",
+      "bg": "#f7f8f8",
+      "surface": "#ffffff",
+      "text": "#17201f",
+      "muted": "#4f5b5a",
+      "accent": "#0d5c63",
+      "onAccent": "#ffffff",
+      "border": "#dfe5e5",
+      "art1": "#8db3b0",
+      "art2": "#d6c29a"
+    },
+    "dark": {
+      "heroShade": "#060b0b",
+      "heroText": "#ffffff",
+      "bg": "#0d1414",
+      "surface": "#151f1f",
+      "text": "#e8f0ef",
+      "muted": "#a0b2b0",
+      "accent": "#6ed0d6",
+      "onAccent": "#052c2f",
+      "border": "#263534",
+      "art1": "#2a5552",
+      "art2": "#6b5a32"
+    }
+  },
+  "typography": {
+    "heading": "sans",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": -0.01,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 8,
+    "buttonRadius": 8
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "full-bleed",
+    "home": [
+      {
+        "type": "cards",
+        "page": "articles",
+        "heading": "For sale"
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "Our agents"
+      },
+      {
+        "type": "cards",
+        "page": "blog",
+        "heading": "Market news",
+        "images": false,
+        "count": 2,
+        "columns": 2
+      },
+      {
+        "type": "cta",
+        "heading": "What is your home worth?",
+        "text": "A free, no-obligation appraisal from a local agent.",
+        "button": "Book an appraisal"
+      }
+    ]
+  },
+  "notes": [
+    "Each listing is an Articles page. A structured Listings page type (price, bedrooms, inspection times) would be a future addition.",
+    "Never publish vendors’ names or exact addresses before the vendor approves."
+  ]
+}

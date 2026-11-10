@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "id": "venue-hire",
+  "number": 40,
+  "name": "Venue hire",
+  "category": "business",
+  "status": "preview",
+  "description": "Spacious and practical: the spaces in wide photographs, capacity and facilities, packages and a date enquiry.",
+  "suits": [
+    "Function venues",
+    "Community halls",
+    "Studios for hire",
+    "Meeting rooms"
+  ],
+  "baseTemplate": "horizon",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "galleries",
+    "articles",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "galleries": "Spaces",
+    "articles": "Packages",
+    "contact": "Enquire"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#12110f",
+      "heroText": "#eeebe5",
+      "bg": "#f6f4f1",
+      "surface": "#ffffff",
+      "text": "#22201d",
+      "muted": "#5f5a53",
+      "accent": "#3b4a5a",
+      "onAccent": "#ffffff",
+      "border": "#e4dfd8",
+      "art1": "#b9a68a",
+      "art2": "#7f8f9c"
+    },
+    "dark": {
+      "heroShade": "#12110f",
+      "heroText": "#eeebe5",
+      "bg": "#12110f",
+      "surface": "#1b1a17",
+      "text": "#eeebe5",
+      "muted": "#ada79d",
+      "accent": "#b6c6d6",
+      "onAccent": "#18222c",
+      "border": "#302d28",
+      "art1": "#5a4c38",
+      "art2": "#34414c"
+    }
+  },
+  "typography": {
+    "heading": "serif",
+    "body": "sans",
+    "headingWeight": 500,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 4,
+    "buttonRadius": 4
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "The spaces",
+        "style": "wide",
+        "count": 4
+      },
+      {
+        "type": "facts"
+      },
+      {
+        "type": "list",
+        "page": "articles",
+        "heading": "Packages"
+      },
+      {
+        "type": "cta",
+        "heading": "Check your date",
+        "text": "Tell us the date, guest numbers and type of event.",
+        "button": "Make an enquiry"
+      }
+    ]
+  },
+  "notes": []
+}

@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "id": "pet-care",
+  "number": 35,
+  "name": "Pet care & vet",
+  "category": "business",
+  "status": "preview",
+  "description": "Friendly and clear: opening hours and emergency details first, services, the team and pet-care tips.",
+  "suits": [
+    "Vet clinics",
+    "Groomers",
+    "Pet sitters",
+    "Boarding kennels",
+    "Dog trainers"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "articles",
+    "about",
+    "blog",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Services",
+    "about": "Our team",
+    "blog": "Pet tips"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#0b1620",
+      "heroText": "#e6f2fb",
+      "bg": "#f6fbff",
+      "surface": "#ffffff",
+      "text": "#13283a",
+      "muted": "#4a6072",
+      "accent": "#0e6aa8",
+      "onAccent": "#ffffff",
+      "border": "#d8e8f3",
+      "art1": "#7cc4f2",
+      "art2": "#ffc86b"
+    },
+    "dark": {
+      "heroShade": "#0b1620",
+      "heroText": "#e6f2fb",
+      "bg": "#0b1620",
+      "surface": "#13212d",
+      "text": "#e6f2fb",
+      "muted": "#9fb6c8",
+      "accent": "#7cc4f2",
+      "onAccent": "#062236",
+      "border": "#233648",
+      "art1": "#1d5478",
+      "art2": "#8a5f12"
+    }
+  },
+  "typography": {
+    "heading": "rounded",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 18,
+    "buttonRadius": 999
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "facts"
+      },
+      {
+        "type": "cards",
+        "page": "articles",
+        "heading": "Services",
+        "images": false
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "Meet the team"
+      },
+      {
+        "type": "cta",
+        "heading": "Time for a check-up?",
+        "button": "Book an appointment"
+      }
+    ]
+  },
+  "notes": []
+}

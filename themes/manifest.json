@@ -825,6 +825,272 @@
       "path": "themes/hobby-collector/",
       "definition": "themes/hobby-collector/theme.json",
       "preview": "themes/hobby-collector/index.html"
+    },
+    {
+      "id": "memorial-tribute",
+      "number": 31,
+      "name": "Memorial & tribute",
+      "category": "personal",
+      "status": "preview",
+      "suits": [
+        "Families remembering someone",
+        "Funeral and memorial services"
+      ],
+      "baseTemplate": "canvas",
+      "purpose": "personal",
+      "pages": [
+        "home",
+        "about",
+        "journal",
+        "galleries",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "private",
+      "path": "themes/memorial-tribute/",
+      "definition": "themes/memorial-tribute/theme.json",
+      "preview": "themes/memorial-tribute/index.html"
+    },
+    {
+      "id": "coming-soon",
+      "number": 32,
+      "name": "Coming soon",
+      "category": "personal",
+      "status": "preview",
+      "suits": [
+        "Anyone building their site",
+        "New businesses",
+        "Launches"
+      ],
+      "baseTemplate": "canvas",
+      "purpose": "personal",
+      "pages": [
+        "home",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/coming-soon/",
+      "definition": "themes/coming-soon/theme.json",
+      "preview": "themes/coming-soon/index.html"
+    },
+    {
+      "id": "hair-beauty",
+      "number": 33,
+      "name": "Hair & beauty salon",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Hair salons",
+        "Barbers",
+        "Beauty therapists",
+        "Nail and brow studios"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "articles",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/hair-beauty/",
+      "definition": "themes/hair-beauty/theme.json",
+      "preview": "themes/hair-beauty/index.html"
+    },
+    {
+      "id": "real-estate",
+      "number": 34,
+      "name": "Real estate agent",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Real estate agents",
+        "Property managers",
+        "Small agencies"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "articles",
+        "about",
+        "blog",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/real-estate/",
+      "definition": "themes/real-estate/theme.json",
+      "preview": "themes/real-estate/index.html"
+    },
+    {
+      "id": "pet-care",
+      "number": 35,
+      "name": "Pet care & vet",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Vet clinics",
+        "Groomers",
+        "Pet sitters",
+        "Boarding kennels",
+        "Dog trainers"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "articles",
+        "about",
+        "blog",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/pet-care/",
+      "definition": "themes/pet-care/theme.json",
+      "preview": "themes/pet-care/index.html"
+    },
+    {
+      "id": "farm-produce",
+      "number": 36,
+      "name": "Farm & produce",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Farms",
+        "Orchards",
+        "Market gardens",
+        "Dairies",
+        "Honey producers"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "blog",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/farm-produce/",
+      "definition": "themes/farm-produce/theme.json",
+      "preview": "themes/farm-produce/index.html"
+    },
+    {
+      "id": "winery-cellar-door",
+      "number": 37,
+      "name": "Winery & cellar door",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Wineries",
+        "Breweries",
+        "Distilleries",
+        "Cideries"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "about",
+        "galleries",
+        "blog",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/winery-cellar-door/",
+      "definition": "themes/winery-cellar-door/theme.json",
+      "preview": "themes/winery-cellar-door/index.html"
+    },
+    {
+      "id": "childcare",
+      "number": 38,
+      "name": "Childcare & early learning",
+      "category": "education",
+      "status": "preview",
+      "suits": [
+        "Childcare centres",
+        "Preschools",
+        "Family day care",
+        "Playgroups",
+        "Out-of-school care"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "about",
+        "blog",
+        "galleries",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/childcare/",
+      "definition": "themes/childcare/theme.json",
+      "preview": "themes/childcare/index.html"
+    },
+    {
+      "id": "tours-guiding",
+      "number": 39,
+      "name": "Tours & guiding",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Tour operators",
+        "Walking guides",
+        "Kayak and bike tours",
+        "Food and wine tours"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "articles",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/tours-guiding/",
+      "definition": "themes/tours-guiding/theme.json",
+      "preview": "themes/tours-guiding/index.html"
+    },
+    {
+      "id": "venue-hire",
+      "number": 40,
+      "name": "Venue hire",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Function venues",
+        "Community halls",
+        "Studios for hire",
+        "Meeting rooms"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "galleries",
+        "articles",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/venue-hire/",
+      "definition": "themes/venue-hire/theme.json",
+      "preview": "themes/venue-hire/index.html"
     }
   ]
 }

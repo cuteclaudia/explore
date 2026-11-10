@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "id": "hair-beauty",
+  "number": 33,
+  "name": "Hair & beauty salon",
+  "category": "business",
+  "status": "preview",
+  "description": "Fashion-led and elegant: a services price list, a gallery of looks, the team and a simple booking request.",
+  "suits": [
+    "Hair salons",
+    "Barbers",
+    "Beauty therapists",
+    "Nail and brow studios"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "articles",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Services & prices",
+    "galleries": "Looks",
+    "about": "Team",
+    "contact": "Book"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#140f11",
+      "heroText": "#f6eced",
+      "bg": "#fcf8f7",
+      "surface": "#ffffff",
+      "text": "#2a1f22",
+      "muted": "#6a585d",
+      "accent": "#8f2f4f",
+      "onAccent": "#ffffff",
+      "border": "#efe1e2",
+      "art1": "#d9a5b3",
+      "art2": "#c9b7a1"
+    },
+    "dark": {
+      "heroShade": "#140f11",
+      "heroText": "#f6eced",
+      "bg": "#140f11",
+      "surface": "#1e1719",
+      "text": "#f6eced",
+      "muted": "#bfabb0",
+      "accent": "#f3a6bf",
+      "onAccent": "#3a0f20",
+      "border": "#362a2e",
+      "art1": "#6e3446",
+      "art2": "#5a4b38"
+    }
+  },
+  "typography": {
+    "heading": "didone",
+    "body": "sans",
+    "headingWeight": 500,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 0,
+    "buttonRadius": 999
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "centered",
+    "hero": "split",
+    "home": [
+      {
+        "type": "list",
+        "page": "articles",
+        "heading": "Services"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "Recent looks",
+        "style": "masonry",
+        "count": 6
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "Our stylists"
+      },
+      {
+        "type": "contact",
+        "page": "contact",
+        "heading": "Request a booking",
+        "text": "Tell us the service and a few times that suit. We will confirm by text."
+      }
+    ]
+  },
+  "notes": [
+    "Online booking systems are not embedded. Requests come through Contact."
+  ]
+}

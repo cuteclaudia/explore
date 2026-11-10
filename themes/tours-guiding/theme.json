@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "tours-guiding",
+  "number": 39,
+  "name": "Tours & guiding",
+  "category": "business",
+  "status": "preview",
+  "description": "Outdoorsy and inviting: a full-bleed landscape, tour cards with length and price, photographs and the guides.",
+  "suits": [
+    "Tour operators",
+    "Walking guides",
+    "Kayak and bike tours",
+    "Food and wine tours"
+  ],
+  "baseTemplate": "horizon",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "articles",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Tours",
+    "about": "Guides",
+    "contact": "Book"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#0f1d14",
+      "heroText": "#ffffff",
+      "bg": "#f2f6f3",
+      "surface": "#ffffff",
+      "text": "#17241c",
+      "muted": "#4d5f53",
+      "accent": "#2e6b3f",
+      "onAccent": "#ffffff",
+      "border": "#d6e2d9",
+      "art1": "#6fa880",
+      "art2": "#e0b45c"
+    },
+    "dark": {
+      "heroShade": "#050a07",
+      "heroText": "#ffffff",
+      "bg": "#0c140f",
+      "surface": "#142019",
+      "text": "#e7f2ea",
+      "muted": "#9db7a6",
+      "accent": "#8fd6a4",
+      "onAccent": "#0b3018",
+      "border": "#24392b",
+      "art1": "#2a5a37",
+      "art2": "#7a5a1c"
+    }
+  },
+  "typography": {
+    "heading": "condensed",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 10,
+    "buttonRadius": 10
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "full-bleed",
+    "home": [
+      {
+        "type": "cards",
+        "page": "articles",
+        "heading": "Popular tours"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "style": "masonry",
+        "count": 6
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "Your guides"
+      },
+      {
+        "type": "cta",
+        "heading": "Ready to go?",
+        "text": "Small groups, local guides, all gear provided.",
+        "button": "Book a tour"
+      }
+    ]
+  },
+  "notes": []
+}

@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "id": "childcare",
+  "number": 38,
+  "name": "Childcare & early learning",
+  "category": "education",
+  "status": "preview",
+  "description": "Bright and reassuring for families: the centre’s approach, hours and places, news for parents and the rooms.",
+  "suits": [
+    "Childcare centres",
+    "Preschools",
+    "Family day care",
+    "Playgroups",
+    "Out-of-school care"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "about",
+    "blog",
+    "galleries",
+    "contact"
+  ],
+  "pageLabels": {
+    "blog": "Parent news",
+    "galleries": "Our rooms",
+    "contact": "Enquire"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#12131f",
+      "heroText": "#eef0fb",
+      "bg": "#fffdf5",
+      "surface": "#ffffff",
+      "text": "#23263a",
+      "muted": "#555a72",
+      "accent": "#2f5fb0",
+      "onAccent": "#ffffff",
+      "border": "#efead2",
+      "art1": "#ffd166",
+      "art2": "#7bdff2"
+    },
+    "dark": {
+      "heroShade": "#12131f",
+      "heroText": "#eef0fb",
+      "bg": "#12131f",
+      "surface": "#1a1c2c",
+      "text": "#eef0fb",
+      "muted": "#a8acc6",
+      "accent": "#9fbfff",
+      "onAccent": "#0f1f48",
+      "border": "#2b2e45",
+      "art1": "#8a6a10",
+      "art2": "#1f6f80"
+    }
+  },
+  "typography": {
+    "heading": "rounded",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 20,
+    "buttonRadius": 999
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "Our approach"
+      },
+      {
+        "type": "facts"
+      },
+      {
+        "type": "cards",
+        "page": "blog",
+        "heading": "News for families"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "Our rooms",
+        "style": "even",
+        "count": 3
+      },
+      {
+        "type": "cta",
+        "heading": "Come and visit",
+        "text": "Tours run every weekday morning.",
+        "button": "Book a tour"
+      }
+    ]
+  },
+  "notes": [
+    "Rooms gallery is for spaces, not children. Publish children’s photos only with written parental consent."
+  ]
+}
