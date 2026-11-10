@@ -18,7 +18,7 @@ Only the existing SoraSpace page types are used. Labels are display names; the u
 ## Layout
 
 - Header: `split` · Hero: `split` · Maximum width: 1180px
-- Home sections, in order: `facts`, `cards` (articles), `people` (about), `contact` (contact)
+- Home sections, in order: `cards` (articles), `list` (about), `people` (about), `facts`, `contact` (contact)
 - Headings: humanist stack, weight 600 · Body: sans stack · Corner radius: 14px
 
 ## Colours
@@ -35,9 +35,9 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | onAccent | `#ffffff` |
 | border | `#d8e4ec` |
 | art1 | `#8ec5d6` |
-| art2 | `#cfe3c9` |
-| heroShade | `#0e1a22` |
-| heroText | `#e6f0f5` |
+| art2 | `#b9dbb0` |
+| heroShade | `#16303f` |
+| heroText | `#f4f8fb` |
 
 | Token | Dark |
 | --- | --- |
@@ -50,15 +50,15 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | border | `#24394a` |
 | art1 | `#1e4f63` |
 | art2 | `#3e5b3a` |
-| heroShade | `#0e1a22` |
+| heroShade | `#081117` |
 | heroText | `#e6f0f5` |
 
 ## Widgets
 
 Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
 
-- On by default: none
-- Suggested: Map (`map`), outside, click-to-load, Contact card (`contact-card`), Testimonials (`testimonials`), Featured panel (`feature-panel`), Social links (`social-links`)
+- On by default: Contact card (`contact-card`)
+- Suggested: Map (`map`), outside, click-to-load, Key numbers (`key-numbers`), Social links (`social-links`)
 
 ## Notes
 

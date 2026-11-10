@@ -39,7 +39,7 @@
       "accent": "#8a2c2c",
       "onAccent": "#ffffff",
       "border": "#e7e3d8",
-      "art1": "#8a7f6a",
+      "art1": "#4b5a52",
       "art2": "#d9cfb8"
     },
     "dark": {
@@ -69,14 +69,14 @@
     "buttonRadius": 2
   },
   "layout": {
-    "maxWidth": 820,
+    "maxWidth": 1100,
     "header": "centered",
     "hero": "text",
     "home": [
       {
         "type": "feature",
-        "page": "blog",
-        "heading": "Latest"
+        "page": "articles",
+        "heading": "New essay"
       },
       {
         "type": "list",
@@ -84,21 +84,32 @@
         "heading": "Recent essays"
       },
       {
+        "type": "feature",
+        "page": "about",
+        "heading": "The book"
+      },
+      {
         "type": "cta",
-        "heading": "Keep reading",
-        "text": "New essays arrive once or twice a month.",
-        "button": "Get in touch"
+        "heading": "A letter, once a month",
+        "text": "New essays, what I am reading, and the occasional photograph of a cloud.",
+        "button": "Subscribe"
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "About"
       }
     ]
   },
   "widgets": {
     "catalogue": "themes/widgets.json",
     "enabled": [
-      "feature-panel",
-      "quick-links"
+      "social-links"
     ],
     "suggested": [
-      "social-links"
+      "latest-posts",
+      "audio",
+      "upcoming-events"
     ],
     "switchable": "all"
   },

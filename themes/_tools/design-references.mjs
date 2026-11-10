@@ -1,5 +1,4 @@
-// Design references for uplifted themes (batch A: magazine, photography-portfolio,
-// trades-services, artist-studio, travel-journal).
+// Design references for uplifted themes (batch A here; batch B in design-references-b.mjs).
 //
 // Writes themes/<id>/design/content.html and empty.html. These are design references for
 // review and for the SoraWebSite implementation, not tenant starter content: a new tenant
@@ -13,23 +12,11 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { THEMES, FONT_STACKS } from './catalogue.mjs';
 import { CREDITS } from './design-credits.mjs';
+import { esc, pic, txt } from './design-kit.mjs';
+import { DESIGNS_B } from './design-references-b.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const esc = v => String(v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const theme = id => THEMES.find(t => t.id === id);
-
-// ---------------------------------------------------------------------------------------------
-// Shared building blocks
-// ---------------------------------------------------------------------------------------------
-
-/** Image slot. In the empty reference it becomes a labelled placeholder showing the crop. */
-function pic(ctx, file, alt, ratio = '3/2', focal = '50% 50%', cls = '') {
-  if (ctx.empty) return `<div class="slot ${cls}" style="aspect-ratio:${ratio}"><span>${esc(alt)}<br><small>${ratio.replace('/', ':')}</small></span></div>`;
-  return `<figure class="pic ${cls}" style="aspect-ratio:${ratio}"><img src="images/${file}.jpg" alt="${esc(alt)}" style="object-position:${focal}"></figure>`;
-}
-
-/** Text that only exists once the tenant has written it; the empty reference shows a hint. */
-const txt = (ctx, value, hint) => (ctx.empty ? `<span class="hint">${esc(hint)}</span>` : esc(value));
 
 function tokens(mode) {
   return Object.entries(mode).map(([k, v]) => `--${k}:${v}`).join(';');
@@ -543,7 +530,7 @@ footer{padding:40px 0 56px;font-size:14px;color:var(--muted)}footer .wrap{displa
   }
 };
 
-export const DESIGNS = [magazine, photography, trades, artist, travel];
+export const DESIGNS = [magazine, photography, trades, artist, travel, ...DESIGNS_B];
 
 /** The reference page for one design: kind is 'content' or 'empty'. */
 export function renderDesign(d, kind) {

@@ -18,8 +18,8 @@ Only the existing SoraSpace page types are used. Labels are display names; the u
 
 ## Layout
 
-- Header: `centered` · Hero: `text` · Maximum width: 820px
-- Home sections, in order: `feature` (blog), `list` (articles), `cta`
+- Header: `centered` · Hero: `text` · Maximum width: 1100px
+- Home sections, in order: `feature` (articles), `list` (articles), `feature` (about), `cta`, `intro` (about)
 - Headings: oldstyle stack, weight 400 · Body: oldstyle stack · Corner radius: 0px
 
 ## Colours
@@ -35,7 +35,7 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | accent | `#8a2c2c` |
 | onAccent | `#ffffff` |
 | border | `#e7e3d8` |
-| art1 | `#8a7f6a` |
+| art1 | `#4b5a52` |
 | art2 | `#d9cfb8` |
 | heroShade | `#161513` |
 | heroText | `#ebe6dc` |
@@ -58,8 +58,8 @@ Light and dark sets are both defined; System follows the visitor's device settin
 
 Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
 
-- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`)
-- Suggested: Social links (`social-links`)
+- On by default: Social links (`social-links`)
+- Suggested: Latest posts (`latest-posts`), Audio player (`audio`), outside, click-to-load, Upcoming events (`upcoming-events`)
 
 ## Files
 

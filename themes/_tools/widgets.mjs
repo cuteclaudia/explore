@@ -67,6 +67,12 @@ const OVERRIDES = {
   'photography-portfolio': { enabled: ['social-links'], suggested: ['contact-card', 'photo-strip', 'map'] },
   'trades-services': { enabled: ['key-numbers', 'contact-card'], suggested: ['testimonials', 'map', 'photo-strip', 'social-links'] },
   'artist-studio': { enabled: ['social-links'], suggested: ['upcoming-events', 'photo-strip', 'video'] },
+  // Uplift batch B.
+  'restaurant-cafe': { enabled: ['photo-strip', 'social-links'], suggested: ['map', 'upcoming-events', 'testimonials'] },
+  'professional-practice': { enabled: ['contact-card'], suggested: ['latest-posts', 'map', 'key-numbers'] },
+  'writer-author': { enabled: ['social-links'], suggested: ['latest-posts', 'audio', 'upcoming-events'] },
+  'wellness-clinic': { enabled: ['contact-card'], suggested: ['map', 'key-numbers', 'social-links'] },
+  stay: { enabled: ['key-numbers'], suggested: ['map', 'testimonials', 'photo-strip', 'video'] },
   'coming-soon': { enabled: ['social-links'], suggested: ['key-numbers'] },
   'memorial-tribute': { enabled: [], suggested: ['photo-strip', 'video', 'map'] },
   'family-album': { enabled: [], suggested: ['photo-strip', 'illustrated-map', 'video'] },

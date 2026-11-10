@@ -166,7 +166,16 @@
       "recommendedVisibility": "public",
       "path": "themes/restaurant-cafe/",
       "definition": "themes/restaurant-cafe/theme.json",
-      "preview": "themes/restaurant-cafe/index.html"
+      "preview": "themes/restaurant-cafe/index.html",
+      "uplift": {
+        "batch": "B",
+        "status": "in review",
+        "design": "themes/restaurant-cafe/design/DESIGN.md",
+        "references": [
+          "themes/restaurant-cafe/design/content.html",
+          "themes/restaurant-cafe/design/empty.html"
+        ]
+      }
     },
     {
       "id": "trades-services",
@@ -232,7 +241,16 @@
       "recommendedVisibility": "public",
       "path": "themes/professional-practice/",
       "definition": "themes/professional-practice/theme.json",
-      "preview": "themes/professional-practice/index.html"
+      "preview": "themes/professional-practice/index.html",
+      "uplift": {
+        "batch": "B",
+        "status": "in review",
+        "design": "themes/professional-practice/design/DESIGN.md",
+        "references": [
+          "themes/professional-practice/design/content.html",
+          "themes/professional-practice/design/empty.html"
+        ]
+      }
     },
     {
       "id": "consultant",
@@ -290,7 +308,16 @@
       "recommendedVisibility": "public",
       "path": "themes/writer-author/",
       "definition": "themes/writer-author/theme.json",
-      "preview": "themes/writer-author/index.html"
+      "preview": "themes/writer-author/index.html",
+      "uplift": {
+        "batch": "B",
+        "status": "in review",
+        "design": "themes/writer-author/design/DESIGN.md",
+        "references": [
+          "themes/writer-author/design/content.html",
+          "themes/writer-author/design/empty.html"
+        ]
+      }
     },
     {
       "id": "magazine",
@@ -414,7 +441,16 @@
       "recommendedVisibility": "public",
       "path": "themes/wellness-clinic/",
       "definition": "themes/wellness-clinic/theme.json",
-      "preview": "themes/wellness-clinic/index.html"
+      "preview": "themes/wellness-clinic/index.html",
+      "uplift": {
+        "batch": "B",
+        "status": "in review",
+        "design": "themes/wellness-clinic/design/DESIGN.md",
+        "references": [
+          "themes/wellness-clinic/design/content.html",
+          "themes/wellness-clinic/design/empty.html"
+        ]
+      }
     },
     {
       "id": "stay",
@@ -443,7 +479,16 @@
       "recommendedVisibility": "public",
       "path": "themes/stay/",
       "definition": "themes/stay/theme.json",
-      "preview": "themes/stay/index.html"
+      "preview": "themes/stay/index.html",
+      "uplift": {
+        "batch": "B",
+        "status": "in review",
+        "design": "themes/stay/design/DESIGN.md",
+        "references": [
+          "themes/stay/design/content.html",
+          "themes/stay/design/empty.html"
+        ]
+      }
     },
     {
       "id": "community-group",

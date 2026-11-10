@@ -81,7 +81,7 @@ Add an entry to `THEMES` in `_tools/catalogue.mjs` with the next number, build, 
 
 ## Uplift to the Explore standard
 
-Themes are being redesigned five at a time to the quality of Explore by Claudia. Uplifted themes keep their id and gain a `design/` folder with the specification, desktop and phone references (with content and for a new, empty site), screens and credited stock photos. See [UPLIFT.md](UPLIFT.md). Batch A: Magazine, Photography portfolio, Trades & local services, Artist studio, Travel journal (in review).
+Themes are being redesigned five at a time to the quality of Explore by Claudia. Uplifted themes keep their id and gain a `design/` folder with the specification, desktop and phone references (with content and for a new, empty site), screens and credited stock photos. See [UPLIFT.md](UPLIFT.md). Batch A: Magazine, Photography portfolio, Trades & local services, Artist studio, Travel journal (approved direction). Batch B: Restaurant & café, Professional practice, Writer & author, Wellness clinic, Stay (in review).
 
 ## Theme list
 

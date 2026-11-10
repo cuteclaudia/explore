@@ -31,7 +31,7 @@
   "density": "comfortable",
   "colours": {
     "light": {
-      "heroShade": "#2b1d14",
+      "heroShade": "#24170f",
       "heroText": "#fff8f0",
       "bg": "#fbf7f1",
       "surface": "#ffffff",
@@ -41,7 +41,7 @@
       "onAccent": "#ffffff",
       "border": "#eadfd2",
       "art1": "#c86b3c",
-      "art2": "#e9c46a"
+      "art2": "#f0c75e"
     },
     "dark": {
       "heroShade": "#120b07",
@@ -83,10 +83,24 @@
         "heading": "From the kitchen"
       },
       {
+        "type": "feature",
+        "page": "articles",
+        "heading": "Friday pizza nights"
+      },
+      {
         "type": "gallery",
         "page": "galleries",
-        "style": "strip",
-        "count": 6
+        "heading": "From the bakery",
+        "style": "even",
+        "count": 3
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "Our story"
+      },
+      {
+        "type": "facts"
       },
       {
         "type": "contact",
@@ -98,13 +112,14 @@
   },
   "widgets": {
     "catalogue": "themes/widgets.json",
-    "enabled": [],
+    "enabled": [
+      "photo-strip",
+      "social-links"
+    ],
     "suggested": [
       "map",
-      "contact-card",
-      "testimonials",
-      "social-post",
-      "feature-panel"
+      "upcoming-events",
+      "testimonials"
     ],
     "switchable": "all"
   },

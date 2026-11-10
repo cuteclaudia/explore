@@ -18,7 +18,7 @@ Only the existing SoraSpace page types are used. Labels are display names; the u
 ## Layout
 
 - Header: `split` · Hero: `text` · Maximum width: 1180px
-- Home sections, in order: `intro` (about), `cards` (articles), `people` (about), `cta`
+- Home sections, in order: `gallery` (about), `list` (about), `intro` (about), `cards` (articles), `people` (about), `contact` (contact)
 - Headings: oldstyle stack, weight 500 · Body: sans stack · Corner radius: 2px
 
 ## Colours
@@ -28,7 +28,7 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | Token | Light |
 | --- | --- |
 | bg | `#ffffff` |
-| surface | `#f7f7f5` |
+| surface | `#f6f5f1` |
 | text | `#1c2433` |
 | muted | `#555f6d` |
 | accent | `#1f3a5f` |
@@ -36,8 +36,8 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | border | `#e2e4e8` |
 | art1 | `#2f4a6d` |
 | art2 | `#b9a77c` |
-| heroShade | `#10151d` |
-| heroText | `#e9edf2` |
+| heroShade | `#1b2a40` |
+| heroText | `#f6f5f1` |
 
 | Token | Dark |
 | --- | --- |
@@ -50,15 +50,15 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | border | `#2a3442` |
 | art1 | `#22364f` |
 | art2 | `#6d6142` |
-| heroShade | `#10151d` |
+| heroShade | `#0a1018` |
 | heroText | `#e9edf2` |
 
 ## Widgets
 
 Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
 
-- On by default: none
-- Suggested: Map (`map`), outside, click-to-load, Contact card (`contact-card`), Testimonials (`testimonials`), Featured panel (`feature-panel`), Social links (`social-links`)
+- On by default: Contact card (`contact-card`)
+- Suggested: Latest posts (`latest-posts`), Map (`map`), outside, click-to-load, Key numbers (`key-numbers`)
 
 ## Notes
 

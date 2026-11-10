@@ -19,7 +19,7 @@ Only the existing SoraSpace page types are used. Labels are display names; the u
 ## Layout
 
 - Header: `bar` · Hero: `full-bleed` · Maximum width: 1180px
-- Home sections, in order: `facts`, `list` (articles), `gallery` (galleries), `contact` (contact)
+- Home sections, in order: `facts`, `list` (articles), `feature` (articles), `gallery` (galleries), `intro` (about), `facts`, `contact` (contact)
 - Headings: slab stack, weight 700 · Body: sans stack · Corner radius: 6px
 
 ## Colours
@@ -36,8 +36,8 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | onAccent | `#ffffff` |
 | border | `#eadfd2` |
 | art1 | `#c86b3c` |
-| art2 | `#e9c46a` |
-| heroShade | `#2b1d14` |
+| art2 | `#f0c75e` |
+| heroShade | `#24170f` |
 | heroText | `#fff8f0` |
 
 | Token | Dark |
@@ -58,8 +58,8 @@ Light and dark sets are both defined; System follows the visitor's device settin
 
 Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
 
-- On by default: none
-- Suggested: Map (`map`), outside, click-to-load, Contact card (`contact-card`), Testimonials (`testimonials`), Social post (`social-post`), outside, click-to-load, Featured panel (`feature-panel`)
+- On by default: Photo strip (`photo-strip`), Social links (`social-links`)
+- Suggested: Map (`map`), outside, click-to-load, Upcoming events (`upcoming-events`), Testimonials (`testimonials`)
 
 ## Notes
 

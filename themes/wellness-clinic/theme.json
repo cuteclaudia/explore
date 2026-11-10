@@ -30,8 +30,8 @@
   "density": "comfortable",
   "colours": {
     "light": {
-      "heroShade": "#0e1a22",
-      "heroText": "#e6f0f5",
+      "heroShade": "#16303f",
+      "heroText": "#f4f8fb",
       "bg": "#f4f8fb",
       "surface": "#ffffff",
       "text": "#16303f",
@@ -40,10 +40,10 @@
       "onAccent": "#ffffff",
       "border": "#d8e4ec",
       "art1": "#8ec5d6",
-      "art2": "#cfe3c9"
+      "art2": "#b9dbb0"
     },
     "dark": {
-      "heroShade": "#0e1a22",
+      "heroShade": "#081117",
       "heroText": "#e6f0f5",
       "bg": "#0e1a22",
       "surface": "#15242e",
@@ -74,18 +74,25 @@
     "hero": "split",
     "home": [
       {
-        "type": "facts"
-      },
-      {
         "type": "cards",
         "page": "articles",
         "heading": "How we can help",
-        "images": false
+        "columns": 3,
+        "count": 3,
+        "images": true
+      },
+      {
+        "type": "list",
+        "page": "about",
+        "heading": "What to expect"
       },
       {
         "type": "people",
         "page": "about",
         "heading": "Our practitioners"
+      },
+      {
+        "type": "facts"
       },
       {
         "type": "contact",
@@ -97,12 +104,12 @@
   },
   "widgets": {
     "catalogue": "themes/widgets.json",
-    "enabled": [],
+    "enabled": [
+      "contact-card"
+    ],
     "suggested": [
       "map",
-      "contact-card",
-      "testimonials",
-      "feature-panel",
+      "key-numbers",
       "social-links"
     ],
     "switchable": "all"

@@ -58,7 +58,7 @@
     }
   },
   "typography": {
-    "heading": "serif",
+    "heading": "oldstyle",
     "body": "sans",
     "headingWeight": 400,
     "headingCase": "none",
@@ -66,14 +66,17 @@
     "scale": 1
   },
   "shape": {
-    "radius": 6,
-    "buttonRadius": 6
+    "radius": 8,
+    "buttonRadius": 999
   },
   "layout": {
-    "maxWidth": 1180,
+    "maxWidth": 1300,
     "header": "minimal",
     "hero": "full-bleed",
     "home": [
+      {
+        "type": "facts"
+      },
       {
         "type": "intro",
         "page": "about",
@@ -84,28 +87,37 @@
         "page": "galleries",
         "heading": "Rooms & spaces",
         "style": "wide",
-        "count": 4
+        "count": 5
       },
       {
         "type": "facts"
       },
       {
+        "type": "cards",
+        "page": "about",
+        "heading": "On the farm & nearby",
+        "columns": 3,
+        "count": 3,
+        "images": true
+      },
+      {
         "type": "cta",
         "heading": "Plan your stay",
-        "text": "Send your dates and we will confirm availability.",
+        "text": "Send your dates and we will confirm availability within a day.",
         "button": "Check availability"
       }
     ]
   },
   "widgets": {
     "catalogue": "themes/widgets.json",
-    "enabled": [],
+    "enabled": [
+      "key-numbers"
+    ],
     "suggested": [
       "map",
-      "contact-card",
       "testimonials",
       "photo-strip",
-      "social-links"
+      "video"
     ],
     "switchable": "all"
   },
