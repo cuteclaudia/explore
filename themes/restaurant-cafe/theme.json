@@ -96,6 +96,18 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "map",
+      "contact-card",
+      "testimonials",
+      "social-post",
+      "feature-panel"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "The menu is an Articles page (one article per section, or one long article). A structured menu page type would be a future addition."
   ]

@@ -54,6 +54,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#120b07` |
 | heroText | `#fff8f0` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: none
+- Suggested: Map (`map`), outside, click-to-load, Contact card (`contact-card`), Testimonials (`testimonials`), Social post (`social-post`), outside, click-to-load, Featured panel (`feature-panel`)
+
 ## Notes
 
 - The menu is an Articles page (one article per section, or one long article). A structured menu page type would be a future addition.

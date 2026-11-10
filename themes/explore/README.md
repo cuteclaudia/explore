@@ -54,6 +54,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#0b121b` |
 | heroText | `#ffffff` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`), Illustrated map (`illustrated-map`)
+- Suggested: Map (`map`), outside, click-to-load, Latest posts (`latest-posts`), Social links (`social-links`), Photo strip (`photo-strip`)
+
 ## Notes
 
 - Reference entry: the live claudiagilbert.com page (src/templates/explore.html) is not generated from this file and contains Claudia’s own content. Tenants get this look with their own pages.

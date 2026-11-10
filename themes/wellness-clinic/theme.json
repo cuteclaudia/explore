@@ -95,6 +95,18 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "map",
+      "contact-card",
+      "testimonials",
+      "feature-panel",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "The contact form text asks visitors not to send health information; keep that wording.",
     "Avoid treatment claims in sample or tenant copy; tenants are responsible for meeting advertising rules for their profession."

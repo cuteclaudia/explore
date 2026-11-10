@@ -51,6 +51,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#0d0a18` |
 | heroText | `#efebff` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: Social links (`social-links`)
+- Suggested: Key numbers (`key-numbers`)
+
 ## Notes
 
 - Switch to another theme when the site is ready; content entered in other pages is kept.

@@ -91,6 +91,21 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links",
+      "illustrated-map"
+    ],
+    "suggested": [
+      "map",
+      "latest-posts",
+      "social-links",
+      "photo-strip"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Reference entry: the live claudiagilbert.com page (src/templates/explore.html) is not generated from this file and contains Claudia’s own content. Tenants get this look with their own pages.",
     "Dark set follows the Explore “Midnight” palette preset."

@@ -95,6 +95,18 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "map",
+      "contact-card",
+      "testimonials",
+      "feature-panel",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Insights pages are general information; tenants are responsible for any disclaimers their profession requires."
   ]

@@ -101,6 +101,16 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "photo-strip",
+      "video",
+      "map"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Recommended private and shared by link. Messages should be reviewed by the family before they are published.",
     "Muted colours and no animation by design."

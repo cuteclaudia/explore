@@ -103,6 +103,18 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "map",
+      "contact-card",
+      "testimonials",
+      "feature-panel",
+      "photo-strip"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Rooms gallery is for spaces, not children. Publish children’s photos only with written parental consent."
   ]

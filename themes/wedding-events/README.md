@@ -54,6 +54,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#171415` |
 | heroText | `#f1eaea` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: none
+- Suggested: Upcoming events (`upcoming-events`), Map (`map`), outside, click-to-load, Contact card (`contact-card`), Featured panel (`feature-panel`), Photo strip (`photo-strip`)
+
 ## Notes
 
 - Recommended private, shared with guests by link, so the venue and date are not public.

@@ -98,5 +98,17 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "map",
+      "contact-card",
+      "testimonials",
+      "video",
+      "feature-panel"
+    ],
+    "switchable": "all"
+  },
   "notes": []
 }

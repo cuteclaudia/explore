@@ -99,5 +99,15 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "feature-panel",
+      "photo-strip",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": []
 }

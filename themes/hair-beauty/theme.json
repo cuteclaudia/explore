@@ -100,6 +100,18 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "map",
+      "contact-card",
+      "testimonials",
+      "social-post",
+      "feature-panel"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Online booking systems are not embedded. Requests come through Contact."
   ]

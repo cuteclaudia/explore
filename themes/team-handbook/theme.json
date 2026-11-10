@@ -98,6 +98,18 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links"
+    ],
+    "suggested": [
+      "latest-posts",
+      "upcoming-events"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Recommended private: only workspace members can read it."
   ]

@@ -94,6 +94,20 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links",
+      "illustrated-map"
+    ],
+    "suggested": [
+      "map",
+      "video",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Encourage tenants to publish trips after they return and to keep exact locations out of posts and photo metadata."
   ]

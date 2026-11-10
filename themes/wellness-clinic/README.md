@@ -53,6 +53,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#0e1a22` |
 | heroText | `#e6f0f5` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: none
+- Suggested: Map (`map`), outside, click-to-load, Contact card (`contact-card`), Testimonials (`testimonials`), Featured panel (`feature-panel`), Social links (`social-links`)
+
 ## Notes
 
 - The contact form text asks visitors not to send health information; keep that wording.

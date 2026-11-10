@@ -99,5 +99,20 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links"
+    ],
+    "suggested": [
+      "upcoming-events",
+      "map",
+      "contact-card",
+      "social-post",
+      "photo-strip"
+    ],
+    "switchable": "all"
+  },
   "notes": []
 }

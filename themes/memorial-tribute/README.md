@@ -54,6 +54,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#141516` |
 | heroText | `#ececea` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: none
+- Suggested: Photo strip (`photo-strip`), Video (`video`), outside, click-to-load, Map (`map`), outside, click-to-load
+
 ## Notes
 
 - Recommended private and shared by link. Messages should be reviewed by the family before they are published.

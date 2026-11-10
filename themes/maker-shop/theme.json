@@ -98,6 +98,18 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "map",
+      "contact-card",
+      "social-post",
+      "feature-panel",
+      "photo-strip"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "There is no checkout or payment in the theme. Orders are enquiries through Contact until SoraSpace offers a shop feature."
   ]

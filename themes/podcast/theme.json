@@ -94,6 +94,18 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links"
+    ],
+    "suggested": [
+      "audio",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Players from podcast services are not embedded: they load content from outside SoraSpace. Host audio files in the tenant’s own storage or link to the show’s listing."
   ]

@@ -99,5 +99,17 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "map",
+      "contact-card",
+      "testimonials",
+      "feature-panel",
+      "photo-strip"
+    ],
+    "switchable": "all"
+  },
   "notes": []
 }

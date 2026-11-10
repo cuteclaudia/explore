@@ -99,6 +99,18 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links"
+    ],
+    "suggested": [
+      "video",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Repository widgets and badges from code-hosting sites are not embedded; tenants can link to their repository instead."
   ]

@@ -91,5 +91,16 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links"
+    ],
+    "suggested": [
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": []
 }

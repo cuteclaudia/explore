@@ -97,6 +97,21 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links"
+    ],
+    "suggested": [
+      "upcoming-events",
+      "map",
+      "contact-card",
+      "social-post",
+      "photo-strip"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Junior clubs should get consent before publishing photos or names of children."
   ]

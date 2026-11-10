@@ -91,6 +91,16 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "video",
+      "photo-strip",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Video sites such as YouTube or Vimeo are not embedded. Host videos in the tenant’s own storage or link out."
   ]

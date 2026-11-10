@@ -96,6 +96,18 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "map",
+      "contact-card",
+      "testimonials",
+      "video",
+      "feature-panel"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "If tutoring children, tenants should not publish students’ names or photos without consent."
   ]

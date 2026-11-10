@@ -54,6 +54,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#060b0b` |
 | heroText | `#ffffff` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: none
+- Suggested: Map (`map`), outside, click-to-load, Contact card (`contact-card`), Testimonials (`testimonials`), Featured panel (`feature-panel`), Social links (`social-links`)
+
 ## Notes
 
 - Each listing is an Articles page. A structured Listings page type (price, bedrooms, inspection times) would be a future addition.

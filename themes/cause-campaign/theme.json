@@ -96,6 +96,21 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links"
+    ],
+    "suggested": [
+      "upcoming-events",
+      "video",
+      "social-post",
+      "photo-strip",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Colours chosen to avoid association with any political party. Tenants supply their own campaign colours if they wish.",
     "Donation and petition services are not embedded; tenants can link to them."

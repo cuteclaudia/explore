@@ -54,6 +54,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#12130e` |
 | heroText | `#eeefe6` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`)
+- Suggested: Upcoming events (`upcoming-events`), Map (`map`), outside, click-to-load, Contact card (`contact-card`), Social links (`social-links`)
+
 ## Notes
 
 - Notices are posted by the site’s editors; there is no public posting, so the board cannot be spammed.

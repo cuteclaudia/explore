@@ -100,5 +100,18 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links"
+    ],
+    "suggested": [
+      "upcoming-events",
+      "photo-strip",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": []
 }

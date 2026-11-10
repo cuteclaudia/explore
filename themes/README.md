@@ -41,6 +41,20 @@ No new page types are required. Where a theme would ideally have a Menu, Service
 
 `intro` (text from About), `cards` (latest items from a page; `columns`, `count`, `images`), `list` (rows with title, text and a right-hand detail such as a price or date), `feature` (one highlighted item), `gallery` (`style`: `even`, `masonry`, `wide`, `strip`), `facts` (key details such as hours, location, phone), `people` (member or staff cards from About), `cta` (call-to-action band linking to Contact), `contact` (contact details and form).
 
+### Widgets
+
+Widgets are optional blocks the **site owner can switch on or off**. The full list, providers and rules are in `themes/widgets.json` (generated from `_tools/widgets.mjs`). Each `theme.json` has:
+
+```json
+"widgets": { "catalogue": "themes/widgets.json", "enabled": ["feature-panel", "quick-links"], "suggested": ["map", "latest-posts"], "switchable": "all" }
+```
+
+- `enabled` is the starting state for a new site; `suggested` are offered first in the editor. Any widget in the catalogue can be switched on for any theme.
+- **Site widgets** use only the tenant's own content and are filled in by the site manager at publish time (no scripts in the page): featured panel and quick links over or beside the hero (as on Explore), latest posts, upcoming events, contact card, photo strip, key numbers, testimonials (genuine, attributed quotes only), social links (plain links) and the illustrated map.
+- **Outside widgets** (map, video, audio, social post) are an approved exception to the SoraSpace data rule: never on by default, allowlisted providers only, share links not HTML, and **click-to-load** for every visitor, with the page Content Security Policy widened only for providers actually switched on. See `externalRules` in `widgets.json`.
+- Placement: `hero` widgets sit in the panel (over a full-bleed hero, or directly under other hero styles); `home` widgets go `after-hero` or `before-footer`. Owners may reorder them.
+- Previews show enabled widgets in place and suggested ones in an “Optional widgets · preview only” area at the end.
+
 ### Font stacks
 
 Only fonts already on the visitor’s device are used: `sans`, `serif`, `oldstyle`, `didone`, `slab`, `humanist`, `geometric`, `rounded`, `condensed`, `mono`. The stacks are in `_tools/catalogue.mjs` (`FONT_STACKS`).

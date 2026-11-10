@@ -54,6 +54,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#0f1426` |
 | heroText | `#e9edfa` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: none
+- Suggested: Map (`map`), outside, click-to-load, Contact card (`contact-card`), Testimonials (`testimonials`), Video (`video`), outside, click-to-load, Featured panel (`feature-panel`)
+
 ## Notes
 
 - If tutoring children, tenants should not publish students’ names or photos without consent.

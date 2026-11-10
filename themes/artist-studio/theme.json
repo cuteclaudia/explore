@@ -99,5 +99,16 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "social-post",
+      "feature-panel",
+      "photo-strip",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": []
 }

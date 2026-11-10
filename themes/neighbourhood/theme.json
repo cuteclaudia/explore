@@ -96,6 +96,20 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links"
+    ],
+    "suggested": [
+      "upcoming-events",
+      "map",
+      "contact-card",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Notices are posted by the site’s editors; there is no public posting, so the board cannot be spammed."
   ]

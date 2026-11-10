@@ -99,6 +99,21 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links"
+    ],
+    "suggested": [
+      "upcoming-events",
+      "video",
+      "audio",
+      "social-post",
+      "photo-strip"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Embedded players from music services are not included: they load content from outside SoraSpace. Link to releases instead."
   ]

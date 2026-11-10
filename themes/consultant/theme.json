@@ -95,5 +95,17 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links"
+    ],
+    "suggested": [
+      "testimonials",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": []
 }

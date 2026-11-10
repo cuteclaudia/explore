@@ -54,6 +54,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#0e1313` |
 | heroText | `#ecf3f2` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`)
+- Suggested: Upcoming events (`upcoming-events`), Video (`video`), outside, click-to-load, Social post (`social-post`), outside, click-to-load, Photo strip (`photo-strip`), Social links (`social-links`)
+
 ## Notes
 
 - Colours chosen to avoid association with any political party. Tenants supply their own campaign colours if they wish.

@@ -95,6 +95,21 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links"
+    ],
+    "suggested": [
+      "upcoming-events",
+      "map",
+      "contact-card",
+      "photo-strip",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Never publish students’ names or photos without parental consent. Photos of events should show spaces and adults where possible."
   ]

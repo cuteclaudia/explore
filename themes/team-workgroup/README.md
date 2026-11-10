@@ -54,6 +54,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#0f131b` |
 | heroText | `#e8ecf3` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`)
+- Suggested: Social links (`social-links`)
+
 ## Notes
 
 - Recommended private by default, so only workspace members see it. Switch to public for an outward-facing team page.

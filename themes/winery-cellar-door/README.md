@@ -54,6 +54,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#000000` |
 | heroText | `#ffffff` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: none
+- Suggested: Map (`map`), outside, click-to-load, Contact card (`contact-card`), Social post (`social-post`), outside, click-to-load, Featured panel (`feature-panel`), Photo strip (`photo-strip`)
+
 ## Notes
 
 - Tenants selling alcohol must meet their local liquor licensing and advertising rules. The theme does not include an age check.

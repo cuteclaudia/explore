@@ -54,6 +54,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#1f1a16` |
 | heroText | `#f3e9dc` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: none
+- Suggested: Social post (`social-post`), outside, click-to-load, Featured panel (`feature-panel`), Photo strip (`photo-strip`), Social links (`social-links`)
+
 ## Files
 
 - `theme.json` — the theme definition (source of truth for the site manager)

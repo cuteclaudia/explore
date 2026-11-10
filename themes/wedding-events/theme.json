@@ -97,6 +97,18 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "upcoming-events",
+      "map",
+      "contact-card",
+      "feature-panel",
+      "photo-strip"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Recommended private, shared with guests by link, so the venue and date are not public."
   ]

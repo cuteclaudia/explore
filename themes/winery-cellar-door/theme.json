@@ -97,6 +97,18 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "map",
+      "contact-card",
+      "social-post",
+      "feature-panel",
+      "photo-strip"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Tenants selling alcohol must meet their local liquor licensing and advertising rules. The theme does not include an age check."
   ]

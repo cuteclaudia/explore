@@ -54,6 +54,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#0d1520` |
 | heroText | `#edf2f7` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: none
+- Suggested: Map (`map`), outside, click-to-load, Contact card (`contact-card`), Testimonials (`testimonials`), Featured panel (`feature-panel`), Photo strip (`photo-strip`)
+
 ## Notes
 
 - Check local rules before publishing licence numbers; the theme shows a field for them but does not require one.

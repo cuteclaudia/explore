@@ -98,5 +98,16 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "testimonials",
+      "video",
+      "feature-panel",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": []
 }

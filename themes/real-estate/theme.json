@@ -100,6 +100,18 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "map",
+      "contact-card",
+      "testimonials",
+      "feature-panel",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Each listing is an Articles page. A structured Listings page type (price, bedrooms, inspection times) would be a future addition.",
     "Never publish vendors’ names or exact addresses before the vendor approves."

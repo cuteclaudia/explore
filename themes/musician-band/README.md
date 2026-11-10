@@ -54,6 +54,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#0c0812` |
 | heroText | `#ffffff` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`)
+- Suggested: Upcoming events (`upcoming-events`), Video (`video`), outside, click-to-load, Audio player (`audio`), outside, click-to-load, Social post (`social-post`), outside, click-to-load, Photo strip (`photo-strip`)
+
 ## Notes
 
 - Embedded players from music services are not included: they load content from outside SoraSpace. Link to releases instead.

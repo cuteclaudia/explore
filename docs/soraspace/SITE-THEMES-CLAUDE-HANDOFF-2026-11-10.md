@@ -54,3 +54,12 @@ Done as requested:
 - Import readiness is marked per batch (`manifest.batches[]`) and per theme (`batch`, `readyToImport`). `theme.json` files did not change for this.
 - Preview HTML stays separate (`index.html`); import from `theme.json` only.
 - For adapting to the simpler palette-and-layout importer: `colours.light.accent` and `colours.light.bg` are the nearest match to the existing palette `accent` and `wash`, and `baseTemplate` and `density` map directly. Page labels are in `pageLabels` and section order is in `layout.home`.
+
+## Widgets added (10 Nov 2026, evening)
+
+Claudia asked for widgets that site owners can switch on and off, including outside ones such as maps.
+
+- New catalogue: `themes/widgets.json` (manifest field `widgetCatalogue`). 10 site widgets and 4 outside widgets (map, video, audio, social post) with 10 allowlisted providers.
+- Every `theme.json` gained a `widgets` object (`enabled`, `suggested`, `switchable: "all"`). This is additive: `schemaVersion` stays 1, ids and paths are unchanged, all entries remain `readyToImport: true`.
+- Explore (#0) now starts with the featured panel and quick links over the hero (as on claudiagilbert.com) plus the illustrated map; 20 other writing and community themes start with the panel on.
+- **For the platform:** owners need on/off switches for every widget; fill site widgets at publish time from the tenant's own content; for outside widgets, accept only allowlisted share links, render the click-to-load placeholder, supply the reviewed click-to-load script from the site manager (never from themes or tenants) and add only switched-on providers' frame origins to the CSP. Rules are in `widgets.json` → `externalRules`.

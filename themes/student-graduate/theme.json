@@ -92,6 +92,15 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "feature-panel",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Encourage tenants to share a contact form rather than a personal phone number or home address."
   ]

@@ -53,6 +53,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#070a14` |
 | heroText | `#eef1fb` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: none
+- Suggested: Testimonials (`testimonials`), Video (`video`), outside, click-to-load, Featured panel (`feature-panel`), Social links (`social-links`)
+
 ## Notes
 
 - The early-access form is the standard Contact page. Mailing-list services are not embedded.

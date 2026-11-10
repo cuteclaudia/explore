@@ -91,6 +91,16 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "photo-strip",
+      "illustrated-map",
+      "video"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Recommended private: only invited family members can see it. Take care with photos of children."
   ]

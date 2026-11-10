@@ -54,6 +54,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#0d1510` |
 | heroText | `#e7f1ea` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`)
+- Suggested: Upcoming events (`upcoming-events`), Map (`map`), outside, click-to-load, Contact card (`contact-card`), Social post (`social-post`), outside, click-to-load, Photo strip (`photo-strip`)
+
 ## Notes
 
 - Junior clubs should get consent before publishing photos or names of children.

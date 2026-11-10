@@ -102,6 +102,21 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links"
+    ],
+    "suggested": [
+      "upcoming-events",
+      "map",
+      "contact-card",
+      "audio",
+      "photo-strip"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Deliberately neutral: no religious symbols in the theme itself, so any faith community can use it with its own imagery."
   ]

@@ -3,6 +3,7 @@
   "description": "SoraSpace tenant site themes. Each entry has a folder containing theme.json (definition), index.html (preview only) and README.md.",
   "stability": "schemaVersion, theme ids and definition paths are stable. New fields may be added; existing ones are not renamed or removed within schemaVersion 1.",
   "readyToImport": "An entry with readyToImport true has passed the validity, contrast and security checks and a visual review in light and dark, and its theme.json may be imported.",
+  "widgetCatalogue": "themes/widgets.json",
   "batches": [
     {
       "batch": 1,

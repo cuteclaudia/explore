@@ -53,6 +53,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#081014` |
 | heroText | `#ffffff` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`), Illustrated map (`illustrated-map`)
+- Suggested: Map (`map`), outside, click-to-load, Video (`video`), outside, click-to-load, Social links (`social-links`)
+
 ## Notes
 
 - Encourage tenants to publish trips after they return and to keep exact locations out of posts and photo metadata.

@@ -53,6 +53,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#10151d` |
 | heroText | `#e9edf2` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: none
+- Suggested: Map (`map`), outside, click-to-load, Contact card (`contact-card`), Testimonials (`testimonials`), Featured panel (`feature-panel`), Social links (`social-links`)
+
 ## Notes
 
 - Insights pages are general information; tenants are responsible for any disclaimers their profession requires.

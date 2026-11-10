@@ -53,6 +53,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#120c09` |
 | heroText | `#f7ece4` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`)
+- Suggested: Audio player (`audio`), outside, click-to-load, Social links (`social-links`)
+
 ## Notes
 
 - Players from podcast services are not embedded: they load content from outside SoraSpace. Host audio files in the tenant’s own storage or link to the show’s listing.

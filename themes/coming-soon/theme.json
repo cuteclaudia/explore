@@ -76,6 +76,16 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "social-links"
+    ],
+    "suggested": [
+      "key-numbers"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Switch to another theme when the site is ready; content entered in other pages is kept."
   ]

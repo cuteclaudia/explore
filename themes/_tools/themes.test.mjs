@@ -7,6 +7,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { THEMES, PAGE_TYPES, BASE_TEMPLATES, PURPOSES, HEROES, HEADERS, SECTION_TYPES, FONT_STACKS } from './catalogue.mjs';
 import { themeJson, previewHtml, readme } from './build-themes.mjs';
+import { WIDGETS, PROVIDERS } from './widgets.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -90,4 +91,22 @@ test('previews contain no scripts, handlers, forms or outside requests', async (
     }
     assert.match(html, /Content-Security-Policy" content="default-src 'none'/, `${def.id} preview CSP`);
   }
+});
+
+test('widgets: known ids, outside widgets never on by default, allowlisted providers', async () => {
+  const ids = new Set(WIDGETS.map(w => w.id));
+  for (const w of WIDGETS) {
+    assert.ok(['site', 'external'].includes(w.kind) && ['hero', 'home'].includes(w.placement), w.id);
+    if (w.placement === 'home') assert.ok(['after-hero', 'before-footer'].includes(w.position), `${w.id} position`);
+    if (w.kind === 'external') assert.ok(w.providers?.length && w.providers.every(p => Object.hasOwn(PROVIDERS, p)), `${w.id} providers`);
+  }
+  for (const def of THEMES) {
+    const { widgets } = themeJson(def);
+    assert.equal(widgets.switchable, 'all');
+    for (const id of [...widgets.enabled, ...widgets.suggested]) assert.ok(ids.has(id), `${def.id} unknown widget ${id}`);
+    assert.ok(widgets.enabled.every(id => !widgets.suggested.includes(id)), `${def.id} enabled and suggested overlap`);
+    assert.ok(widgets.enabled.every(id => WIDGETS.find(w => w.id === id).kind === 'site'), `${def.id} has an outside widget switched on by default`);
+  }
+  const catalogue = JSON.parse(await readFile(join(ROOT, 'widgets.json'), 'utf8'));
+  assert.deepEqual(catalogue.widgets.map(w => w.id), WIDGETS.map(w => w.id), 'widgets.json is current');
 });

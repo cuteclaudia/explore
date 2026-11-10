@@ -53,6 +53,13 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | heroShade | `#111114` |
 | heroText | `#ececf1` |
 
+## Widgets
+
+Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
+
+- On by default: none
+- Suggested: Featured panel (`feature-panel`), Social links (`social-links`)
+
 ## Notes
 
 - Encourage tenants to share a contact form rather than a personal phone number or home address.

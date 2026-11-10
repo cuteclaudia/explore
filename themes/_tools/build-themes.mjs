@@ -5,6 +5,9 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { THEMES, FONT_STACKS, PAGE_TYPES, BASE_TEMPLATES, BATCHES } from './catalogue.mjs';
+import { WIDGETS, PROVIDERS, EXTERNAL_RULES, themeWidgets } from './widgets.mjs';
+
+const WIDGET = Object.fromEntries(WIDGETS.map(w => [w.id, w]));
 
 export const batchOf = n => (n <= 10 ? 1 : Math.ceil(n / 10));
 
@@ -41,6 +44,7 @@ export function themeJson(t) {
     },
     shape: { radius: t.radius ?? 8, buttonRadius: t.buttonRadius ?? t.radius ?? 8 },
     layout: { maxWidth: t.width ?? 1180, header: t.header, hero: t.hero, home: t.sections },
+    widgets: { catalogue: 'themes/widgets.json', enabled: themeWidgets(t).enabled, suggested: themeWidgets(t).suggested, switchable: 'all' },
     notes: t.notes ?? []
   };
 }
@@ -86,11 +90,49 @@ function section(t, s, sample) {
   }
 }
 
+function panel(t, src, ids, cls = '') {
+  const parts = [];
+  if (ids.includes('feature-panel')) {
+    const f = src.featured ?? src.items?.[0] ?? { meta: 'Welcome', title: src.headline, text: src.subhead ?? '' };
+    parts.push(`<div class="panel-feature"><span class="eyebrow">${src.featured || src.items?.length ? 'Latest from ' + esc(src.siteName) : 'Featured'}</span><h2 class="panel-title">${esc(f.title)}</h2><span class="more">Read feature →</span></div>`);
+  }
+  if (ids.includes('quick-links')) {
+    const links = t.pages.filter(p => p !== 'home').slice(0, 4).map(p => `<span>${esc(label(t, p))} →</span>`).join('');
+    parts.push(`<nav class="quick-links" aria-label="Quick links">${links}</nav>`);
+  }
+  return parts.length ? `<aside class="hero-panel ${cls}" aria-label="Featured and quick links">${parts.join('')}</aside>` : '';
+}
+
+function consent(w, demo) {
+  const prov = w.providers.map(p => PROVIDERS[p].name);
+  const verb = { map: 'Load map', video: 'Play video', audio: 'Load player', 'social-post': 'Load post' }[w.id];
+  return `<section class="wrap"><div class="consent" role="group" aria-label="${esc(w.name)} from an outside provider">${art(2, 'dim')}<div class="consent-copy"><span class="eyebrow">${esc(w.name)} · ${esc(prov[0])}</span><p>This ${esc(w.name.toLowerCase())} is provided by ${esc(prov[0])}. ${esc(PROVIDERS[w.providers[0]].privacy)}</p><div class="actions"><span class="button">${esc(verb)}</span><span class="button ghost">Open on ${esc(prov[0])}</span></div></div></div>${demo ? `<p class="meta">Providers: ${esc(prov.join(', '))}</p>` : ''}</section>`;
+}
+
+function widget(t, id, src, demo = false) {
+  const w = WIDGET[id];
+  const items = src.items ?? [{ title: src.headline, text: src.subhead ?? '', meta: 'Latest' }];
+  const head = h => `<div class="sec-head"><span class="eyebrow">${esc(w.name)}</span><h2>${esc(h)}</h2></div>`;
+  if (w.kind === 'external') return consent(w, demo);
+  switch (id) {
+    case 'feature-panel': case 'quick-links': return demo ? `<section class="wrap">${panel(t, src, [id], 'inline')}</section>` : '';
+    case 'latest-posts': return `<section class="wrap">${head('Latest')}<div class="cards cols-3">${items.slice(0, 3).map(it => `<article class="card"><div class="body">${it.meta ? `<span class="meta">${esc(it.meta)}</span>` : ''}<h3>${esc(it.title)}</h3><p>${esc(it.text)}</p></div></article>`).join('')}</div></section>`;
+    case 'upcoming-events': return `<section class="wrap">${head('Coming up')}<ul class="list">${items.slice(0, 3).map(it => `<li><div><h3>${esc(it.title)}</h3><p>${esc(it.text)}</p></div><span class="meta">${esc(it.meta ?? 'Date')}</span></li>`).join('')}</ul></section>`;
+    case 'contact-card': return `<section class="wrap"><div class="contact-card"><div>${(src.facts ?? [['Email', 'hello@example.com']]).slice(0, 2).map(([k, v]) => `<p><span class="meta">${esc(k)}</span><br><strong>${esc(v)}</strong></p>`).join('')}</div><span class="button">${esc(label(t, 'contact'))}</span></div></section>`;
+    case 'photo-strip': return `<section class="wrap"><div class="gallery strip">${Array.from({ length: 6 }, (_, i) => art(i, 'tile')).join('')}</div></section>`;
+    case 'key-numbers': return `<section class="wrap"><div class="numbers">${(src.numbers ?? [['2014', 'Established'], ['3', 'Locations'], ['7 days', 'Open']]).map(([n, l]) => `<div><strong>${esc(n)}</strong><span class="meta">${esc(l)}</span></div>`).join('')}</div></section>`;
+    case 'testimonials': return `<section class="wrap">${head('What people say')}<div class="quotes">${(src.quotes ?? [['Sample only: the site owner adds genuine quotes here, with permission.', 'A. Customer'], ['Sample only: each quote shows who said it.', 'B. Client']]).map(([q, who]) => `<figure><blockquote>“${esc(q)}”</blockquote><figcaption class="meta">${esc(who)}</figcaption></figure>`).join('')}</div></section>`;
+    case 'social-links': return `<section class="wrap"><nav class="social" aria-label="Social links">${['Instagram', 'Facebook', 'LinkedIn', 'Email'].map(n => `<span>${n}</span>`).join('')}</nav></section>`;
+    case 'illustrated-map': return `<section class="wrap">${head('Places to remember')}<div class="ill-map" aria-label="Illustrated map"><div class="land"></div>${[[68, 60], [52, 78], [22, 48]].map(([x, y], i) => `<span class="pin" style="left:${x}%;top:${y}%">${i + 1}</span>`).join('')}<span class="map-note">Illustrated map · Locations are approximate</span></div></section>`;
+    default: throw new Error(`Unknown widget ${id}`);
+  }
+}
+
 function hero(t, sample) {
   const buttons = `<span class="button">${esc(sample.primary ?? 'Find out more')}</span>${sample.secondary ? ` <span class="button ghost">${esc(sample.secondary)}</span>` : ''}`;
   const copy = `<div class="hero-copy"><span class="eyebrow">${esc(sample.tagline)}</span><h1>${esc(sample.headline)}</h1><p>${esc(sample.subhead ?? '')}</p><div class="actions">${buttons}</div></div>`;
   switch (t.layout.hero) {
-    case 'full-bleed': return `<section class="hero full-bleed">${art(0, 'bleed')}${copy}</section>`;
+    case 'full-bleed': return `<section class="hero full-bleed">${art(0, 'bleed')}${copy}${panel(t, sample, t.widgets.enabled, 'over')}</section>`;
     case 'split': return `<section class="hero split wrap">${copy}${art(1, 'tall')}</section>`;
     case 'banner': return `<section class="hero banner"><div class="wrap">${copy}</div></section>`;
     case 'statement': return `<section class="hero statement wrap">${copy}</section>`;
@@ -142,9 +184,23 @@ p{max-width:68ch}.wrap{max-width:var(--max);margin:auto;padding:calc(var(--gap)*
 .cta{background:var(--accent);color:var(--onAccent);border-radius:var(--radius);padding:calc(var(--gap)*1.5);text-align:center}.cta p{margin-inline:auto}.cta .button{background:var(--onAccent);color:var(--accent)}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}.mock-form{display:grid;gap:12px}.mock-form span:not(.button){display:block;padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--muted)}.mock-form .area{min-height:110px}.mock-form .button{justify-self:start}
 footer{border-top:1px solid var(--border);color:var(--muted);font-size:14px}footer .wrap{padding-top:28px;padding-bottom:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hero-panel{background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:0 8px 30px #0003}.hero-panel .eyebrow{color:var(--muted)}.panel-title{font-size:${Math.round(24 * ty.scale)}px;margin:.3em 0 .5em}
+.hero-panel.over{position:absolute;right:2.5%;top:24px;width:min(340px,30%)}.hero-panel.inline{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:center;box-shadow:none}.hero-panel.inline .quick-links{border-left:1px solid var(--accent);padding-left:24px}.hero-panel.inline:has(> :only-child){display:block}
+.quick-links{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;font-size:14px;border-top:1px solid var(--accent);padding-top:14px;margin-top:14px}.hero-panel.inline .quick-links{border-top:0;margin-top:0;padding-top:0}
+.consent{position:relative;border-radius:var(--radius);overflow:hidden;min-height:260px;display:flex;align-items:center;border:1px solid var(--border)}.consent .art{position:absolute;inset:0;border-radius:0;opacity:.35}.consent-copy{position:relative;margin:24px;padding:22px;max-width:560px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border)}
+.numbers{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:var(--gap);text-align:center}.numbers strong{display:block;font-family:${hf};font-size:${Math.round(40 * ty.scale)}px;color:var(--accent)}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--gap)}.quotes figure{margin:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px}blockquote{margin:0 0 10px;font-size:1.1em}
+.social{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.social span{border:1px solid var(--border);border-radius:999px;padding:8px 16px;background:var(--surface)}
+.contact-card{display:flex;justify-content:space-between;align-items:center;gap:var(--gap);flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:var(--gap)}.contact-card div{display:flex;gap:40px;flex-wrap:wrap}
+.ill-map{position:relative;min-height:420px;border-radius:var(--radius);overflow:hidden;background:color-mix(in srgb,var(--art1) 25%,var(--bg));border:1px solid var(--border)}.ill-map .land{position:absolute;background:color-mix(in srgb,var(--art1) 55%,var(--bg));border-radius:45% 30% 40% 20%;width:63%;height:70%;left:12%;top:12%;transform:rotate(-12deg)}.ill-map .pin{position:absolute;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--accent);color:var(--onAccent);border:3px solid var(--surface);font-weight:700}.ill-map .map-note{position:absolute;left:14px;bottom:10px;font-size:12px;background:var(--surface);padding:4px 10px;border-radius:4px}
+.optional-widgets{border-top:3px dashed var(--border);background:color-mix(in srgb,var(--surface) 60%,var(--bg))}.optional-widgets>.wrap{padding-bottom:0}.optional-widgets>.wrap p{color:var(--muted);margin:.3em 0 0}
+@media (max-width:980px){.hero-panel.over{position:static;width:auto;margin:0 5% 24px}.hero.full-bleed{flex-direction:column;justify-content:center}.hero-panel.inline{grid-template-columns:1fr}}
 @media (max-width:760px){.hero.split,.feature,.contact-grid,.cols-2,.cols-3,.cols-4{grid-template-columns:1fr}.gallery,.gallery.strip{grid-template-columns:repeat(2,1fr)}.list li{flex-direction:column;gap:6px}.hero.full-bleed .hero-copy{margin:0 5%}}
 `.trim();
-  const body = [header(t, src), `<main>${hero(t, src)}${t.layout.home.map(s => section(t, s, src)).join('')}</main>`,
+  const on = t.widgets.enabled, at = pos => on.filter(id => WIDGET[id].placement === 'home' && WIDGET[id].position === pos).map(id => widget(t, id, src)).join('');
+  const inlinePanel = t.layout.hero === 'full-bleed' ? '' : (p => p ? `<section class="wrap panel-wrap">${p}</section>` : '')(panel(t, src, on, 'inline'));
+  const demo = t.widgets.suggested.length ? `<section class="optional-widgets" aria-label="Optional widgets"><div class="wrap"><strong>Optional widgets · preview only</strong><p>Off until the site owner switches them on. Outside widgets also ask each visitor before loading anything.</p></div>${t.widgets.suggested.map(id => widget(t, id, src, true)).join('')}</section>` : '';
+  const body = [header(t, src), `<main>${hero(t, src)}${inlinePanel}${at('after-hero')}${t.layout.home.map(s => section(t, s, src)).join('')}${at('before-footer')}</main>`, demo,
     `<footer><div class="wrap"><span>© ${esc(src.siteName)}</span><span>Sample content · Theme: ${esc(t.name)}</span></div></footer>`].join('');
   return `<!doctype html>
 <html lang="en-AU">
@@ -198,6 +254,13 @@ ${sw('light')}
 | Token | Dark |
 | --- | --- |
 ${sw('dark')}
+
+## Widgets
+
+Every widget can be switched on or off by the site owner (see \`themes/widgets.json\`).
+
+- On by default: ${t.widgets.enabled.length ? t.widgets.enabled.map(id => `${WIDGET[id].name} (\`${id}\`)`).join(', ') : 'none'}
+- Suggested: ${t.widgets.suggested.length ? t.widgets.suggested.map(id => `${WIDGET[id].name} (\`${id}\`)${WIDGET[id].kind === 'external' ? ', outside, click-to-load' : ''}`).join(', ') : 'none'}
 ${t.notes.length ? `\n## Notes\n\n${t.notes.map(n => `- ${n}`).join('\n')}\n` : ''}
 ## Files
 
@@ -214,6 +277,7 @@ export async function build() {
     description: 'SoraSpace tenant site themes. Each entry has a folder containing theme.json (definition), index.html (preview only) and README.md.',
     stability: 'schemaVersion, theme ids and definition paths are stable. New fields may be added; existing ones are not renamed or removed within schemaVersion 1.',
     readyToImport: 'An entry with readyToImport true has passed the validity, contrast and security checks and a visual review in light and dark, and its theme.json may be imported.',
+    widgetCatalogue: 'themes/widgets.json',
     batches: BATCHES,
     themes: []
   };
@@ -227,6 +291,7 @@ export async function build() {
     manifest.themes.push({ id: t.id, number: t.number, name: t.name, batch: batchOf(t.number), readyToImport: !!def.readyToImport, category: t.category, status: t.status, suits: t.suits, baseTemplate: t.baseTemplate, purpose: t.purpose, pages: t.pages, workgroupFriendly: t.workgroupFriendly, recommendedVisibility: t.recommendedVisibility, path: `themes/${t.id}/`, definition: `themes/${t.id}/theme.json`, preview: `themes/${t.id}/index.html` });
   }
   manifest.themes.sort((a, b) => a.number - b.number);
+  await writeFile(join(ROOT, 'widgets.json'), JSON.stringify({ schemaVersion: 1, description: 'SoraSpace site widgets. Every widget can be switched on or off per site; themes only set the starting state (theme.json widgets.enabled) and suggestions (widgets.suggested).', externalRules: EXTERNAL_RULES, widgets: WIDGETS, providers: PROVIDERS }, null, 2) + '\n');
   await writeFile(join(ROOT, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
   return manifest;
 }

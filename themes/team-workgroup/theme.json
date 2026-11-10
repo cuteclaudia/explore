@@ -97,6 +97,17 @@
       }
     ]
   },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "feature-panel",
+      "quick-links"
+    ],
+    "suggested": [
+      "social-links"
+    ],
+    "switchable": "all"
+  },
   "notes": [
     "Recommended private by default, so only workspace members see it. Switch to public for an outward-facing team page."
   ]
