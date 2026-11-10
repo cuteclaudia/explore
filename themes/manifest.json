@@ -1,0 +1,298 @@
+{
+  "schemaVersion": 1,
+  "description": "SoraSpace tenant site themes. Each entry has a folder containing theme.json, index.html and README.md.",
+  "themes": [
+    {
+      "id": "explore",
+      "number": 0,
+      "name": "Explore",
+      "category": "personal",
+      "status": "reference",
+      "suits": [
+        "Travellers",
+        "Photographers",
+        "Personal journals"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "creative",
+      "pages": [
+        "home",
+        "about",
+        "journal",
+        "galleries",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/explore/",
+      "definition": "themes/explore/theme.json",
+      "preview": "themes/explore/index.html"
+    },
+    {
+      "id": "photography-portfolio",
+      "number": 1,
+      "name": "Photography portfolio",
+      "category": "creative",
+      "status": "preview",
+      "suits": [
+        "Photographers",
+        "Photo collectives"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "creative",
+      "pages": [
+        "home",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/photography-portfolio/",
+      "definition": "themes/photography-portfolio/theme.json",
+      "preview": "themes/photography-portfolio/index.html"
+    },
+    {
+      "id": "artist-studio",
+      "number": 2,
+      "name": "Artist studio",
+      "category": "creative",
+      "status": "preview",
+      "suits": [
+        "Illustrators",
+        "Painters",
+        "Ceramicists",
+        "Textile artists"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "creative",
+      "pages": [
+        "home",
+        "galleries",
+        "journal",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/artist-studio/",
+      "definition": "themes/artist-studio/theme.json",
+      "preview": "themes/artist-studio/index.html"
+    },
+    {
+      "id": "restaurant-cafe",
+      "number": 3,
+      "name": "Restaurant & café",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Cafés",
+        "Restaurants",
+        "Food vans",
+        "Bakeries"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "articles",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/restaurant-cafe/",
+      "definition": "themes/restaurant-cafe/theme.json",
+      "preview": "themes/restaurant-cafe/index.html"
+    },
+    {
+      "id": "trades-services",
+      "number": 4,
+      "name": "Trades & local services",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Electricians",
+        "Plumbers",
+        "Landscapers",
+        "Builders",
+        "Cleaners"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "articles",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/trades-services/",
+      "definition": "themes/trades-services/theme.json",
+      "preview": "themes/trades-services/index.html"
+    },
+    {
+      "id": "professional-practice",
+      "number": 5,
+      "name": "Professional practice",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Law firms",
+        "Accountants",
+        "Financial and advisory practices"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "about",
+        "articles",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/professional-practice/",
+      "definition": "themes/professional-practice/theme.json",
+      "preview": "themes/professional-practice/index.html"
+    },
+    {
+      "id": "consultant",
+      "number": 6,
+      "name": "Consultant",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Independent consultants",
+        "Coaches",
+        "Freelancers",
+        "Speakers"
+      ],
+      "baseTemplate": "folio",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "about",
+        "articles",
+        "blog",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/consultant/",
+      "definition": "themes/consultant/theme.json",
+      "preview": "themes/consultant/index.html"
+    },
+    {
+      "id": "writer-author",
+      "number": 7,
+      "name": "Writer & author",
+      "category": "writing",
+      "status": "preview",
+      "suits": [
+        "Authors",
+        "Essayists",
+        "Bloggers",
+        "Poets"
+      ],
+      "baseTemplate": "editorial",
+      "purpose": "writer",
+      "pages": [
+        "home",
+        "blog",
+        "articles",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/writer-author/",
+      "definition": "themes/writer-author/theme.json",
+      "preview": "themes/writer-author/index.html"
+    },
+    {
+      "id": "magazine",
+      "number": 8,
+      "name": "Magazine",
+      "category": "writing",
+      "status": "preview",
+      "suits": [
+        "Online magazines",
+        "Local news",
+        "Newsletters",
+        "Student publications"
+      ],
+      "baseTemplate": "editorial",
+      "purpose": "writer",
+      "pages": [
+        "home",
+        "articles",
+        "blog",
+        "about"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/magazine/",
+      "definition": "themes/magazine/theme.json",
+      "preview": "themes/magazine/index.html"
+    },
+    {
+      "id": "musician-band",
+      "number": 9,
+      "name": "Musician & band",
+      "category": "creative",
+      "status": "preview",
+      "suits": [
+        "Musicians",
+        "Bands",
+        "DJs",
+        "Choirs"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "creative",
+      "pages": [
+        "home",
+        "blog",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/musician-band/",
+      "definition": "themes/musician-band/theme.json",
+      "preview": "themes/musician-band/index.html"
+    },
+    {
+      "id": "fitness-studio",
+      "number": 10,
+      "name": "Fitness & studio",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Yoga studios",
+        "Pilates",
+        "Personal trainers",
+        "Dance schools",
+        "Martial arts"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "blog",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/fitness-studio/",
+      "definition": "themes/fitness-studio/theme.json",
+      "preview": "themes/fitness-studio/index.html"
+    }
+  ]
+}

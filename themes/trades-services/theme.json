@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "id": "trades-services",
+  "number": 4,
+  "name": "Trades & local services",
+  "category": "business",
+  "status": "preview",
+  "description": "High-contrast and practical: what you do, where you work, licence details and a large call-to-action for quotes.",
+  "suits": [
+    "Electricians",
+    "Plumbers",
+    "Landscapers",
+    "Builders",
+    "Cleaners"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "articles",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Services",
+    "galleries": "Our work",
+    "contact": "Get a quote"
+  },
+  "density": "compact",
+  "colours": {
+    "light": {
+      "heroShade": "#0d1520",
+      "heroText": "#edf2f7",
+      "bg": "#f4f6f8",
+      "surface": "#ffffff",
+      "text": "#0f1b2a",
+      "muted": "#4b5a6b",
+      "accent": "#b93d0a",
+      "onAccent": "#ffffff",
+      "border": "#d7dee6",
+      "art1": "#345a7a",
+      "art2": "#f2a33a"
+    },
+    "dark": {
+      "heroShade": "#0d1520",
+      "heroText": "#edf2f7",
+      "bg": "#0d1520",
+      "surface": "#152131",
+      "text": "#edf2f7",
+      "muted": "#a6b4c3",
+      "accent": "#fb923c",
+      "onAccent": "#1a0c02",
+      "border": "#26364a",
+      "art1": "#1f3b55",
+      "art2": "#8a5a17"
+    }
+  },
+  "typography": {
+    "heading": "condensed",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "uppercase",
+    "headingTracking": 0.02,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 4,
+    "buttonRadius": 4
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "banner",
+    "home": [
+      {
+        "type": "cards",
+        "page": "articles",
+        "heading": "What we do",
+        "images": false
+      },
+      {
+        "type": "facts"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "Recent jobs",
+        "style": "even",
+        "count": 6
+      },
+      {
+        "type": "cta",
+        "heading": "Need a quote?",
+        "text": "Tell us about the job and we will get back to you within one business day.",
+        "button": "Request a quote"
+      }
+    ]
+  },
+  "notes": [
+    "Check local rules before publishing licence numbers; the theme shows a field for them but does not require one."
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "id": "musician-band",
+  "number": 9,
+  "name": "Musician & band",
+  "category": "creative",
+  "status": "preview",
+  "description": "Dark and loud: a full-bleed opening image, upcoming gigs first, then photos, story and booking contact.",
+  "suits": [
+    "Musicians",
+    "Bands",
+    "DJs",
+    "Choirs"
+  ],
+  "baseTemplate": "horizon",
+  "purpose": "creative",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "blog",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "blog": "Gigs & news",
+    "galleries": "Photos",
+    "contact": "Bookings"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#1a1028",
+      "heroText": "#ffffff",
+      "bg": "#f3f0ff",
+      "surface": "#ffffff",
+      "text": "#1a1028",
+      "muted": "#5c4f70",
+      "accent": "#7c1fd1",
+      "onAccent": "#ffffff",
+      "border": "#ddd3f0",
+      "art1": "#7c1fd1",
+      "art2": "#ff4f8b"
+    },
+    "dark": {
+      "heroShade": "#0c0812",
+      "heroText": "#ffffff",
+      "bg": "#0c0812",
+      "surface": "#17101f",
+      "text": "#f4efff",
+      "muted": "#b4a6c8",
+      "accent": "#d9a6ff",
+      "onAccent": "#2a0b45",
+      "border": "#2d2140",
+      "art1": "#4b1580",
+      "art2": "#a3164c"
+    }
+  },
+  "typography": {
+    "heading": "condensed",
+    "body": "sans",
+    "headingWeight": 800,
+    "headingCase": "uppercase",
+    "headingTracking": 0.03,
+    "scale": 1.05
+  },
+  "shape": {
+    "radius": 4,
+    "buttonRadius": 999
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "minimal",
+    "hero": "full-bleed",
+    "home": [
+      {
+        "type": "list",
+        "page": "blog",
+        "heading": "Upcoming gigs"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "Live",
+        "style": "wide",
+        "count": 4
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "The band"
+      },
+      {
+        "type": "contact",
+        "page": "contact",
+        "heading": "Bookings",
+        "text": "Festivals, venues and private events."
+      }
+    ]
+  },
+  "notes": [
+    "Embedded players from music services are not included: they load content from outside SoraSpace. Link to releases instead."
+  ]
+}

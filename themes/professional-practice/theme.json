@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "id": "professional-practice",
+  "number": 5,
+  "name": "Professional practice",
+  "category": "business",
+  "status": "preview",
+  "description": "Restrained and trustworthy: serif headings, generous white space, practice areas, people and a clear way to make contact.",
+  "suits": [
+    "Law firms",
+    "Accountants",
+    "Financial and advisory practices"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "about",
+    "articles",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Insights",
+    "about": "Our firm"
+  },
+  "density": "compact",
+  "colours": {
+    "light": {
+      "heroShade": "#10151d",
+      "heroText": "#e9edf2",
+      "bg": "#ffffff",
+      "surface": "#f7f7f5",
+      "text": "#1c2433",
+      "muted": "#555f6d",
+      "accent": "#1f3a5f",
+      "onAccent": "#ffffff",
+      "border": "#e2e4e8",
+      "art1": "#2f4a6d",
+      "art2": "#b9a77c"
+    },
+    "dark": {
+      "heroShade": "#10151d",
+      "heroText": "#e9edf2",
+      "bg": "#10151d",
+      "surface": "#18202b",
+      "text": "#e9edf2",
+      "muted": "#a5afbc",
+      "accent": "#9db8de",
+      "onAccent": "#0f1824",
+      "border": "#2a3442",
+      "art1": "#22364f",
+      "art2": "#6d6142"
+    }
+  },
+  "typography": {
+    "heading": "oldstyle",
+    "body": "sans",
+    "headingWeight": 500,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 2,
+    "buttonRadius": 2
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "text",
+    "home": [
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "How we work"
+      },
+      {
+        "type": "cards",
+        "page": "articles",
+        "heading": "Recent insights",
+        "images": false
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "Our people"
+      },
+      {
+        "type": "cta",
+        "heading": "Arrange a first meeting",
+        "text": "An initial conversation is free and confidential.",
+        "button": "Contact the firm"
+      }
+    ]
+  },
+  "notes": [
+    "Insights pages are general information; tenants are responsible for any disclaimers their profession requires."
+  ]
+}

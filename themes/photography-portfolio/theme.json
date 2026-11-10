@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "id": "photography-portfolio",
+  "number": 1,
+  "name": "Photography portfolio",
+  "category": "creative",
+  "status": "preview",
+  "description": "A dark, image-first portfolio. Full-bleed opening photograph, a masonry gallery and very little text, so the work carries the page.",
+  "suits": [
+    "Photographers",
+    "Photo collectives"
+  ],
+  "baseTemplate": "horizon",
+  "purpose": "creative",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "galleries": "Portfolio"
+  },
+  "density": "compact",
+  "colours": {
+    "light": {
+      "heroShade": "#0b0b0c",
+      "heroText": "#f2f2f2",
+      "bg": "#fafafa",
+      "surface": "#ffffff",
+      "text": "#111111",
+      "muted": "#5c5c5c",
+      "accent": "#111111",
+      "onAccent": "#ffffff",
+      "border": "#e3e3e3",
+      "art1": "#3a3f47",
+      "art2": "#a89f91"
+    },
+    "dark": {
+      "heroShade": "#000000",
+      "heroText": "#f2f2f2",
+      "bg": "#0b0b0c",
+      "surface": "#151517",
+      "text": "#f2f2f2",
+      "muted": "#a3a3a3",
+      "accent": "#f2f2f2",
+      "onAccent": "#0b0b0c",
+      "border": "#262628",
+      "art1": "#23262b",
+      "art2": "#6d6559"
+    }
+  },
+  "typography": {
+    "heading": "sans",
+    "body": "sans",
+    "headingWeight": 300,
+    "headingCase": "uppercase",
+    "headingTracking": 0.16,
+    "scale": 0.95
+  },
+  "shape": {
+    "radius": 0,
+    "buttonRadius": 0
+  },
+  "layout": {
+    "maxWidth": 1400,
+    "header": "minimal",
+    "hero": "full-bleed",
+    "home": [
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "Selected work",
+        "style": "masonry",
+        "count": 9
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "About"
+      },
+      {
+        "type": "contact",
+        "page": "contact",
+        "heading": "Commissions & prints",
+        "text": "Available for editorial, landscape and portrait commissions."
+      }
+    ]
+  },
+  "notes": []
+}

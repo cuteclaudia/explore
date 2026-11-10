@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "artist-studio",
+  "number": 2,
+  "name": "Artist studio",
+  "category": "creative",
+  "status": "preview",
+  "description": "Warm paper tones and a loose grid for painters, illustrators and makers of physical work, with a studio journal beside the gallery.",
+  "suits": [
+    "Illustrators",
+    "Painters",
+    "Ceramicists",
+    "Textile artists"
+  ],
+  "baseTemplate": "horizon",
+  "purpose": "creative",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "galleries",
+    "journal",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "galleries": "Work",
+    "journal": "Studio notes"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#1f1a16",
+      "heroText": "#f3e9dc",
+      "bg": "#f6f0e6",
+      "surface": "#fffaf2",
+      "text": "#2e2620",
+      "muted": "#6a5d52",
+      "accent": "#a8412a",
+      "onAccent": "#ffffff",
+      "border": "#e3d6c4",
+      "art1": "#d98b5f",
+      "art2": "#6c8a8f"
+    },
+    "dark": {
+      "heroShade": "#1f1a16",
+      "heroText": "#f3e9dc",
+      "bg": "#1f1a16",
+      "surface": "#2a231e",
+      "text": "#f3e9dc",
+      "muted": "#bfae9c",
+      "accent": "#f0956f",
+      "onAccent": "#22140d",
+      "border": "#3d332b",
+      "art1": "#7a3e26",
+      "art2": "#35565b"
+    }
+  },
+  "typography": {
+    "heading": "oldstyle",
+    "body": "humanist",
+    "headingWeight": 500,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 4,
+    "buttonRadius": 4
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "centered",
+    "hero": "split",
+    "home": [
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "Recent work",
+        "style": "masonry",
+        "count": 6
+      },
+      {
+        "type": "cards",
+        "page": "journal",
+        "heading": "From the studio",
+        "columns": 2,
+        "count": 2
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "About the artist"
+      },
+      {
+        "type": "contact",
+        "page": "contact",
+        "heading": "Commissions & stockists"
+      }
+    ]
+  },
+  "notes": []
+}

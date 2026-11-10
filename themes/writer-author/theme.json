@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "id": "writer-author",
+  "number": 7,
+  "name": "Writer & author",
+  "category": "writing",
+  "status": "preview",
+  "description": "A book-like reading column with old-style type, a featured piece and a quiet list of recent writing.",
+  "suits": [
+    "Authors",
+    "Essayists",
+    "Bloggers",
+    "Poets"
+  ],
+  "baseTemplate": "editorial",
+  "purpose": "writer",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "blog",
+    "articles",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Essays",
+    "blog": "Notes"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#161513",
+      "heroText": "#ebe6dc",
+      "bg": "#fdfcf8",
+      "surface": "#f6f3ea",
+      "text": "#222222",
+      "muted": "#5e5a52",
+      "accent": "#8a2c2c",
+      "onAccent": "#ffffff",
+      "border": "#e7e3d8",
+      "art1": "#8a7f6a",
+      "art2": "#d9cfb8"
+    },
+    "dark": {
+      "heroShade": "#161513",
+      "heroText": "#ebe6dc",
+      "bg": "#161513",
+      "surface": "#1e1c19",
+      "text": "#ebe6dc",
+      "muted": "#aca596",
+      "accent": "#e89a8a",
+      "onAccent": "#2a0d0a",
+      "border": "#33302a",
+      "art1": "#4a4338",
+      "art2": "#7c6f59"
+    }
+  },
+  "typography": {
+    "heading": "oldstyle",
+    "body": "oldstyle",
+    "headingWeight": 400,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1.05
+  },
+  "shape": {
+    "radius": 0,
+    "buttonRadius": 2
+  },
+  "layout": {
+    "maxWidth": 820,
+    "header": "centered",
+    "hero": "text",
+    "home": [
+      {
+        "type": "feature",
+        "page": "blog",
+        "heading": "Latest"
+      },
+      {
+        "type": "list",
+        "page": "articles",
+        "heading": "Recent essays"
+      },
+      {
+        "type": "cta",
+        "heading": "Keep reading",
+        "text": "New essays arrive once or twice a month.",
+        "button": "Get in touch"
+      }
+    ]
+  },
+  "notes": []
+}

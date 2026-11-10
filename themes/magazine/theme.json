@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "id": "magazine",
+  "number": 8,
+  "name": "Magazine",
+  "category": "writing",
+  "status": "preview",
+  "description": "A multi-column front page with a bold lead story, category labels and a news list, for newsletters and online magazines.",
+  "suits": [
+    "Online magazines",
+    "Local news",
+    "Newsletters",
+    "Student publications"
+  ],
+  "baseTemplate": "editorial",
+  "purpose": "writer",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "articles",
+    "blog",
+    "about"
+  ],
+  "pageLabels": {
+    "articles": "Stories",
+    "blog": "News"
+  },
+  "density": "compact",
+  "colours": {
+    "light": {
+      "heroShade": "#121212",
+      "heroText": "#f1f1f1",
+      "bg": "#ffffff",
+      "surface": "#f5f5f2",
+      "text": "#111111",
+      "muted": "#555555",
+      "accent": "#c8102e",
+      "onAccent": "#ffffff",
+      "border": "#dddddd",
+      "art1": "#444444",
+      "art2": "#b5a58a"
+    },
+    "dark": {
+      "heroShade": "#121212",
+      "heroText": "#f1f1f1",
+      "bg": "#121212",
+      "surface": "#1c1c1c",
+      "text": "#f1f1f1",
+      "muted": "#aaaaaa",
+      "accent": "#ff6b7d",
+      "onAccent": "#2a0006",
+      "border": "#333333",
+      "art1": "#333333",
+      "art2": "#6b5f4d"
+    }
+  },
+  "typography": {
+    "heading": "didone",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 0,
+    "buttonRadius": 0
+  },
+  "layout": {
+    "maxWidth": 1280,
+    "header": "centered",
+    "hero": "statement",
+    "home": [
+      {
+        "type": "feature",
+        "page": "articles",
+        "heading": "Cover story"
+      },
+      {
+        "type": "cards",
+        "page": "articles",
+        "heading": "This issue",
+        "columns": 4,
+        "count": 4
+      },
+      {
+        "type": "list",
+        "page": "blog",
+        "heading": "In brief"
+      }
+    ]
+  },
+  "notes": []
+}

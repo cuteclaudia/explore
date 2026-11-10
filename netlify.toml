@@ -1,6 +1,8 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  # Skip the deploy when a commit changes only themes/ (SoraSpace tenant site themes; not part of this site).
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- . ':(exclude)themes'"
 
 [build.environment]
   NODE_VERSION = "24"

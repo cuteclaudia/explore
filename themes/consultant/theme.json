@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "id": "consultant",
+  "number": 6,
+  "name": "Consultant",
+  "category": "business",
+  "status": "preview",
+  "description": "A clean personal-brand site: who you are, what you help with, selected work and writing, with one confident accent colour.",
+  "suits": [
+    "Independent consultants",
+    "Coaches",
+    "Freelancers",
+    "Speakers"
+  ],
+  "baseTemplate": "folio",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "about",
+    "articles",
+    "blog",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Work",
+    "blog": "Writing"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#0f0f14",
+      "heroText": "#ededf3",
+      "bg": "#fbfbfd",
+      "surface": "#ffffff",
+      "text": "#17171c",
+      "muted": "#5b5b66",
+      "accent": "#4f46e5",
+      "onAccent": "#ffffff",
+      "border": "#e6e6ee",
+      "art1": "#4f46e5",
+      "art2": "#22d3ee"
+    },
+    "dark": {
+      "heroShade": "#0f0f14",
+      "heroText": "#ededf3",
+      "bg": "#0f0f14",
+      "surface": "#17171f",
+      "text": "#ededf3",
+      "muted": "#a1a1b0",
+      "accent": "#a5b4fc",
+      "onAccent": "#14143a",
+      "border": "#2a2a36",
+      "art1": "#312e81",
+      "art2": "#155e75"
+    }
+  },
+  "typography": {
+    "heading": "geometric",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": -0.01,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 12,
+    "buttonRadius": 999
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "What I help with"
+      },
+      {
+        "type": "cards",
+        "page": "articles",
+        "heading": "Selected work"
+      },
+      {
+        "type": "feature",
+        "page": "blog",
+        "heading": "Latest writing"
+      },
+      {
+        "type": "cta",
+        "heading": "Let’s talk about your project",
+        "button": "Book a call"
+      }
+    ]
+  },
+  "notes": []
+}

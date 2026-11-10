@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Musician &amp; band · SoraSpace site theme preview</title>
+<style>:root{--bg:#f3f0ff;--surface:#ffffff;--text:#1a1028;--muted:#5c4f70;--accent:#7c1fd1;--onAccent:#ffffff;--border:#ddd3f0;--art1:#7c1fd1;--art2:#ff4f8b;--heroShade:#1a1028;--heroText:#ffffff;--radius:4px;--btn-radius:999px;--max:1180px;--scale:1.05;--gap:32px;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{--bg:#0c0812;--surface:#17101f;--text:#f4efff;--muted:#b4a6c8;--accent:#d9a6ff;--onAccent:#2a0b45;--border:#2d2140;--art1:#4b1580;--art2:#a3164c;--heroShade:#0c0812;--heroText:#ffffff}}
+:root:has(#mode-light:checked){--bg:#f3f0ff;--surface:#ffffff;--text:#1a1028;--muted:#5c4f70;--accent:#7c1fd1;--onAccent:#ffffff;--border:#ddd3f0;--art1:#7c1fd1;--art2:#ff4f8b;--heroShade:#1a1028;--heroText:#ffffff;color-scheme:light}
+:root:has(#mode-dark:checked){--bg:#0c0812;--surface:#17101f;--text:#f4efff;--muted:#b4a6c8;--accent:#d9a6ff;--onAccent:#2a0b45;--border:#2d2140;--art1:#4b1580;--art2:#a3164c;--heroShade:#0c0812;--heroText:#ffffff;color-scheme:dark}
+@media (forced-colors:active){:root{--bg:Canvas;--surface:Canvas;--text:CanvasText;--muted:CanvasText;--accent:LinkText;--onAccent:Canvas;--border:CanvasText}}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:var(--bg);color:var(--text);font:calc(17px*var(--scale))/1.6 system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif}
+h1,h2,h3,.logo{font-family:'Bahnschrift', 'Arial Narrow', 'Roboto Condensed', 'DejaVu Sans Condensed', 'Liberation Sans Narrow', sans-serif-condensed, sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:0.03em;line-height:1.12;margin:.2em 0 .4em}
+h1{font-size:clamp(38px,5.6vw,76px)}h2{font-size:clamp(28px,3.4vw,42px)}h3{font-size:23px}
+p{max-width:68ch}.wrap{max-width:var(--max);margin:auto;padding:calc(var(--gap)*1.6) 5%}
+.eyebrow,.meta{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.button{display:inline-block;background:var(--accent);color:var(--onAccent);padding:11px 22px;border-radius:var(--btn-radius);font-weight:600}.button.ghost{background:transparent;color:inherit;border:1.5px solid currentColor}
+.more{color:var(--accent);font-weight:600}
+.preview-bar{position:sticky;top:0;z-index:5;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px;font:13px/1.4 system-ui,sans-serif;background:#1d1d1f;color:#f5f5f7}.preview-bar label{display:inline-flex;gap:5px;align-items:center}
+.site-header{border-bottom:1px solid var(--border);background:var(--surface)}.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:18px;padding-bottom:18px;flex-wrap:wrap}.logo{font-size:22px;margin:0}nav{display:flex;gap:22px;flex-wrap:wrap;font-size:15px}
+.site-header.centered .wrap{flex-direction:column}.site-header.minimal{background:transparent;border:0}.site-header.bar{background:var(--accent);color:var(--onAccent);border:0}
+.art{--a:var(--art1);--b:var(--art2);background:radial-gradient(circle at calc(20% + var(--n)*13%) 30%,color-mix(in srgb,var(--b) 70%,transparent),transparent 55%),linear-gradient(calc(120deg + var(--n)*40deg),var(--a),var(--b));border-radius:var(--radius);min-height:200px}
+.art.tall{min-height:380px}.art.tile{min-height:0;aspect-ratio:1}.art.face{width:96px;height:96px;min-height:0;border-radius:50%}
+.hero.full-bleed{position:relative;min-height:560px;display:flex;align-items:center}.hero.full-bleed .art{position:absolute;inset:0;border-radius:0}.hero.full-bleed .hero-copy{position:relative;margin-left:5%;max-width:620px;padding:36px;background:var(--heroShade);color:var(--heroText);border-radius:var(--radius)}.hero.full-bleed .eyebrow{color:inherit;opacity:.9}
+.hero.split{display:grid;grid-template-columns:1.1fr 1fr;gap:calc(var(--gap)*1.5);align-items:center}
+.hero.banner{background:var(--accent);color:var(--onAccent)}.hero.banner .eyebrow{color:inherit}.hero.banner .button{background:var(--onAccent);color:var(--accent)}
+.hero.statement h1{font-size:clamp(46px,8vw,116px);border-bottom:6px solid var(--accent);padding-bottom:.2em}
+.hero.text{text-align:center}.hero.text p{margin-inline:auto}
+.actions{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}.hero.text .actions{justify-content:center}
+.sec-head{margin-bottom:22px}.lead{font-size:1.25em}
+.cards{display:grid;gap:var(--gap)}.cols-2{grid-template-columns:repeat(2,1fr)}.cols-3{grid-template-columns:repeat(3,1fr)}.cols-4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}.card .art{border-radius:0}.card .body{padding:22px}
+.list{list-style:none;margin:0;padding:0;border-top:1px solid var(--border)}.list li{display:flex;justify-content:space-between;gap:24px;padding:18px 0;border-bottom:1px solid var(--border)}.list h3{margin:0 0 4px}.list p{margin:0;color:var(--muted)}
+.feature{display:grid;grid-template-columns:1.3fr 1fr;gap:var(--gap);align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:var(--gap)}
+.gallery{display:grid;gap:10px;grid-template-columns:repeat(3,1fr)}.gallery.wide{grid-template-columns:repeat(2,1fr)}.gallery.wide .tile{aspect-ratio:16/9}.gallery.masonry .tile:nth-child(3n+1){grid-row:span 2;aspect-ratio:auto}.gallery.strip{grid-template-columns:repeat(6,1fr)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--gap);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:var(--gap)}.facts strong{display:block;font-size:18px;margin-top:4px}
+.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:var(--gap)}.person{display:flex;flex-direction:column;gap:6px}
+.cta{background:var(--accent);color:var(--onAccent);border-radius:var(--radius);padding:calc(var(--gap)*1.5);text-align:center}.cta p{margin-inline:auto}.cta .button{background:var(--onAccent);color:var(--accent)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}.mock-form{display:grid;gap:12px}.mock-form span:not(.button){display:block;padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--muted)}.mock-form .area{min-height:110px}.mock-form .button{justify-self:start}
+footer{border-top:1px solid var(--border);color:var(--muted);font-size:14px}footer .wrap{padding-top:28px;padding-bottom:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media (max-width:760px){.hero.split,.feature,.contact-grid,.cols-2,.cols-3,.cols-4{grid-template-columns:1fr}.gallery,.gallery.strip{grid-template-columns:repeat(2,1fr)}.list li{flex-direction:column;gap:6px}.hero.full-bleed .hero-copy{margin:0 5%}}</style>
+</head>
+<body>
+<div class="preview-bar" role="region" aria-label="Theme preview controls"><strong>Musician &amp; band</strong><span>Appearance:</span><label><input type="radio" name="mode" id="mode-system" checked> System</label><label><input type="radio" name="mode" id="mode-light"> Light</label><label><input type="radio" name="mode" id="mode-dark"> Dark</label><span>· Sample content only</span></div>
+<header class="site-header minimal"><div class="wrap"><strong class="logo">The Night Ferries</strong><nav aria-label="Site pages"><span>Home</span><span>Gigs &amp; news</span><span>Photos</span><span>About</span><span>Bookings</span></nav></div></header><main><section class="hero full-bleed"><div class="art bleed" style="--n:0" aria-hidden="true"></div><div class="hero-copy"><span class="eyebrow">New album out now</span><h1>Louder by the water</h1><p>Four-piece indie rock from the south coast.</p><div class="actions"><span class="button">See gig dates</span> <span class="button ghost">Listen</span></div></div></section><section class="wrap"><div class="sec-head"><span class="eyebrow">Gigs &amp; news</span><h2>Upcoming gigs</h2></div><ul class="list"><li><div><h3>The Harbour Hotel</h3><p>With special guests · Doors 8 pm</p></div><span class="meta">Sat 14 Dec</span></li><li><div><h3>Riverside Festival</h3><p>Main stage</p></div><span class="meta">Sun 5 Jan</span></li><li><div><h3>The Old Theatre</h3><p>Album launch · All ages</p></div><span class="meta">Fri 24 Jan</span></li></ul></section><section class="wrap"><div class="sec-head"><span class="eyebrow">Photos</span><h2>Live</h2></div><div class="gallery wide"><div class="art tile" style="--n:0" aria-hidden="true"></div><div class="art tile" style="--n:1" aria-hidden="true"></div><div class="art tile" style="--n:2" aria-hidden="true"></div><div class="art tile" style="--n:3" aria-hidden="true"></div></div></section><section class="wrap intro"><div class="sec-head"><span class="eyebrow">About</span><h2>The band</h2></div><p class="lead">Four friends, two vans and a lot of reverb. Playing pubs and festivals since 2019.</p></section><section class="wrap contact"><div class="sec-head"><span class="eyebrow">Bookings</span><h2>Bookings</h2></div><div class="contact-grid"><div><p>Festivals, venues and private events.</p></div><div class="mock-form" aria-label="Contact form preview"><span>Name</span><span>Email</span><span class="area">Message</span><span class="button">Send message</span></div></div></section></main><footer><div class="wrap"><span>© The Night Ferries</span><span>Sample content · Theme: Musician &amp; band</span></div></footer>
+</body>
+</html>

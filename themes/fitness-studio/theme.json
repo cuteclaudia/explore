@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "fitness-studio",
+  "number": 10,
+  "name": "Fitness & studio",
+  "category": "business",
+  "status": "preview",
+  "description": "Light, energetic and rounded: class types, the weekly timetable, the space and an easy first-class offer.",
+  "suits": [
+    "Yoga studios",
+    "Pilates",
+    "Personal trainers",
+    "Dance schools",
+    "Martial arts"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "blog",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "blog": "Timetable",
+    "galleries": "The studio"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#0b1a16",
+      "heroText": "#e8f6f0",
+      "bg": "#f5fbf8",
+      "surface": "#ffffff",
+      "text": "#0f2a22",
+      "muted": "#4a6359",
+      "accent": "#0f766e",
+      "onAccent": "#ffffff",
+      "border": "#d4e8e0",
+      "art1": "#34d399",
+      "art2": "#fbbf24"
+    },
+    "dark": {
+      "heroShade": "#0b1a16",
+      "heroText": "#e8f6f0",
+      "bg": "#0b1a16",
+      "surface": "#12251f",
+      "text": "#e8f6f0",
+      "muted": "#9cbdb1",
+      "accent": "#5eead4",
+      "onAccent": "#042f2a",
+      "border": "#23403a",
+      "art1": "#065f46",
+      "art2": "#92400e"
+    }
+  },
+  "typography": {
+    "heading": "rounded",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 18,
+    "buttonRadius": 999
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "facts"
+      },
+      {
+        "type": "list",
+        "page": "blog",
+        "heading": "This week"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "style": "even",
+        "count": 3
+      },
+      {
+        "type": "cta",
+        "heading": "Your first class is on us",
+        "text": "Bring water and comfortable clothes. Mats provided.",
+        "button": "Book a free class"
+      }
+    ]
+  },
+  "notes": [
+    "The timetable is a Blog post updated each week. Online class booking is not part of the theme.",
+    "Avoid health claims in sample or tenant copy."
+  ]
+}

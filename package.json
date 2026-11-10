@@ -15,7 +15,9 @@
     "dev:content": "node scripts/dev-content.mjs",
     "test:deploy": "node scripts/check-netlify-build.mjs",
     "postbuild": "npm run test:deploy",
-    "test:soraspace-tenants": "node scripts/check-soraspace-tenants.mjs"
+    "test:soraspace-tenants": "node scripts/check-soraspace-tenants.mjs",
+    "build:themes": "node themes/_tools/build-themes.mjs",
+    "test:themes": "node --test themes/_tools/themes.test.mjs"
   },
   "dependencies": {
     "@astrojs/markdoc": "^2.1.1",

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "restaurant-cafe",
+  "number": 3,
+  "name": "Restaurant & café",
+  "category": "business",
+  "status": "preview",
+  "description": "Opening hours, location and bookings first, then the menu and the food. Bold slab headings and warm colours.",
+  "suits": [
+    "Cafés",
+    "Restaurants",
+    "Food vans",
+    "Bakeries"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "articles",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Menu",
+    "galleries": "Gallery",
+    "contact": "Bookings"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#2b1d14",
+      "heroText": "#fff8f0",
+      "bg": "#fbf7f1",
+      "surface": "#ffffff",
+      "text": "#2b1d14",
+      "muted": "#6b5647",
+      "accent": "#9c2f1d",
+      "onAccent": "#ffffff",
+      "border": "#eadfd2",
+      "art1": "#c86b3c",
+      "art2": "#e9c46a"
+    },
+    "dark": {
+      "heroShade": "#120b07",
+      "heroText": "#fff8f0",
+      "bg": "#1a120d",
+      "surface": "#251a13",
+      "text": "#f6ece2",
+      "muted": "#c4ae9a",
+      "accent": "#f08a63",
+      "onAccent": "#1a0d07",
+      "border": "#3a2b20",
+      "art1": "#6e2f17",
+      "art2": "#8a6a22"
+    }
+  },
+  "typography": {
+    "heading": "slab",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 6,
+    "buttonRadius": 6
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "bar",
+    "hero": "full-bleed",
+    "home": [
+      {
+        "type": "facts"
+      },
+      {
+        "type": "list",
+        "page": "articles",
+        "heading": "From the kitchen"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "style": "strip",
+        "count": 6
+      },
+      {
+        "type": "contact",
+        "page": "contact",
+        "heading": "Book a table",
+        "text": "Bookings for groups of six or more. Walk-ins are always welcome."
+      }
+    ]
+  },
+  "notes": [
+    "The menu is an Articles page (one article per section, or one long article). A structured menu page type would be a future addition."
+  ]
+}
