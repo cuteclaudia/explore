@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "id": "tutor-course",
+  "number": 16,
+  "name": "Tutor & course",
+  "category": "education",
+  "status": "preview",
+  "description": "Structured and easy to scan: subjects and levels, lesson outlines, the tutor’s background and how to enrol.",
+  "suits": [
+    "Tutors",
+    "Music teachers",
+    "Coaches",
+    "Short courses",
+    "Language classes"
+  ],
+  "baseTemplate": "folio",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "about",
+    "articles",
+    "blog",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Lessons",
+    "blog": "Resources",
+    "contact": "Enrol"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#0f1426",
+      "heroText": "#e9edfa",
+      "bg": "#f7f9fc",
+      "surface": "#ffffff",
+      "text": "#1b2540",
+      "muted": "#525d78",
+      "accent": "#3446a8",
+      "onAccent": "#ffffff",
+      "border": "#dfe5f0",
+      "art1": "#6c8cff",
+      "art2": "#ffd166"
+    },
+    "dark": {
+      "heroShade": "#0f1426",
+      "heroText": "#e9edfa",
+      "bg": "#0f1426",
+      "surface": "#171e36",
+      "text": "#e9edfa",
+      "muted": "#a5aecb",
+      "accent": "#a9b8ff",
+      "onAccent": "#141c4a",
+      "border": "#283157",
+      "art1": "#2c3c99",
+      "art2": "#8a6a1a"
+    }
+  },
+  "typography": {
+    "heading": "humanist",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 10,
+    "buttonRadius": 10
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "facts"
+      },
+      {
+        "type": "list",
+        "page": "articles",
+        "heading": "Lessons & courses"
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "About me"
+      },
+      {
+        "type": "cta",
+        "heading": "Book a first lesson",
+        "text": "A relaxed half-hour to talk about goals and try a lesson.",
+        "button": "Enrol"
+      }
+    ]
+  },
+  "notes": [
+    "If tutoring children, tenants should not publish students’ names or photos without consent."
+  ]
+}

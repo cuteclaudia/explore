@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "id": "product-launch",
+  "number": 15,
+  "name": "Product launch",
+  "category": "business",
+  "status": "preview",
+  "description": "Modern and bold: a big headline, feature blocks, product updates and a sign-up call to action for apps and startups.",
+  "suits": [
+    "Startups",
+    "Apps",
+    "Software products",
+    "Side projects"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "about",
+    "blog",
+    "contact"
+  ],
+  "pageLabels": {
+    "about": "Features",
+    "blog": "Updates",
+    "contact": "Get early access"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#070a14",
+      "heroText": "#eef1fb",
+      "bg": "#ffffff",
+      "surface": "#f6f7fb",
+      "text": "#0b1020",
+      "muted": "#535a6e",
+      "accent": "#2563eb",
+      "onAccent": "#ffffff",
+      "border": "#e4e7f0",
+      "art1": "#2563eb",
+      "art2": "#a855f7"
+    },
+    "dark": {
+      "heroShade": "#070a14",
+      "heroText": "#eef1fb",
+      "bg": "#070a14",
+      "surface": "#10152a",
+      "text": "#eef1fb",
+      "muted": "#a3abc4",
+      "accent": "#8ab4ff",
+      "onAccent": "#061433",
+      "border": "#232a44",
+      "art1": "#1e3a8a",
+      "art2": "#6b21a8"
+    }
+  },
+  "typography": {
+    "heading": "geometric",
+    "body": "sans",
+    "headingWeight": 800,
+    "headingCase": "none",
+    "headingTracking": -0.02,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 16,
+    "buttonRadius": 10
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "statement",
+    "home": [
+      {
+        "type": "cards",
+        "page": "about",
+        "heading": "Why teams use it",
+        "images": false
+      },
+      {
+        "type": "feature",
+        "page": "blog",
+        "heading": "Latest update"
+      },
+      {
+        "type": "cta",
+        "heading": "Be first to try it",
+        "text": "Join the early access list. No spam, one email when we launch.",
+        "button": "Get early access"
+      }
+    ]
+  },
+  "notes": [
+    "The early-access form is the standard Contact page. Mailing-list services are not embedded."
+  ]
+}

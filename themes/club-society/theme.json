@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "club-society",
+  "number": 20,
+  "name": "Club & society",
+  "category": "organisation",
+  "status": "preview",
+  "description": "Lively and proud, in club colours: fixtures and news first, training times, photos and how to join.",
+  "suits": [
+    "Sports clubs",
+    "Golf and bowls clubs",
+    "Hobby clubs",
+    "Societies"
+  ],
+  "baseTemplate": "canvas",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "blog",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "blog": "News & fixtures",
+    "galleries": "Photos",
+    "contact": "Join"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#0d1510",
+      "heroText": "#e7f1ea",
+      "bg": "#f5f7f4",
+      "surface": "#ffffff",
+      "text": "#14231a",
+      "muted": "#4c5f52",
+      "accent": "#1b6b3a",
+      "onAccent": "#ffffff",
+      "border": "#d9e3db",
+      "art1": "#1b6b3a",
+      "art2": "#f2c14e"
+    },
+    "dark": {
+      "heroShade": "#0d1510",
+      "heroText": "#e7f1ea",
+      "bg": "#0d1510",
+      "surface": "#15211a",
+      "text": "#e7f1ea",
+      "muted": "#9fb8a8",
+      "accent": "#7fd39b",
+      "onAccent": "#07301a",
+      "border": "#253a2c",
+      "art1": "#145530",
+      "art2": "#8a6a12"
+    }
+  },
+  "typography": {
+    "heading": "condensed",
+    "body": "sans",
+    "headingWeight": 800,
+    "headingCase": "uppercase",
+    "headingTracking": 0.02,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 8,
+    "buttonRadius": 8
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "bar",
+    "hero": "banner",
+    "home": [
+      {
+        "type": "facts"
+      },
+      {
+        "type": "list",
+        "page": "blog",
+        "heading": "Coming up"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "Match day",
+        "style": "even",
+        "count": 6
+      },
+      {
+        "type": "cta",
+        "heading": "Join the club",
+        "text": "New players, volunteers and supporters are always welcome.",
+        "button": "Become a member"
+      }
+    ]
+  },
+  "notes": [
+    "Junior clubs should get consent before publishing photos or names of children."
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "id": "maker-shop",
+  "number": 14,
+  "name": "Maker & small shop",
+  "category": "business",
+  "status": "preview",
+  "description": "A calm product grid on a neutral background, with the maker’s story and a simple way to order or enquire.",
+  "suits": [
+    "Handmade sellers",
+    "Small-batch producers",
+    "Market stallholders"
+  ],
+  "baseTemplate": "horizon",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "galleries",
+    "blog",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "galleries": "Shop",
+    "blog": "Journal",
+    "contact": "Order"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#141413",
+      "heroText": "#efefe9",
+      "bg": "#fafaf7",
+      "surface": "#ffffff",
+      "text": "#1f1f1c",
+      "muted": "#5e5e57",
+      "accent": "#2f5d50",
+      "onAccent": "#ffffff",
+      "border": "#e6e6df",
+      "art1": "#d8cbb5",
+      "art2": "#9fb7a6"
+    },
+    "dark": {
+      "heroShade": "#141413",
+      "heroText": "#efefe9",
+      "bg": "#141413",
+      "surface": "#1d1d1b",
+      "text": "#efefe9",
+      "muted": "#a9a99f",
+      "accent": "#9ccbb9",
+      "onAccent": "#0f2a22",
+      "border": "#2f2f2b",
+      "art1": "#5a4f3c",
+      "art2": "#3c5a4c"
+    }
+  },
+  "typography": {
+    "heading": "geometric",
+    "body": "sans",
+    "headingWeight": 500,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 4,
+    "buttonRadius": 4
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "centered",
+    "hero": "split",
+    "home": [
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "New in the shop",
+        "style": "even",
+        "count": 6
+      },
+      {
+        "type": "feature",
+        "page": "blog",
+        "heading": "From the workshop"
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "About the maker"
+      },
+      {
+        "type": "contact",
+        "page": "contact",
+        "heading": "Orders & enquiries",
+        "text": "Tell us which pieces you would like and we will confirm availability, price and postage."
+      }
+    ]
+  },
+  "notes": [
+    "There is no checkout or payment in the theme. Orders are enquiries through Contact until SoraSpace offers a shop feature."
+  ]
+}

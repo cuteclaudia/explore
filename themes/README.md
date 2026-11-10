@@ -82,16 +82,16 @@ Status: **built** = folder exists in this repo; **planned** = agreed, not yet bu
 | 8 | Magazine | `magazine` | built |
 | 9 | Musician & band | `musician-band` | built |
 | 10 | Fitness & studio | `fitness-studio` | built |
-| 11 | Wellness clinic | `wellness-clinic` | planned |
-| 12 | Stay (B&B and holiday rentals) | `stay` | planned |
-| 13 | Community group | `community-group` | planned |
-| 14 | Maker & small shop | `maker-shop` | planned |
-| 15 | Product launch | `product-launch` | planned |
-| 16 | Tutor & course | `tutor-course` | planned |
-| 17 | Student & graduate | `student-graduate` | planned |
-| 18 | Team & workgroup | `team-workgroup` | planned |
-| 19 | Research group | `research-group` | planned |
-| 20 | Club & society | `club-society` | planned |
+| 11 | Wellness clinic | `wellness-clinic` | built |
+| 12 | Stay (B&B and holiday rentals) | `stay` | built |
+| 13 | Community group | `community-group` | built |
+| 14 | Maker & small shop | `maker-shop` | built |
+| 15 | Product launch | `product-launch` | built |
+| 16 | Tutor & course | `tutor-course` | built |
+| 17 | Student & graduate | `student-graduate` | built |
+| 18 | Team & workgroup | `team-workgroup` | built |
+| 19 | Research group | `research-group` | built |
+| 20 | Club & society | `club-society` | built |
 | 21 | Podcast | `podcast` | planned |
 | 22 | Wedding & events | `wedding-events` | planned |
 | 23 | Filmmaker | `filmmaker` | planned |

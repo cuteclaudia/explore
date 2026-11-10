@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "team-workgroup",
+  "number": 18,
+  "name": "Team & workgroup",
+  "category": "organisation",
+  "status": "preview",
+  "description": "Organised and practical for project teams: members, regular updates, current projects and a contact point.",
+  "suits": [
+    "Project teams",
+    "Working groups",
+    "Committees",
+    "Volunteer teams"
+  ],
+  "baseTemplate": "folio",
+  "purpose": "business",
+  "recommendedVisibility": "private",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "about",
+    "blog",
+    "articles",
+    "contact"
+  ],
+  "pageLabels": {
+    "about": "Team",
+    "blog": "Updates",
+    "articles": "Projects"
+  },
+  "density": "compact",
+  "colours": {
+    "light": {
+      "heroShade": "#0f131b",
+      "heroText": "#e8ecf3",
+      "bg": "#f6f7f9",
+      "surface": "#ffffff",
+      "text": "#1c2230",
+      "muted": "#535c6e",
+      "accent": "#2f5fb3",
+      "onAccent": "#ffffff",
+      "border": "#e1e5ec",
+      "art1": "#2f5fb3",
+      "art2": "#6cc5a3"
+    },
+    "dark": {
+      "heroShade": "#0f131b",
+      "heroText": "#e8ecf3",
+      "bg": "#0f131b",
+      "surface": "#171c27",
+      "text": "#e8ecf3",
+      "muted": "#a1abbd",
+      "accent": "#8fb2f0",
+      "onAccent": "#0d1d3b",
+      "border": "#283041",
+      "art1": "#213f78",
+      "art2": "#2c6b55"
+    }
+  },
+  "typography": {
+    "heading": "sans",
+    "body": "sans",
+    "headingWeight": 600,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 10,
+    "buttonRadius": 8
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "bar",
+    "hero": "text",
+    "home": [
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "The team"
+      },
+      {
+        "type": "cards",
+        "page": "blog",
+        "heading": "Recent updates",
+        "images": false
+      },
+      {
+        "type": "list",
+        "page": "articles",
+        "heading": "Current projects"
+      },
+      {
+        "type": "contact",
+        "page": "contact",
+        "heading": "Contact the team"
+      }
+    ]
+  },
+  "notes": [
+    "Recommended private by default, so only workspace members see it. Switch to public for an outward-facing team page."
+  ]
+}

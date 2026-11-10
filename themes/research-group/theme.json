@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "id": "research-group",
+  "number": 19,
+  "name": "Research group",
+  "category": "education",
+  "status": "preview",
+  "description": "Academic and tidy: research themes, people, a citation-style publications list and group news.",
+  "suits": [
+    "Research labs",
+    "Research centres",
+    "PhD groups",
+    "Academic projects"
+  ],
+  "baseTemplate": "folio",
+  "purpose": "academic",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "about",
+    "articles",
+    "blog",
+    "contact"
+  ],
+  "pageLabels": {
+    "about": "People",
+    "articles": "Publications",
+    "blog": "News"
+  },
+  "density": "compact",
+  "colours": {
+    "light": {
+      "heroShade": "#131313",
+      "heroText": "#ececea",
+      "bg": "#fcfcfb",
+      "surface": "#f4f4f1",
+      "text": "#1e1e1e",
+      "muted": "#575757",
+      "accent": "#7a1f2b",
+      "onAccent": "#ffffff",
+      "border": "#e2e2dc",
+      "art1": "#7a1f2b",
+      "art2": "#c4b49a"
+    },
+    "dark": {
+      "heroShade": "#131313",
+      "heroText": "#ececea",
+      "bg": "#131313",
+      "surface": "#1c1c1b",
+      "text": "#ececea",
+      "muted": "#a8a8a4",
+      "accent": "#e79aa4",
+      "onAccent": "#3a0b12",
+      "border": "#30302d",
+      "art1": "#4f141c",
+      "art2": "#6b604c"
+    }
+  },
+  "typography": {
+    "heading": "serif",
+    "body": "sans",
+    "headingWeight": 600,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 4,
+    "buttonRadius": 4
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "text",
+    "home": [
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "Our research"
+      },
+      {
+        "type": "list",
+        "page": "articles",
+        "heading": "Selected publications"
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "People"
+      },
+      {
+        "type": "cards",
+        "page": "blog",
+        "heading": "News",
+        "images": false
+      }
+    ]
+  },
+  "notes": []
+}

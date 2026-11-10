@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "stay",
+  "number": 12,
+  "name": "Stay",
+  "category": "business",
+  "status": "preview",
+  "description": "Big, relaxed photographs and the details guests need: rooms, what is nearby, check-in times and how to book.",
+  "suits": [
+    "B&Bs",
+    "Holiday rentals",
+    "Farm stays",
+    "Cabins",
+    "Small motels"
+  ],
+  "baseTemplate": "horizon",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "galleries": "Rooms",
+    "about": "The property",
+    "contact": "Book"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#1f241c",
+      "heroText": "#ffffff",
+      "bg": "#f8f5ef",
+      "surface": "#ffffff",
+      "text": "#2a2a24",
+      "muted": "#615d52",
+      "accent": "#5f5228",
+      "onAccent": "#ffffff",
+      "border": "#e7e1d4",
+      "art1": "#a7b59a",
+      "art2": "#e2c79c"
+    },
+    "dark": {
+      "heroShade": "#0e0d09",
+      "heroText": "#ffffff",
+      "bg": "#15140f",
+      "surface": "#1f1d17",
+      "text": "#efeadf",
+      "muted": "#b3ab9a",
+      "accent": "#d8c48c",
+      "onAccent": "#231d08",
+      "border": "#353126",
+      "art1": "#4b5a40",
+      "art2": "#7d6738"
+    }
+  },
+  "typography": {
+    "heading": "serif",
+    "body": "sans",
+    "headingWeight": 400,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 6,
+    "buttonRadius": 6
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "minimal",
+    "hero": "full-bleed",
+    "home": [
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "Welcome"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "Rooms & spaces",
+        "style": "wide",
+        "count": 4
+      },
+      {
+        "type": "facts"
+      },
+      {
+        "type": "cta",
+        "heading": "Plan your stay",
+        "text": "Send your dates and we will confirm availability.",
+        "button": "Check availability"
+      }
+    ]
+  },
+  "notes": [
+    "Bookings are requests through the Contact page; there is no booking engine or payment in the theme."
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "id": "student-graduate",
+  "number": 17,
+  "name": "Student & graduate",
+  "category": "personal",
+  "status": "preview",
+  "description": "A simple CV-style site: who you are, projects, skills and how to get in touch. Built for students and job seekers.",
+  "suits": [
+    "Students",
+    "Graduates",
+    "Job seekers",
+    "Interns"
+  ],
+  "baseTemplate": "folio",
+  "purpose": "student",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "about",
+    "articles",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Projects"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#111114",
+      "heroText": "#ececf1",
+      "bg": "#ffffff",
+      "surface": "#f6f6f8",
+      "text": "#1a1a1f",
+      "muted": "#5a5a66",
+      "accent": "#0f6b5c",
+      "onAccent": "#ffffff",
+      "border": "#e5e5ea",
+      "art1": "#0f6b5c",
+      "art2": "#8ecae6"
+    },
+    "dark": {
+      "heroShade": "#111114",
+      "heroText": "#ececf1",
+      "bg": "#111114",
+      "surface": "#1a1a1f",
+      "text": "#ececf1",
+      "muted": "#a2a2ae",
+      "accent": "#6fd3c0",
+      "onAccent": "#052b25",
+      "border": "#2b2b33",
+      "art1": "#0b4a40",
+      "art2": "#2c5a6e"
+    }
+  },
+  "typography": {
+    "heading": "sans",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": -0.01,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 8,
+    "buttonRadius": 8
+  },
+  "layout": {
+    "maxWidth": 920,
+    "header": "minimal",
+    "hero": "text",
+    "home": [
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "About me"
+      },
+      {
+        "type": "list",
+        "page": "articles",
+        "heading": "Projects"
+      },
+      {
+        "type": "facts"
+      },
+      {
+        "type": "contact",
+        "page": "contact",
+        "heading": "Get in touch",
+        "text": "Open to graduate roles and internships."
+      }
+    ]
+  },
+  "notes": [
+    "Encourage tenants to share a contact form rather than a personal phone number or home address."
+  ]
+}

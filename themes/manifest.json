@@ -293,6 +293,274 @@
       "path": "themes/fitness-studio/",
       "definition": "themes/fitness-studio/theme.json",
       "preview": "themes/fitness-studio/index.html"
+    },
+    {
+      "id": "wellness-clinic",
+      "number": 11,
+      "name": "Wellness clinic",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Physiotherapists",
+        "Dentists",
+        "Allied health",
+        "Massage and wellbeing clinics"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "articles",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/wellness-clinic/",
+      "definition": "themes/wellness-clinic/theme.json",
+      "preview": "themes/wellness-clinic/index.html"
+    },
+    {
+      "id": "stay",
+      "number": 12,
+      "name": "Stay",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "B&Bs",
+        "Holiday rentals",
+        "Farm stays",
+        "Cabins",
+        "Small motels"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/stay/",
+      "definition": "themes/stay/theme.json",
+      "preview": "themes/stay/index.html"
+    },
+    {
+      "id": "community-group",
+      "number": 13,
+      "name": "Community group",
+      "category": "organisation",
+      "status": "preview",
+      "suits": [
+        "Non-profits",
+        "Charities",
+        "Volunteer groups",
+        "Community gardens",
+        "Men’s sheds"
+      ],
+      "baseTemplate": "folio",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "about",
+        "blog",
+        "galleries",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/community-group/",
+      "definition": "themes/community-group/theme.json",
+      "preview": "themes/community-group/index.html"
+    },
+    {
+      "id": "maker-shop",
+      "number": 14,
+      "name": "Maker & small shop",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Handmade sellers",
+        "Small-batch producers",
+        "Market stallholders"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "galleries",
+        "blog",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/maker-shop/",
+      "definition": "themes/maker-shop/theme.json",
+      "preview": "themes/maker-shop/index.html"
+    },
+    {
+      "id": "product-launch",
+      "number": 15,
+      "name": "Product launch",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Startups",
+        "Apps",
+        "Software products",
+        "Side projects"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "about",
+        "blog",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/product-launch/",
+      "definition": "themes/product-launch/theme.json",
+      "preview": "themes/product-launch/index.html"
+    },
+    {
+      "id": "tutor-course",
+      "number": 16,
+      "name": "Tutor & course",
+      "category": "education",
+      "status": "preview",
+      "suits": [
+        "Tutors",
+        "Music teachers",
+        "Coaches",
+        "Short courses",
+        "Language classes"
+      ],
+      "baseTemplate": "folio",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "about",
+        "articles",
+        "blog",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/tutor-course/",
+      "definition": "themes/tutor-course/theme.json",
+      "preview": "themes/tutor-course/index.html"
+    },
+    {
+      "id": "student-graduate",
+      "number": 17,
+      "name": "Student & graduate",
+      "category": "personal",
+      "status": "preview",
+      "suits": [
+        "Students",
+        "Graduates",
+        "Job seekers",
+        "Interns"
+      ],
+      "baseTemplate": "folio",
+      "purpose": "student",
+      "pages": [
+        "home",
+        "about",
+        "articles",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/student-graduate/",
+      "definition": "themes/student-graduate/theme.json",
+      "preview": "themes/student-graduate/index.html"
+    },
+    {
+      "id": "team-workgroup",
+      "number": 18,
+      "name": "Team & workgroup",
+      "category": "organisation",
+      "status": "preview",
+      "suits": [
+        "Project teams",
+        "Working groups",
+        "Committees",
+        "Volunteer teams"
+      ],
+      "baseTemplate": "folio",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "about",
+        "blog",
+        "articles",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "private",
+      "path": "themes/team-workgroup/",
+      "definition": "themes/team-workgroup/theme.json",
+      "preview": "themes/team-workgroup/index.html"
+    },
+    {
+      "id": "research-group",
+      "number": 19,
+      "name": "Research group",
+      "category": "education",
+      "status": "preview",
+      "suits": [
+        "Research labs",
+        "Research centres",
+        "PhD groups",
+        "Academic projects"
+      ],
+      "baseTemplate": "folio",
+      "purpose": "academic",
+      "pages": [
+        "home",
+        "about",
+        "articles",
+        "blog",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/research-group/",
+      "definition": "themes/research-group/theme.json",
+      "preview": "themes/research-group/index.html"
+    },
+    {
+      "id": "club-society",
+      "number": 20,
+      "name": "Club & society",
+      "category": "organisation",
+      "status": "preview",
+      "suits": [
+        "Sports clubs",
+        "Golf and bowls clubs",
+        "Hobby clubs",
+        "Societies"
+      ],
+      "baseTemplate": "canvas",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "blog",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/club-society/",
+      "definition": "themes/club-society/theme.json",
+      "preview": "themes/club-society/index.html"
     }
   ]
 }

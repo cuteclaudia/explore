@@ -1,3 +1,5 @@
+import BATCH_02 from './batches/batch-02.mjs';
+
 // SoraSpace tenant site theme catalogue — the single source for every theme folder.
 // All sample names, places and details are fictional. Never put real people, addresses or Claudia's own content here.
 
@@ -22,7 +24,8 @@ export const FONT_STACKS = {
   mono: "ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace"
 };
 
-export const THEMES = [
+// Batch 1: the Explore reference entry and themes 1–10. Later batches live in ./batches/.
+const BATCH_01 = [
   {
     id: 'explore', number: 0, name: 'Explore', category: 'personal', status: 'reference',
     description: 'The original Explore look from claudiagilbert.com, recorded as a tenant theme: travel, photography and journal writing with a full-bleed landscape hero.',
@@ -178,3 +181,5 @@ export const THEMES = [
       facts: [['Classes', 'Over 20 a week'], ['Find us', 'Upstairs, 8 Example Lane'], ['First class', 'Free']] }
   }
 ];
+
+export const THEMES = [...BATCH_01, ...BATCH_02];
