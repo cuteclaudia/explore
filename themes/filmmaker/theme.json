@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "id": "filmmaker",
+  "number": 23,
+  "name": "Filmmaker",
+  "category": "creative",
+  "status": "preview",
+  "description": "Cinematic and wide: a full-bleed still, a wide-screen showreel grid and a short bio for directors, editors and videographers.",
+  "suits": [
+    "Filmmakers",
+    "Videographers",
+    "Editors",
+    "Animators"
+  ],
+  "baseTemplate": "horizon",
+  "purpose": "creative",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "galleries": "Films"
+  },
+  "density": "compact",
+  "colours": {
+    "light": {
+      "heroShade": "#0a0a0a",
+      "heroText": "#ffffff",
+      "bg": "#f2f2f0",
+      "surface": "#ffffff",
+      "text": "#121212",
+      "muted": "#555555",
+      "accent": "#a3341d",
+      "onAccent": "#ffffff",
+      "border": "#dcdcd8",
+      "art1": "#2f3540",
+      "art2": "#c08a52"
+    },
+    "dark": {
+      "heroShade": "#000000",
+      "heroText": "#ffffff",
+      "bg": "#050505",
+      "surface": "#111111",
+      "text": "#f0f0f0",
+      "muted": "#a0a0a0",
+      "accent": "#ff8a65",
+      "onAccent": "#2a0b03",
+      "border": "#222222",
+      "art1": "#1b2230",
+      "art2": "#6e4a26"
+    }
+  },
+  "typography": {
+    "heading": "sans",
+    "body": "sans",
+    "headingWeight": 600,
+    "headingCase": "uppercase",
+    "headingTracking": 0.1,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 2,
+    "buttonRadius": 2
+  },
+  "layout": {
+    "maxWidth": 1440,
+    "header": "minimal",
+    "hero": "full-bleed",
+    "home": [
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "Selected films",
+        "style": "wide",
+        "count": 4
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "About"
+      },
+      {
+        "type": "cta",
+        "heading": "Have a story to tell?",
+        "text": "Available for documentary, brand and music video work.",
+        "button": "Start a project"
+      }
+    ]
+  },
+  "notes": [
+    "Video sites such as YouTube or Vimeo are not embedded. Host videos in the tenant’s own storage or link out."
+  ]
+}

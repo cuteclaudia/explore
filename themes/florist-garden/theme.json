@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "id": "florist-garden",
+  "number": 25,
+  "name": "Florist & garden studio",
+  "category": "business",
+  "status": "preview",
+  "description": "Soft botanical colours and rounded shapes: arrangements, what is in season, delivery details and orders.",
+  "suits": [
+    "Florists",
+    "Nurseries",
+    "Garden designers",
+    "Flower farms"
+  ],
+  "baseTemplate": "horizon",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "galleries",
+    "blog",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "galleries": "Arrangements",
+    "blog": "In season",
+    "contact": "Order"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#171214",
+      "heroText": "#f5ecee",
+      "bg": "#fbf7f6",
+      "surface": "#ffffff",
+      "text": "#2d2326",
+      "muted": "#6b5a5f",
+      "accent": "#8e3b5a",
+      "onAccent": "#ffffff",
+      "border": "#efe3e5",
+      "art1": "#e8a0b4",
+      "art2": "#9cc59a"
+    },
+    "dark": {
+      "heroShade": "#171214",
+      "heroText": "#f5ecee",
+      "bg": "#171214",
+      "surface": "#221a1d",
+      "text": "#f5ecee",
+      "muted": "#bba9ae",
+      "accent": "#f0a8c0",
+      "onAccent": "#3a1424",
+      "border": "#3a2d32",
+      "art1": "#7a3a4d",
+      "art2": "#3e6040"
+    }
+  },
+  "typography": {
+    "heading": "oldstyle",
+    "body": "humanist",
+    "headingWeight": 500,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 20,
+    "buttonRadius": 999
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "centered",
+    "hero": "split",
+    "home": [
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "Recent arrangements",
+        "style": "masonry",
+        "count": 6
+      },
+      {
+        "type": "cards",
+        "page": "blog",
+        "heading": "In season now"
+      },
+      {
+        "type": "facts"
+      },
+      {
+        "type": "cta",
+        "heading": "Send something lovely",
+        "text": "Order by noon for same-day delivery in town.",
+        "button": "Place an order"
+      }
+    ]
+  },
+  "notes": []
+}

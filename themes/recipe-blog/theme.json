@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "id": "recipe-blog",
+  "number": 29,
+  "name": "Recipe & food blog",
+  "category": "writing",
+  "status": "preview",
+  "description": "Hearty slab headings and warm colours: a grid of recipes, a featured kitchen note and the cook’s story.",
+  "suits": [
+    "Food bloggers",
+    "Home cooks",
+    "Cookbook authors",
+    "Supper clubs"
+  ],
+  "baseTemplate": "editorial",
+  "purpose": "writer",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "articles",
+    "blog",
+    "about"
+  ],
+  "pageLabels": {
+    "articles": "Recipes",
+    "blog": "Kitchen notes"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#19130e",
+      "heroText": "#f7ede2",
+      "bg": "#fffbf5",
+      "surface": "#ffffff",
+      "text": "#2a1f16",
+      "muted": "#6a5848",
+      "accent": "#a3391c",
+      "onAccent": "#ffffff",
+      "border": "#f1e4d3",
+      "art1": "#e9a35a",
+      "art2": "#8fb365"
+    },
+    "dark": {
+      "heroShade": "#19130e",
+      "heroText": "#f7ede2",
+      "bg": "#19130e",
+      "surface": "#241b14",
+      "text": "#f7ede2",
+      "muted": "#c1ad99",
+      "accent": "#ff9a6b",
+      "onAccent": "#2d0f02",
+      "border": "#3b2e23",
+      "art1": "#7a4a1a",
+      "art2": "#445a2e"
+    }
+  },
+  "typography": {
+    "heading": "slab",
+    "body": "humanist",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 12,
+    "buttonRadius": 999
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "centered",
+    "hero": "split",
+    "home": [
+      {
+        "type": "cards",
+        "page": "articles",
+        "heading": "New recipes"
+      },
+      {
+        "type": "feature",
+        "page": "blog",
+        "heading": "From the kitchen"
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "About the cook"
+      }
+    ]
+  },
+  "notes": []
+}

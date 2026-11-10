@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "wedding-events",
+  "number": 22,
+  "name": "Wedding & events",
+  "category": "personal",
+  "status": "preview",
+  "description": "Elegant and soft: the date and place, the couple’s story, photos and an RSVP form. Also suits celebrants and planners.",
+  "suits": [
+    "Couples",
+    "Celebrants",
+    "Event planners",
+    "Milestone birthdays"
+  ],
+  "baseTemplate": "horizon",
+  "purpose": "personal",
+  "recommendedVisibility": "private",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "journal",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "journal": "Our story",
+    "galleries": "Photos",
+    "about": "Details",
+    "contact": "RSVP"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#171415",
+      "heroText": "#f1eaea",
+      "bg": "#fbf8f5",
+      "surface": "#ffffff",
+      "text": "#2f2a2a",
+      "muted": "#6a5f5c",
+      "accent": "#7d4e57",
+      "onAccent": "#ffffff",
+      "border": "#ece4df",
+      "art1": "#e7c6c0",
+      "art2": "#c9d3c0"
+    },
+    "dark": {
+      "heroShade": "#171415",
+      "heroText": "#f1eaea",
+      "bg": "#171415",
+      "surface": "#211d1e",
+      "text": "#f1eaea",
+      "muted": "#b8aaa9",
+      "accent": "#e2b3bb",
+      "onAccent": "#3a1820",
+      "border": "#3a3334",
+      "art1": "#6b4249",
+      "art2": "#4a5642"
+    }
+  },
+  "typography": {
+    "heading": "didone",
+    "body": "sans",
+    "headingWeight": 400,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 0,
+    "buttonRadius": 999
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "centered",
+    "hero": "text",
+    "home": [
+      {
+        "type": "facts"
+      },
+      {
+        "type": "feature",
+        "page": "journal",
+        "heading": "Our story"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "style": "masonry",
+        "count": 6
+      },
+      {
+        "type": "contact",
+        "page": "contact",
+        "heading": "RSVP",
+        "text": "Please reply by 1 February and let us know about any dietary needs."
+      }
+    ]
+  },
+  "notes": [
+    "Recommended private, shared with guests by link, so the venue and date are not public."
+  ]
+}

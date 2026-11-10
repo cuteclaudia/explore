@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "id": "hobby-collector",
+  "number": 30,
+  "name": "Hobby & collector",
+  "category": "personal",
+  "status": "preview",
+  "description": "A tidy catalogue look with monospaced headings: the collection in a grid, notes and finds, and a little about the collector.",
+  "suits": [
+    "Collectors",
+    "Model makers",
+    "Gardeners",
+    "Restorers",
+    "Hobby groups"
+  ],
+  "baseTemplate": "canvas",
+  "purpose": "personal",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "galleries",
+    "blog",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "galleries": "Collection",
+    "blog": "Notes"
+  },
+  "density": "compact",
+  "colours": {
+    "light": {
+      "heroShade": "#121410",
+      "heroText": "#e9ede4",
+      "bg": "#f7f7f2",
+      "surface": "#ffffff",
+      "text": "#1f2420",
+      "muted": "#57605a",
+      "accent": "#3d6b35",
+      "onAccent": "#ffffff",
+      "border": "#e1e4dc",
+      "art1": "#a6b88f",
+      "art2": "#d9b26f"
+    },
+    "dark": {
+      "heroShade": "#121410",
+      "heroText": "#e9ede4",
+      "bg": "#121410",
+      "surface": "#1a1d18",
+      "text": "#e9ede4",
+      "muted": "#a2ab9d",
+      "accent": "#a5d68f",
+      "onAccent": "#15300c",
+      "border": "#2b3027",
+      "art1": "#42552f",
+      "art2": "#6d5524"
+    }
+  },
+  "typography": {
+    "heading": "mono",
+    "body": "sans",
+    "headingWeight": 600,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 6,
+    "buttonRadius": 6
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "text",
+    "home": [
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "The collection",
+        "style": "even",
+        "count": 6
+      },
+      {
+        "type": "list",
+        "page": "blog",
+        "heading": "Recent notes"
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "About"
+      }
+    ]
+  },
+  "notes": []
+}

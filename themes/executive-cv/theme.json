@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "id": "executive-cv",
+  "number": 28,
+  "name": "Executive CV",
+  "category": "personal",
+  "status": "preview",
+  "description": "A polished professional profile for senior people: summary, career history, selected insights and contact.",
+  "suits": [
+    "Executives",
+    "Board members",
+    "Senior professionals",
+    "Contractors"
+  ],
+  "baseTemplate": "folio",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "about",
+    "articles",
+    "blog",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Experience",
+    "blog": "Insights"
+  },
+  "density": "compact",
+  "colours": {
+    "light": {
+      "heroShade": "#0f1115",
+      "heroText": "#eceef2",
+      "bg": "#ffffff",
+      "surface": "#f6f5f2",
+      "text": "#1a1d24",
+      "muted": "#545a66",
+      "accent": "#6b4f1d",
+      "onAccent": "#ffffff",
+      "border": "#e5e3dc",
+      "art1": "#31435a",
+      "art2": "#b59b6a"
+    },
+    "dark": {
+      "heroShade": "#0f1115",
+      "heroText": "#eceef2",
+      "bg": "#0f1115",
+      "surface": "#171a20",
+      "text": "#eceef2",
+      "muted": "#a3a9b5",
+      "accent": "#d6b678",
+      "onAccent": "#2a1e05",
+      "border": "#2a2e37",
+      "art1": "#233247",
+      "art2": "#6b5a37"
+    }
+  },
+  "typography": {
+    "heading": "serif",
+    "body": "sans",
+    "headingWeight": 500,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 2,
+    "buttonRadius": 2
+  },
+  "layout": {
+    "maxWidth": 1000,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "Profile"
+      },
+      {
+        "type": "list",
+        "page": "articles",
+        "heading": "Career"
+      },
+      {
+        "type": "cards",
+        "page": "blog",
+        "heading": "Insights",
+        "images": false
+      },
+      {
+        "type": "contact",
+        "page": "contact",
+        "heading": "Contact",
+        "text": "Available for board, advisory and interim roles."
+      }
+    ]
+  },
+  "notes": []
+}

@@ -1,4 +1,5 @@
 import BATCH_02 from './batches/batch-02.mjs';
+import BATCH_03 from './batches/batch-03.mjs';
 
 // SoraSpace tenant site theme catalogue — the single source for every theme folder.
 // All sample names, places and details are fictional. Never put real people, addresses or Claudia's own content here.
@@ -182,4 +183,4 @@ const BATCH_01 = [
   }
 ];
 
-export const THEMES = [...BATCH_01, ...BATCH_02];
+export const THEMES = [...BATCH_01, ...BATCH_02, ...BATCH_03];

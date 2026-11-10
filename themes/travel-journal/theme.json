@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "id": "travel-journal",
+  "number": 26,
+  "name": "Travel journal",
+  "category": "personal",
+  "status": "preview",
+  "description": "A neutral travel journal for tenants: a full-bleed landscape, the latest trip, earlier journeys and a strip of photographs.",
+  "suits": [
+    "Travellers",
+    "Hikers",
+    "Road-trippers",
+    "Expats"
+  ],
+  "baseTemplate": "horizon",
+  "purpose": "personal",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "journal",
+    "galleries",
+    "about"
+  ],
+  "pageLabels": {
+    "galleries": "Photos"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#0f1d23",
+      "heroText": "#ffffff",
+      "bg": "#f3f6f7",
+      "surface": "#ffffff",
+      "text": "#1f2d33",
+      "muted": "#52646c",
+      "accent": "#1f6f8b",
+      "onAccent": "#ffffff",
+      "border": "#d9e3e7",
+      "art1": "#7fb3c7",
+      "art2": "#e0c58f"
+    },
+    "dark": {
+      "heroShade": "#081014",
+      "heroText": "#ffffff",
+      "bg": "#0d1418",
+      "surface": "#152027",
+      "text": "#e7f0f3",
+      "muted": "#9fb2ba",
+      "accent": "#86c9e0",
+      "onAccent": "#072431",
+      "border": "#263741",
+      "art1": "#24546a",
+      "art2": "#6e5a2a"
+    }
+  },
+  "typography": {
+    "heading": "serif",
+    "body": "sans",
+    "headingWeight": 400,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 8,
+    "buttonRadius": 8
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "full-bleed",
+    "home": [
+      {
+        "type": "feature",
+        "page": "journal",
+        "heading": "Latest trip"
+      },
+      {
+        "type": "cards",
+        "page": "journal",
+        "heading": "Earlier journeys"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "style": "strip",
+        "count": 6
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "About"
+      }
+    ]
+  },
+  "notes": [
+    "Encourage tenants to publish trips after they return and to keep exact locations out of posts and photo metadata."
+  ]
+}

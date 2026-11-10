@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "id": "family-album",
+  "number": 27,
+  "name": "Family album",
+  "category": "personal",
+  "status": "preview",
+  "description": "A warm, private place for family photos and stories, with rounded type and an album-style gallery.",
+  "suits": [
+    "Families",
+    "Family history projects",
+    "Reunions"
+  ],
+  "baseTemplate": "canvas",
+  "purpose": "personal",
+  "recommendedVisibility": "private",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "journal",
+    "galleries",
+    "about"
+  ],
+  "pageLabels": {
+    "journal": "Stories",
+    "galleries": "Albums",
+    "about": "Our family"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#18140e",
+      "heroText": "#f5ede1",
+      "bg": "#fdf9f2",
+      "surface": "#ffffff",
+      "text": "#2e261c",
+      "muted": "#685c4c",
+      "accent": "#8a5410",
+      "onAccent": "#ffffff",
+      "border": "#efe5d4",
+      "art1": "#f6c28b",
+      "art2": "#9bc1bc"
+    },
+    "dark": {
+      "heroShade": "#18140e",
+      "heroText": "#f5ede1",
+      "bg": "#18140e",
+      "surface": "#221c14",
+      "text": "#f5ede1",
+      "muted": "#bfb09b",
+      "accent": "#f2c27b",
+      "onAccent": "#2e1d04",
+      "border": "#3a3022",
+      "art1": "#7a5226",
+      "art2": "#3b5d59"
+    }
+  },
+  "typography": {
+    "heading": "rounded",
+    "body": "sans",
+    "headingWeight": 600,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 16,
+    "buttonRadius": 999
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "centered",
+    "hero": "text",
+    "home": [
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "Albums",
+        "style": "masonry",
+        "count": 6
+      },
+      {
+        "type": "cards",
+        "page": "journal",
+        "heading": "Family stories"
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "About us"
+      }
+    ]
+  },
+  "notes": [
+    "Recommended private: only invited family members can see it. Take care with photos of children."
+  ]
+}

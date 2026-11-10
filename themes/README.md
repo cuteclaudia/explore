@@ -92,16 +92,16 @@ Status: **built** = folder exists in this repo; **planned** = agreed, not yet bu
 | 18 | Team & workgroup | `team-workgroup` | built |
 | 19 | Research group | `research-group` | built |
 | 20 | Club & society | `club-society` | built |
-| 21 | Podcast | `podcast` | planned |
-| 22 | Wedding & events | `wedding-events` | planned |
-| 23 | Filmmaker | `filmmaker` | planned |
-| 24 | Architecture & interiors | `architecture-interiors` | planned |
-| 25 | Florist & garden studio | `florist-garden` | planned |
-| 26 | Travel journal | `travel-journal` | planned |
-| 27 | Family album | `family-album` | planned |
-| 28 | Executive CV | `executive-cv` | planned |
-| 29 | Recipe & food blog | `recipe-blog` | planned |
-| 30 | Hobby & collector | `hobby-collector` | planned |
+| 21 | Podcast | `podcast` | built |
+| 22 | Wedding & events | `wedding-events` | built |
+| 23 | Filmmaker | `filmmaker` | built |
+| 24 | Architecture & interiors | `architecture-interiors` | built |
+| 25 | Florist & garden studio | `florist-garden` | built |
+| 26 | Travel journal | `travel-journal` | built |
+| 27 | Family album | `family-album` | built |
+| 28 | Executive CV | `executive-cv` | built |
+| 29 | Recipe & food blog | `recipe-blog` | built |
+| 30 | Hobby & collector | `hobby-collector` | built |
 | 31 | Memorial & tribute | `memorial-tribute` | planned |
 | 32 | Coming soon | `coming-soon` | planned |
 | 33 | Hair & beauty salon | `hair-beauty` | planned |

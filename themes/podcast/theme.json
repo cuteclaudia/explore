@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "id": "podcast",
+  "number": 21,
+  "name": "Podcast",
+  "category": "creative",
+  "status": "preview",
+  "description": "The latest episode up front, an episode list with running times, hosts and a subscribe call to action.",
+  "suits": [
+    "Podcasts",
+    "Radio shows",
+    "Audio series"
+  ],
+  "baseTemplate": "editorial",
+  "purpose": "writer",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "blog",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "blog": "Episodes",
+    "about": "Hosts"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#120c09",
+      "heroText": "#f7ece4",
+      "bg": "#fff8f2",
+      "surface": "#ffffff",
+      "text": "#24140c",
+      "muted": "#66503f",
+      "accent": "#a8380f",
+      "onAccent": "#ffffff",
+      "border": "#f0dfd0",
+      "art1": "#ff8a4c",
+      "art2": "#6a4cff"
+    },
+    "dark": {
+      "heroShade": "#120c09",
+      "heroText": "#f7ece4",
+      "bg": "#120c09",
+      "surface": "#1d1410",
+      "text": "#f7ece4",
+      "muted": "#c2ab99",
+      "accent": "#ffa070",
+      "onAccent": "#2b0e02",
+      "border": "#35261d",
+      "art1": "#7a3311",
+      "art2": "#3a2a8a"
+    }
+  },
+  "typography": {
+    "heading": "geometric",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1
+  },
+  "shape": {
+    "radius": 14,
+    "buttonRadius": 999
+  },
+  "layout": {
+    "maxWidth": 1180,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "feature",
+        "page": "blog",
+        "heading": "Latest episode"
+      },
+      {
+        "type": "list",
+        "page": "blog",
+        "heading": "All episodes"
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "About the show"
+      },
+      {
+        "type": "cta",
+        "heading": "Never miss an episode",
+        "text": "New episodes every second Tuesday.",
+        "button": "Subscribe"
+      }
+    ]
+  },
+  "notes": [
+    "Players from podcast services are not embedded: they load content from outside SoraSpace. Host audio files in the tenant’s own storage or link to the show’s listing."
+  ]
+}

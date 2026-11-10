@@ -561,6 +561,270 @@
       "path": "themes/club-society/",
       "definition": "themes/club-society/theme.json",
       "preview": "themes/club-society/index.html"
+    },
+    {
+      "id": "podcast",
+      "number": 21,
+      "name": "Podcast",
+      "category": "creative",
+      "status": "preview",
+      "suits": [
+        "Podcasts",
+        "Radio shows",
+        "Audio series"
+      ],
+      "baseTemplate": "editorial",
+      "purpose": "writer",
+      "pages": [
+        "home",
+        "blog",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/podcast/",
+      "definition": "themes/podcast/theme.json",
+      "preview": "themes/podcast/index.html"
+    },
+    {
+      "id": "wedding-events",
+      "number": 22,
+      "name": "Wedding & events",
+      "category": "personal",
+      "status": "preview",
+      "suits": [
+        "Couples",
+        "Celebrants",
+        "Event planners",
+        "Milestone birthdays"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "personal",
+      "pages": [
+        "home",
+        "journal",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "private",
+      "path": "themes/wedding-events/",
+      "definition": "themes/wedding-events/theme.json",
+      "preview": "themes/wedding-events/index.html"
+    },
+    {
+      "id": "filmmaker",
+      "number": 23,
+      "name": "Filmmaker",
+      "category": "creative",
+      "status": "preview",
+      "suits": [
+        "Filmmakers",
+        "Videographers",
+        "Editors",
+        "Animators"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "creative",
+      "pages": [
+        "home",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/filmmaker/",
+      "definition": "themes/filmmaker/theme.json",
+      "preview": "themes/filmmaker/index.html"
+    },
+    {
+      "id": "architecture-interiors",
+      "number": 24,
+      "name": "Architecture & interiors",
+      "category": "creative",
+      "status": "preview",
+      "suits": [
+        "Architects",
+        "Interior designers",
+        "Landscape architects",
+        "Builders of custom homes"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "creative",
+      "pages": [
+        "home",
+        "articles",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": true,
+      "recommendedVisibility": "public",
+      "path": "themes/architecture-interiors/",
+      "definition": "themes/architecture-interiors/theme.json",
+      "preview": "themes/architecture-interiors/index.html"
+    },
+    {
+      "id": "florist-garden",
+      "number": 25,
+      "name": "Florist & garden studio",
+      "category": "business",
+      "status": "preview",
+      "suits": [
+        "Florists",
+        "Nurseries",
+        "Garden designers",
+        "Flower farms"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "galleries",
+        "blog",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/florist-garden/",
+      "definition": "themes/florist-garden/theme.json",
+      "preview": "themes/florist-garden/index.html"
+    },
+    {
+      "id": "travel-journal",
+      "number": 26,
+      "name": "Travel journal",
+      "category": "personal",
+      "status": "preview",
+      "suits": [
+        "Travellers",
+        "Hikers",
+        "Road-trippers",
+        "Expats"
+      ],
+      "baseTemplate": "horizon",
+      "purpose": "personal",
+      "pages": [
+        "home",
+        "journal",
+        "galleries",
+        "about"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/travel-journal/",
+      "definition": "themes/travel-journal/theme.json",
+      "preview": "themes/travel-journal/index.html"
+    },
+    {
+      "id": "family-album",
+      "number": 27,
+      "name": "Family album",
+      "category": "personal",
+      "status": "preview",
+      "suits": [
+        "Families",
+        "Family history projects",
+        "Reunions"
+      ],
+      "baseTemplate": "canvas",
+      "purpose": "personal",
+      "pages": [
+        "home",
+        "journal",
+        "galleries",
+        "about"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "private",
+      "path": "themes/family-album/",
+      "definition": "themes/family-album/theme.json",
+      "preview": "themes/family-album/index.html"
+    },
+    {
+      "id": "executive-cv",
+      "number": 28,
+      "name": "Executive CV",
+      "category": "personal",
+      "status": "preview",
+      "suits": [
+        "Executives",
+        "Board members",
+        "Senior professionals",
+        "Contractors"
+      ],
+      "baseTemplate": "folio",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "about",
+        "articles",
+        "blog",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/executive-cv/",
+      "definition": "themes/executive-cv/theme.json",
+      "preview": "themes/executive-cv/index.html"
+    },
+    {
+      "id": "recipe-blog",
+      "number": 29,
+      "name": "Recipe & food blog",
+      "category": "writing",
+      "status": "preview",
+      "suits": [
+        "Food bloggers",
+        "Home cooks",
+        "Cookbook authors",
+        "Supper clubs"
+      ],
+      "baseTemplate": "editorial",
+      "purpose": "writer",
+      "pages": [
+        "home",
+        "articles",
+        "blog",
+        "about"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/recipe-blog/",
+      "definition": "themes/recipe-blog/theme.json",
+      "preview": "themes/recipe-blog/index.html"
+    },
+    {
+      "id": "hobby-collector",
+      "number": 30,
+      "name": "Hobby & collector",
+      "category": "personal",
+      "status": "preview",
+      "suits": [
+        "Collectors",
+        "Model makers",
+        "Gardeners",
+        "Restorers",
+        "Hobby groups"
+      ],
+      "baseTemplate": "canvas",
+      "purpose": "personal",
+      "pages": [
+        "home",
+        "galleries",
+        "blog",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/hobby-collector/",
+      "definition": "themes/hobby-collector/theme.json",
+      "preview": "themes/hobby-collector/index.html"
     }
   ]
 }

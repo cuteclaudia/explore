@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "id": "architecture-interiors",
+  "number": 24,
+  "name": "Architecture & interiors",
+  "category": "creative",
+  "status": "preview",
+  "description": "Minimal and spacious, with thin uppercase type: large project images, a strip of details and the studio team.",
+  "suits": [
+    "Architects",
+    "Interior designers",
+    "Landscape architects",
+    "Builders of custom homes"
+  ],
+  "baseTemplate": "horizon",
+  "purpose": "creative",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": true,
+  "pages": [
+    "home",
+    "articles",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "articles": "Projects",
+    "galleries": "Details",
+    "about": "Studio"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#0f0f0f",
+      "heroText": "#ededed",
+      "bg": "#ffffff",
+      "surface": "#f5f5f3",
+      "text": "#1a1a1a",
+      "muted": "#5f5f5f",
+      "accent": "#1a1a1a",
+      "onAccent": "#ffffff",
+      "border": "#e6e6e3",
+      "art1": "#b8b2a7",
+      "art2": "#6f7a80"
+    },
+    "dark": {
+      "heroShade": "#0f0f0f",
+      "heroText": "#ededed",
+      "bg": "#0f0f0f",
+      "surface": "#181818",
+      "text": "#ededed",
+      "muted": "#a6a6a6",
+      "accent": "#ededed",
+      "onAccent": "#0f0f0f",
+      "border": "#2a2a2a",
+      "art1": "#3d3a35",
+      "art2": "#2b3338"
+    }
+  },
+  "typography": {
+    "heading": "geometric",
+    "body": "sans",
+    "headingWeight": 300,
+    "headingCase": "uppercase",
+    "headingTracking": 0.2,
+    "scale": 0.95
+  },
+  "shape": {
+    "radius": 0,
+    "buttonRadius": 0
+  },
+  "layout": {
+    "maxWidth": 1360,
+    "header": "minimal",
+    "hero": "split",
+    "home": [
+      {
+        "type": "cards",
+        "page": "articles",
+        "heading": "Projects",
+        "columns": 2,
+        "count": 2
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "style": "strip",
+        "count": 6
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "Studio"
+      },
+      {
+        "type": "contact",
+        "page": "contact",
+        "heading": "Start a conversation"
+      }
+    ]
+  },
+  "notes": []
+}
