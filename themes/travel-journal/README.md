@@ -17,9 +17,9 @@ Only the existing SoraSpace page types are used. Labels are display names; the u
 
 ## Layout
 
-- Header: `split` · Hero: `full-bleed` · Maximum width: 1180px
+- Header: `split` · Hero: `full-bleed` · Maximum width: 1300px
 - Home sections, in order: `feature` (journal), `cards` (journal), `gallery` (galleries), `intro` (about)
-- Headings: serif stack, weight 400 · Body: sans stack · Corner radius: 8px
+- Headings: oldstyle stack, weight 500 · Body: sans stack · Corner radius: 10px
 
 ## Colours
 
@@ -27,37 +27,37 @@ Light and dark sets are both defined; System follows the visitor's device settin
 
 | Token | Light |
 | --- | --- |
-| bg | `#f3f6f7` |
+| bg | `#f6f3ee` |
 | surface | `#ffffff` |
-| text | `#1f2d33` |
-| muted | `#52646c` |
-| accent | `#1f6f8b` |
+| text | `#1f2a2e` |
+| muted | `#55625f` |
+| accent | `#a5481f` |
 | onAccent | `#ffffff` |
-| border | `#d9e3e7` |
-| art1 | `#7fb3c7` |
-| art2 | `#e0c58f` |
-| heroShade | `#0f1d23` |
+| border | `#e2ddd3` |
+| art1 | `#5f8c99` |
+| art2 | `#d9b26f` |
+| heroShade | `#141c22` |
 | heroText | `#ffffff` |
 
 | Token | Dark |
 | --- | --- |
-| bg | `#0d1418` |
-| surface | `#152027` |
-| text | `#e7f0f3` |
-| muted | `#9fb2ba` |
-| accent | `#86c9e0` |
-| onAccent | `#072431` |
-| border | `#263741` |
-| art1 | `#24546a` |
-| art2 | `#6e5a2a` |
-| heroShade | `#081014` |
+| bg | `#10161a` |
+| surface | `#182128` |
+| text | `#eef1ee` |
+| muted | `#a9b5b3` |
+| accent | `#f0a072` |
+| onAccent | `#2a1206` |
+| border | `#2a363d` |
+| art1 | `#2e5562` |
+| art2 | `#7a6233` |
+| heroShade | `#0a0f12` |
 | heroText | `#ffffff` |
 
 ## Widgets
 
 Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
 
-- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`), Illustrated map (`illustrated-map`)
+- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`), Illustrated map (`illustrated-map`), Photo strip (`photo-strip`)
 - Suggested: Map (`map`), outside, click-to-load, Video (`video`), outside, click-to-load, Social links (`social-links`)
 
 ## Notes

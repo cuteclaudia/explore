@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex">
+<title>With content · Photography portfolio design reference (content)</title>
+<style>
+:root{--bg:#0b0b0c;--surface:#151517;--text:#f2f2f2;--muted:#a3a3a3;--accent:#f2f2f2;--onAccent:#0b0b0c;--border:#262628;--art1:#23262b;--art2:#6d6559;--heroShade:#000000;--heroText:#f2f2f2;--head:system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;--body:system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;--radius:0px;--btn:0px;--max:1400px;color-scheme:dark}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--body)}
+img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--head);line-height:1.1;margin:0}
+p{margin:0 0 1em}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 5%}
+.section{padding-top:72px;padding-bottom:72px}
+.eyebrow{font:600 12px/1.4 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 22px;border-radius:var(--btn);border:1px solid var(--border);background:var(--surface);color:var(--text);font:600 15px/1 var(--body)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--onAccent)}
+.pic{margin:0;overflow:hidden;background:var(--surface)}.pic img{width:100%;height:100%;object-fit:cover}
+.slot{display:grid;place-items:center;text-align:center;border:1.5px dashed color-mix(in srgb,var(--muted) 55%,transparent);background:repeating-linear-gradient(135deg,transparent 0 14px,color-mix(in srgb,var(--muted) 7%,transparent) 14px 15px);color:var(--muted);font:500 13px/1.4 var(--body);padding:12px}
+.slot small{font-weight:400;opacity:.8}
+.hint{display:inline-block;color:var(--muted);font-family:var(--body);font-weight:400;font-style:normal;letter-spacing:0;text-transform:none;border-bottom:1.5px dashed color-mix(in srgb,var(--muted) 60%,transparent)}
+.manager{position:sticky;top:0;z-index:50;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px 16px;background:#1d2b3a;color:#f3f6f9;font:13px/1.4 system-ui,sans-serif}
+.manager b{font-weight:600}
+.credit{font-size:11px;color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:760px){.section{padding-top:48px;padding-bottom:48px}}
+
+.top{position:absolute;inset:0 0 auto 0;z-index:5;color:#f4f4f2}.top .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:26px;padding-bottom:26px;max-width:none;padding-left:4%;padding-right:4%}
+.brand{font:500 13px/1 var(--body);letter-spacing:.32em;text-transform:uppercase}
+.top nav{display:flex;gap:30px;font:500 13px/1 var(--body);letter-spacing:.14em;text-transform:uppercase}
+.hero{position:relative;height:100vh;min-height:620px;max-height:980px;color:#f4f4f2;background:#111}
+.hero .pic,.hero .slot{position:absolute;inset:0;aspect-ratio:auto!important;height:100%}
+.hero .slot{border-color:#ffffff55;color:#ffffffaa}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(0deg,#000a 0%,#0000 45%),linear-gradient(180deg,#0006 0%,#0000 22%)}
+.hero .copy{position:absolute;left:4%;right:4%;bottom:56px;display:flex;justify-content:space-between;align-items:end;gap:30px}
+.hero h1{font-size:clamp(52px,8vw,112px);font-weight:200;letter-spacing:-.02em}
+.hero p{margin:14px 0 0;font-size:17px;max-width:520px;color:#e7e7e3}
+.hero small{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#d6d6d0;white-space:nowrap}
+.intro{display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:end;padding-top:96px;padding-bottom:44px}
+.intro h2{font-size:clamp(32px,3.6vw,48px);font-weight:200}
+.intro p{font-size:18px;color:var(--muted);max-width:620px;margin:0}
+.grid{columns:3 320px;column-gap:14px;padding:0 4%}.grid figure{break-inside:avoid;margin:0 0 14px}
+.grid .pic,.grid .slot{width:100%}
+.grid figcaption{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.06em;color:var(--muted);padding:8px 2px 4px}
+.series{border-top:1px solid var(--border)}.series a{display:grid;grid-template-columns:220px 1fr auto;gap:30px;align-items:center;padding:22px 0;border-bottom:1px solid var(--border)}
+.series .pic,.series .slot{aspect-ratio:16/9}.series h3{font-size:30px;font-weight:200}.series span{color:var(--muted);font-size:14px}
+.about{display:grid;grid-template-columns:6fr 5fr;gap:64px;align-items:center}
+.about h2{font-size:42px;font-weight:200;margin-bottom:18px}.about p{color:var(--muted);font-size:17px}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px;border-top:1px solid var(--border);padding-top:20px;font-size:14px}.facts b{display:block;font-weight:500;color:var(--text)}
+.contact{background:#000;color:#f2f2f2;text-align:center;padding:110px 5%}.contact h2{font-size:clamp(34px,5vw,64px);font-weight:200}
+.contact p{color:#b9b9b4;margin:16px auto 28px;max-width:520px}.contact .btn{background:transparent;color:#f2f2f2;border-color:#f2f2f2}
+footer{display:flex;justify-content:space-between;gap:20px;padding:26px 4%;font-size:12px;color:var(--muted);letter-spacing:.06em;flex-wrap:wrap}
+@media (max-width:760px){
+ .top .wrap{padding-top:18px;padding-bottom:18px}.top nav a:not(:last-child){display:none}.top nav a:last-child::before{content:"☰  "}
+ .hero{height:86vh;min-height:560px}.hero .copy{flex-direction:column;align-items:flex-start;bottom:30px;gap:16px}.hero h1{font-size:54px}
+ .intro{grid-template-columns:1fr;gap:14px;padding-top:56px}
+ .grid{columns:2 140px;column-gap:8px;padding:0 3%}.grid figure{margin-bottom:8px}.grid figcaption{display:none}
+ .series a{grid-template-columns:96px 1fr;gap:16px}.series a>span:last-child{display:none}.series h3{font-size:22px}
+ .about{grid-template-columns:1fr;gap:26px}.contact{padding:72px 6%}
+}
+</style>
+</head>
+<body>
+
+
+<header class="top"><div class="wrap"><a class="brand" href="#">Mara Quill</a><nav aria-label="Main"><a href="#">Portfolio</a><a href="#">About</a><a href="#">Contact</a></nav></div></header>
+<section class="hero" aria-label="Opening photograph">
+ <figure class="pic " style="aspect-ratio:16/9"><img src="images/hero-misty-lake.jpg" alt="Your opening photograph · landscape, at least 2400 px wide" style="object-position:45% 50%"></figure>
+ <div class="shade"></div>
+ <div class="copy"><div><h1>Quiet light</h1><p>Coastlines, high country and the people in between.</p></div><small>Lake Ashby, before dawn · 2025</small></div>
+</section>
+<section class="wrap intro"><h2>Selected work</h2><p>I photograph slowly, mostly at the edges of the day, and print every series on archival cotton rag.</p></section>
+<section class="grid" aria-label="Selected work">
+ <figure><figure class="pic " style="aspect-ratio:3/2"><img src="images/mountain-reflection.jpg" alt="Still water, Ashby Pass" style="object-position:50% 50%"></figure><figcaption><span>Still water, Ashby Pass</span><span>2025</span></figcaption></figure>
+ <figure><figure class="pic " style="aspect-ratio:2/3"><img src="images/rain-night.jpg" alt="After the rain" style="object-position:50% 50%"></figure><figcaption><span>After the rain</span><span>2026</span></figcaption></figure>
+ <figure><figure class="pic " style="aspect-ratio:3/2"><img src="images/wave-mono.jpg" alt="The southerly" style="object-position:50% 50%"></figure><figcaption><span>The southerly</span><span>2024</span></figcaption></figure>
+ <figure><figure class="pic " style="aspect-ratio:4/3"><img src="images/fox.jpg" alt="Visitor, first snow" style="object-position:55% 50%"></figure><figcaption><span>Visitor, first snow</span><span>2025</span></figcaption></figure>
+ <figure><figure class="pic " style="aspect-ratio:2/3"><img src="images/misty-pines.jpg" alt="Pines in cloud" style="object-position:50% 50%"></figure><figcaption><span>Pines in cloud</span><span>2026</span></figcaption></figure>
+ <figure><figure class="pic " style="aspect-ratio:3/2"><img src="images/dunes.jpg" alt="Red sand, late light" style="object-position:50% 50%"></figure><figcaption><span>Red sand, late light</span><span>2024</span></figcaption></figure>
+ <figure><figure class="pic " style="aspect-ratio:16/10"><img src="images/glacier.jpg" alt="Ice field" style="object-position:50% 50%"></figure><figcaption><span>Ice field</span><span>2023</span></figcaption></figure>
+ <figure><figure class="pic " style="aspect-ratio:3/2"><img src="images/dusk-lake.jpg" alt="Blue hour" style="object-position:50% 60%"></figure><figcaption><span>Blue hour</span><span>2025</span></figcaption></figure>
+</section>
+<section class="wrap section" aria-label="Series">
+ <p class="eyebrow" style="margin-bottom:18px">Series</p>
+ <div class="series">
+  <a href="#"><figure class="pic " style="aspect-ratio:16/9"><img src="images/glacier.jpg" alt="Series cover" style="object-position:50% 50%"></figure><div><h3>Cold country</h3><span>2023–24</span></div><span>32 photographs →</span></a>
+  <a href="#"><figure class="pic " style="aspect-ratio:16/9"><img src="images/wave-mono.jpg" alt="Series cover" style="object-position:50% 50%"></figure><div><h3>Southerly</h3><span>2024</span></div><span>18 photographs →</span></a>
+  <a href="#"><figure class="pic " style="aspect-ratio:16/9"><img src="images/rain-night.jpg" alt="Series cover" style="object-position:50% 50%"></figure><div><h3>Wet streets</h3><span>2026</span></div><span>24 photographs →</span></a>
+ </div>
+</section>
+<section class="wrap section about" aria-label="About">
+ <figure class="pic " style="aspect-ratio:4/3"><img src="images/photographer.jpg" alt="Portrait of you at work" style="object-position:72% 50%"></figure>
+ <div><p class="eyebrow">About</p><h2>Mara Quill</h2><p>Landscape and portrait photographer working across the Southern Tablelands and the coast. Commissions for editorial, tourism and private clients; limited-edition prints of every series.</p>
+ <div class="facts"><div><b>Based in</b>Southern Tablelands</div><div><b>Available for</b>Editorial · Prints · Portraits</div></div></div>
+</section>
+<section class="contact" aria-label="Contact"><p class="eyebrow" style="color:#b9b9b4">Contact</p><h2>Commissions &amp; prints</h2><p>For commissions, licensing and print enquiries, write to me. I reply within two days.</p><a class="btn" href="#">hello@example.com</a></section>
+<footer><span>© 2026 Mara Quill</span><span>Instagram · Prints · Newsletter</span><span>Stock photographs on Pexels: Isaak Cole, eberhard grossgasteiger, Chen Te, Stijn Dijkstra, Beyza Kaplan, Igor Dudkovskiy, Chad Hicks, Quang Nguyen Vinh, Harry Xie</span></footer>
+</body>
+</html>

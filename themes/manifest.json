@@ -2,6 +2,7 @@
   "schemaVersion": 1,
   "description": "SoraSpace tenant site themes. Each entry has a folder containing theme.json (definition), index.html (preview only) and README.md.",
   "stability": "schemaVersion, theme ids and definition paths are stable. New fields may be added; existing ones are not renamed or removed within schemaVersion 1.",
+  "uplift": "Entries with an uplift block have a design/ folder (specification, references, screens, stock photos) from the uplift described in themes/UPLIFT.md. theme.json carries the settings the importer supports; DESIGN.md lists the new features still to build.",
   "readyToImport": "An entry with readyToImport true has passed the validity, contrast and security checks and a visual review in light and dark, and its theme.json may be imported.",
   "widgetCatalogue": "themes/widgets.json",
   "batches": [
@@ -89,7 +90,16 @@
       "recommendedVisibility": "public",
       "path": "themes/photography-portfolio/",
       "definition": "themes/photography-portfolio/theme.json",
-      "preview": "themes/photography-portfolio/index.html"
+      "preview": "themes/photography-portfolio/index.html",
+      "uplift": {
+        "batch": "A",
+        "status": "in review",
+        "design": "themes/photography-portfolio/design/DESIGN.md",
+        "references": [
+          "themes/photography-portfolio/design/content.html",
+          "themes/photography-portfolio/design/empty.html"
+        ]
+      }
     },
     {
       "id": "artist-studio",
@@ -118,7 +128,16 @@
       "recommendedVisibility": "public",
       "path": "themes/artist-studio/",
       "definition": "themes/artist-studio/theme.json",
-      "preview": "themes/artist-studio/index.html"
+      "preview": "themes/artist-studio/index.html",
+      "uplift": {
+        "batch": "A",
+        "status": "in review",
+        "design": "themes/artist-studio/design/DESIGN.md",
+        "references": [
+          "themes/artist-studio/design/content.html",
+          "themes/artist-studio/design/empty.html"
+        ]
+      }
     },
     {
       "id": "restaurant-cafe",
@@ -177,7 +196,16 @@
       "recommendedVisibility": "public",
       "path": "themes/trades-services/",
       "definition": "themes/trades-services/theme.json",
-      "preview": "themes/trades-services/index.html"
+      "preview": "themes/trades-services/index.html",
+      "uplift": {
+        "batch": "A",
+        "status": "in review",
+        "design": "themes/trades-services/design/DESIGN.md",
+        "references": [
+          "themes/trades-services/design/content.html",
+          "themes/trades-services/design/empty.html"
+        ]
+      }
     },
     {
       "id": "professional-practice",
@@ -290,7 +318,16 @@
       "recommendedVisibility": "public",
       "path": "themes/magazine/",
       "definition": "themes/magazine/theme.json",
-      "preview": "themes/magazine/index.html"
+      "preview": "themes/magazine/index.html",
+      "uplift": {
+        "batch": "A",
+        "status": "in review",
+        "design": "themes/magazine/design/DESIGN.md",
+        "references": [
+          "themes/magazine/design/content.html",
+          "themes/magazine/design/empty.html"
+        ]
+      }
     },
     {
       "id": "musician-band",
@@ -807,7 +844,16 @@
       "recommendedVisibility": "public",
       "path": "themes/travel-journal/",
       "definition": "themes/travel-journal/theme.json",
-      "preview": "themes/travel-journal/index.html"
+      "preview": "themes/travel-journal/index.html",
+      "uplift": {
+        "batch": "A",
+        "status": "in review",
+        "design": "themes/travel-journal/design/DESIGN.md",
+        "references": [
+          "themes/travel-journal/design/content.html",
+          "themes/travel-journal/design/empty.html"
+        ]
+      }
     },
     {
       "id": "family-album",

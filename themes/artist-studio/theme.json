@@ -30,8 +30,8 @@
   "density": "comfortable",
   "colours": {
     "light": {
-      "heroShade": "#1f1a16",
-      "heroText": "#f3e9dc",
+      "heroShade": "#2e2620",
+      "heroText": "#fffaf2",
       "bg": "#f6f0e6",
       "surface": "#fffaf2",
       "text": "#2e2620",
@@ -40,10 +40,10 @@
       "onAccent": "#ffffff",
       "border": "#e3d6c4",
       "art1": "#d98b5f",
-      "art2": "#6c8a8f"
+      "art2": "#5d7c80"
     },
     "dark": {
-      "heroShade": "#1f1a16",
+      "heroShade": "#14100d",
       "heroText": "#f3e9dc",
       "bg": "#1f1a16",
       "surface": "#2a231e",
@@ -53,7 +53,7 @@
       "onAccent": "#22140d",
       "border": "#3d332b",
       "art1": "#7a3e26",
-      "art2": "#35565b"
+      "art2": "#7fa3a8"
     }
   },
   "typography": {
@@ -76,9 +76,14 @@
       {
         "type": "gallery",
         "page": "galleries",
-        "heading": "Recent work",
-        "style": "masonry",
+        "heading": "Current series",
+        "style": "even",
         "count": 6
+      },
+      {
+        "type": "feature",
+        "page": "about",
+        "heading": "Artist statement"
       },
       {
         "type": "cards",
@@ -86,6 +91,11 @@
         "heading": "From the studio",
         "columns": 2,
         "count": 2
+      },
+      {
+        "type": "list",
+        "page": "about",
+        "heading": "Shows & stockists"
       },
       {
         "type": "intro",
@@ -101,12 +111,13 @@
   },
   "widgets": {
     "catalogue": "themes/widgets.json",
-    "enabled": [],
-    "suggested": [
-      "social-post",
-      "feature-panel",
-      "photo-strip",
+    "enabled": [
       "social-links"
+    ],
+    "suggested": [
+      "upcoming-events",
+      "photo-strip",
+      "video"
     ],
     "switchable": "all"
   },

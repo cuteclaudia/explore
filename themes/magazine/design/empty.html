@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex">
+<title>New, empty site · Magazine design reference (empty)</title>
+<style>
+:root{--bg:#fbfaf7;--surface:#f1eee7;--text:#141414;--muted:#57534d;--accent:#b0102b;--onAccent:#ffffff;--border:#ddd7cc;--art1:#444444;--art2:#b5a58a;--heroShade:#0e0e0e;--heroText:#f6f4ef;--head:Didot, 'Bodoni MT', 'Noto Serif Display', 'Playfair Display', 'Times New Roman', serif;--body:system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;--radius:0px;--btn:0px;--max:1280px;color-scheme:light}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--body)}
+img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--head);line-height:1.1;margin:0}
+p{margin:0 0 1em}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 5%}
+.section{padding-top:72px;padding-bottom:72px}
+.eyebrow{font:600 12px/1.4 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 22px;border-radius:var(--btn);border:1px solid var(--border);background:var(--surface);color:var(--text);font:600 15px/1 var(--body)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--onAccent)}
+.pic{margin:0;overflow:hidden;background:var(--surface)}.pic img{width:100%;height:100%;object-fit:cover}
+.slot{display:grid;place-items:center;text-align:center;border:1.5px dashed color-mix(in srgb,var(--muted) 55%,transparent);background:repeating-linear-gradient(135deg,transparent 0 14px,color-mix(in srgb,var(--muted) 7%,transparent) 14px 15px);color:var(--muted);font:500 13px/1.4 var(--body);padding:12px}
+.slot small{font-weight:400;opacity:.8}
+.hint{display:inline-block;color:var(--muted);font-family:var(--body);font-weight:400;font-style:normal;letter-spacing:0;text-transform:none;border-bottom:1.5px dashed color-mix(in srgb,var(--muted) 60%,transparent)}
+.manager{position:sticky;top:0;z-index:50;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px 16px;background:#1d2b3a;color:#f3f6f9;font:13px/1.4 system-ui,sans-serif}
+.manager b{font-weight:600}
+.credit{font-size:11px;color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:760px){.section{padding-top:48px;padding-bottom:48px}}
+
+.util{border-bottom:1px solid var(--border);font-size:13px}.util .wrap{display:flex;justify-content:space-between;gap:16px;padding-top:10px;padding-bottom:10px}
+.util a{color:var(--accent);font-weight:600}
+.mast{text-align:center;padding:34px 0 18px}.mast h1{font-size:clamp(40px,7vw,84px);font-weight:700;letter-spacing:-.01em}
+.mast p{margin:10px 0 0;font:500 12px/1 var(--body);letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+.nav{border-top:3px double var(--text);border-bottom:1px solid var(--text)}.nav .wrap{display:flex;justify-content:center;gap:34px;padding-top:12px;padding-bottom:12px;font:600 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;overflow-x:auto;white-space:nowrap}
+.nav a.on{color:var(--accent)}
+.lead{display:grid;grid-template-columns:8fr 4fr;gap:40px;padding:40px 0 56px;border-bottom:1px solid var(--border)}
+.kicker{font:700 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.lead h2{font-size:clamp(34px,4.2vw,56px);font-weight:700;margin:14px 0 14px;letter-spacing:-.01em}
+.stand{font:italic 400 20px/1.5 Georgia, Cambria, 'Noto Serif', 'Times New Roman', serif;color:var(--text);max-width:640px}
+.by{font-size:13px;color:var(--muted);margin-top:14px}
+.lead .pic,.lead .slot{margin-bottom:22px}
+.rail{display:flex;flex-direction:column;gap:26px;border-left:1px solid var(--border);padding-left:34px}
+.rail article h3{font-size:24px;font-weight:700;margin:10px 0 6px}
+.rail .pic,.rail .slot{margin-bottom:12px}
+.brief h4{font:700 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;border-top:3px solid var(--text);padding-top:12px;margin-bottom:6px}
+.brief ol{margin:0;padding:0;list-style:none;counter-reset:b}.brief li{counter-increment:b;display:grid;grid-template-columns:28px 1fr;padding:12px 0;border-bottom:1px solid var(--border);font-weight:600;line-height:1.35}
+.brief li::before{content:counter(b);font:700 22px/1 var(--head);color:var(--accent)}
+.shead{display:flex;justify-content:space-between;align-items:end;border-top:3px solid var(--text);padding-top:12px;margin-bottom:26px}
+.shead h3{font-size:30px;font-weight:700}.shead a{font-weight:600;font-size:14px}
+.issue{display:grid;grid-template-columns:repeat(3,1fr) 1.05fr;gap:30px}
+.issue article h3{font-size:23px;font-weight:700;margin:10px 0 8px}.issue article p{font-size:15px;color:var(--muted)}
+.issue .pic,.issue .slot{margin-bottom:14px}
+.opinion{background:var(--surface);padding:28px;display:flex;flex-direction:column;justify-content:space-between}
+.opinion blockquote{margin:14px 0;font:italic 400 26px/1.3 var(--head)}
+.most{border-left:1px solid var(--border);padding-left:26px}
+.band{position:relative;color:var(--heroText);margin:8px 0}.band .pic,.band .slot{aspect-ratio:21/9}
+.band .cap{position:absolute;inset:auto 0 0 0;padding:48px 5% 34px;background:linear-gradient(0deg,color-mix(in srgb,var(--heroShade) 88%,transparent),transparent)}
+.band h3{font-size:clamp(30px,4vw,52px);font-weight:700;margin:12px 0 8px;max-width:760px}.band .kicker{color:var(--heroText)}
+.band .credit{color:color-mix(in srgb,var(--heroText) 80%,transparent)}
+.interview{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:center}
+.interview blockquote{margin:16px 0 22px;font:italic 400 clamp(28px,3.2vw,40px)/1.25 var(--head)}
+.news{text-align:center;border-top:3px double var(--text);border-bottom:1px solid var(--text);padding:46px 5%}
+.news h3{font-size:34px;font-weight:700;margin-bottom:8px}.news .row{display:flex;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.field{min-height:46px;width:min(340px,100%);border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;padding:0 16px;color:var(--muted);font-size:15px}
+footer{padding:44px 0 56px;font-size:14px}footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}
+footer h4{font:700 12px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}footer .m{font:700 30px/1 var(--head)}
+footer ul{list-style:none;margin:0;padding:0;line-height:2}
+.menu{display:none}
+@media (max-width:980px){.issue{grid-template-columns:1fr 1fr}.most{border:0;padding:0}}
+@media (max-width:760px){
+ .util .wrap>span:first-child{display:none}.util .wrap{justify-content:center}
+ .mast{padding:22px 0 12px}.mast h1{font-size:40px}.mast p{letter-spacing:.2em;font-size:11px}
+ .nav .wrap{justify-content:flex-start;gap:22px}
+ .lead{grid-template-columns:1fr;gap:30px;padding:24px 0 36px}.lead h2{font-size:34px}.stand{font-size:18px}
+ .rail{border:0;padding:0}.rail article{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:start}.rail article .pic,.rail article .slot{margin:0;aspect-ratio:1/1!important}.rail article h3{font-size:19px;margin-top:6px}.rail article p{display:none}
+ .issue{grid-template-columns:1fr}.issue article{display:block}
+ .band .pic,.band .slot{aspect-ratio:4/5}.band .cap{padding:40px 6% 26px}
+ .interview{grid-template-columns:1fr;gap:26px}
+ footer .wrap{grid-template-columns:1fr 1fr}footer .wrap>div:first-child{grid-column:1/-1}
+}
+</style>
+</head>
+<body>
+<div class="manager"><b>Website Manager preview · new site</b><span>Dashed areas are guides for the owner. They are never published: an empty section is left out of the public page.</span></div>
+
+<div class="util"><div class="wrap"><span>Tuesday 10 November 2026 · <span class="hint">Issue number</span></span><span><a href="#">Subscribe</a> · <a href="#">Search</a></span></div></div>
+<header class="mast"><h1>The Valley Review</h1><p><span class="hint">Tagline (optional)</span></p></header>
+<nav class="nav" aria-label="Sections"><div class="wrap"><a class="on" href="#">Stories</a><a href="#">News</a><a href="#">About</a></div></nav>
+<main class="wrap">
+ <section class="lead" aria-label="Cover story">
+  <article>
+   <div class="slot " style="aspect-ratio:3/2"><span>Lead story photograph<br><small>3:2</small></span></div>
+   <span class="kicker"><span class="hint">Category</span></span>
+   <h2><span class="hint">Your lead story’s headline appears here</span></h2>
+   <p class="stand"><span class="hint">The standfirst: one or two sentences that make readers want to start.</span></p>
+   <p class="by"><span class="hint">Byline</span></p>
+  </article>
+  <aside class="rail" aria-label="Also in this issue">
+   <article><div class="slot " style="aspect-ratio:16/9"><span>Story photograph<br><small>16:9</small></span></div><div><span class="kicker"><span class="hint">Category</span></span><h3><span class="hint">Second story</span></h3><p class="muted"><span class="hint">Short summary</span></p></div></article>
+   <article><div class="slot " style="aspect-ratio:16/9"><span>Story photograph<br><small>16:9</small></span></div><div><span class="kicker"><span class="hint">Category</span></span><h3><span class="hint">Third story</span></h3><p class="muted"><span class="hint">Short summary</span></p></div></article>
+   <div class="brief"><h4>In brief</h4><ol><li><span class="hint">Your latest News posts are listed here</span></li></ol></div>
+  </aside>
+ </section>
+ <section class="section" aria-label="This issue">
+  <div class="shead"><h3>This issue</h3><a href="#">All stories →</a></div>
+  <div class="issue">
+   <article><div class="slot " style="aspect-ratio:4/5"><span>Story photograph<br><small>4:5</small></span></div><span class="kicker"><span class="hint">Category</span></span><h3><span class="hint">Story headline</span></h3><p><span class="hint">Short summary</span></p></article>
+   <article><div class="slot " style="aspect-ratio:4/5"><span>Story photograph<br><small>4:5</small></span></div><span class="kicker"><span class="hint">Category</span></span><h3><span class="hint">Story headline</span></h3><p><span class="hint">Short summary</span></p></article>
+   <article class="opinion"><div><span class="kicker"><span class="hint">Category</span></span><blockquote><span class="hint">A pull quote from an opinion piece</span></blockquote></div><p class="by"><span class="hint">Writer · topic</span></p></article>
+   <div class="most brief"><h4>Most read</h4><ol><li><span class="hint">Filled automatically once stories are published</span></li></ol></div>
+  </div>
+ </section>
+</main>
+<section class="band" aria-label="Photo essay">
+ <div class="slot " style="aspect-ratio:21/9"><span>Full-width photo essay image<br><small>21:9</small></span></div>
+ <div class="cap"><div class="wrap" style="padding:0"><span class="kicker"><span class="hint">Category</span></span><h3><span class="hint">Photo essay title</span></h3></div></div>
+</section>
+<main class="wrap">
+ <section class="section interview" aria-label="Interview">
+  <div class="slot " style="aspect-ratio:4/5"><span>Portrait for an interview<br><small>4:5</small></span></div>
+  <div><span class="kicker"><span class="hint">Category</span></span><blockquote><span class="hint">A pull quote from the interview</span></blockquote><h3 style="font-size:28px;margin-bottom:10px"><span class="hint">Interview headline</span></h3><p class="muted"><span class="hint">Short summary</span></p><a class="btn" href="#">Read the interview →</a></div>
+ </section>
+</main>
+<section class="wrap"><div class="news"><h3><span class="hint">Newsletter heading</span></h3><p class="muted"><span class="hint">One line about what readers will get</span></p><div class="row"><span class="field">Email address</span><a class="btn primary" href="#">Subscribe</a></div></div></section>
+<footer><div class="wrap"><div><div class="m">The Valley Review</div><p class="muted" style="margin-top:12px;max-width:340px"><span class="hint">About the publication (from your About page)</span></p></div><div><h4>Sections</h4><ul><li>Stories</li><li>News</li><li>About</li></ul></div><div><h4>Contact</h4><ul><li><span class="hint">Email</span></li><li>Write for us</li></ul></div><div><h4>Follow</h4><ul><li>Newsletter</li><li>Social links</li></ul></div></div>
+</footer>
+</body>
+</html>

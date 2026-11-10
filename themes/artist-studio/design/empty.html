@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex">
+<title>New, empty site · Artist studio design reference (empty)</title>
+<style>
+:root{--bg:#f6f0e6;--surface:#fffaf2;--text:#2e2620;--muted:#6a5d52;--accent:#a8412a;--onAccent:#ffffff;--border:#e3d6c4;--art1:#d98b5f;--art2:#5d7c80;--heroShade:#2e2620;--heroText:#fffaf2;--head:'Iowan Old Style', 'Palatino Linotype', Palatino, 'URW Palladio L', P052, 'Book Antiqua', serif;--body:Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;--radius:4px;--btn:4px;--max:1180px;color-scheme:light}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--body)}
+img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--head);line-height:1.1;margin:0}
+p{margin:0 0 1em}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 5%}
+.section{padding-top:72px;padding-bottom:72px}
+.eyebrow{font:600 12px/1.4 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 22px;border-radius:var(--btn);border:1px solid var(--border);background:var(--surface);color:var(--text);font:600 15px/1 var(--body)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--onAccent)}
+.pic{margin:0;overflow:hidden;background:var(--surface)}.pic img{width:100%;height:100%;object-fit:cover}
+.slot{display:grid;place-items:center;text-align:center;border:1.5px dashed color-mix(in srgb,var(--muted) 55%,transparent);background:repeating-linear-gradient(135deg,transparent 0 14px,color-mix(in srgb,var(--muted) 7%,transparent) 14px 15px);color:var(--muted);font:500 13px/1.4 var(--body);padding:12px}
+.slot small{font-weight:400;opacity:.8}
+.hint{display:inline-block;color:var(--muted);font-family:var(--body);font-weight:400;font-style:normal;letter-spacing:0;text-transform:none;border-bottom:1.5px dashed color-mix(in srgb,var(--muted) 60%,transparent)}
+.manager{position:sticky;top:0;z-index:50;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px 16px;background:#1d2b3a;color:#f3f6f9;font:13px/1.4 system-ui,sans-serif}
+.manager b{font-weight:600}
+.credit{font-size:11px;color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:760px){.section{padding-top:48px;padding-bottom:48px}}
+
+.head{text-align:center;padding:30px 0 22px;border-bottom:1px solid var(--border)}
+.head .name{font:500 30px/1 var(--head);letter-spacing:.01em}.head .name small{display:block;font:400 12px/1 var(--body);letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.head nav{display:flex;justify-content:center;gap:30px;margin-top:20px;font-size:15px}.head nav a.on{color:var(--accent);border-bottom:1px solid currentColor}
+.hero .wrap{display:grid;grid-template-columns:5fr 6fr;gap:64px;align-items:center;padding-top:64px;padding-bottom:80px}
+.hero h1{font-size:clamp(48px,6vw,86px);font-weight:500;letter-spacing:-.015em;margin:16px 0 20px}
+.hero h1 em{color:var(--accent)}
+.hero p{font-size:19px;color:var(--muted);max-width:480px}
+.hero .btns{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+.hero .pic,.hero .slot{border-radius:var(--radius)}
+.series-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:32px;border-bottom:1px solid var(--border);padding-bottom:18px}
+.series-head h2{font-size:clamp(34px,4vw,52px);font-weight:500}.series-head p{margin:8px 0 0;color:var(--muted);max-width:560px}
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:44px 38px}
+.work .mat{background:var(--surface);padding:22px;border:1px solid var(--border);box-shadow:0 1px 0 var(--border)}
+.work h3{font:italic 400 21px/1.3 var(--head);margin:16px 0 4px}.work p{font-size:14px;color:var(--muted);margin:0}
+.dot{display:inline-flex;align-items:center;gap:6px;font-size:13px;margin-top:6px}.dot::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--art2)}.dot.sold::before{background:var(--accent)}
+.statement{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center;padding:96px 6%}
+.statement blockquote{margin:0 auto;max-width:880px;font:italic 400 clamp(28px,3.4vw,42px)/1.3 var(--head)}.statement p{margin-top:22px;color:var(--muted)}
+.notes{display:grid;grid-template-columns:1fr 1fr;gap:34px}.note .pic,.note .slot{border-radius:var(--radius);margin-bottom:16px}
+.note h3{font-size:28px;font-weight:500;margin:8px 0}.note p{color:var(--muted)}
+.ex{display:grid;grid-template-columns:5fr 6fr;gap:56px;align-items:start}
+.ex ul{list-style:none;margin:0;padding:0}.ex li{display:grid;grid-template-columns:70px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--border)}.ex li b{font:500 18px/1.4 var(--head)}.ex li span{color:var(--muted);font-size:14px;display:block}
+.about{display:grid;grid-template-columns:6fr 5fr;gap:64px;align-items:center}
+.about h2{font-size:44px;font-weight:500;margin:10px 0 16px}.about p{color:var(--muted);font-size:17px}
+.facts{display:flex;gap:30px;margin-top:22px;font-size:14px;flex-wrap:wrap}.facts b{display:block;color:var(--text)}
+footer{border-top:1px solid var(--border);padding:34px 0 50px;text-align:center;font-size:14px;color:var(--muted)}footer .name{font:500 22px/1 var(--head);color:var(--text);margin-bottom:10px}
+@media (max-width:900px){.works{grid-template-columns:1fr 1fr;gap:30px 20px}}
+@media (max-width:760px){
+ .head{padding:20px 0 14px}.head .name{font-size:24px}.head nav{gap:18px;font-size:14px;overflow-x:auto;justify-content:flex-start;padding:0 5%;white-space:nowrap}
+ .hero .wrap{grid-template-columns:1fr;gap:28px;padding-top:32px;padding-bottom:48px}.hero .wrap>figure,.hero .wrap>.slot{order:-1}.hero h1{font-size:46px}
+ .series-head .btn{display:none}
+ .works{grid-template-columns:1fr 1fr;gap:22px 14px}.work .mat{padding:10px}.work h3{font-size:17px}.work p{font-size:12px}
+ .statement{padding:60px 7%}
+ .notes,.ex,.about{grid-template-columns:1fr;gap:26px}
+}
+</style>
+</head>
+<body>
+<div class="manager"><b>Website Manager preview · new site</b><span>Dashed areas are guides for the owner. They are never published: an empty section is left out of the public page.</span></div>
+
+<header class="head"><a class="name" href="#">Juniper &amp; Ash<small><span class="hint">What you make</span></small></a><nav aria-label="Main"><a class="on" href="#">Work</a><a href="#">Studio notes</a><a href="#">About</a><a href="#">Contact</a></nav></header>
+<section class="hero"><div class="wrap">
+ <div><span class="eyebrow"><span class="hint">What’s new</span></span><h1><span class="hint">Your headline</span></h1><p><span class="hint">One or two sentences about your work</span></p><div class="btns"><a class="btn primary" href="#">See the work</a><a class="btn" href="#">Commissions</a></div></div>
+ <div class="slot " style="aspect-ratio:5/4"><span>Your studio, or you at work<br><small>5:4</small></span></div>
+</div></section>
+<section class="wrap section" aria-label="Work" style="padding-top:24px">
+ <div class="series-head"><div><span class="eyebrow">Current series</span><h2><span class="hint">Series or collection title</span></h2><p><span class="hint">A sentence about this series</span></p></div><a class="btn" href="#">All work →</a></div>
+ <div class="works"><article class="work"><div class="mat"><div class="slot " style="aspect-ratio:3/4"><span>Artwork photograph<br><small>3:4</small></span></div></div><h3><span class="hint">Title</span></h3><p><span class="hint">Medium · size</span></p><p class="dot"><span class="hint">Available / Sold</span></p></article><article class="work"><div class="mat"><div class="slot " style="aspect-ratio:3/4"><span>Artwork photograph<br><small>3:4</small></span></div></div><h3><span class="hint">Title</span></h3><p><span class="hint">Medium · size</span></p><p class="dot"><span class="hint">Available / Sold</span></p></article><article class="work"><div class="mat"><div class="slot " style="aspect-ratio:3/4"><span>Artwork photograph<br><small>3:4</small></span></div></div><h3><span class="hint">Title</span></h3><p><span class="hint">Medium · size</span></p><p class="dot"><span class="hint">Available / Sold</span></p></article><article class="work"><div class="mat"><div class="slot " style="aspect-ratio:3/4"><span>Artwork photograph<br><small>3:4</small></span></div></div><h3><span class="hint">Title</span></h3><p><span class="hint">Medium · size</span></p><p class="dot"><span class="hint">Available / Sold</span></p></article><article class="work"><div class="mat"><div class="slot " style="aspect-ratio:3/4"><span>Artwork photograph<br><small>3:4</small></span></div></div><h3><span class="hint">Title</span></h3><p><span class="hint">Medium · size</span></p><p class="dot"><span class="hint">Available / Sold</span></p></article><article class="work"><div class="mat"><div class="slot " style="aspect-ratio:3/4"><span>Artwork photograph<br><small>3:4</small></span></div></div><h3><span class="hint">Title</span></h3><p><span class="hint">Medium · size</span></p><p class="dot"><span class="hint">Available / Sold</span></p></article></div>
+</section>
+<section class="statement" aria-label="Artist statement"><blockquote><span class="hint">A line from your artist statement</span></blockquote><p><span class="hint">Source</span></p></section>
+<section class="wrap section" aria-label="Studio notes"><div class="series-head"><div><span class="eyebrow">Studio notes</span><h2>From the studio</h2></div><a class="btn" href="#">All notes →</a></div>
+ <div class="notes"><article class="note"><div class="slot " style="aspect-ratio:3/2"><span>Studio photograph<br><small>3:2</small></span></div><span class="eyebrow"><span class="hint">Date</span></span><h3><span class="hint">Note title</span></h3><p><span class="hint">Short summary</span></p></article><article class="note"><div class="slot " style="aspect-ratio:3/2"><span>Studio photograph<br><small>3:2</small></span></div><span class="eyebrow"><span class="hint">Date</span></span><h3><span class="hint">Note title</span></h3><p><span class="hint">Short summary</span></p></article></div></section>
+<section class="wrap section ex" aria-label="Exhibitions" style="padding-top:0">
+ <div class="slot " style="aspect-ratio:4/3"><span>Exhibition or installation photograph<br><small>4:3</small></span></div>
+ <div><span class="eyebrow">Exhibitions</span><h2 style="font-size:40px;font-weight:500;margin:10px 0 14px">Shows &amp; stockists</h2><ul><li><b><span class="hint">Year</span></b><div><span class="hint">Exhibition title</span><span>Venue, town</span></div></li></ul></div>
+</section>
+<section class="wrap section about" aria-label="About" style="padding-top:0">
+ <div><span class="eyebrow">About the artist</span><h2><span class="hint">Your name</span></h2><p><span class="hint">Your biography from the About page</span></p><div class="facts"><div><b>Studio visits</b><span class="hint">Studio visits</span></div><div><b>Commissions</b><span class="hint">Commissions</span></div><div><b>Email</b><span class="hint">Email</span></div></div></div>
+ <div class="slot " style="aspect-ratio:4/5"><span>Portrait of you in the studio<br><small>4:5</small></span></div>
+</section>
+<footer><div class="name">Juniper &amp; Ash</div>Social links</footer>
+</body>
+</html>

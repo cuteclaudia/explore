@@ -79,6 +79,10 @@ node --test themes/_tools/themes.test.mjs     # or: npm run test:themes
 
 Add an entry to `THEMES` in `_tools/catalogue.mjs` with the next number, build, run the tests, and open the new `index.html` in a browser to check light and dark.
 
+## Uplift to the Explore standard
+
+Themes are being redesigned five at a time to the quality of Explore by Claudia. Uplifted themes keep their id and gain a `design/` folder with the specification, desktop and phone references (with content and for a new, empty site), screens and credited stock photos. See [UPLIFT.md](UPLIFT.md). Batch A: Magazine, Photography portfolio, Trades & local services, Artist studio, Travel journal (in review).
+
 ## Theme list
 
 Status: **built** = folder exists in this repo; **planned** = agreed, not yet built. Batches of ten are built in order.

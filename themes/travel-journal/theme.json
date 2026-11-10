@@ -28,46 +28,46 @@
   "density": "comfortable",
   "colours": {
     "light": {
-      "heroShade": "#0f1d23",
+      "heroShade": "#141c22",
       "heroText": "#ffffff",
-      "bg": "#f3f6f7",
+      "bg": "#f6f3ee",
       "surface": "#ffffff",
-      "text": "#1f2d33",
-      "muted": "#52646c",
-      "accent": "#1f6f8b",
+      "text": "#1f2a2e",
+      "muted": "#55625f",
+      "accent": "#a5481f",
       "onAccent": "#ffffff",
-      "border": "#d9e3e7",
-      "art1": "#7fb3c7",
-      "art2": "#e0c58f"
+      "border": "#e2ddd3",
+      "art1": "#5f8c99",
+      "art2": "#d9b26f"
     },
     "dark": {
-      "heroShade": "#081014",
+      "heroShade": "#0a0f12",
       "heroText": "#ffffff",
-      "bg": "#0d1418",
-      "surface": "#152027",
-      "text": "#e7f0f3",
-      "muted": "#9fb2ba",
-      "accent": "#86c9e0",
-      "onAccent": "#072431",
-      "border": "#263741",
-      "art1": "#24546a",
-      "art2": "#6e5a2a"
+      "bg": "#10161a",
+      "surface": "#182128",
+      "text": "#eef1ee",
+      "muted": "#a9b5b3",
+      "accent": "#f0a072",
+      "onAccent": "#2a1206",
+      "border": "#2a363d",
+      "art1": "#2e5562",
+      "art2": "#7a6233"
     }
   },
   "typography": {
-    "heading": "serif",
+    "heading": "oldstyle",
     "body": "sans",
-    "headingWeight": 400,
+    "headingWeight": 500,
     "headingCase": "none",
     "headingTracking": 0,
     "scale": 1
   },
   "shape": {
-    "radius": 8,
-    "buttonRadius": 8
+    "radius": 10,
+    "buttonRadius": 999
   },
   "layout": {
-    "maxWidth": 1180,
+    "maxWidth": 1300,
     "header": "split",
     "hero": "full-bleed",
     "home": [
@@ -79,13 +79,15 @@
       {
         "type": "cards",
         "page": "journal",
-        "heading": "Earlier journeys"
+        "heading": "Earlier journeys",
+        "columns": 3,
+        "count": 3
       },
       {
         "type": "gallery",
         "page": "galleries",
         "style": "strip",
-        "count": 6
+        "count": 5
       },
       {
         "type": "intro",
@@ -99,7 +101,8 @@
     "enabled": [
       "feature-panel",
       "quick-links",
-      "illustrated-map"
+      "illustrated-map",
+      "photo-strip"
     ],
     "suggested": [
       "map",

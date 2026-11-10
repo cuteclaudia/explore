@@ -32,8 +32,8 @@
   "density": "compact",
   "colours": {
     "light": {
-      "heroShade": "#0d1520",
-      "heroText": "#edf2f7",
+      "heroShade": "#0f1b2a",
+      "heroText": "#f4f6f8",
       "bg": "#f4f6f8",
       "surface": "#ffffff",
       "text": "#0f1b2a",
@@ -45,7 +45,7 @@
       "art2": "#f2a33a"
     },
     "dark": {
-      "heroShade": "#0d1520",
+      "heroShade": "#060c14",
       "heroText": "#edf2f7",
       "bg": "#0d1520",
       "surface": "#152131",
@@ -55,7 +55,7 @@
       "onAccent": "#1a0c02",
       "border": "#26364a",
       "art1": "#1f3b55",
-      "art2": "#8a5a17"
+      "art2": "#f2a33a"
     }
   },
   "typography": {
@@ -79,7 +79,9 @@
         "type": "cards",
         "page": "articles",
         "heading": "What we do",
-        "images": false
+        "columns": 4,
+        "count": 4,
+        "images": true
       },
       {
         "type": "facts"
@@ -88,26 +90,33 @@
         "type": "gallery",
         "page": "galleries",
         "heading": "Recent jobs",
-        "style": "even",
-        "count": 6
+        "style": "wide",
+        "count": 3
+      },
+      {
+        "type": "intro",
+        "page": "about",
+        "heading": "About us"
       },
       {
         "type": "cta",
         "heading": "Need a quote?",
-        "text": "Tell us about the job and we will get back to you within one business day.",
+        "text": "Tell us about the job and we will reply within one business day.",
         "button": "Request a quote"
       }
     ]
   },
   "widgets": {
     "catalogue": "themes/widgets.json",
-    "enabled": [],
+    "enabled": [
+      "key-numbers",
+      "contact-card"
+    ],
     "suggested": [
-      "map",
-      "contact-card",
       "testimonials",
-      "feature-panel",
-      "photo-strip"
+      "map",
+      "photo-strip",
+      "social-links"
     ],
     "switchable": "all"
   },

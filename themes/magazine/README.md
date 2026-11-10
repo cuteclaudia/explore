@@ -18,7 +18,7 @@ Only the existing SoraSpace page types are used. Labels are display names; the u
 ## Layout
 
 - Header: `centered` · Hero: `statement` · Maximum width: 1280px
-- Home sections, in order: `feature` (articles), `cards` (articles), `list` (blog)
+- Home sections, in order: `feature` (articles), `list` (blog), `cards` (articles), `gallery` (articles), `feature` (articles), `cta`
 - Headings: didone stack, weight 700 · Body: sans stack · Corner radius: 0px
 
 ## Colours
@@ -27,17 +27,17 @@ Light and dark sets are both defined; System follows the visitor's device settin
 
 | Token | Light |
 | --- | --- |
-| bg | `#ffffff` |
-| surface | `#f5f5f2` |
-| text | `#111111` |
-| muted | `#555555` |
-| accent | `#c8102e` |
+| bg | `#fbfaf7` |
+| surface | `#f1eee7` |
+| text | `#141414` |
+| muted | `#57534d` |
+| accent | `#b0102b` |
 | onAccent | `#ffffff` |
-| border | `#dddddd` |
+| border | `#ddd7cc` |
 | art1 | `#444444` |
 | art2 | `#b5a58a` |
-| heroShade | `#121212` |
-| heroText | `#f1f1f1` |
+| heroShade | `#0e0e0e` |
+| heroText | `#f6f4ef` |
 
 | Token | Dark |
 | --- | --- |
@@ -57,8 +57,8 @@ Light and dark sets are both defined; System follows the visitor's device settin
 
 Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
 
-- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`)
-- Suggested: Social links (`social-links`)
+- On by default: Latest posts (`latest-posts`), Social links (`social-links`)
+- Suggested: Upcoming events (`upcoming-events`), Photo strip (`photo-strip`), Audio player (`audio`), outside, click-to-load
 
 ## Files
 

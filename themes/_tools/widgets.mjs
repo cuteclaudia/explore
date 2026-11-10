@@ -61,7 +61,12 @@ const TESTIMONIALS = new Set(['trades-services', 'professional-practice', 'consu
 // Theme-specific choices; anything not listed here comes from the rules below.
 const OVERRIDES = {
   explore: { enabled: ['feature-panel', 'quick-links', 'illustrated-map'], suggested: ['map', 'latest-posts', 'social-links', 'photo-strip'] },
-  'travel-journal': { enabled: ['feature-panel', 'quick-links', 'illustrated-map'], suggested: ['map', 'video', 'social-links'] },
+  'travel-journal': { enabled: ['feature-panel', 'quick-links', 'illustrated-map', 'photo-strip'], suggested: ['map', 'video', 'social-links'] },
+  // Uplift batch A (design/ folders): starting widgets match the design references.
+  magazine: { enabled: ['latest-posts', 'social-links'], suggested: ['upcoming-events', 'photo-strip', 'audio'] },
+  'photography-portfolio': { enabled: ['social-links'], suggested: ['contact-card', 'photo-strip', 'map'] },
+  'trades-services': { enabled: ['key-numbers', 'contact-card'], suggested: ['testimonials', 'map', 'photo-strip', 'social-links'] },
+  'artist-studio': { enabled: ['social-links'], suggested: ['upcoming-events', 'photo-strip', 'video'] },
   'coming-soon': { enabled: ['social-links'], suggested: ['key-numbers'] },
   'memorial-tribute': { enabled: [], suggested: ['photo-strip', 'video', 'map'] },
   'family-album': { enabled: [], suggested: ['photo-strip', 'illustrated-map', 'video'] },

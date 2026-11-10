@@ -110,3 +110,26 @@ test('widgets: known ids, outside widgets never on by default, allowlisted provi
   const catalogue = JSON.parse(await readFile(join(ROOT, 'widgets.json'), 'utf8'));
   assert.deepEqual(catalogue.widgets.map(w => w.id), WIDGETS.map(w => w.id), 'widgets.json is current');
 });
+
+// Uplift design references (themes/<id>/design/): current, self-contained and fully credited.
+test('design references are current, offline and credited', async () => {
+  const { DESIGNS, renderDesign, creditsMarkdown } = await import('./design-references.mjs');
+  const { CREDITS } = await import('./design-credits.mjs');
+  const { existsSync } = await import('node:fs');
+  for (const d of DESIGNS) {
+    const dir = join(ROOT, d.id, 'design');
+    const images = (await readdir(join(dir, 'images'))).filter(f => f.endsWith('.jpg')).sort();
+    assert.deepEqual(images, CREDITS[d.id].map(([f]) => `${f}.jpg`).sort(), `${d.id}: every stock image has a credit and every credit has an image`);
+    assert.equal(await readFile(join(dir, 'CREDITS.md'), 'utf8'), creditsMarkdown(d.id), `${d.id}/design/CREDITS.md is stale`);
+    for (const kind of ['content', 'empty']) {
+      const html = await readFile(join(dir, `${kind}.html`), 'utf8');
+      assert.equal(html, renderDesign(d, kind), `${d.id}/design/${kind}.html is stale`);
+      assert.ok(!/<script|\son[a-z]+=|javascript:/i.test(html), `${d.id} ${kind}: no scripts`);
+      assert.ok(!/(src|href)="(https?:)?\/\//i.test(html) && !/url\(/i.test(html), `${d.id} ${kind}: nothing loaded from outside`);
+      for (const [, src] of html.matchAll(/src="([^"]+)"/g)) assert.ok(existsSync(join(dir, src)), `${d.id} ${kind}: ${src} exists`);
+      if (kind === 'empty') assert.ok(!/<img /.test(html), `${d.id}: an empty site shows no stock or sample photographs`);
+    }
+    for (const shot of ['desktop-content', 'desktop-empty', 'phone-content', 'phone-empty']) assert.ok(existsSync(join(dir, 'screens', `${shot}.jpg`)), `${d.id} screen ${shot}`);
+    assert.ok(existsSync(join(dir, 'DESIGN.md')), `${d.id}/design/DESIGN.md`);
+  }
+});

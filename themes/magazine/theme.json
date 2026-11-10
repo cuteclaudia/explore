@@ -29,15 +29,15 @@
   "density": "compact",
   "colours": {
     "light": {
-      "heroShade": "#121212",
-      "heroText": "#f1f1f1",
-      "bg": "#ffffff",
-      "surface": "#f5f5f2",
-      "text": "#111111",
-      "muted": "#555555",
-      "accent": "#c8102e",
+      "heroShade": "#0e0e0e",
+      "heroText": "#f6f4ef",
+      "bg": "#fbfaf7",
+      "surface": "#f1eee7",
+      "text": "#141414",
+      "muted": "#57534d",
+      "accent": "#b0102b",
       "onAccent": "#ffffff",
-      "border": "#dddddd",
+      "border": "#ddd7cc",
       "art1": "#444444",
       "art2": "#b5a58a"
     },
@@ -78,27 +78,47 @@
         "heading": "Cover story"
       },
       {
-        "type": "cards",
-        "page": "articles",
-        "heading": "This issue",
-        "columns": 4,
-        "count": 4
-      },
-      {
         "type": "list",
         "page": "blog",
         "heading": "In brief"
+      },
+      {
+        "type": "cards",
+        "page": "articles",
+        "heading": "This issue",
+        "columns": 3,
+        "count": 3
+      },
+      {
+        "type": "gallery",
+        "page": "articles",
+        "heading": "Photo essay",
+        "style": "wide",
+        "count": 1
+      },
+      {
+        "type": "feature",
+        "page": "articles",
+        "heading": "Interview"
+      },
+      {
+        "type": "cta",
+        "heading": "The Review, once a month",
+        "text": "One email on the first Sunday of the month.",
+        "button": "Subscribe"
       }
     ]
   },
   "widgets": {
     "catalogue": "themes/widgets.json",
     "enabled": [
-      "feature-panel",
-      "quick-links"
+      "latest-posts",
+      "social-links"
     ],
     "suggested": [
-      "social-links"
+      "upcoming-events",
+      "photo-strip",
+      "audio"
     ],
     "switchable": "all"
   },

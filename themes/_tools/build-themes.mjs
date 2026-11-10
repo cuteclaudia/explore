@@ -9,6 +9,9 @@ import { WIDGETS, PROVIDERS, EXTERNAL_RULES, themeWidgets } from './widgets.mjs'
 
 const WIDGET = Object.fromEntries(WIDGETS.map(w => [w.id, w]));
 
+// Themes redesigned to the Explore standard (themes/UPLIFT.md), by uplift batch.
+export const UPLIFT = { magazine: 'A', 'photography-portfolio': 'A', 'trades-services': 'A', 'artist-studio': 'A', 'travel-journal': 'A' };
+
 export const batchOf = n => (n <= 10 ? 1 : Math.ceil(n / 10));
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -276,6 +279,7 @@ export async function build() {
     schemaVersion: 1,
     description: 'SoraSpace tenant site themes. Each entry has a folder containing theme.json (definition), index.html (preview only) and README.md.',
     stability: 'schemaVersion, theme ids and definition paths are stable. New fields may be added; existing ones are not renamed or removed within schemaVersion 1.',
+    uplift: 'Entries with an uplift block have a design/ folder (specification, references, screens, stock photos) from the uplift described in themes/UPLIFT.md. theme.json carries the settings the importer supports; DESIGN.md lists the new features still to build.',
     readyToImport: 'An entry with readyToImport true has passed the validity, contrast and security checks and a visual review in light and dark, and its theme.json may be imported.',
     widgetCatalogue: 'themes/widgets.json',
     batches: BATCHES,
@@ -288,7 +292,7 @@ export async function build() {
     await writeFile(join(dir, 'theme.json'), JSON.stringify(t, null, 2) + '\n');
     await writeFile(join(dir, 'index.html'), previewHtml(t, def.sample));
     await writeFile(join(dir, 'README.md'), readme(t, def.sample));
-    manifest.themes.push({ id: t.id, number: t.number, name: t.name, batch: batchOf(t.number), readyToImport: !!def.readyToImport, category: t.category, status: t.status, suits: t.suits, baseTemplate: t.baseTemplate, purpose: t.purpose, pages: t.pages, workgroupFriendly: t.workgroupFriendly, recommendedVisibility: t.recommendedVisibility, path: `themes/${t.id}/`, definition: `themes/${t.id}/theme.json`, preview: `themes/${t.id}/index.html` });
+    manifest.themes.push({ id: t.id, number: t.number, name: t.name, batch: batchOf(t.number), readyToImport: !!def.readyToImport, category: t.category, status: t.status, suits: t.suits, baseTemplate: t.baseTemplate, purpose: t.purpose, pages: t.pages, workgroupFriendly: t.workgroupFriendly, recommendedVisibility: t.recommendedVisibility, path: `themes/${t.id}/`, definition: `themes/${t.id}/theme.json`, preview: `themes/${t.id}/index.html`, ...(UPLIFT[t.id] ? { uplift: { batch: UPLIFT[t.id], status: 'in review', design: `themes/${t.id}/design/DESIGN.md`, references: [`themes/${t.id}/design/content.html`, `themes/${t.id}/design/empty.html`] } } : {}) });
   }
   manifest.themes.sort((a, b) => a.number - b.number);
   await writeFile(join(ROOT, 'widgets.json'), JSON.stringify({ schemaVersion: 1, description: 'SoraSpace site widgets. Every widget can be switched on or off per site; themes only set the starting state (theme.json widgets.enabled) and suggestions (widgets.suggested).', externalRules: EXTERNAL_RULES, widgets: WIDGETS, providers: PROVIDERS }, null, 2) + '\n');

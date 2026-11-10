@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+<meta name="robots" content="noindex">
+<title>New, empty site · Photography portfolio design reference (empty)</title>
+<style>
+:root{--bg:#0b0b0c;--surface:#151517;--text:#f2f2f2;--muted:#a3a3a3;--accent:#f2f2f2;--onAccent:#0b0b0c;--border:#262628;--art1:#23262b;--art2:#6d6559;--heroShade:#000000;--heroText:#f2f2f2;--head:system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;--body:system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;--radius:0px;--btn:0px;--max:1400px;color-scheme:dark}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--body)}
+img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--head);line-height:1.1;margin:0}
+p{margin:0 0 1em}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 5%}
+.section{padding-top:72px;padding-bottom:72px}
+.eyebrow{font:600 12px/1.4 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 22px;border-radius:var(--btn);border:1px solid var(--border);background:var(--surface);color:var(--text);font:600 15px/1 var(--body)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--onAccent)}
+.pic{margin:0;overflow:hidden;background:var(--surface)}.pic img{width:100%;height:100%;object-fit:cover}
+.slot{display:grid;place-items:center;text-align:center;border:1.5px dashed color-mix(in srgb,var(--muted) 55%,transparent);background:repeating-linear-gradient(135deg,transparent 0 14px,color-mix(in srgb,var(--muted) 7%,transparent) 14px 15px);color:var(--muted);font:500 13px/1.4 var(--body);padding:12px}
+.slot small{font-weight:400;opacity:.8}
+.hint{display:inline-block;color:var(--muted);font-family:var(--body);font-weight:400;font-style:normal;letter-spacing:0;text-transform:none;border-bottom:1.5px dashed color-mix(in srgb,var(--muted) 60%,transparent)}
+.manager{position:sticky;top:0;z-index:50;display:flex;gap:12px;align-items:center;justify-content:center;flex-wrap:wrap;padding:8px 16px;background:#1d2b3a;color:#f3f6f9;font:13px/1.4 system-ui,sans-serif}
+.manager b{font-weight:600}
+.credit{font-size:11px;color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:760px){.section{padding-top:48px;padding-bottom:48px}}
+
+.top{position:absolute;inset:0 0 auto 0;z-index:5;color:#f4f4f2}.top .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:26px;padding-bottom:26px;max-width:none;padding-left:4%;padding-right:4%}
+.brand{font:500 13px/1 var(--body);letter-spacing:.32em;text-transform:uppercase}
+.top nav{display:flex;gap:30px;font:500 13px/1 var(--body);letter-spacing:.14em;text-transform:uppercase}
+.hero{position:relative;height:100vh;min-height:620px;max-height:980px;color:#f4f4f2;background:#111}
+.hero .pic,.hero .slot{position:absolute;inset:0;aspect-ratio:auto!important;height:100%}
+.hero .slot{border-color:#ffffff55;color:#ffffffaa}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(0deg,#000a 0%,#0000 45%),linear-gradient(180deg,#0006 0%,#0000 22%)}
+.hero .copy{position:absolute;left:4%;right:4%;bottom:56px;display:flex;justify-content:space-between;align-items:end;gap:30px}
+.hero h1{font-size:clamp(52px,8vw,112px);font-weight:200;letter-spacing:-.02em}
+.hero p{margin:14px 0 0;font-size:17px;max-width:520px;color:#e7e7e3}
+.hero small{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#d6d6d0;white-space:nowrap}
+.intro{display:grid;grid-template-columns:1fr 2fr;gap:40px;align-items:end;padding-top:96px;padding-bottom:44px}
+.intro h2{font-size:clamp(32px,3.6vw,48px);font-weight:200}
+.intro p{font-size:18px;color:var(--muted);max-width:620px;margin:0}
+.grid{columns:3 320px;column-gap:14px;padding:0 4%}.grid figure{break-inside:avoid;margin:0 0 14px}
+.grid .pic,.grid .slot{width:100%}
+.grid figcaption{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.06em;color:var(--muted);padding:8px 2px 4px}
+.series{border-top:1px solid var(--border)}.series a{display:grid;grid-template-columns:220px 1fr auto;gap:30px;align-items:center;padding:22px 0;border-bottom:1px solid var(--border)}
+.series .pic,.series .slot{aspect-ratio:16/9}.series h3{font-size:30px;font-weight:200}.series span{color:var(--muted);font-size:14px}
+.about{display:grid;grid-template-columns:6fr 5fr;gap:64px;align-items:center}
+.about h2{font-size:42px;font-weight:200;margin-bottom:18px}.about p{color:var(--muted);font-size:17px}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px;border-top:1px solid var(--border);padding-top:20px;font-size:14px}.facts b{display:block;font-weight:500;color:var(--text)}
+.contact{background:#000;color:#f2f2f2;text-align:center;padding:110px 5%}.contact h2{font-size:clamp(34px,5vw,64px);font-weight:200}
+.contact p{color:#b9b9b4;margin:16px auto 28px;max-width:520px}.contact .btn{background:transparent;color:#f2f2f2;border-color:#f2f2f2}
+footer{display:flex;justify-content:space-between;gap:20px;padding:26px 4%;font-size:12px;color:var(--muted);letter-spacing:.06em;flex-wrap:wrap}
+@media (max-width:760px){
+ .top .wrap{padding-top:18px;padding-bottom:18px}.top nav a:not(:last-child){display:none}.top nav a:last-child::before{content:"☰  "}
+ .hero{height:86vh;min-height:560px}.hero .copy{flex-direction:column;align-items:flex-start;bottom:30px;gap:16px}.hero h1{font-size:54px}
+ .intro{grid-template-columns:1fr;gap:14px;padding-top:56px}
+ .grid{columns:2 140px;column-gap:8px;padding:0 3%}.grid figure{margin-bottom:8px}.grid figcaption{display:none}
+ .series a{grid-template-columns:96px 1fr;gap:16px}.series a>span:last-child{display:none}.series h3{font-size:22px}
+ .about{grid-template-columns:1fr;gap:26px}.contact{padding:72px 6%}
+}
+</style>
+</head>
+<body>
+<div class="manager"><b>Website Manager preview · new site</b><span>Dashed areas are guides for the owner. They are never published: an empty section is left out of the public page.</span></div>
+
+<header class="top"><div class="wrap"><a class="brand" href="#">Mara Quill</a><nav aria-label="Main"><a href="#">Portfolio</a><a href="#">About</a><a href="#">Contact</a></nav></div></header>
+<section class="hero" aria-label="Opening photograph">
+ <div class="slot " style="aspect-ratio:16/9"><span>Your opening photograph · landscape, at least 2400 px wide<br><small>16:9</small></span></div>
+ 
+ <div class="copy"><div><h1><span class="hint">Your name or series title</span></h1><p><span class="hint">One line about your work</span></p></div><small><span class="hint">Caption for the opening photograph</span></small></div>
+</section>
+<section class="wrap intro"><h2><span class="hint">Selected work</span></h2><p><span class="hint">Two sentences about how and what you photograph (from your About page)</span></p></section>
+<section class="grid" aria-label="Selected work">
+ <figure><div class="slot " style="aspect-ratio:3/2"><span>Portfolio photograph<br><small>3:2</small></span></div></figure>
+ <figure><div class="slot " style="aspect-ratio:2/3"><span>Portfolio photograph<br><small>2:3</small></span></div></figure>
+ <figure><div class="slot " style="aspect-ratio:3/2"><span>Portfolio photograph<br><small>3:2</small></span></div></figure>
+ <figure><div class="slot " style="aspect-ratio:4/3"><span>Portfolio photograph<br><small>4:3</small></span></div></figure>
+ <figure><div class="slot " style="aspect-ratio:2/3"><span>Portfolio photograph<br><small>2:3</small></span></div></figure>
+ <figure><div class="slot " style="aspect-ratio:3/2"><span>Portfolio photograph<br><small>3:2</small></span></div></figure>
+ <figure><div class="slot " style="aspect-ratio:16/10"><span>Portfolio photograph<br><small>16:10</small></span></div></figure>
+ <figure><div class="slot " style="aspect-ratio:3/2"><span>Portfolio photograph<br><small>3:2</small></span></div></figure>
+</section>
+<section class="wrap section" aria-label="Series">
+ <p class="eyebrow" style="margin-bottom:18px">Series</p>
+ <div class="series">
+  <a href="#"><div class="slot " style="aspect-ratio:16/9"><span>Series cover<br><small>16:9</small></span></div><div><h3><span class="hint">Series title</span></h3><span><span class="hint">Years</span></span></div><span><span class="hint">Number of photographs</span> →</span></a>
+  <a href="#"><div class="slot " style="aspect-ratio:16/9"><span>Series cover<br><small>16:9</small></span></div><div><h3><span class="hint">Series title</span></h3><span><span class="hint">Years</span></span></div><span><span class="hint">Number of photographs</span> →</span></a>
+  <a href="#"><div class="slot " style="aspect-ratio:16/9"><span>Series cover<br><small>16:9</small></span></div><div><h3><span class="hint">Series title</span></h3><span><span class="hint">Years</span></span></div><span><span class="hint">Number of photographs</span> →</span></a>
+ </div>
+</section>
+<section class="wrap section about" aria-label="About">
+ <div class="slot " style="aspect-ratio:4/3"><span>Portrait of you at work<br><small>4:3</small></span></div>
+ <div><p class="eyebrow">About</p><h2><span class="hint">Your name</span></h2><p><span class="hint">A short biography from your About page</span></p>
+ <div class="facts"><div><b>Based in</b><span class="hint">Where you work</span></div><div><b>Available for</b><span class="hint">What people can hire you for</span></div></div></div>
+</section>
+<section class="contact" aria-label="Contact"><p class="eyebrow" style="color:#b9b9b4">Contact</p><h2><span class="hint">Contact heading</span></h2><p><span class="hint">How people should get in touch</span></p><a class="btn" href="#">Contact button</a></section>
+<footer><span>© 2026 Your name</span><span>Social links</span></footer>
+</body>
+</html>

@@ -55,10 +55,10 @@
   "typography": {
     "heading": "sans",
     "body": "sans",
-    "headingWeight": 300,
-    "headingCase": "uppercase",
-    "headingTracking": 0.16,
-    "scale": 0.95
+    "headingWeight": 200,
+    "headingCase": "none",
+    "headingTracking": -0.01,
+    "scale": 1
   },
   "shape": {
     "radius": 0,
@@ -70,11 +70,21 @@
     "hero": "full-bleed",
     "home": [
       {
+        "type": "intro",
+        "page": "about",
+        "heading": "Selected work"
+      },
+      {
         "type": "gallery",
         "page": "galleries",
         "heading": "Selected work",
         "style": "masonry",
         "count": 9
+      },
+      {
+        "type": "list",
+        "page": "galleries",
+        "heading": "Series"
       },
       {
         "type": "intro",
@@ -85,18 +95,19 @@
         "type": "contact",
         "page": "contact",
         "heading": "Commissions & prints",
-        "text": "Available for editorial, landscape and portrait commissions."
+        "text": "For commissions, licensing and print enquiries, write to me."
       }
     ]
   },
   "widgets": {
     "catalogue": "themes/widgets.json",
-    "enabled": [],
-    "suggested": [
-      "video",
-      "social-post",
-      "photo-strip",
+    "enabled": [
       "social-links"
+    ],
+    "suggested": [
+      "contact-card",
+      "photo-strip",
+      "map"
     ],
     "switchable": "all"
   },
