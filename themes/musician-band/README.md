@@ -18,8 +18,8 @@ Only the existing SoraSpace page types are used. Labels are display names; the u
 
 ## Layout
 
-- Header: `minimal` · Hero: `full-bleed` · Maximum width: 1180px
-- Home sections, in order: `list` (blog), `gallery` (galleries), `intro` (about), `contact` (contact)
+- Header: `minimal` · Hero: `full-bleed` · Maximum width: 1400px
+- Home sections, in order: `list` (blog), `feature` (blog), `gallery` (galleries), `intro` (about), `contact` (contact), `cta`
 - Headings: condensed stack, weight 800, uppercase · Body: sans stack · Corner radius: 4px
 
 ## Colours
@@ -58,8 +58,8 @@ Light and dark sets are both defined; System follows the visitor's device settin
 
 Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
 
-- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`)
-- Suggested: Upcoming events (`upcoming-events`), Video (`video`), outside, click-to-load, Audio player (`audio`), outside, click-to-load, Social post (`social-post`), outside, click-to-load, Photo strip (`photo-strip`)
+- On by default: Upcoming events (`upcoming-events`), Social links (`social-links`)
+- Suggested: Audio player (`audio`), outside, click-to-load, Video (`video`), outside, click-to-load, Photo strip (`photo-strip`), Social post (`social-post`), outside, click-to-load
 
 ## Notes
 

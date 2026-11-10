@@ -73,6 +73,12 @@ const OVERRIDES = {
   'writer-author': { enabled: ['social-links'], suggested: ['latest-posts', 'audio', 'upcoming-events'] },
   'wellness-clinic': { enabled: ['contact-card'], suggested: ['map', 'key-numbers', 'social-links'] },
   stay: { enabled: ['key-numbers'], suggested: ['map', 'testimonials', 'photo-strip', 'video'] },
+  // Uplift batch C.
+  consultant: { enabled: ['testimonials', 'contact-card'], suggested: ['latest-posts', 'key-numbers', 'social-links'] },
+  'musician-band': { enabled: ['upcoming-events', 'social-links'], suggested: ['audio', 'video', 'photo-strip', 'social-post'] },
+  'fitness-studio': { enabled: ['key-numbers'], suggested: ['testimonials', 'map', 'video', 'social-links'] },
+  'community-group': { enabled: ['upcoming-events', 'social-links'], suggested: ['latest-posts', 'photo-strip', 'map', 'social-post'] },
+  'maker-shop': { enabled: ['upcoming-events', 'social-links'], suggested: ['photo-strip', 'social-post', 'map'] },
   'coming-soon': { enabled: ['social-links'], suggested: ['key-numbers'] },
   'memorial-tribute': { enabled: [], suggested: ['photo-strip', 'video', 'map'] },
   'family-album': { enabled: [], suggested: ['photo-strip', 'illustrated-map', 'video'] },

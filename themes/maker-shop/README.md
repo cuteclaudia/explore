@@ -18,8 +18,8 @@ Only the existing SoraSpace page types are used. Labels are display names; the u
 
 ## Layout
 
-- Header: `centered` · Hero: `split` · Maximum width: 1180px
-- Home sections, in order: `gallery` (galleries), `feature` (blog), `intro` (about), `contact` (contact)
+- Header: `centered` · Hero: `split` · Maximum width: 1240px
+- Home sections, in order: `gallery` (galleries), `list` (about), `feature` (blog), `list` (blog), `contact` (contact)
 - Headings: geometric stack, weight 500 · Body: sans stack · Corner radius: 4px
 
 ## Colours
@@ -37,8 +37,8 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | border | `#e6e6df` |
 | art1 | `#d8cbb5` |
 | art2 | `#9fb7a6` |
-| heroShade | `#141413` |
-| heroText | `#efefe9` |
+| heroShade | `#1f1f1c` |
+| heroText | `#fafaf7` |
 
 | Token | Dark |
 | --- | --- |
@@ -51,15 +51,15 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | border | `#2f2f2b` |
 | art1 | `#5a4f3c` |
 | art2 | `#3c5a4c` |
-| heroShade | `#141413` |
+| heroShade | `#0b0b0a` |
 | heroText | `#efefe9` |
 
 ## Widgets
 
 Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
 
-- On by default: none
-- Suggested: Map (`map`), outside, click-to-load, Contact card (`contact-card`), Social post (`social-post`), outside, click-to-load, Featured panel (`feature-panel`), Photo strip (`photo-strip`)
+- On by default: Upcoming events (`upcoming-events`), Social links (`social-links`)
+- Suggested: Photo strip (`photo-strip`), Social post (`social-post`), outside, click-to-load, Map (`map`), outside, click-to-load
 
 ## Notes
 

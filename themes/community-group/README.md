@@ -18,8 +18,8 @@ Only the existing SoraSpace page types are used. Labels are display names; the u
 
 ## Layout
 
-- Header: `split` · Hero: `banner` · Maximum width: 1180px
-- Home sections, in order: `intro` (about), `cards` (blog), `gallery` (galleries), `cta`
+- Header: `split` · Hero: `banner` · Maximum width: 1300px
+- Home sections, in order: `facts`, `intro` (about), `list` (about), `list` (blog), `cards` (blog), `cta`
 - Headings: humanist stack, weight 700 · Body: sans stack · Corner radius: 12px
 
 ## Colours
@@ -37,8 +37,8 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | border | `#efe2d0` |
 | art1 | `#f4a261` |
 | art2 | `#2a9d8f` |
-| heroShade | `#1b1511` |
-| heroText | `#f6ece1` |
+| heroShade | `#2b1a10` |
+| heroText | `#fff8ef` |
 
 | Token | Dark |
 | --- | --- |
@@ -51,15 +51,15 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | border | `#3b2f25` |
 | art1 | `#8a4a20` |
 | art2 | `#1d5e57` |
-| heroShade | `#1b1511` |
+| heroShade | `#120c08` |
 | heroText | `#f6ece1` |
 
 ## Widgets
 
 Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
 
-- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`)
-- Suggested: Upcoming events (`upcoming-events`), Map (`map`), outside, click-to-load, Contact card (`contact-card`), Social post (`social-post`), outside, click-to-load, Photo strip (`photo-strip`)
+- On by default: Upcoming events (`upcoming-events`), Social links (`social-links`)
+- Suggested: Latest posts (`latest-posts`), Photo strip (`photo-strip`), Map (`map`), outside, click-to-load, Social post (`social-post`), outside, click-to-load
 
 ## Files
 

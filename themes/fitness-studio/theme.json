@@ -31,8 +31,8 @@
   "density": "comfortable",
   "colours": {
     "light": {
-      "heroShade": "#0b1a16",
-      "heroText": "#e8f6f0",
+      "heroShade": "#0c2621",
+      "heroText": "#f5fbf8",
       "bg": "#f5fbf8",
       "surface": "#ffffff",
       "text": "#0f2a22",
@@ -44,7 +44,7 @@
       "art2": "#fbbf24"
     },
     "dark": {
-      "heroShade": "#0b1a16",
+      "heroShade": "#06110e",
       "heroText": "#e8f6f0",
       "bg": "#0b1a16",
       "surface": "#12251f",
@@ -70,7 +70,7 @@
     "buttonRadius": 999
   },
   "layout": {
-    "maxWidth": 1180,
+    "maxWidth": 1240,
     "header": "split",
     "hero": "split",
     "home": [
@@ -78,33 +78,46 @@
         "type": "facts"
       },
       {
+        "type": "cards",
+        "page": "about",
+        "heading": "Classes",
+        "columns": 3,
+        "count": 3,
+        "images": true
+      },
+      {
         "type": "list",
         "page": "blog",
         "heading": "This week"
       },
       {
-        "type": "gallery",
-        "page": "galleries",
-        "style": "even",
-        "count": 3
+        "type": "people",
+        "page": "about",
+        "heading": "Teachers"
+      },
+      {
+        "type": "list",
+        "page": "about",
+        "heading": "Prices"
       },
       {
         "type": "cta",
         "heading": "Your first class is on us",
-        "text": "Bring water and comfortable clothes. Mats provided.",
+        "text": "Bring water and comfortable clothes. Mats and towels provided.",
         "button": "Book a free class"
       }
     ]
   },
   "widgets": {
     "catalogue": "themes/widgets.json",
-    "enabled": [],
+    "enabled": [
+      "key-numbers"
+    ],
     "suggested": [
-      "map",
-      "contact-card",
       "testimonials",
+      "map",
       "video",
-      "feature-panel"
+      "social-links"
     ],
     "switchable": "all"
   },

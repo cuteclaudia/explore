@@ -18,8 +18,8 @@ Only the existing SoraSpace page types are used. Labels are display names; the u
 
 ## Layout
 
-- Header: `split` · Hero: `split` · Maximum width: 1180px
-- Home sections, in order: `intro` (about), `cards` (articles), `feature` (blog), `cta`
+- Header: `split` · Hero: `split` · Maximum width: 1240px
+- Home sections, in order: `list` (about), `cards` (articles), `facts`, `feature` (blog), `cta`
 - Headings: geometric stack, weight 700 · Body: sans stack · Corner radius: 12px
 
 ## Colours
@@ -37,8 +37,8 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | border | `#e6e6ee` |
 | art1 | `#4f46e5` |
 | art2 | `#22d3ee` |
-| heroShade | `#0f0f14` |
-| heroText | `#ededf3` |
+| heroShade | `#17153a` |
+| heroText | `#f4f4fb` |
 
 | Token | Dark |
 | --- | --- |
@@ -51,15 +51,15 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | border | `#2a2a36` |
 | art1 | `#312e81` |
 | art2 | `#155e75` |
-| heroShade | `#0f0f14` |
+| heroShade | `#0a0a12` |
 | heroText | `#ededf3` |
 
 ## Widgets
 
 Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
 
-- On by default: Featured panel (`feature-panel`), Quick links (`quick-links`)
-- Suggested: Testimonials (`testimonials`), Social links (`social-links`)
+- On by default: Testimonials (`testimonials`), Contact card (`contact-card`)
+- Suggested: Latest posts (`latest-posts`), Key numbers (`key-numbers`), Social links (`social-links`)
 
 ## Files
 

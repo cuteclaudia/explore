@@ -14,6 +14,7 @@ import { THEMES, FONT_STACKS } from './catalogue.mjs';
 import { CREDITS } from './design-credits.mjs';
 import { esc, pic, txt } from './design-kit.mjs';
 import { DESIGNS_B } from './design-references-b.mjs';
+import { DESIGNS_C } from './design-references-c.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const theme = id => THEMES.find(t => t.id === id);
@@ -38,6 +39,7 @@ function page(t, kind, { body, css, scheme = 'light', title }) {
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 var(--body)}
 img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
 h1,h2,h3,h4{font-family:var(--head);line-height:1.1;margin:0}
 p{margin:0 0 1em}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 5%}
@@ -530,7 +532,7 @@ footer{padding:40px 0 56px;font-size:14px;color:var(--muted)}footer .wrap{displa
   }
 };
 
-export const DESIGNS = [magazine, photography, trades, artist, travel, ...DESIGNS_B];
+export const DESIGNS = [magazine, photography, trades, artist, travel, ...DESIGNS_B, ...DESIGNS_C];
 
 /** The reference page for one design: kind is 'content' or 'empty'. */
 export function renderDesign(d, kind) {

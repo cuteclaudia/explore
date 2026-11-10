@@ -10,7 +10,7 @@ import { WIDGETS, PROVIDERS, EXTERNAL_RULES, themeWidgets } from './widgets.mjs'
 const WIDGET = Object.fromEntries(WIDGETS.map(w => [w.id, w]));
 
 // Themes redesigned to the Explore standard (themes/UPLIFT.md), by uplift batch.
-export const UPLIFT = { magazine: 'A', 'photography-portfolio': 'A', 'trades-services': 'A', 'artist-studio': 'A', 'travel-journal': 'A', 'restaurant-cafe': 'B', 'professional-practice': 'B', 'writer-author': 'B', 'wellness-clinic': 'B', stay: 'B' };
+export const UPLIFT = { magazine: 'A', 'photography-portfolio': 'A', 'trades-services': 'A', 'artist-studio': 'A', 'travel-journal': 'A', 'restaurant-cafe': 'B', 'professional-practice': 'B', 'writer-author': 'B', 'wellness-clinic': 'B', stay: 'B', consultant: 'C', 'musician-band': 'C', 'fitness-studio': 'C', 'community-group': 'C', 'maker-shop': 'C' };
 
 export const batchOf = n => (n <= 10 ? 1 : Math.ceil(n / 10));
 

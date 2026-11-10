@@ -279,7 +279,16 @@
       "recommendedVisibility": "public",
       "path": "themes/consultant/",
       "definition": "themes/consultant/theme.json",
-      "preview": "themes/consultant/index.html"
+      "preview": "themes/consultant/index.html",
+      "uplift": {
+        "batch": "C",
+        "status": "in review",
+        "design": "themes/consultant/design/DESIGN.md",
+        "references": [
+          "themes/consultant/design/content.html",
+          "themes/consultant/design/empty.html"
+        ]
+      }
     },
     {
       "id": "writer-author",
@@ -383,7 +392,16 @@
       "recommendedVisibility": "public",
       "path": "themes/musician-band/",
       "definition": "themes/musician-band/theme.json",
-      "preview": "themes/musician-band/index.html"
+      "preview": "themes/musician-band/index.html",
+      "uplift": {
+        "batch": "C",
+        "status": "in review",
+        "design": "themes/musician-band/design/DESIGN.md",
+        "references": [
+          "themes/musician-band/design/content.html",
+          "themes/musician-band/design/empty.html"
+        ]
+      }
     },
     {
       "id": "fitness-studio",
@@ -413,7 +431,16 @@
       "recommendedVisibility": "public",
       "path": "themes/fitness-studio/",
       "definition": "themes/fitness-studio/theme.json",
-      "preview": "themes/fitness-studio/index.html"
+      "preview": "themes/fitness-studio/index.html",
+      "uplift": {
+        "batch": "C",
+        "status": "in review",
+        "design": "themes/fitness-studio/design/DESIGN.md",
+        "references": [
+          "themes/fitness-studio/design/content.html",
+          "themes/fitness-studio/design/empty.html"
+        ]
+      }
     },
     {
       "id": "wellness-clinic",
@@ -518,7 +545,16 @@
       "recommendedVisibility": "public",
       "path": "themes/community-group/",
       "definition": "themes/community-group/theme.json",
-      "preview": "themes/community-group/index.html"
+      "preview": "themes/community-group/index.html",
+      "uplift": {
+        "batch": "C",
+        "status": "in review",
+        "design": "themes/community-group/design/DESIGN.md",
+        "references": [
+          "themes/community-group/design/content.html",
+          "themes/community-group/design/empty.html"
+        ]
+      }
     },
     {
       "id": "maker-shop",
@@ -546,7 +582,16 @@
       "recommendedVisibility": "public",
       "path": "themes/maker-shop/",
       "definition": "themes/maker-shop/theme.json",
-      "preview": "themes/maker-shop/index.html"
+      "preview": "themes/maker-shop/index.html",
+      "uplift": {
+        "batch": "C",
+        "status": "in review",
+        "design": "themes/maker-shop/design/DESIGN.md",
+        "references": [
+          "themes/maker-shop/design/content.html",
+          "themes/maker-shop/design/empty.html"
+        ]
+      }
     },
     {
       "id": "product-launch",

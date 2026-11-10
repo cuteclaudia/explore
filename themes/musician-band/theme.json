@@ -70,21 +70,26 @@
     "buttonRadius": 999
   },
   "layout": {
-    "maxWidth": 1180,
+    "maxWidth": 1400,
     "header": "minimal",
     "hero": "full-bleed",
     "home": [
       {
         "type": "list",
         "page": "blog",
-        "heading": "Upcoming gigs"
+        "heading": "On tour"
+      },
+      {
+        "type": "feature",
+        "page": "blog",
+        "heading": "Latest release"
       },
       {
         "type": "gallery",
         "page": "galleries",
         "heading": "Live",
-        "style": "wide",
-        "count": 4
+        "style": "masonry",
+        "count": 5
       },
       {
         "type": "intro",
@@ -94,23 +99,28 @@
       {
         "type": "contact",
         "page": "contact",
-        "heading": "Bookings",
-        "text": "Festivals, venues and private events."
+        "heading": "Book the band",
+        "text": "Venues, festivals and private events."
+      },
+      {
+        "type": "cta",
+        "heading": "First to hear",
+        "text": "New dates and releases, about once a month.",
+        "button": "Join the list"
       }
     ]
   },
   "widgets": {
     "catalogue": "themes/widgets.json",
     "enabled": [
-      "feature-panel",
-      "quick-links"
+      "upcoming-events",
+      "social-links"
     ],
     "suggested": [
-      "upcoming-events",
-      "video",
       "audio",
-      "social-post",
-      "photo-strip"
+      "video",
+      "photo-strip",
+      "social-post"
     ],
     "switchable": "all"
   },

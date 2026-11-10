@@ -464,5 +464,190 @@ export const CREDITS = {
    8180361,
    "Hai Vu"
   ]
+ ],
+ "consultant": [
+  [
+   "portrait",
+   4098274,
+   "cottonbro studio"
+  ],
+  [
+   "meeting",
+   7674644,
+   "Pavel Danilyuk"
+  ],
+  [
+   "sticky-notes",
+   29521529,
+   "Jakub Zerdzicki"
+  ],
+  [
+   "whiteboard",
+   6340670,
+   "Pavel Danilyuk"
+  ],
+  [
+   "desk",
+   7583440,
+   "Mikhail Nilov"
+  ]
+ ],
+ "musician-band": [
+  [
+   "hero-stage",
+   8041087,
+   "ANTONI SHKRABA production"
+  ],
+  [
+   "crowd",
+   1587927,
+   "Mark Angelo Sampan"
+  ],
+  [
+   "guitarist",
+   9566141,
+   "Ethan Strunk"
+  ],
+  [
+   "drummer",
+   31853514,
+   "Ferat Söylemez"
+  ],
+  [
+   "rehearsal",
+   8041221,
+   "ANTONI SHKRABA production"
+  ],
+  [
+   "vinyl",
+   5764288,
+   "Miguel Á. Padriñán"
+  ],
+  [
+   "van",
+   15240975,
+   "Connor Scott McManus"
+  ]
+ ],
+ "fitness-studio": [
+  [
+   "hero-class",
+   8436610,
+   "Yan Krukau"
+  ],
+  [
+   "reformer",
+   8769163,
+   "Gustavo Fring"
+  ],
+  [
+   "kettlebells",
+   39219695,
+   "Vitaly Gariev"
+  ],
+  [
+   "studio",
+   7319683,
+   "MART PRODUCTION"
+  ],
+  [
+   "instructor-1",
+   6957887,
+   "Thirdman"
+  ],
+  [
+   "instructor-2",
+   32695885,
+   "Asso Myron"
+  ],
+  [
+   "instructor-3",
+   8172836,
+   "RDNE Stock project"
+  ]
+ ],
+ "community-group": [
+  [
+   "hero-garden",
+   39778154,
+   "Zack Gilbert"
+  ],
+  [
+   "seedlings",
+   27176769,
+   "Helena Lopes"
+  ],
+  [
+   "produce",
+   39566593,
+   "Jelena Kazak"
+  ],
+  [
+   "raised-beds",
+   37487180,
+   "Gene Samit"
+  ],
+  [
+   "harvest",
+   7658789,
+   "Kampus Production"
+  ],
+  [
+   "hall",
+   29463228,
+   "Jan van der Wolf"
+  ]
+ ],
+ "maker-shop": [
+  [
+   "hero-mugs",
+   6611421,
+   "Yan Krukau"
+  ],
+  [
+   "cups",
+   4830752,
+   "Diana Light"
+  ],
+  [
+   "bowls",
+   29312155,
+   "Cem Nisan"
+  ],
+  [
+   "vases",
+   33126633,
+   "Vinícius Borralho"
+  ],
+  [
+   "blue-mug",
+   31785816,
+   "Natalie Goodwin"
+  ],
+  [
+   "bisque",
+   8063803,
+   "ROMAN ODINTSOV"
+  ],
+  [
+   "shelf",
+   6611418,
+   "Yan Krukau"
+  ],
+  [
+   "wheel",
+   34259425,
+   "Deniz ŞENGÜL"
+  ],
+  [
+   "kiln",
+   9736509,
+   "KoolShooters"
+  ],
+  [
+   "glaze",
+   6023611,
+   "Kampus Production"
+  ]
  ]
 };

@@ -42,6 +42,18 @@ Owner feedback (10 November 2026): approved the direction ("so much better") and
 | Health | Wellness clinic | `wellness-clinic` | [design](wellness-clinic/design/DESIGN.md) |
 | Accommodation | Stay (B&B and holiday rentals) | `stay` | [design](stay/design/DESIGN.md) |
 
+## Batch C (11 November 2026): in review
+
+| Category | Theme | id | Reference |
+| --- | --- | --- | --- |
+| Business | Consultant | `consultant` | [design](consultant/design/DESIGN.md) |
+| Music | Musician & band | `musician-band` | [design](musician-band/design/DESIGN.md) |
+| Fitness | Fitness & studio | `fitness-studio` | [design](fitness-studio/design/DESIGN.md) |
+| Community | Community group | `community-group` | [design](community-group/design/DESIGN.md) |
+| Retail | Maker & small shop | `maker-shop` | [design](maker-shop/design/DESIGN.md) |
+
+Batch B was deployed and checked at platform revision `f6b57de` before batch C started.
+
 Each batch is reviewed in Website Manager and on published tenant pages before the next starts.
 
 ### Review checklist (each theme, desktop and phone)
@@ -91,7 +103,7 @@ not read yet is a gap to close first, before the new features below.
 
 ## New layout features SoraWebSite needs
 
-Shared across batch A. Each theme's `DESIGN.md` says which it uses and with what values. Proposed
+Shared across batches. F1–F18 came with batch A, F19–F26 with B, F27–F40 with C. Each theme's `DESIGN.md` says which it uses and with what values. Proposed
 settings live in the spec, not in `theme.json`, until the importer supports them; they would then
 be added as new optional fields (schemaVersion stays 1).
 
@@ -123,3 +135,17 @@ be added as new optional fields (schemaVersion stays 1).
 | F24 | **Round portraits** (B) | `people` cards with circular 1:1 portraits, name, role in accent, one line. |
 | F25 | **Photo mosaic** (B) | `gallery` with one large photo (2 rows) and four smaller ones, captions as chips; phones show three. |
 | F26 | **Image-backed call to action** (B) | `cta` band over a dimmed photo. |
+| F27 | **Case study with a result** (C) | `cards` item with sector, title, one line and a result figure (accent, 26–34 px) plus a short label. Leave the figure out when empty. |
+| F28 | **Availability chip** (C) | Short status in the hero with a dot ("Taking new projects from February"). Manager shows when it was last edited; empty means no chip. |
+| F29 | **Offer sticker** (C) | A small tilted card over the hero photo (`art2`), two lines. Optional; never a health or price claim the owner hasn't written. |
+| F30 | **Gig list with ticket status** (C) | Dated rows: date block, venue, town · details, status (on sale, few left, sold out, free, cancelled), outbound ticket link. Past gigs drop off at publish. |
+| F31 | **Release block** (C) | Square artwork (upload, or typeset by F23), type and track count, title, blurb, optional track list, listening links as outlined text pills with ↗. Optional `audio` widget below, click-to-load. |
+| F32 | **Weekly timetable** (C) | Seven day columns of class slots (time, class, length, category colour, full). Today marked. Phones: day tabs, one day at a time. Booking opens the owner's booking link (outbound) or Contact. |
+| F33 | **Price cards** (C) | Two to four options: name, amount + unit, one line; one may be highlighted. |
+| F34 | **Next get-together card** (C) | The next dated event: name, when, where, what to bring; "I'll come" (Contact with the event named) and "Add to calendar" (an `.ics` SoraSpace generates; no outside service). Hidden when nothing is upcoming. |
+| F35 | **Action rows** (C) | Up to three numbered rows: title, one line, link to a page. |
+| F36 | **Supporters line** (C) | Supporter names as plain text on a band (no logos by default). |
+| F37 | **Footer acknowledgement** (C) | Optional owner-written line above the footer credits (for example an Acknowledgement of Country). No default text. |
+| F38 | **Product cards** (C) | Gallery items with 4:5 photo, name, price, unit, one line, availability (made to order with lead time, sold out, or none), and Enquire to the Order page with the product named. Category chips from albums. No checkout. |
+| F39 | **Also available at** (C) | Outbound links to the owner's other shops and stockists: label, one line, ↗, `rel="noopener"`. No embeds. |
+| F40 | **Steps with photos** (C) | F10 steps with a 4:3 image slot each (three). |

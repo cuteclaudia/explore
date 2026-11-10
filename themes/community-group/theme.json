@@ -32,8 +32,8 @@
   "density": "comfortable",
   "colours": {
     "light": {
-      "heroShade": "#1b1511",
-      "heroText": "#f6ece1",
+      "heroShade": "#2b1a10",
+      "heroText": "#fff8ef",
       "bg": "#fffaf3",
       "surface": "#ffffff",
       "text": "#2b2118",
@@ -45,7 +45,7 @@
       "art2": "#2a9d8f"
     },
     "dark": {
-      "heroShade": "#1b1511",
+      "heroShade": "#120c08",
       "heroText": "#f6ece1",
       "bg": "#1b1511",
       "surface": "#251d17",
@@ -71,25 +71,36 @@
     "buttonRadius": 999
   },
   "layout": {
-    "maxWidth": 1180,
+    "maxWidth": 1300,
     "header": "split",
     "hero": "banner",
     "home": [
+      {
+        "type": "facts",
+        "heading": "Next get-together"
+      },
       {
         "type": "intro",
         "page": "about",
         "heading": "What we do"
       },
       {
-        "type": "cards",
-        "page": "blog",
-        "heading": "Latest news"
+        "type": "list",
+        "page": "about",
+        "heading": "Ways to take part"
       },
       {
-        "type": "gallery",
-        "page": "galleries",
-        "style": "even",
-        "count": 3
+        "type": "list",
+        "page": "blog",
+        "heading": "What’s on"
+      },
+      {
+        "type": "cards",
+        "page": "blog",
+        "heading": "Latest news",
+        "columns": 3,
+        "count": 3,
+        "images": true
       },
       {
         "type": "cta",
@@ -102,15 +113,14 @@
   "widgets": {
     "catalogue": "themes/widgets.json",
     "enabled": [
-      "feature-panel",
-      "quick-links"
+      "upcoming-events",
+      "social-links"
     ],
     "suggested": [
-      "upcoming-events",
+      "latest-posts",
+      "photo-strip",
       "map",
-      "contact-card",
-      "social-post",
-      "photo-strip"
+      "social-post"
     ],
     "switchable": "all"
   },

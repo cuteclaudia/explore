@@ -18,8 +18,8 @@ Only the existing SoraSpace page types are used. Labels are display names; the u
 
 ## Layout
 
-- Header: `split` · Hero: `split` · Maximum width: 1180px
-- Home sections, in order: `facts`, `list` (blog), `gallery` (galleries), `cta`
+- Header: `split` · Hero: `split` · Maximum width: 1240px
+- Home sections, in order: `facts`, `cards` (about), `list` (blog), `people` (about), `list` (about), `cta`
 - Headings: rounded stack, weight 700 · Body: sans stack · Corner radius: 18px
 
 ## Colours
@@ -37,8 +37,8 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | border | `#d4e8e0` |
 | art1 | `#34d399` |
 | art2 | `#fbbf24` |
-| heroShade | `#0b1a16` |
-| heroText | `#e8f6f0` |
+| heroShade | `#0c2621` |
+| heroText | `#f5fbf8` |
 
 | Token | Dark |
 | --- | --- |
@@ -51,15 +51,15 @@ Light and dark sets are both defined; System follows the visitor's device settin
 | border | `#23403a` |
 | art1 | `#065f46` |
 | art2 | `#92400e` |
-| heroShade | `#0b1a16` |
+| heroShade | `#06110e` |
 | heroText | `#e8f6f0` |
 
 ## Widgets
 
 Every widget can be switched on or off by the site owner (see `themes/widgets.json`).
 
-- On by default: none
-- Suggested: Map (`map`), outside, click-to-load, Contact card (`contact-card`), Testimonials (`testimonials`), Video (`video`), outside, click-to-load, Featured panel (`feature-panel`)
+- On by default: Key numbers (`key-numbers`)
+- Suggested: Testimonials (`testimonials`), Map (`map`), outside, click-to-load, Video (`video`), outside, click-to-load, Social links (`social-links`)
 
 ## Notes
 

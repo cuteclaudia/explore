@@ -30,8 +30,8 @@
   "density": "comfortable",
   "colours": {
     "light": {
-      "heroShade": "#141413",
-      "heroText": "#efefe9",
+      "heroShade": "#1f1f1c",
+      "heroText": "#fafaf7",
       "bg": "#fafaf7",
       "surface": "#ffffff",
       "text": "#1f1f1c",
@@ -43,7 +43,7 @@
       "art2": "#9fb7a6"
     },
     "dark": {
-      "heroShade": "#141413",
+      "heroShade": "#0b0b0a",
       "heroText": "#efefe9",
       "bg": "#141413",
       "surface": "#1d1d1b",
@@ -69,44 +69,50 @@
     "buttonRadius": 4
   },
   "layout": {
-    "maxWidth": 1180,
+    "maxWidth": 1240,
     "header": "centered",
     "hero": "split",
     "home": [
       {
         "type": "gallery",
         "page": "galleries",
-        "heading": "New in the shop",
+        "heading": "In the shop",
         "style": "even",
         "count": 6
       },
       {
-        "type": "feature",
-        "page": "blog",
-        "heading": "From the workshop"
+        "type": "list",
+        "page": "about",
+        "heading": "How it’s made"
       },
       {
-        "type": "intro",
-        "page": "about",
-        "heading": "About the maker"
+        "type": "feature",
+        "page": "blog",
+        "heading": "From the journal"
+      },
+      {
+        "type": "list",
+        "page": "blog",
+        "heading": "Find us at markets"
       },
       {
         "type": "contact",
         "page": "contact",
-        "heading": "Orders & enquiries",
-        "text": "Tell us which pieces you would like and we will confirm availability, price and postage."
+        "heading": "Ordering",
+        "text": "Tell us which pieces you’d like. We’ll confirm availability, price and postage, then send a payment link."
       }
     ]
   },
   "widgets": {
     "catalogue": "themes/widgets.json",
-    "enabled": [],
+    "enabled": [
+      "upcoming-events",
+      "social-links"
+    ],
     "suggested": [
-      "map",
-      "contact-card",
+      "photo-strip",
       "social-post",
-      "feature-panel",
-      "photo-strip"
+      "map"
     ],
     "switchable": "all"
   },
