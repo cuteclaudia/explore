@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "id": "workshop",
+  "number": 56,
+  "name": "Workshop · vocational training",
+  "category": "education",
+  "status": "preview",
+  "description": "Practical and bold: courses by outcome, the next intakes, how to enrol and the trainers. Built to work with SoraLearn.",
+  "suits": [
+    "Vocational colleges",
+    "Registered training organisations",
+    "Trade and apprenticeship schools",
+    "Hospitality and care training"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "blog",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "blog": "News"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#1f2328",
+      "heroText": "#fafaf9",
+      "bg": "#faf8f5",
+      "surface": "#ffffff",
+      "text": "#1f2328",
+      "muted": "#57606a",
+      "accent": "#c2410c",
+      "onAccent": "#ffffff",
+      "border": "#e7e0d6",
+      "art1": "#f59e0b",
+      "art2": "#0f766e"
+    },
+    "dark": {
+      "heroShade": "#0d0e10",
+      "heroText": "#f1efe9",
+      "bg": "#15171a",
+      "surface": "#1f2226",
+      "text": "#f1efe9",
+      "muted": "#b4ada3",
+      "accent": "#fb923c",
+      "onAccent": "#1c0f05",
+      "border": "#33363b",
+      "art1": "#b45309",
+      "art2": "#115e59"
+    }
+  },
+  "typography": {
+    "heading": "condensed",
+    "body": "sans",
+    "headingWeight": 800,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1.08
+  },
+  "shape": {
+    "radius": 6,
+    "buttonRadius": 6
+  },
+  "layout": {
+    "maxWidth": 1240,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "facts"
+      },
+      {
+        "type": "cards",
+        "page": "about",
+        "heading": "Courses",
+        "columns": 3,
+        "count": 6,
+        "images": true
+      },
+      {
+        "type": "list",
+        "heading": "Next intakes"
+      },
+      {
+        "type": "list",
+        "heading": "How to enrol"
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "Trainers"
+      },
+      {
+        "type": "cta",
+        "heading": "Talk to us about training",
+        "text": "Tell us what you want to do, and we’ll help you find the course and the intake that fit.",
+        "button": "Enquire"
+      }
+    ]
+  },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "key-numbers"
+    ],
+    "suggested": [
+      "testimonials",
+      "video",
+      "latest-posts",
+      "map"
+    ],
+    "switchable": "all"
+  },
+  "notes": [
+    "A SoraLearn site: the menu carries Student sign-in, and the course list comes from the institution’s public courses in SoraLearn, with Enrol, Apply or Register interest leading into SoraLearn admissions.",
+    "Do not model sample copy on a real institution."
+  ]
+}

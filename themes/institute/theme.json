@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "id": "institute",
+  "number": 57,
+  "name": "Institute · professional courses",
+  "category": "education",
+  "status": "preview",
+  "description": "Clean and corporate: upcoming course dates, programs, facilitators and training for organisations, with a clear way to book a place. Built to work with SoraLearn.",
+  "suits": [
+    "Professional development providers",
+    "Short-course institutes",
+    "Industry associations",
+    "Corporate training"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "blog",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "blog": "Insights"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#0b1f33",
+      "heroText": "#f2f7fb",
+      "bg": "#f7f9fb",
+      "surface": "#ffffff",
+      "text": "#0b1f33",
+      "muted": "#4a5b6d",
+      "accent": "#0f766e",
+      "onAccent": "#ffffff",
+      "border": "#dbe3ea",
+      "art1": "#0ea5e9",
+      "art2": "#14b8a6"
+    },
+    "dark": {
+      "heroShade": "#06101a",
+      "heroText": "#e6eef5",
+      "bg": "#0a1520",
+      "surface": "#122131",
+      "text": "#e6eef5",
+      "muted": "#9fb1c2",
+      "accent": "#5eead4",
+      "onAccent": "#042f2e",
+      "border": "#213447",
+      "art1": "#0369a1",
+      "art2": "#0f766e"
+    }
+  },
+  "typography": {
+    "heading": "humanist",
+    "body": "sans",
+    "headingWeight": 650,
+    "headingCase": "none",
+    "headingTracking": -0.01,
+    "scale": 1.04
+  },
+  "shape": {
+    "radius": 8,
+    "buttonRadius": 6
+  },
+  "layout": {
+    "maxWidth": 1240,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "facts"
+      },
+      {
+        "type": "list",
+        "heading": "Upcoming courses"
+      },
+      {
+        "type": "cards",
+        "page": "about",
+        "heading": "Programs",
+        "columns": 3,
+        "count": 6,
+        "images": true
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "Facilitators"
+      },
+      {
+        "type": "feature",
+        "page": "blog",
+        "heading": "For organisations"
+      },
+      {
+        "type": "cta",
+        "heading": "Book a place",
+        "text": "Choose a date that suits you, or ask about a course for your team.",
+        "button": "Book a place"
+      }
+    ]
+  },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "key-numbers"
+    ],
+    "suggested": [
+      "testimonials",
+      "video",
+      "latest-posts",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
+  "notes": [
+    "A SoraLearn site: the menu carries Student sign-in, and the course list comes from the institution’s public courses in SoraLearn, with Enrol, Apply or Register interest leading into SoraLearn admissions.",
+    "Do not model sample copy on a real institution."
+  ]
+}

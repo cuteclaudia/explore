@@ -1776,6 +1776,74 @@
         "design": "themes/quadrangle/design/DESIGN.md",
         "references": []
       }
+    },
+    {
+      "id": "workshop",
+      "number": 56,
+      "name": "Workshop · vocational training",
+      "batch": 6,
+      "readyToImport": true,
+      "category": "education",
+      "status": "preview",
+      "suits": [
+        "Vocational colleges",
+        "Registered training organisations",
+        "Trade and apprenticeship schools",
+        "Hospitality and care training"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "blog",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/workshop/",
+      "definition": "themes/workshop/theme.json",
+      "preview": "themes/workshop/index.html",
+      "uplift": {
+        "batch": "D",
+        "status": "first build",
+        "design": "themes/workshop/design/DESIGN.md",
+        "references": []
+      }
+    },
+    {
+      "id": "institute",
+      "number": 57,
+      "name": "Institute · professional courses",
+      "batch": 6,
+      "readyToImport": true,
+      "category": "education",
+      "status": "preview",
+      "suits": [
+        "Professional development providers",
+        "Short-course institutes",
+        "Industry associations",
+        "Corporate training"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "blog",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/institute/",
+      "definition": "themes/institute/theme.json",
+      "preview": "themes/institute/index.html",
+      "uplift": {
+        "batch": "D",
+        "status": "first build",
+        "design": "themes/institute/design/DESIGN.md",
+        "references": []
+      }
     }
   ]
 }
