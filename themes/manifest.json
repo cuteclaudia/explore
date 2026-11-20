@@ -1638,6 +1638,144 @@
       "path": "themes/team-handbook/",
       "definition": "themes/team-handbook/theme.json",
       "preview": "themes/team-handbook/index.html"
+    },
+    {
+      "id": "lingua",
+      "number": 52,
+      "name": "Lingua · language school",
+      "batch": 6,
+      "readyToImport": true,
+      "category": "education",
+      "status": "preview",
+      "suits": [
+        "Language schools",
+        "English colleges",
+        "Community language classes",
+        "Online language tutors"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "blog",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/lingua/",
+      "definition": "themes/lingua/theme.json",
+      "preview": "themes/lingua/index.html",
+      "uplift": {
+        "batch": "D",
+        "status": "first build",
+        "design": "themes/lingua/design/DESIGN.md",
+        "references": []
+      }
+    },
+    {
+      "id": "conservatoire",
+      "number": 53,
+      "name": "Conservatoire · music school",
+      "batch": 6,
+      "readyToImport": true,
+      "category": "education",
+      "status": "preview",
+      "suits": [
+        "Music schools",
+        "Instrument teachers",
+        "Choirs with a teaching program",
+        "Performing arts academies"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "blog",
+        "galleries",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/conservatoire/",
+      "definition": "themes/conservatoire/theme.json",
+      "preview": "themes/conservatoire/index.html",
+      "uplift": {
+        "batch": "D",
+        "status": "first build",
+        "design": "themes/conservatoire/design/DESIGN.md",
+        "references": []
+      }
+    },
+    {
+      "id": "academy",
+      "number": 54,
+      "name": "Academy · online courses",
+      "batch": 6,
+      "readyToImport": true,
+      "category": "education",
+      "status": "preview",
+      "suits": [
+        "Online academies",
+        "Independent course creators",
+        "Coaches with a curriculum",
+        "Bootcamps"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "blog",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/academy/",
+      "definition": "themes/academy/theme.json",
+      "preview": "themes/academy/index.html",
+      "uplift": {
+        "batch": "D",
+        "status": "first build",
+        "design": "themes/academy/design/DESIGN.md",
+        "references": []
+      }
+    },
+    {
+      "id": "quadrangle",
+      "number": 55,
+      "name": "Quadrangle · university",
+      "batch": 6,
+      "readyToImport": true,
+      "category": "education",
+      "status": "preview",
+      "suits": [
+        "Universities",
+        "Higher-education providers",
+        "Colleges",
+        "Institutes of advanced study"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "blog",
+        "articles",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/quadrangle/",
+      "definition": "themes/quadrangle/theme.json",
+      "preview": "themes/quadrangle/index.html",
+      "uplift": {
+        "batch": "D",
+        "status": "first build",
+        "design": "themes/quadrangle/design/DESIGN.md",
+        "references": []
+      }
     }
   ]
 }

@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "id": "quadrangle",
+  "number": 55,
+  "name": "Quadrangle · university",
+  "category": "education",
+  "status": "preview",
+  "description": "Formal and assured: study areas, research, key dates, news and leadership, with a clear way to apply. Built to work with SoraLearn.",
+  "suits": [
+    "Universities",
+    "Higher-education providers",
+    "Colleges",
+    "Institutes of advanced study"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "blog",
+    "articles",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "blog": "News",
+    "articles": "Research"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#1c1433",
+      "heroText": "#f7f4ff",
+      "bg": "#faf9fc",
+      "surface": "#ffffff",
+      "text": "#1c1433",
+      "muted": "#57506b",
+      "accent": "#5b21b6",
+      "onAccent": "#ffffff",
+      "border": "#e3ddf0",
+      "art1": "#b45309",
+      "art2": "#c2a14a"
+    },
+    "dark": {
+      "heroShade": "#0e0a1c",
+      "heroText": "#ece7fb",
+      "bg": "#120e22",
+      "surface": "#1c1632",
+      "text": "#ece7fb",
+      "muted": "#b3a9cf",
+      "accent": "#c4b5fd",
+      "onAccent": "#2e1065",
+      "border": "#2f2748",
+      "art1": "#92400e",
+      "art2": "#a16207"
+    }
+  },
+  "typography": {
+    "heading": "oldstyle",
+    "body": "sans",
+    "headingWeight": 600,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1.05
+  },
+  "shape": {
+    "radius": 4,
+    "buttonRadius": 4
+  },
+  "layout": {
+    "maxWidth": 1240,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "facts"
+      },
+      {
+        "type": "cards",
+        "page": "about",
+        "heading": "Study with us",
+        "columns": 3,
+        "count": 6,
+        "images": true
+      },
+      {
+        "type": "feature",
+        "page": "articles",
+        "heading": "Research"
+      },
+      {
+        "type": "list",
+        "heading": "Key dates"
+      },
+      {
+        "type": "cards",
+        "page": "blog",
+        "heading": "News",
+        "columns": 3,
+        "count": 3,
+        "images": true
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "Leadership"
+      },
+      {
+        "type": "cta",
+        "heading": "Apply to study",
+        "text": "Find a course, check the entry requirements, and apply.",
+        "button": "How to apply"
+      }
+    ]
+  },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "key-numbers"
+    ],
+    "suggested": [
+      "map",
+      "video",
+      "newsletter",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
+  "notes": [
+    "A SoraLearn site: the menu carries Student sign-in, and the main button leads to the Contact page until applications arrive in SoraLearn.",
+    "Course lists are typed in Theme sections for now; filling them from SoraLearn’s public courses is the next step.",
+    "Do not model sample copy on a real institution."
+  ]
+}

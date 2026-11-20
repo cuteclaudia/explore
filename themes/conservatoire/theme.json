@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "id": "conservatoire",
+  "number": 53,
+  "name": "Conservatoire · music school",
+  "category": "education",
+  "status": "preview",
+  "description": "Warm and expressive: instruments and programs, teachers, concerts and recitals, ensembles, and a trial lesson. Built to work with SoraLearn.",
+  "suits": [
+    "Music schools",
+    "Instrument teachers",
+    "Choirs with a teaching program",
+    "Performing arts academies"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "blog",
+    "galleries",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "blog": "Concerts",
+    "galleries": "Ensembles"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#2a1410",
+      "heroText": "#fbf3ec",
+      "bg": "#fbf6f1",
+      "surface": "#ffffff",
+      "text": "#2a1410",
+      "muted": "#6b5148",
+      "accent": "#9a3412",
+      "onAccent": "#ffffff",
+      "border": "#ead9cd",
+      "art1": "#d97706",
+      "art2": "#7c2d12"
+    },
+    "dark": {
+      "heroShade": "#150a08",
+      "heroText": "#f6e9df",
+      "bg": "#1a0f0c",
+      "surface": "#261814",
+      "text": "#f6e9df",
+      "muted": "#c9ab9d",
+      "accent": "#fdba74",
+      "onAccent": "#431407",
+      "border": "#3d2620",
+      "art1": "#92400e",
+      "art2": "#b45309"
+    }
+  },
+  "typography": {
+    "heading": "didone",
+    "body": "serif",
+    "headingWeight": 600,
+    "headingCase": "none",
+    "headingTracking": 0,
+    "scale": 1.05
+  },
+  "shape": {
+    "radius": 6,
+    "buttonRadius": 6
+  },
+  "layout": {
+    "maxWidth": 1240,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "cards",
+        "page": "about",
+        "heading": "Instruments and programs",
+        "columns": 3,
+        "count": 6,
+        "images": true
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "Teachers"
+      },
+      {
+        "type": "list",
+        "page": "blog",
+        "heading": "Concerts and recitals"
+      },
+      {
+        "type": "gallery",
+        "page": "galleries",
+        "heading": "Ensembles"
+      },
+      {
+        "type": "list",
+        "page": "about",
+        "heading": "Lessons and fees"
+      },
+      {
+        "type": "cta",
+        "heading": "Book a trial lesson",
+        "text": "Meet a teacher, try the instrument, and find the right program.",
+        "button": "Book a trial lesson"
+      }
+    ]
+  },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [],
+    "suggested": [
+      "testimonials",
+      "video",
+      "map",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
+  "notes": [
+    "A SoraLearn site: the menu carries Student sign-in, and the main button leads to the Contact page until applications arrive in SoraLearn.",
+    "Course lists are typed in Theme sections for now; filling them from SoraLearn’s public courses is the next step.",
+    "Do not model sample copy on a real institution."
+  ]
+}

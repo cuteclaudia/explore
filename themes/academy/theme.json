@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "id": "academy",
+  "number": 54,
+  "name": "Academy · online courses",
+  "category": "education",
+  "status": "preview",
+  "description": "Modern and direct: course cards, how learning works, the teacher, and a clear way to start. Built to work with SoraLearn.",
+  "suits": [
+    "Online academies",
+    "Independent course creators",
+    "Coaches with a curriculum",
+    "Bootcamps"
+  ],
+  "baseTemplate": "practice",
+  "purpose": "business",
+  "recommendedVisibility": "public",
+  "workgroupFriendly": false,
+  "pages": [
+    "home",
+    "blog",
+    "about",
+    "contact"
+  ],
+  "pageLabels": {
+    "blog": "Articles"
+  },
+  "density": "comfortable",
+  "colours": {
+    "light": {
+      "heroShade": "#0f172a",
+      "heroText": "#f8fafc",
+      "bg": "#f8fafc",
+      "surface": "#ffffff",
+      "text": "#0f172a",
+      "muted": "#475569",
+      "accent": "#4f46e5",
+      "onAccent": "#ffffff",
+      "border": "#e2e8f0",
+      "art1": "#22d3ee",
+      "art2": "#a78bfa"
+    },
+    "dark": {
+      "heroShade": "#070b16",
+      "heroText": "#e7ecf5",
+      "bg": "#0b1120",
+      "surface": "#131b2e",
+      "text": "#e7ecf5",
+      "muted": "#a3b1c6",
+      "accent": "#a5b4fc",
+      "onAccent": "#1e1b4b",
+      "border": "#243149",
+      "art1": "#155e75",
+      "art2": "#5b21b6"
+    }
+  },
+  "typography": {
+    "heading": "geometric",
+    "body": "sans",
+    "headingWeight": 700,
+    "headingCase": "none",
+    "headingTracking": -0.01,
+    "scale": 1.05
+  },
+  "shape": {
+    "radius": 14,
+    "buttonRadius": 10
+  },
+  "layout": {
+    "maxWidth": 1240,
+    "header": "split",
+    "hero": "split",
+    "home": [
+      {
+        "type": "facts"
+      },
+      {
+        "type": "cards",
+        "page": "about",
+        "heading": "Courses",
+        "columns": 3,
+        "count": 6,
+        "images": true
+      },
+      {
+        "type": "list",
+        "heading": "How it works"
+      },
+      {
+        "type": "people",
+        "page": "about",
+        "heading": "Your teachers"
+      },
+      {
+        "type": "feature",
+        "page": "blog",
+        "heading": "From the blog"
+      },
+      {
+        "type": "cta",
+        "heading": "Start learning today",
+        "text": "Join a course and learn at your own pace, with a teacher to ask.",
+        "button": "Enrol now"
+      }
+    ]
+  },
+  "widgets": {
+    "catalogue": "themes/widgets.json",
+    "enabled": [
+      "key-numbers"
+    ],
+    "suggested": [
+      "testimonials",
+      "video",
+      "newsletter",
+      "social-links"
+    ],
+    "switchable": "all"
+  },
+  "notes": [
+    "A SoraLearn site: the menu carries Student sign-in, and the main button leads to the Contact page until applications arrive in SoraLearn.",
+    "Course lists are typed in Theme sections for now; filling them from SoraLearn’s public courses is the next step.",
+    "Do not model sample copy on a real institution."
+  ]
+}
