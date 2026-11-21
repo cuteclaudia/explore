@@ -1844,6 +1844,40 @@
         "design": "themes/institute/design/DESIGN.md",
         "references": []
       }
+    },
+    {
+      "id": "schoolhouse",
+      "number": 58,
+      "name": "Schoolhouse · primary and secondary schools",
+      "batch": 6,
+      "readyToImport": true,
+      "category": "education",
+      "status": "preview",
+      "suits": [
+        "Primary schools",
+        "Secondary schools",
+        "K–12 and independent schools",
+        "Early learning centres attached to a school"
+      ],
+      "baseTemplate": "practice",
+      "purpose": "business",
+      "pages": [
+        "home",
+        "blog",
+        "about",
+        "contact"
+      ],
+      "workgroupFriendly": false,
+      "recommendedVisibility": "public",
+      "path": "themes/schoolhouse/",
+      "definition": "themes/schoolhouse/theme.json",
+      "preview": "themes/schoolhouse/index.html",
+      "uplift": {
+        "batch": "D",
+        "status": "first build",
+        "design": "themes/schoolhouse/design/DESIGN.md",
+        "references": []
+      }
     }
   ]
 }
